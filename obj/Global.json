@@ -1,0 +1,606 @@
+{
+  "tagname": "class",
+  "name": "Global",
+  "doc": "<p>@platform android 0.8\n@platform blackberry 3.1.2\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8 @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Global/Global.yml</p>\n\n<p>The APIs that reside in the global scope, which may be called without a namespace prefix.</p>\n\n\n<p>@description <p>Titanium provides a number of global built-in objects, detailed below. </p></p>\n\n<h4>JSON</h4>\n\n\n\n\n<p>Titanium provides a built-in <a href=\"#!/api/Global.JSON\" rel=\"Global.JSON\" class=\"docClass\">JSON</a> object two functions, <code>parse</code> and <code>stringify</code>.</p>\n\n\n\n\n<h4>String Utilities</h4>\n\n\n\n\n<p>Titanium includes several extra utility functions for formatting text, attached to the\nglobal <a href=\"#!/api/Global.String\" rel=\"Global.String\" class=\"docClass\">String</a> object.</p>\n\n\n\n\n<h4>console</h4>\n\n\n\n\n<p>Titanium provides <a href=\"#!/api/Global.console\" rel=\"Global.console\" class=\"docClass\">console</a> support familiar to many javascript developers\nfor logging at the toplevel, in addition to the <a href=\"#!/api/Titanium.API\" rel=\"Titanium.API\" class=\"docClass\">Titanium.API</a> logging facilities.</p>\n\n\n\n\n<h4>Timers</h4>\n\n\n\n\n<p>Titanium has built-in support for one-off and repeating timers:</p>\n\n\n\n\n<ul>\n<li><p>Use <a href=\"#!/api/Global-method-setTimeout\" rel=\"Global-method-setTimeout\" class=\"docClass\">setTimeout</a> to start a one-off timer.</p></li>\n<li><p>Use <a href=\"#!/api/Global-method-setInterval\" rel=\"Global-method-setInterval\" class=\"docClass\">setInterval</a> to start a repeating timer.</p></li>\n</ul>\n\n\n\n\n<h4>Alert</h4>\n\n\n\n\n<p>Titanium has a built-in convenience function <a href=\"#!/api/Global-method-alert\" rel=\"Global-method-alert\" class=\"docClass\">alert</a> which can be used as an alias\nfor the <a href=\"#!/api/Titanium.UI.AlertDialog\" rel=\"Titanium.UI.AlertDialog\" class=\"docClass\">AlertDialog</a> module.</p>\n\n\n\n\n<h4>Locale</h4>\n\n\n\n\n<p>The <code>L</code> macro can also be used as an alias for the <a href=\"#!/api/Titanium.Locale-method-getString\" rel=\"Titanium.Locale-method-getString\" class=\"docClass\">Titanium.Locale.getString</a> method.</p>\n\n",
+  "extends": null,
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-Global",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "L",
+        "owner": "Global",
+        "doc": "<p>An alias for <a href=\"#!/api/Titanium.Locale-method-getString\" rel=\"Titanium.Locale-method-getString\" class=\"docClass\">Titanium.Locale.getString</a>.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "key",
+            "doc": "<p>Key used to lookup the localized string.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "String",
+            "name": "hint",
+            "doc": "<p>Text to return if <code>key</code> is not found.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>Localized string defined by <code>key</code>, or value of <code>hint</code> otherwise.</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-L",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 4477
+          }
+        ],
+        "shortDoc": "An alias for Titanium.Locale.getString. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "alert",
+        "owner": "Global",
+        "doc": "<p>Displays a pop-up alert dialog with the passed in <code>message</code>.</p>\n\n\n<p>@description <p>This function is a shortcut for creating and displaying an\n<a href=\"#!/api/Titanium.UI.AlertDialog\" rel=\"Titanium.UI.AlertDialog\" class=\"docClass\">alert dialog</a>. For example, the following two statements produce\nthe same result.</p></p>\n\n<pre><code>alert('Danger, Will Robinson!');\n\nTi.UI.createAlertDialog({ message: 'Danger, Will Robinson!' }).show();\n</code></pre>\n\n\n\n\n<p>Note that unlike a web browser-based version of <code>alert</code>, the method is asynchronous. However,\nonly one alert dialog will be visible and modal at a time.</p>\n\n\n\n\n<p>Be aware that this method may be removed in the future.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "message",
+            "doc": "<p>Alert message.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-alert",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 4376
+          }
+        ],
+        "shortDoc": "Displays a pop-up alert dialog with the passed in message. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "clearInterval",
+        "owner": "Global",
+        "doc": "<p>Cancels an interval timer.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "timerId",
+            "doc": "<p>Unique timer identifier returned by <a href=\"#!/api/Global-method-setInterval\" rel=\"Global-method-setInterval\" class=\"docClass\">setInterval</a>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-clearInterval",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 4403
+          }
+        ],
+        "shortDoc": "Cancels an interval timer. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "clearTimeout",
+        "owner": "Global",
+        "doc": "<p>Cancels a one-time timer.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "timerId",
+            "doc": "<p>Unique timer identifier returned by <a href=\"#!/api/Global-method-setTimeout\" rel=\"Global-method-setTimeout\" class=\"docClass\">setTimeout</a>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-clearTimeout",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 4418
+          }
+        ],
+        "shortDoc": "Cancels a one-time timer. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "createJSON",
+        "owner": "Global",
+        "doc": "<p>Creates and returns an instance of <a href=\"#!/api/Global.JSON\" rel=\"Global.JSON\" class=\"docClass\">Global.JSON</a>.</p>\n\n",
+        "params": [
+          {
+            "type": "Dictionary<Global.JSON>",
+            "name": "parameters",
+            "doc": "<p>Properties to set on a new object, including any defined by <a href=\"#!/api/Global.JSON\" rel=\"Global.JSON\" class=\"docClass\">Global.JSON</a> except those marked not-creation or read-only.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary<Global.JSON>"
+          }
+        ],
+        "return": {
+          "type": "Global.JSON",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Global.JSON"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-createJSON",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 4656
+          }
+        ],
+        "shortDoc": "Creates and returns an instance of Global.JSON. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "createString",
+        "owner": "Global",
+        "doc": "<p>Creates and returns an instance of <a href=\"#!/api/Global.String\" rel=\"Global.String\" class=\"docClass\">Global.String</a>.</p>\n\n",
+        "params": [
+          {
+            "type": "Dictionary<Global.String>",
+            "name": "parameters",
+            "doc": "<p>Properties to set on a new object, including any defined by <a href=\"#!/api/Global.String\" rel=\"Global.String\" class=\"docClass\">Global.String</a> except those marked not-creation or read-only.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary<Global.String>"
+          }
+        ],
+        "return": {
+          "type": "Global.String",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+          "properties": null,
+          "html_type": "Global.String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-createString",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 4671
+          }
+        ],
+        "shortDoc": "Creates and returns an instance of Global.String. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "createconsole",
+        "owner": "Global",
+        "doc": "<p>Creates and returns an instance of <a href=\"#!/api/Global.console\" rel=\"Global.console\" class=\"docClass\">Global.console</a>.</p>\n\n",
+        "params": [
+          {
+            "type": "Dictionary<Global.console>",
+            "name": "parameters",
+            "doc": "<p>Properties to set on a new object, including any defined by <a href=\"#!/api/Global.console\" rel=\"Global.console\" class=\"docClass\">Global.console</a> except those marked not-creation or read-only.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary<Global.console>"
+          }
+        ],
+        "return": {
+          "type": "Global.console",
+          "name": "return",
+          "doc": "<p>@platform android 2.1.0\n@platform blackberry 3.1.2\n@platform iphone 2.1.0\n@platform ipad 2.1.0\n@platform mobileweb 2.1.0</p>\n",
+          "properties": null,
+          "html_type": "Global.console"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-createconsole",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 4689
+          }
+        ],
+        "shortDoc": "Creates and returns an instance of Global.console. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "decodeURIComponent",
+        "owner": "Global",
+        "doc": "<p>Replaces each escape sequence in the specified string, created using the <code>encodedURI</code>\nmethod, with the character that it represents. </p>\n\n\n<p>@description <p>For more information, see the MDN website for\n<a href=\"https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/encodeURIComponent\">encodeURIComponent</a>\nand <a href=\"https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/decodeURIComponent\">decodeURIComponent</a>.</p></p>\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "encodedURI",
+            "doc": "<p>Text that optionally contains encoded escape sequences.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>Decoded string.</p>\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-decodeURIComponent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 4433
+          }
+        ],
+        "shortDoc": "Replaces each escape sequence in the specified string, created using the encodedURI\nmethod, with the character that i...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "encodeURIComponent",
+        "owner": "Global",
+        "doc": "<p>Replaces each special character in the specified string with the equivalent URI escape\nsequence. Useful for encoding URIs.</p>\n\n\n<p>@description <p>For more information, see the MDN website for\n<a href=\"https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/encodeURIComponent\">encodeURIComponent</a>\nand <a href=\"https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/decodeURIComponent\">decodeURIComponent</a>.</p></p>\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "string",
+            "doc": "<p>Text that optionally contains special characters.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>Encoded string.</p>\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-encodeURIComponent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 4455
+          }
+        ],
+        "shortDoc": "Replaces each special character in the specified string with the equivalent URI escape\nsequence. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "require",
+        "owner": "Global",
+        "doc": "<p>Loads either a native Titanium module or a CommonJS module.</p>\n\n\n<p>@description <p>The <code>require</code> function takes a module identifier as its argument and returns an object with\nreferences to the module's exported symbols.</p></p>\n\n<h4>Native Titanium Module</h4>\n\n\n\n\n<p>To load a native Titanium module:</p>\n\n\n\n\n<ol>\n<li>Install the module to the project or copy it to the Titanium SDK home directory.</li>\n<li>Add the module as a dependency to the project by modifying the <code>modules</code> section of the <code>tiapp.xml</code> file.</li>\n<li>Initialize the module with the <code>require</code> method by passing the module ID to the method.</li>\n</ol>\n\n\n\n\n<p>For detailed instructions, refer to\n<a href=\"http://docs.appcelerator.com/titanium/latest/#!/guide/Using_a_Module\">Using a Module</a>.</p>\n\n\n\n\n<h4>CommonJS Module</h4>\n\n\n\n\n<p>To load a local CommonJS module, place the CommonJS module in the <code>Resources</code> directory of\nyour project. Pass the <code>require</code> method the path to the file without the <code>Resources</code>\ndirectory, platform-specific directory and the <code>.js</code> extension.</p>\n\n\n\n\n<p>Note that the appropriate <em>platform-specific</em> <code>Resources</code> subdirectory is merged into the\nmain <code>Resources</code> directory at build time. For example, suppose the following files exist.</p>\n\n\n\n\n<ul>\n<li><code>Resources/app.js</code></li>\n<li><code>Resources/ui/MainWindow.js</code></li>\n<li><code>Resources/iphone/ui/TaskWindow.js</code></li>\n<li><code>Resources/android/ui/TaskWindow.js</code></li>\n</ul>\n\n\n\n\n<p>The appropriate <code>TaskWindow.js</code> file is moved into the <code>Resources/ui</code> directory of the\nbuilt application. To include both the MainWindow module and the platform-specific\nTaskWindow module from any JavaScript file in the project:</p>\n\n\n\n\n<pre><code> // load main window module from ui subdirectory\n var mainWindow = require('ui/MainWindow');\n\n // load platform-specific task window module\n var taskWindow = require('ui/TaskWindow');\n</code></pre>\n\n\n\n\n<p>For more information, see the Official CommonJS website about\n<a href=\"http://wiki.commonjs.org/wiki/Modules/1.1\">CommonJS Modules/1.1 Specification</a>.</p>\n\n\n\n\n<h4>Alloy</h4>\n\n\n\n\n<p>For Alloy, place the CommonJS modules in the <code>app/lib</code> directory of your Alloy project,\nthen load the module with the <code>require</code> method without the <code>app/lib</code> path and <code>.js</code>\nextension.</p>\n\n\n\n\n<p>Starting with Alloy 1.5.0, you can add platform-specific directories to the <code>app/lib</code> directory.\nDo not include the platform-specific directory when referencing the CommonJS module.</p>\n\n\n\n\n<p>For example, a module file <code>app/lib/android/myModule/module.js</code> may be loaded by\n<code>app/controllers/index.js</code> using:</p>\n\n\n\n\n<pre><code>require('myModule/module');\n</code></pre>\n\n\n\n\n<h4>Android</h4>\n\n\n\n\n<p>Additionally, on Android, an absolute path to a module may be specified using a path\nseparator (<code>/</code>) at the beginning of the path.</p>\n\n\n\n\n<p>For example, a module file <code>Resources/myModule/module.js</code> may be required by\n<code>Resources/example/example.js</code> using either of the following:</p>\n\n\n\n\n<pre><code>require('../myModule/module')\nrequire ('/myModule/module')\n</code></pre>\n\n\n<h3>Examples</h3>\n\n\n<h4>Require a Native Module</h4>\n\n\n<p>To load a native module with the ID <code>com.mycompany.module</code>:</p>\n\n\n\n\n<pre><code>var module = require('com.mycompany.module');\n</code></pre>\n\n\n<h4>Require a JavaScript Module</h4>\n\n\n<p><code>myModule.js</code>:</p>\n\n\n\n\n<pre><code>exports.message = \"hello world\";\n</code></pre>\n\n\n\n\n<p><code>app.js</code>:</p>\n\n\n\n\n<pre><code>var myModule = require('myModule');\nalert(myModule.message);\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "moduleId",
+            "doc": "<p>Native module ID or local path to a JavaScript file <em>minus</em> the <code>.js</code> extension.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "Object",
+          "name": "return",
+          "doc": "<p>Exported <code>exports</code> object of the required module.</p>\n",
+          "properties": null,
+          "html_type": "Object"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-require",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 4494
+          }
+        ],
+        "shortDoc": "Loads either a native Titanium module or a CommonJS module. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setInterval",
+        "owner": "Global",
+        "doc": "<p>Executes a function repeatedly with a fixed time delay between each call to that function.</p>\n\n\n<p>@description <p>Note that although the interval is not guaranteed to be exact, the interval between calls\nwill be no less than the specified delay.</p></p>\n\n<p>Returns a unique timer identifier that can be passed to <a href=\"#!/api/Global-method-clearInterval\" rel=\"Global-method-clearInterval\" class=\"docClass\">clearInterval</a>\nto cancel this timer.</p>\n\n\n\n\n<p>For more information, see the MDN website for\n<a href=\"https://developer.mozilla.org/en/DOM/window.setInterval\">setInterval</a>.</p>\n\n\n<h3>Examples</h3>\n\n\n<h4>Update a label once every second, and stop at 10 seconds</h4>\n\n\n<pre><code>var count = 0;\nvar timer = setInterval(function(){\n    count++;\n    label.text = \"count: \" + count;\n    if (count == 10) {\n        clearInterval(timer);\n    }\n}, 1000);</code></pre>\n\n",
+        "params": [
+          {
+            "type": "Callback",
+            "name": "function",
+            "doc": "<p>Function to call.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback"
+          },
+          {
+            "type": "Number",
+            "name": "delay",
+            "doc": "<p>Time in milliseconds to wait between calls to function.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>Unique timer identifier.</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setInterval",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 4595
+          }
+        ],
+        "shortDoc": "Executes a function repeatedly with a fixed time delay between each call to that function. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setTimeout",
+        "owner": "Global",
+        "doc": "<p>Executes code or a function after a delay.</p>\n\n\n<p>@description <p>Note that although the timeout is not guaranteed to be exact, the delay before the\nfunction is invoked will be no less than the specified delay.</p></p>\n\n<p>Returns a unique timer identifier that can be passed to <a href=\"#!/api/Global-method-clearTimeout\" rel=\"Global-method-clearTimeout\" class=\"docClass\">clearTimeout</a>\nto cancel this timer.</p>\n\n\n\n\n<p>For more information, see the MDN website for\n<a href=\"https://developer.mozilla.org/en/DOM/window.setTimeout\">setTimeout</a>.</p>\n\n\n<h3>Examples</h3>\n\n\n<h4>Execute a function in 500 milliseconds</h4>\n\n\n<pre><code>setTimeout(function(){\n    Ti.API.debug('Called using setTimeout');\n}, 500);</code></pre>\n\n",
+        "params": [
+          {
+            "type": "Callback",
+            "name": "function",
+            "doc": "<p>Code or function to call.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback"
+          },
+          {
+            "type": "Number",
+            "name": "delay",
+            "doc": "<p>Time in milliseconds to wait before the function is called.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>Unique timer identifier.</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setTimeout",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 4628
+          }
+        ],
+        "shortDoc": "Executes code or a function after a delay. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 4323
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

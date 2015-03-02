@@ -1,0 +1,822 @@
+{
+  "tagname": "class",
+  "name": "Titanium.UI.iOS.SnapBehavior",
+  "doc": "<p>@platform iphone 3.2\n@platform ipad 3.2 @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/UI/iOS/SnapBehavior.yml</p>\n\n<p>Dynamic behavior defining an item's movement to a specific point.</p>\n\n\n\n\n<p> <b>Requires:</b>\niOS 7.0 and later\n</p>\n\n\n<p>@description <p>The following APIs are supported on iOS 7 and later.</p></p>\n\n<p>A snap behavior specifies how an item moves towards a specified point with a spring-like\neffect, ending with an oscillation.</p>\n\n\n\n\n<ol>\n<li>Use the <a href=\"#!/api/Titanium.UI.iOS-method-createSnapBehavior\" rel=\"Titanium.UI.iOS-method-createSnapBehavior\" class=\"docClass\">Titanium.UI.iOS.createSnapBehavior</a> method to create the behavior.</li>\n<li>Set the <a href=\"#!/api/Titanium.UI.iOS.SnapBehavior-property-item\" rel=\"Titanium.UI.iOS.SnapBehavior-property-item\" class=\"docClass\">item</a> and\n <a href=\"#!/api/Titanium.UI.iOS.SnapBehavior-property-snapPoint\" rel=\"Titanium.UI.iOS.SnapBehavior-property-snapPoint\" class=\"docClass\">snapPoint</a> properties.</li>\n<li>Add the behavior to an <a href=\"#!/api/Titanium.UI.iOS.Animator\" rel=\"Titanium.UI.iOS.Animator\" class=\"docClass\">Animator object</a>.</li>\n</ol>\n\n\n<h3>Examples</h3>\n\n\n<h4>Simple Example</h4>\n\n\n<p>The following example snaps the block to the location of a click on the window.</p>\n\n\n\n\n<p><img src=\"images/animator/snapbehavior.gif\" height=\"455\" style=\"border:1px solid black\"/></p>\n\n\n\n\n<pre><code>var win = Ti.UI.createWindow({backgroundColor: 'white', fullscreen: true});\n\n// Create an Animator object using the window as the coordinate system\nvar animator = Ti.UI.iOS.createAnimator({referenceView: win});\n\nvar block = Ti.UI.createView({\n    width: 100,\n    height: 100,\n    backgroundColor: 'blue'\n});\n\n// Snap to the top-left corner when the app starts\nvar snap = Ti.UI.iOS.createSnapBehavior({\n    item: block,\n    snapPoint: {x: 0, y: 0},\n});\nanimator.addBehavior(snap);\n\n// Snap the block to the point of the click event\nwin.addEventListener('click', function(e){\n    snap.snapPoint = {x: e.x, y: e.y};\n    snap.damping = Math.random();\n});\n\n// Start the animation when the window opens\nwin.addEventListener('open', function(e){\n    animator.startAnimator();\n});\n\nwin.add(block);\nwin.open();\n</code></pre>\n\n",
+  "extends": "Titanium.Proxy",
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-Titanium.UI.iOS.SnapBehavior",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "apiName",
+        "owner": "Titanium.Proxy",
+        "type": "String",
+        "doc": "<p>The name of the API that this proxy corresponds to.</p>\n\n\n<p>@description <p>The value of this property is the fully qualified name of the API. For example, <a href=\"#!/api/Titanium.UI.Button\" rel=\"Titanium.UI.Button\" class=\"docClass\">Button</a>\nreturns <code>Ti.UI.Button</code>.</p></p>\n\n<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-apiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 235
+          }
+        ],
+        "shortDoc": "The name of the API that this proxy corresponds to. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "bubbleParent",
+        "owner": "Titanium.Proxy",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the proxy will bubble an event to its parent.</p>\n\n\n<p>@description <p>Some proxies (most commonly views) have a relationship to other proxies, often\nestablished by the add() method. For example, for a button added to a window, a\nclick event on the button would bubble up to the window. Other common parents are\ntable sections to their rows, table views to their sections, and scrollable views\nto their views. Set this property to false to disable the bubbling to the proxy's parent.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-bubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 207
+          }
+        ],
+        "shortDoc": "Indicates if the proxy will bubble an event to its parent. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "damping",
+        "owner": "Titanium.UI.iOS.SnapBehavior",
+        "type": "Number",
+        "doc": "<p>Specifies the amount of oscillation during the conclusion of the snap.</p>\n\n\n<p>@description <p>A value of 0.0 indicates minimum oscillation, while 1.0 indicates maximum oscillation.</p></p>\n",
+        "default": "0.5",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-damping",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139854
+          }
+        ],
+        "shortDoc": "Specifies the amount of oscillation during the conclusion of the snap. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "item",
+        "owner": "Titanium.UI.iOS.SnapBehavior",
+        "type": "Titanium.UI.View",
+        "doc": "<p>Item to add to this behavior.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-item",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139875
+          }
+        ],
+        "html_type": "Titanium.UI.View",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "doc": "<p>The Window or TabGroup whose Activity lifecycle should be triggered on the proxy.</p>\n\n\n<p>@description <p>If this property is set to a Window or TabGroup, then the corresponding Activity lifecycle event callbacks\nwill also be called on the proxy. Proxies that require the activity lifecycle will need this property set\nto the appropriate containing Window or TabGroup.</p></p>\n\n<p>@platform android 3.6.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-lifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 262
+          }
+        ],
+        "shortDoc": "The Window or TabGroup whose Activity lifecycle should be triggered on the proxy. ...",
+        "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "snapPoint",
+        "owner": "Titanium.UI.iOS.SnapBehavior",
+        "type": "Point",
+        "doc": "<p>Specifies the point to snap to.</p>\n\n\n<p>@description <p>The coordinate system depends on the animator's reference view.</p></p>\n",
+        "default": "(0,0)",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-snapPoint",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139896
+          }
+        ],
+        "shortDoc": "Specifies the point to snap to. ...",
+        "html_type": "Point",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "addEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Adds the specified callback as an event listener for the named event.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to invoke when the event is fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38
+          }
+        ],
+        "shortDoc": "Adds the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "applyProperties",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Applies the properties to the proxy.</p>\n\n\n<p>@description <p>Properties are supplied as a dictionary. Each key-value pair in the object is applied to the proxy such that\nmyproxy[key] = value.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "props",
+            "doc": "<p>A dictionary of properties to apply.</p>\n\n\n<p>@platform android 3.0.0\n@platform blackberry 3.3.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-applyProperties",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 102
+          }
+        ],
+        "shortDoc": "Applies the properties to the proxy. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "fireEvent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Fires a synthesized event to any registered listeners.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Dictionary",
+            "name": "event",
+            "doc": "<p>A dictionary of keys and values to add to the <a href=\"#!/api/Titanium.Event\" rel=\"Titanium.Event\" class=\"docClass\">Titanium.Event</a> object sent to the listeners.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-fireEvent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 85
+          }
+        ],
+        "shortDoc": "Fires a synthesized event to any registered listeners. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getApiName",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-apiName\" rel=\"Titanium.Proxy-property-apiName\" class=\"docClass\">apiName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getApiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 157
+          }
+        ],
+        "shortDoc": "Gets the value of the apiName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 123
+          }
+        ],
+        "shortDoc": "Gets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getDamping",
+        "owner": "Titanium.UI.iOS.SnapBehavior",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.iOS.SnapBehavior-property-damping\" rel=\"Titanium.UI.iOS.SnapBehavior-property-damping\" class=\"docClass\">damping</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getDamping",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139768
+          }
+        ],
+        "shortDoc": "Gets the value of the damping property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getItem",
+        "owner": "Titanium.UI.iOS.SnapBehavior",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.iOS.SnapBehavior-property-item\" rel=\"Titanium.UI.iOS.SnapBehavior-property-item\" class=\"docClass\">item</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.View",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.UI.View"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getItem",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139796
+          }
+        ],
+        "shortDoc": "Gets the value of the item property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+          "name": "return",
+          "doc": "<p>@platform android 3.6.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 175
+          }
+        ],
+        "shortDoc": "Gets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getSnapPoint",
+        "owner": "Titanium.UI.iOS.SnapBehavior",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.iOS.SnapBehavior-property-snapPoint\" rel=\"Titanium.UI.iOS.SnapBehavior-property-snapPoint\" class=\"docClass\">snapPoint</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Point",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Point"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getSnapPoint",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139824
+          }
+        ],
+        "shortDoc": "Gets the value of the snapPoint property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Removes the specified callback as an event listener for the named event.</p>\n\n\n<p>@description <p>Multiple listeners can be registered for the same event, so the\n<code>callback</code> parameter is used to determine which listener to remove. </p></p>\n\n<p>When adding a listener, you must save a reference to the callback function\nin order to remove the listener later:</p>\n\n\n\n\n<pre><code>var listener = function() { Ti.API.info(\"Event listener called.\"); }\nwindow.addEventListener('click', listener);\n</code></pre>\n\n\n\n\n<p>To remove the listener, pass in a reference to the callback function:</p>\n\n\n\n\n<pre><code>window.removeEventListener('click', listener);\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to remove. Must be the same function passed to <code>addEventListener</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 55
+          }
+        ],
+        "shortDoc": "Removes the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "bubbleParent",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139
+          }
+        ],
+        "shortDoc": "Sets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setDamping",
+        "owner": "Titanium.UI.iOS.SnapBehavior",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.iOS.SnapBehavior-property-damping\" rel=\"Titanium.UI.iOS.SnapBehavior-property-damping\" class=\"docClass\">damping</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "damping",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setDamping",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139781
+          }
+        ],
+        "shortDoc": "Sets the value of the damping property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setItem",
+        "owner": "Titanium.UI.iOS.SnapBehavior",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.iOS.SnapBehavior-property-item\" rel=\"Titanium.UI.iOS.SnapBehavior-property-item\" class=\"docClass\">item</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.View",
+            "name": "item",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.View"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setItem",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139809
+          }
+        ],
+        "shortDoc": "Sets the value of the item property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+            "name": "lifecycleContainer",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.6.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 189
+          }
+        ],
+        "shortDoc": "Sets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setSnapPoint",
+        "owner": "Titanium.UI.iOS.SnapBehavior",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.iOS.SnapBehavior-property-snapPoint\" rel=\"Titanium.UI.iOS.SnapBehavior-property-snapPoint\" class=\"docClass\">snapPoint</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Point",
+            "name": "snapPoint",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Point"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setSnapPoint",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139837
+          }
+        ],
+        "shortDoc": "Sets the value of the snapPoint property. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 139700
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+    "Titanium.Proxy"
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

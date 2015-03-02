@@ -1,0 +1,1356 @@
+{
+  "tagname": "class",
+  "name": "Titanium.UI.2DMatrix",
+  "doc": "<p>@platform android 0.9\n@platform iphone 0.9\n@platform ipad 0.9\n@platform mobileweb 1.8 @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/UI/2DMatrix.yml</p>\n\n<p>The 2D Matrix is an object for holding values for an affine transformation matrix.</p>\n\n\n<p>@description <p>A 2D matrix is used to rotate, scale, translate, or skew the objects in a two-dimensional space.\nA 2D affine transformation can be  represented by a 3 by 3 matrix:</p></p>\n\n<table>\n<tr><td><i>a</i></td><td><i>b</i></td><td>0</td></tr>\n<tr><td><i>c</i></td><td><i>d</i></td><td>0</td></tr>\n<tr><td><i>tx</i></td><td><i>ty</i></td><td>1</td></tr>\n</table>\n\n\n\n\n<p>The third column is constant (0,0,1). </p>\n\n\n\n\n<p>On iOS and Mobile Web, the matrix terms, <code>a</code>, <code>b</code>, <code>c</code>, <code>d</code>, <code>tx</code>, and <code>ty</code>,\nare available as properties. On Android, the matrix terms are not available as properties.</p>\n\n\n\n\n<p>Use the <a href=\"#!/api/Titanium.UI-method-create2DMatrix\" rel=\"Titanium.UI-method-create2DMatrix\" class=\"docClass\">Titanium.UI.create2DMatrix</a> method to create a new 2D matrix. You can\npass an optional <a href=\"#!/api/MatrixCreationDict\" rel=\"MatrixCreationDict\" class=\"docClass\">MatrixCreationDict</a> dictionary to the method to initialize the\nmatrix. For example, the following creates a new matrix with a 45 degree rotation.  </p>\n\n\n\n\n<pre><code>var m = Ti.UI.create2DMatrix({\n    rotate: 45\n});\n</code></pre>\n\n\n\n\n<p>If you pass no arguments, <code>create2DMatrix</code> returns an identity matrix.</p>\n\n\n<h3>Examples</h3>\n\n\n<h4>Apply a 2D Matrix to a Label</h4>\n\n\n<p>The following uses a 2D matrix to translate a label in the y direction.</p>\n\n\n\n\n<pre><code>var win = Ti.UI.createWindow({\n  backgroundColor: 'white'\n});\n\nvar label = Ti.UI.createLabel({\n  font:{fontSize:50},\n  text:'Titanium',\n  textAlign:'center',\n  top: 100\n});\nwin.add(label);\n\nvar button = Ti.UI.createButton({\n  title:'Animate',\n  bottom:20,\n  width:200, height:40\n});\nwin.add(button);\n\nbutton.addEventListener('click', function(){\n  var t1 = Ti.UI.create2DMatrix();\n  t1 = t1.translate(0, 300);\n  var a1 = Ti.UI.createAnimation();\n  a1.transform = t1;\n  a1.duration = 800;\n  label.animate(a1);\n});\nwin.open();\n</code></pre>\n\n",
+  "extends": "Titanium.Proxy",
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-Titanium.UI.2DMatrix",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "a",
+        "owner": "Titanium.UI.2DMatrix",
+        "type": "Number",
+        "doc": "<p>The entry at position [1,1] in the matrix.</p>\n\n\n<p>@platform iphone 0.9\n@platform ipad 0.9\n@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-a",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 77591
+          }
+        ],
+        "shortDoc": "The entry at position [1,1] in the matrix. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "apiName",
+        "owner": "Titanium.Proxy",
+        "type": "String",
+        "doc": "<p>The name of the API that this proxy corresponds to.</p>\n\n\n<p>@description <p>The value of this property is the fully qualified name of the API. For example, <a href=\"#!/api/Titanium.UI.Button\" rel=\"Titanium.UI.Button\" class=\"docClass\">Button</a>\nreturns <code>Ti.UI.Button</code>.</p></p>\n\n<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-apiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 235
+          }
+        ],
+        "shortDoc": "The name of the API that this proxy corresponds to. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "b",
+        "owner": "Titanium.UI.2DMatrix",
+        "type": "Number",
+        "doc": "<p>The entry at position [1,2] in the matrix.</p>\n\n\n<p>@platform iphone 0.9\n@platform ipad 0.9\n@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-b",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 77615
+          }
+        ],
+        "shortDoc": "The entry at position [1,2] in the matrix. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "bubbleParent",
+        "owner": "Titanium.Proxy",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the proxy will bubble an event to its parent.</p>\n\n\n<p>@description <p>Some proxies (most commonly views) have a relationship to other proxies, often\nestablished by the add() method. For example, for a button added to a window, a\nclick event on the button would bubble up to the window. Other common parents are\ntable sections to their rows, table views to their sections, and scrollable views\nto their views. Set this property to false to disable the bubbling to the proxy's parent.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-bubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 207
+          }
+        ],
+        "shortDoc": "Indicates if the proxy will bubble an event to its parent. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "c",
+        "owner": "Titanium.UI.2DMatrix",
+        "type": "Number",
+        "doc": "<p>The entry at position [2,1] in the matrix.</p>\n\n\n<p>@platform iphone 0.9\n@platform ipad 0.9\n@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-c",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 77639
+          }
+        ],
+        "shortDoc": "The entry at position [2,1] in the matrix. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "d",
+        "owner": "Titanium.UI.2DMatrix",
+        "type": "Number",
+        "doc": "<p>The entry at position [2,2] in the matrix.</p>\n\n\n<p>@platform iphone 0.9\n@platform ipad 0.9\n@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-d",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 77663
+          }
+        ],
+        "shortDoc": "The entry at position [2,2] in the matrix. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "doc": "<p>The Window or TabGroup whose Activity lifecycle should be triggered on the proxy.</p>\n\n\n<p>@description <p>If this property is set to a Window or TabGroup, then the corresponding Activity lifecycle event callbacks\nwill also be called on the proxy. Proxies that require the activity lifecycle will need this property set\nto the appropriate containing Window or TabGroup.</p></p>\n\n<p>@platform android 3.6.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-lifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 262
+          }
+        ],
+        "shortDoc": "The Window or TabGroup whose Activity lifecycle should be triggered on the proxy. ...",
+        "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "tx",
+        "owner": "Titanium.UI.2DMatrix",
+        "type": "Number",
+        "doc": "<p>The entry at position [3,1] in the matrix.</p>\n\n\n<p>@platform iphone 0.9\n@platform ipad 0.9\n@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-tx",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 77687
+          }
+        ],
+        "shortDoc": "The entry at position [3,1] in the matrix. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ty",
+        "owner": "Titanium.UI.2DMatrix",
+        "type": "Number",
+        "doc": "<p>The entry at position [3,2] in the matrix.</p>\n\n\n<p>@platform iphone 0.9\n@platform ipad 0.9\n@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-ty",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 77711
+          }
+        ],
+        "shortDoc": "The entry at position [3,2] in the matrix. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "addEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Adds the specified callback as an event listener for the named event.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to invoke when the event is fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38
+          }
+        ],
+        "shortDoc": "Adds the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "applyProperties",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Applies the properties to the proxy.</p>\n\n\n<p>@description <p>Properties are supplied as a dictionary. Each key-value pair in the object is applied to the proxy such that\nmyproxy[key] = value.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "props",
+            "doc": "<p>A dictionary of properties to apply.</p>\n\n\n<p>@platform android 3.0.0\n@platform blackberry 3.3.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-applyProperties",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 102
+          }
+        ],
+        "shortDoc": "Applies the properties to the proxy. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "fireEvent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Fires a synthesized event to any registered listeners.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Dictionary",
+            "name": "event",
+            "doc": "<p>A dictionary of keys and values to add to the <a href=\"#!/api/Titanium.Event\" rel=\"Titanium.Event\" class=\"docClass\">Titanium.Event</a> object sent to the listeners.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-fireEvent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 85
+          }
+        ],
+        "shortDoc": "Fires a synthesized event to any registered listeners. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getA",
+        "owner": "Titanium.UI.2DMatrix",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.2DMatrix-property-a\" rel=\"Titanium.UI.2DMatrix-property-a\" class=\"docClass\">a</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>@platform iphone 0.9\n@platform ipad 0.9\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getA",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 77385
+          }
+        ],
+        "shortDoc": "Gets the value of the a property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getApiName",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-apiName\" rel=\"Titanium.Proxy-property-apiName\" class=\"docClass\">apiName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getApiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 157
+          }
+        ],
+        "shortDoc": "Gets the value of the apiName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getB",
+        "owner": "Titanium.UI.2DMatrix",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.2DMatrix-property-b\" rel=\"Titanium.UI.2DMatrix-property-b\" class=\"docClass\">b</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>@platform iphone 0.9\n@platform ipad 0.9\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getB",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 77419
+          }
+        ],
+        "shortDoc": "Gets the value of the b property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 123
+          }
+        ],
+        "shortDoc": "Gets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getC",
+        "owner": "Titanium.UI.2DMatrix",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.2DMatrix-property-c\" rel=\"Titanium.UI.2DMatrix-property-c\" class=\"docClass\">c</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>@platform iphone 0.9\n@platform ipad 0.9\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getC",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 77453
+          }
+        ],
+        "shortDoc": "Gets the value of the c property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getD",
+        "owner": "Titanium.UI.2DMatrix",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.2DMatrix-property-d\" rel=\"Titanium.UI.2DMatrix-property-d\" class=\"docClass\">d</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>@platform iphone 0.9\n@platform ipad 0.9\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getD",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 77487
+          }
+        ],
+        "shortDoc": "Gets the value of the d property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+          "name": "return",
+          "doc": "<p>@platform android 3.6.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 175
+          }
+        ],
+        "shortDoc": "Gets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getTx",
+        "owner": "Titanium.UI.2DMatrix",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.2DMatrix-property-tx\" rel=\"Titanium.UI.2DMatrix-property-tx\" class=\"docClass\">tx</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>@platform iphone 0.9\n@platform ipad 0.9\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getTx",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 77521
+          }
+        ],
+        "shortDoc": "Gets the value of the tx property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getTy",
+        "owner": "Titanium.UI.2DMatrix",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.2DMatrix-property-ty\" rel=\"Titanium.UI.2DMatrix-property-ty\" class=\"docClass\">ty</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>@platform iphone 0.9\n@platform ipad 0.9\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getTy",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 77555
+          }
+        ],
+        "shortDoc": "Gets the value of the ty property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "invert",
+        "owner": "Titanium.UI.2DMatrix",
+        "doc": "<p>Returns a matrix constructed by inverting this matrix.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.2DMatrix",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.UI.2DMatrix"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-invert",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 77224
+          }
+        ],
+        "shortDoc": "Returns a matrix constructed by inverting this matrix. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "multiply",
+        "owner": "Titanium.UI.2DMatrix",
+        "doc": "<p>Returns a matrix constructed by combining two existing matrices.</p>\n\n\n<p>@description <p>The argument, <code>t2</code> is concatenated to the matrix instance against which the function is invoked. The\nresulting matrix is the result of multiplying this matrix by <code>t2</code>. You might perform several\nmultiplications in order to create a single matrix that contains the cumulative effects of\nseveral transformations. </p></p>\n\n<p>Note that matrix operations are not commutative -- the order in which you concatenate matrices\nis important. That is, the result of multiplying matrix <code>t1</code> by matrix <code>t2</code> does not necessarily\nequal the result of multiplying matrix <code>t2</code> by matrix <code>t1</code>.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.2DMatrix",
+            "name": "t2",
+            "doc": "<p>The second matrix.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.2DMatrix"
+          }
+        ],
+        "return": {
+          "type": "Titanium.UI.2DMatrix",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.UI.2DMatrix"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-multiply",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 77237
+          }
+        ],
+        "shortDoc": "Returns a matrix constructed by combining two existing matrices. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Removes the specified callback as an event listener for the named event.</p>\n\n\n<p>@description <p>Multiple listeners can be registered for the same event, so the\n<code>callback</code> parameter is used to determine which listener to remove. </p></p>\n\n<p>When adding a listener, you must save a reference to the callback function\nin order to remove the listener later:</p>\n\n\n\n\n<pre><code>var listener = function() { Ti.API.info(\"Event listener called.\"); }\nwindow.addEventListener('click', listener);\n</code></pre>\n\n\n\n\n<p>To remove the listener, pass in a reference to the callback function:</p>\n\n\n\n\n<pre><code>window.removeEventListener('click', listener);\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to remove. Must be the same function passed to <code>addEventListener</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 55
+          }
+        ],
+        "shortDoc": "Removes the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "rotate",
+        "owner": "Titanium.UI.2DMatrix",
+        "doc": "<p>Returns a matrix constructed by rotating this matrix.</p>\n\n\n<p>@description <p>There are two distinct versions of this method, depending on whether one argument\nor two are specified. </p></p>\n\n<ul>\n<li><code>rotate(angle)</code>. The standard <code>rotate</code> method.</li>\n<li><code>rotate(fromAngle, toAngle)</code>. Android only. Used for specifying rotation\nanimations.</li>\n</ul>\n\n\n\n\n<p>In both cases, a positive value specifies clockwise rotation and a negative value\nspecifies counter-clockwise rotation.  </p>\n\n\n\n\n<p>Details for each version are discussed below.</p>\n\n\n\n\n<h4>rotate(angle)</h4>\n\n\n\n\n<p>Returns a matrix constructed by rotating this matrix.</p>\n\n\n\n\n<p>Note that the resulting  matrix only expresses the final transformation, not the\ndirection of the rotation. For example, the matrix produced by <code>m1.rotate(-10)</code>\nis identical to the matrix produced by <code>m1.rotate(350)</code> and <code>m1.rotate(710)</code>.</p>\n\n\n\n\n<p>Note that if you specify a rotation matrix as the <code>transform</code> property of an\nanimation, the animation animates the view from its current rotation to the\nrotation represented by the matrix by its shortest path. So to rotate a view\nin a complete circle, the easiest method is to chain together three animations,\nrotating 120 degrees each time.</p>\n\n\n\n\n<p>For the purposes of animation, it should be noted that the rotation angle is\nnormalized to the range -180 &lt;= angle &lt; 180. In other\nwords, an angle of 180 degrees is normalized to -180. This makes no difference\nexcept when determining which direction an animation rotates. 179 degrees rotates\nrotate clockwise, but 180 degrees is normalized to -180, so rotates counter-clockwise.</p>\n\n\n\n\n<h4>rotate(angle, toAngle) -- Android Only</h4>\n\n\n\n\n<p>This is an Android-specific method used for creating rotation animations.\nReturns a <code>2DMatrix</code> object that represents a rotation from <code>angle</code> to <code>toAngle</code>. </p>\n\n\n\n\n<p>Angles are specified in degrees. Positive values represent clockwise rotation, and negative values\nrepresent counter-clockwise rotation. Values are not normalized, so for example an\nangle of 720 degrees represents two complete clockwise revolutions.</p>\n\n\n\n\n<p>The resulting object cannot be expressed as an affine transform, but can be used with the\n<a href=\"#!/api/Titanium.UI.Animation-property-transform\" rel=\"Titanium.UI.Animation-property-transform\" class=\"docClass\">Titanium.UI.Animation.transform</a> property to specify a rotation animation.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "angle",
+            "doc": "<p>Angle to rotate to, in degrees. On Android, if <code>angleTo</code> is specified, this specifies\nthe starting angle for a rotation animation.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Number",
+            "name": "toAngle",
+            "doc": "<p>Ending angle for a rotation animation, in degrees. Android only.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "Titanium.UI.2DMatrix",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.UI.2DMatrix"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-rotate",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 77259
+          }
+        ],
+        "shortDoc": "Returns a matrix constructed by rotating this matrix. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "scale",
+        "owner": "Titanium.UI.2DMatrix",
+        "doc": "<p>Returns a <code>2DMatrix</code> object that specifies a scaling animation from one scale to another.</p>\n\n\n<p>@description <p>There are two distinct versions of this method, depending on whether two arguments\nor four are specified. </p></p>\n\n<ul>\n<li><code>scale(sx, sy)</code>. The standard <code>scale</code> method.</li>\n<li><code>scale(fromSx, fromSy, toSx, toSy)</code>. Android only. Used for specifying a\nscaling animation from one size to another.</li>\n</ul>\n\n\n\n\n<h4>scale(sx, sy)</h4>\n\n\n\n\n<p>Returns a matrix constructed by applying a scale transform to this matrix.\nScaling the current matrix by <code>sx</code> along the X axis and by <code>sy</code> along the Y axis.</p>\n\n\n\n\n<h4>scale(sx, sy, toSx, toSy) -- Android Only</h4>\n\n\n\n\n<p>This Android-specific method returns a <code>2DMatrix</code> object that can be used to\ncreate a scaling animation from one scale factor to another scale factor. </p>\n\n\n\n\n<p>The resulting object cannot be expressed as an affine transform, but can be used with the\n<a href=\"#!/api/Titanium.UI.Animation-property-transform\" rel=\"Titanium.UI.Animation-property-transform\" class=\"docClass\">Titanium.UI.Animation.transform</a> property to specify a scaling animation.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "sx",
+            "doc": "<p>Horizontal scaling factor. If <code>toSx</code> and <code>toSy</code> are specified,\nthis specifies the starting horizontal scaling factor, at the beginning\nof an animation.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Number",
+            "name": "sy",
+            "doc": "<p>Vertical scaling factor. If <code>toSx</code> and <code>toSy</code> are specified,\nthis specifies the starting vertical scaling factor, at the beginning of\nan animation.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Number",
+            "name": "toSx",
+            "doc": "<p>Ending horizontal scaling factor, at the end of an animation.\nIf specified, <code>toSy</code> must be specified as well. Android only.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Number",
+            "name": "toSy",
+            "doc": "<p>Ending vertical scaling factor, at the end of an animation.\nIf specified, <code>toSx</code> must be specified as well. Android only.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "Titanium.UI.2DMatrix",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.UI.2DMatrix"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-scale",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 77321
+          }
+        ],
+        "shortDoc": "Returns a 2DMatrix object that specifies a scaling animation from one scale to another. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setA",
+        "owner": "Titanium.UI.2DMatrix",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.2DMatrix-property-a\" rel=\"Titanium.UI.2DMatrix-property-a\" class=\"docClass\">a</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "a",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform iphone 0.9\n@platform ipad 0.9\n@platform mobileweb 1.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setA",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 77401
+          }
+        ],
+        "shortDoc": "Sets the value of the a property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setB",
+        "owner": "Titanium.UI.2DMatrix",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.2DMatrix-property-b\" rel=\"Titanium.UI.2DMatrix-property-b\" class=\"docClass\">b</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "b",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform iphone 0.9\n@platform ipad 0.9\n@platform mobileweb 1.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setB",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 77435
+          }
+        ],
+        "shortDoc": "Sets the value of the b property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "bubbleParent",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139
+          }
+        ],
+        "shortDoc": "Sets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setC",
+        "owner": "Titanium.UI.2DMatrix",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.2DMatrix-property-c\" rel=\"Titanium.UI.2DMatrix-property-c\" class=\"docClass\">c</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "c",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform iphone 0.9\n@platform ipad 0.9\n@platform mobileweb 1.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setC",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 77469
+          }
+        ],
+        "shortDoc": "Sets the value of the c property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setD",
+        "owner": "Titanium.UI.2DMatrix",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.2DMatrix-property-d\" rel=\"Titanium.UI.2DMatrix-property-d\" class=\"docClass\">d</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "d",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform iphone 0.9\n@platform ipad 0.9\n@platform mobileweb 1.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setD",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 77503
+          }
+        ],
+        "shortDoc": "Sets the value of the d property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+            "name": "lifecycleContainer",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.6.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 189
+          }
+        ],
+        "shortDoc": "Sets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setTx",
+        "owner": "Titanium.UI.2DMatrix",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.2DMatrix-property-tx\" rel=\"Titanium.UI.2DMatrix-property-tx\" class=\"docClass\">tx</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "tx",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform iphone 0.9\n@platform ipad 0.9\n@platform mobileweb 1.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setTx",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 77537
+          }
+        ],
+        "shortDoc": "Sets the value of the tx property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setTy",
+        "owner": "Titanium.UI.2DMatrix",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.2DMatrix-property-ty\" rel=\"Titanium.UI.2DMatrix-property-ty\" class=\"docClass\">ty</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "ty",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform iphone 0.9\n@platform ipad 0.9\n@platform mobileweb 1.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setTy",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 77571
+          }
+        ],
+        "shortDoc": "Sets the value of the ty property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "translate",
+        "owner": "Titanium.UI.2DMatrix",
+        "doc": "<p>Returns a matrix constructed by applying a translation transform to this matrix.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "tx",
+            "doc": "<p>Horizontal component of the translation.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Number",
+            "name": "ty",
+            "doc": "<p>Vertical component of the translation.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "Titanium.UI.2DMatrix",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.UI.2DMatrix"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-translate",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 77368
+          }
+        ],
+        "shortDoc": "Returns a matrix constructed by applying a translation transform to this matrix. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 77149
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+    "Titanium.Proxy"
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

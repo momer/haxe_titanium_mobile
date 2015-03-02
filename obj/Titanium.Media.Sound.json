@@ -1,0 +1,1982 @@
+{
+  "tagname": "class",
+  "name": "Titanium.Media.Sound",
+  "doc": "<p>@platform android 0.8\n@platform blackberry 3.1.2\n@platform iphone 0.8\n@platform ipad 0.8 @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/Media/Sound.yml</p>\n\n<p>An object for playing basic audio resources.</p>\n\n\n<p>@description <p>The <code>Sound</code> object loads the entire media resource in memory before playing.  If you need to\nsupport streaming, use the <a href=\"#!/api/Titanium.Media.AudioPlayer\" rel=\"Titanium.Media.AudioPlayer\" class=\"docClass\">AudioPlayer</a> API.</p></p>\n\n<p>You can control how the sound interacts with other system sounds\nby setting <a href=\"#!/api/Titanium.Media-property-audioSessionMode\" rel=\"Titanium.Media-property-audioSessionMode\" class=\"docClass\">Titanium.Media.audioSessionMode</a>.</p>\n\n\n\n\n<p>Use the <a href=\"#!/api/Titanium.Media-method-createSound\" rel=\"Titanium.Media-method-createSound\" class=\"docClass\">Titanium.Media.createSound</a> method to create a <code>Sound</code> object. You can play audio\nin any format supported by the target platform(s), as described in the following documents:</p>\n\n\n\n\n<ul>\n<li><a href=\"http://developer.android.com/guide/appendix/media-formats.html#core\">Android</a></li>\n<li><a href=\"https://developer.apple.com/library/ios/documentation/AudioVideo/Conceptual/MultimediaPG/UsingAudio/UsingAudio.html#//apple_ref/doc/uid/TP40009767-CH2-SW33\">iOS</a></li>\n<li><a href=\"http://docs.blackberry.com/en/smartphone_users/deliverables/18577/Supported_audio_video_file_formats_60_1018040_11.jsp\">Blackberry</a></li>\n</ul>\n\n\n<h3>Examples</h3>\n\n\n<h4>Simple Example</h4>\n\n\n<p>Simple example of playing a WAVE file from the Resources directory.</p>\n\n\n\n\n<pre><code>var player = Ti.Media.createSound({url:\"sound.wav\"});\nplayer.play();\n</code></pre>\n\n",
+  "extends": "Titanium.Proxy",
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-Titanium.Media.Sound",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "STATE_BUFFERING",
+        "owner": "Titanium.Media.Sound",
+        "type": "Number",
+        "doc": "<p>Audio data is being buffered from the network.</p>\n\n\n<p>@platform android 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-STATE_BUFFERING",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 64130
+          }
+        ],
+        "shortDoc": "Audio data is being buffered from the network. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "STATE_INITIALIZED",
+        "owner": "Titanium.Media.Sound",
+        "type": "Number",
+        "doc": "<p>Audio playback is being initialized.</p>\n\n\n<p>@platform android 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-STATE_INITIALIZED",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 64152
+          }
+        ],
+        "shortDoc": "Audio playback is being initialized. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "STATE_PAUSED",
+        "owner": "Titanium.Media.Sound",
+        "type": "Number",
+        "doc": "<p>Playback is paused.</p>\n\n\n<p>@platform android 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-STATE_PAUSED",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 64174
+          }
+        ],
+        "shortDoc": "Playback is paused. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "STATE_PLAYING",
+        "owner": "Titanium.Media.Sound",
+        "type": "Number",
+        "doc": "<p>Audio playback is active.</p>\n\n\n<p>@platform android 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-STATE_PLAYING",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 64196
+          }
+        ],
+        "shortDoc": "Audio playback is active. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "STATE_STARTING",
+        "owner": "Titanium.Media.Sound",
+        "type": "Number",
+        "doc": "<p>Audio playback is starting.</p>\n\n\n<p>@platform android 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-STATE_STARTING",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 64218
+          }
+        ],
+        "shortDoc": "Audio playback is starting. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "STATE_STOPPED",
+        "owner": "Titanium.Media.Sound",
+        "type": "Number",
+        "doc": "<p>Audio playback is stopped.</p>\n\n\n<p>@platform android 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-STATE_STOPPED",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 64240
+          }
+        ],
+        "shortDoc": "Audio playback is stopped. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "STATE_STOPPING",
+        "owner": "Titanium.Media.Sound",
+        "type": "Number",
+        "doc": "<p>Audio playback is stopping.</p>\n\n\n<p>@platform android 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-STATE_STOPPING",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 64262
+          }
+        ],
+        "shortDoc": "Audio playback is stopping. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "STATE_WAITING_FOR_DATA",
+        "owner": "Titanium.Media.Sound",
+        "type": "Number",
+        "doc": "<p>Player is waiting for audio data from the network.</p>\n\n\n<p>@platform android 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-STATE_WAITING_FOR_DATA",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 64284
+          }
+        ],
+        "shortDoc": "Player is waiting for audio data from the network. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "STATE_WAITING_FOR_QUEUE",
+        "owner": "Titanium.Media.Sound",
+        "type": "Number",
+        "doc": "<p>Player is waiting for audio data to fill the queue.</p>\n\n\n<p>@platform android 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-STATE_WAITING_FOR_QUEUE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 64306
+          }
+        ],
+        "shortDoc": "Player is waiting for audio data to fill the queue. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "allowBackground",
+        "owner": "Titanium.Media.Sound",
+        "type": "Boolean",
+        "doc": "<p>Determines whether the audio should continue playing even when its activity is paused.</p>\n\n\n<p>@platform android 1.3.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-allowBackground",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 64328
+          }
+        ],
+        "shortDoc": "Determines whether the audio should continue playing even when its activity is paused. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "apiName",
+        "owner": "Titanium.Proxy",
+        "type": "String",
+        "doc": "<p>The name of the API that this proxy corresponds to.</p>\n\n\n<p>@description <p>The value of this property is the fully qualified name of the API. For example, <a href=\"#!/api/Titanium.UI.Button\" rel=\"Titanium.UI.Button\" class=\"docClass\">Button</a>\nreturns <code>Ti.UI.Button</code>.</p></p>\n\n<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-apiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 235
+          }
+        ],
+        "shortDoc": "The name of the API that this proxy corresponds to. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "bubbleParent",
+        "owner": "Titanium.Proxy",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the proxy will bubble an event to its parent.</p>\n\n\n<p>@description <p>Some proxies (most commonly views) have a relationship to other proxies, often\nestablished by the add() method. For example, for a button added to a window, a\nclick event on the button would bubble up to the window. Other common parents are\ntable sections to their rows, table views to their sections, and scrollable views\nto their views. Set this property to false to disable the bubbling to the proxy's parent.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-bubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 207
+          }
+        ],
+        "shortDoc": "Indicates if the proxy will bubble an event to its parent. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "duration",
+        "owner": "Titanium.Media.Sound",
+        "type": "Number",
+        "doc": "<p>Duration of the audio resource.</p>\n\n\n<p>@description <p>On iOS, playback time is reported in seconds.</p></p>\n\n<p>On Android, time is reported in milliseconds.</p>\n\n\n\n\n<p>Android note: Starting from Titanium 3.2.0, the remote audio plays asynchronously. The duration\ncan only be fetched after the audio is initialized (refer to <a href=\"#!/api/Titanium.Media.Sound-property-STATE_INITIALIZED\" rel=\"Titanium.Media.Sound-property-STATE_INITIALIZED\" class=\"docClass\">STATE_INITIALIZED</a>).</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-duration",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 64350
+          }
+        ],
+        "shortDoc": "Duration of the audio resource. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "doc": "<p>The Window or TabGroup whose Activity lifecycle should be triggered on the proxy.</p>\n\n\n<p>@description <p>If this property is set to a Window or TabGroup, then the corresponding Activity lifecycle event callbacks\nwill also be called on the proxy. Proxies that require the activity lifecycle will need this property set\nto the appropriate containing Window or TabGroup.</p></p>\n\n<p>@platform android 3.6.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-lifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 262
+          }
+        ],
+        "shortDoc": "The Window or TabGroup whose Activity lifecycle should be triggered on the proxy. ...",
+        "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "looping",
+        "owner": "Titanium.Media.Sound",
+        "type": "Boolean",
+        "doc": "<p>Determines whether the audio should loop upon completion.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-looping",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 64379
+          }
+        ],
+        "shortDoc": "Determines whether the audio should loop upon completion. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "paused",
+        "owner": "Titanium.Media.Sound",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the audio is paused.</p>\n\n\n<p>@description <p>On iOS, this property is read-write, and you can pause and resume playback by setting this\nproperty to <code>true</code> or <code>false</code>.</p></p>\n\n<p>On Android, this property is read-only. For portability, use <a href=\"#!/api/Titanium.Media.Sound-method-pause\" rel=\"Titanium.Media.Sound-method-pause\" class=\"docClass\">pause</a>\nto pause audio, and <a href=\"#!/api/Titanium.Media.Sound-method-play\" rel=\"Titanium.Media.Sound-method-play\" class=\"docClass\">play</a> to resume.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-paused",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 64403
+          }
+        ],
+        "shortDoc": "Indicates if the audio is paused. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "playing",
+        "owner": "Titanium.Media.Sound",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the audio is playing.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-playing",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 64428
+          }
+        ],
+        "html_type": "Boolean",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "time",
+        "owner": "Titanium.Media.Sound",
+        "type": "Number",
+        "doc": "<p>Current playback position of the audio.</p>\n\n\n<p>@description <p>Time is reported in milliseconds.</p></p>\n\n<p>On iOS, prior to Release 3.0, playback time is reported in seconds.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-time",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 64449
+          }
+        ],
+        "shortDoc": "Current playback position of the audio. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "url",
+        "owner": "Titanium.Media.Sound",
+        "type": "String",
+        "doc": "<p>URL identifying the audio resource.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-url",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 64475
+          }
+        ],
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "volume",
+        "owner": "Titanium.Media.Sound",
+        "type": "Number",
+        "doc": "<p>Volume of the audio from 0.0 (muted) to 1.0 (loudest).</p>\n\n\n<p>@description <p>This setting controls the volume of the sound relative to the overall\nvolume setting for the device.</p></p>\n\n<p>On iOS, to adjust the volume of the device, set the <code>volume</code> property of\n<a href=\"#!/api/Titanium.Media-property-appMusicPlayer\" rel=\"Titanium.Media-property-appMusicPlayer\" class=\"docClass\">Titanium.Media.appMusicPlayer</a> and set the <a href=\"#!/api/Titanium.Media-property-audioSessionMode\" rel=\"Titanium.Media-property-audioSessionMode\" class=\"docClass\">Titanium.Media.audioSessionMode</a> property\nto either <a href=\"#!/api/Titanium.Media-property-AUDIO_SESSION_MODE_AMBIENT\" rel=\"Titanium.Media-property-AUDIO_SESSION_MODE_AMBIENT\" class=\"docClass\">Titanium.Media.AUDIO_SESSION_MODE_AMBIENT</a>,\n<a href=\"#!/api/Titanium.Media-property-AUDIO_SESSION_MODE_SOLO_AMBIENT\" rel=\"Titanium.Media-property-AUDIO_SESSION_MODE_SOLO_AMBIENT\" class=\"docClass\">Titanium.Media.AUDIO_SESSION_MODE_SOLO_AMBIENT</a>,\nor <a href=\"#!/api/Titanium.Media-property-AUDIO_SESSION_MODE_PLAYBACK\" rel=\"Titanium.Media-property-AUDIO_SESSION_MODE_PLAYBACK\" class=\"docClass\">Titanium.Media.AUDIO_SESSION_MODE_PLAYBACK</a>.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-volume",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 64496
+          }
+        ],
+        "shortDoc": "Volume of the audio from 0.0 (muted) to 1.0 (loudest). ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "addEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Adds the specified callback as an event listener for the named event.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to invoke when the event is fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38
+          }
+        ],
+        "shortDoc": "Adds the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "applyProperties",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Applies the properties to the proxy.</p>\n\n\n<p>@description <p>Properties are supplied as a dictionary. Each key-value pair in the object is applied to the proxy such that\nmyproxy[key] = value.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "props",
+            "doc": "<p>A dictionary of properties to apply.</p>\n\n\n<p>@platform android 3.0.0\n@platform blackberry 3.3.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-applyProperties",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 102
+          }
+        ],
+        "shortDoc": "Applies the properties to the proxy. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "fireEvent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Fires a synthesized event to any registered listeners.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Dictionary",
+            "name": "event",
+            "doc": "<p>A dictionary of keys and values to add to the <a href=\"#!/api/Titanium.Event\" rel=\"Titanium.Event\" class=\"docClass\">Titanium.Event</a> object sent to the listeners.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-fireEvent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 85
+          }
+        ],
+        "shortDoc": "Fires a synthesized event to any registered listeners. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getApiName",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-apiName\" rel=\"Titanium.Proxy-property-apiName\" class=\"docClass\">apiName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getApiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 157
+          }
+        ],
+        "shortDoc": "Gets the value of the apiName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 123
+          }
+        ],
+        "shortDoc": "Gets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getDuration",
+        "owner": "Titanium.Media.Sound",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Media.Sound-property-duration\" rel=\"Titanium.Media.Sound-property-duration\" class=\"docClass\">duration</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getDuration",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 64022
+          }
+        ],
+        "shortDoc": "Gets the value of the duration property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+          "name": "return",
+          "doc": "<p>@platform android 3.6.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 175
+          }
+        ],
+        "shortDoc": "Gets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getTime",
+        "owner": "Titanium.Media.Sound",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Media.Sound-property-time\" rel=\"Titanium.Media.Sound-property-time\" class=\"docClass\">time</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getTime",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 64038
+          }
+        ],
+        "shortDoc": "Gets the value of the time property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getUrl",
+        "owner": "Titanium.Media.Sound",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Media.Sound-property-url\" rel=\"Titanium.Media.Sound-property-url\" class=\"docClass\">url</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getUrl",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 64072
+          }
+        ],
+        "shortDoc": "Gets the value of the url property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getVolume",
+        "owner": "Titanium.Media.Sound",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Media.Sound-property-volume\" rel=\"Titanium.Media.Sound-property-volume\" class=\"docClass\">volume</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getVolume",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 64100
+          }
+        ],
+        "shortDoc": "Gets the value of the volume property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "isLooping",
+        "owner": "Titanium.Media.Sound",
+        "doc": "<p>Returns the value of the <a href=\"#!/api/Titanium.Media.Sound-property-looping\" rel=\"Titanium.Media.Sound-property-looping\" class=\"docClass\">looping</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-isLooping",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63868
+          }
+        ],
+        "shortDoc": "Returns the value of the looping property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "isPaused",
+        "owner": "Titanium.Media.Sound",
+        "doc": "<p>Returns the value of the <a href=\"#!/api/Titanium.Media.Sound-property-paused\" rel=\"Titanium.Media.Sound-property-paused\" class=\"docClass\">paused</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-isPaused",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63884
+          }
+        ],
+        "shortDoc": "Returns the value of the paused property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "isPlaying",
+        "owner": "Titanium.Media.Sound",
+        "doc": "<p>Returns the value of the <a href=\"#!/api/Titanium.Media.Sound-property-playing\" rel=\"Titanium.Media.Sound-property-playing\" class=\"docClass\">playing</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-isPlaying",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63900
+          }
+        ],
+        "shortDoc": "Returns the value of the playing property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "pause",
+        "owner": "Titanium.Media.Sound",
+        "doc": "<p>Pauses the audio.</p>\n\n\n<p>@description <p>To restart the audio, call <a href=\"#!/api/Titanium.Media.Sound-method-play\" rel=\"Titanium.Media.Sound-method-play\" class=\"docClass\">play</a>.</p></p>\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-pause",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63916
+          }
+        ],
+        "shortDoc": "Pauses the audio. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "play",
+        "owner": "Titanium.Media.Sound",
+        "doc": "<p>Starting playing the sound, or resume playing a paused sound.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-play",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63929
+          }
+        ],
+        "shortDoc": "Starting playing the sound, or resume playing a paused sound. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "release",
+        "owner": "Titanium.Media.Sound",
+        "doc": "<p>Releases all internal resources.</p>\n\n\n<p>@description <p>This is typically unnecessary but can be useful if you load a large audio file in <code>app.js</code>, and\nplay it only once and you would like to release all resources after your final play to reduce memory.</p></p>\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-release",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63942
+          }
+        ],
+        "shortDoc": "Releases all internal resources. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Removes the specified callback as an event listener for the named event.</p>\n\n\n<p>@description <p>Multiple listeners can be registered for the same event, so the\n<code>callback</code> parameter is used to determine which listener to remove. </p></p>\n\n<p>When adding a listener, you must save a reference to the callback function\nin order to remove the listener later:</p>\n\n\n\n\n<pre><code>var listener = function() { Ti.API.info(\"Event listener called.\"); }\nwindow.addEventListener('click', listener);\n</code></pre>\n\n\n\n\n<p>To remove the listener, pass in a reference to the callback function:</p>\n\n\n\n\n<pre><code>window.removeEventListener('click', listener);\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to remove. Must be the same function passed to <code>addEventListener</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 55
+          }
+        ],
+        "shortDoc": "Removes the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "reset",
+        "owner": "Titanium.Media.Sound",
+        "doc": "<p>Resets the audio playback position to the beginning.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-reset",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63956
+          }
+        ],
+        "shortDoc": "Resets the audio playback position to the beginning. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "bubbleParent",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139
+          }
+        ],
+        "shortDoc": "Sets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+            "name": "lifecycleContainer",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.6.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 189
+          }
+        ],
+        "shortDoc": "Sets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLooping",
+        "owner": "Titanium.Media.Sound",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Media.Sound-property-looping\" rel=\"Titanium.Media.Sound-property-looping\" class=\"docClass\">looping</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "looping",
+            "doc": "<p>New value for the <code>looping</code> property.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLooping",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63972
+          }
+        ],
+        "shortDoc": "Sets the value of the looping property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setPaused",
+        "owner": "Titanium.Media.Sound",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Media.Sound-property-paused\" rel=\"Titanium.Media.Sound-property-paused\" class=\"docClass\">paused</a> property.</p>\n\n\n<p>@description <p>On iOS, this method can be used to pause and unpause playback. For portability,\nit is preferable to use the <a href=\"#!/api/Titanium.Media.Sound-method-pause\" rel=\"Titanium.Media.Sound-method-pause\" class=\"docClass\">pause</a> and\n<a href=\"#!/api/Titanium.Media.Sound-method-play\" rel=\"Titanium.Media.Sound-method-play\" class=\"docClass\">play</a> methods instead.</p></p>\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "paused",
+            "doc": "<p>Pass <code>true</code> to pause the current playback temporarily, <code>false</code> to unpause it.</p>\n\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setPaused",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63990
+          }
+        ],
+        "shortDoc": "Sets the value of the paused property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setTime",
+        "owner": "Titanium.Media.Sound",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Media.Sound-property-time\" rel=\"Titanium.Media.Sound-property-time\" class=\"docClass\">time</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "time",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setTime",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 64054
+          }
+        ],
+        "shortDoc": "Sets the value of the time property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setUrl",
+        "owner": "Titanium.Media.Sound",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Media.Sound-property-url\" rel=\"Titanium.Media.Sound-property-url\" class=\"docClass\">url</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "url",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setUrl",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 64085
+          }
+        ],
+        "shortDoc": "Sets the value of the url property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setVolume",
+        "owner": "Titanium.Media.Sound",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Media.Sound-property-volume\" rel=\"Titanium.Media.Sound-property-volume\" class=\"docClass\">volume</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "volume",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setVolume",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 64113
+          }
+        ],
+        "shortDoc": "Sets the value of the volume property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "stop",
+        "owner": "Titanium.Media.Sound",
+        "doc": "<p>Stops playing the audio and resets the playback position to the beginning of the clip.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-stop",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 64009
+          }
+        ],
+        "shortDoc": "Stops playing the audio and resets the playback position to the beginning of the clip. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "event": [
+      {
+        "tagname": "event",
+        "name": "change",
+        "owner": "Titanium.Media.Sound",
+        "doc": "<p>Fired when the state of the playback changes.</p>\n\n\n<p>@description <p>This event can be generated by programmatic events, such as pausing or stopping the audio,\nand also by external events, such as the current state of network buffering.</p></p>\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "state",
+            "doc": "<p>Current state of playback.</p>\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.Media.Sound-property-STATE_BUFFERING\" rel=\"Titanium.Media.Sound-property-STATE_BUFFERING\" class=\"docClass\">STATE_BUFFERING</a>\n <li> <a href=\"#!/api/Titanium.Media.Sound-property-STATE_INITIALIZED\" rel=\"Titanium.Media.Sound-property-STATE_INITIALIZED\" class=\"docClass\">STATE_INITIALIZED</a>\n <li> <a href=\"#!/api/Titanium.Media.Sound-property-STATE_PAUSED\" rel=\"Titanium.Media.Sound-property-STATE_PAUSED\" class=\"docClass\">STATE_PAUSED</a>\n <li> <a href=\"#!/api/Titanium.Media.Sound-property-STATE_PLAYING\" rel=\"Titanium.Media.Sound-property-STATE_PLAYING\" class=\"docClass\">STATE_PLAYING</a>\n <li> <a href=\"#!/api/Titanium.Media.Sound-property-STATE_STARTING\" rel=\"Titanium.Media.Sound-property-STATE_STARTING\" class=\"docClass\">STATE_STARTING</a>\n <li> <a href=\"#!/api/Titanium.Media.Sound-property-STATE_STOPPED\" rel=\"Titanium.Media.Sound-property-STATE_STOPPED\" class=\"docClass\">STATE_STOPPED</a>\n <li> <a href=\"#!/api/Titanium.Media.Sound-property-STATE_STOPPING\" rel=\"Titanium.Media.Sound-property-STATE_STOPPING\" class=\"docClass\">STATE_STOPPING</a>\n <li> <a href=\"#!/api/Titanium.Media.Sound-property-STATE_WAITING_FOR_DATA\" rel=\"Titanium.Media.Sound-property-STATE_WAITING_FOR_DATA\" class=\"docClass\">STATE_WAITING_FOR_DATA</a>\n <li> <a href=\"#!/api/Titanium.Media.Sound-property-STATE_WAITING_FOR_QUEUE\" rel=\"Titanium.Media.Sound-property-STATE_WAITING_FOR_QUEUE\" class=\"docClass\">STATE_WAITING_FOR_QUEUE</a>\n</ul></p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "String",
+            "name": "description",
+            "doc": "<p>Text description of the state of playback.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n\n<p>@platform android 3.2.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "event-change",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63719
+          }
+        ],
+        "shortDoc": "Fired when the state of the playback changes. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "event",
+        "name": "complete",
+        "owner": "Titanium.Media.Sound",
+        "doc": "<p>Fired when the audio has finished playing.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(iphone ipad android) success</p>\n\n<p>Indicates if the sound was played successfully.\nReturns <code>true</code> if request succeeded, <code>false</code> otherwise.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(iphone ipad android) error</p>\n\n<p>Error message, if any returned. Will be undefined if <code>success</code> is <code>true</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Number",
+            "name": "",
+            "doc": "<p>(iphone ipad android) code</p>\n\n<p>Error code.\nError code will be 0 if <code>success</code> is <code>true</code>, nonzero otherwise. If the error\nwas generated by the operating system, that system's error value is used.\nOtherwise, this value will be -1.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "event-complete",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63757
+          }
+        ],
+        "shortDoc": "Fired when the audio has finished playing. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "event",
+        "name": "error",
+        "owner": "Titanium.Media.Sound",
+        "doc": "<p>Fired when an error occurs while playing the audio.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(iphone ipad android) success</p>\n\n<p>Indicates a successful operation. Returns <code>false</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(iphone ipad android) error</p>\n\n<p>Error message, if any returned. May be undefined.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Number",
+            "name": "",
+            "doc": "<p>(iphone ipad android) code</p>\n\n<p>Error code.\nIf the error was generated by the operating system, that system's error value\nis used. Otherwise, this value will be -1.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "String",
+            "name": "message",
+            "doc": "<p>Error message. Use the error property instead.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "event-error",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63787
+          }
+        ],
+        "shortDoc": "Fired when an error occurs while playing the audio. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "event",
+        "name": "interrupted",
+        "owner": "Titanium.Media.Sound",
+        "doc": "<p>Fired  when audio playback is interrupted by the device.</p>\n\n\n<p>@description <p>Typically called during an interruption due to an incoming phone call.</p></p>\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "event-interrupted",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63820
+          }
+        ],
+        "shortDoc": "Fired  when audio playback is interrupted by the device. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "event",
+        "name": "resume",
+        "owner": "Titanium.Media.Sound",
+        "doc": "<p>Fired when audio playback is resumed after an interruption.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "interruption",
+            "doc": "<p>Indicates if the resume was from an interruption.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "event-resume",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63842
+          }
+        ],
+        "shortDoc": "Fired when audio playback is resumed after an interruption. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 63682
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+    "Titanium.Proxy"
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

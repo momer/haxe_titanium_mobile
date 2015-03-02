@@ -1,0 +1,179 @@
+{
+  "tagname": "class",
+  "name": "Dimension",
+  "doc": "<p>@platform android 2.0.0\n@platform blackberry 3.1.2\n@platform iphone 2.0.0\n@platform ipad 2.0.0\n@platform mobileweb 2.0.0\n@pseudo @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/UI/View.yml</p>\n\n<p>A simple object consisting of the position and size measurements.</p>\n\n\n<p>@description <p>When a dimension is returned by the <a href=\"#!/api/Titanium.UI.View-property-rect\" rel=\"Titanium.UI.View-property-rect\" class=\"docClass\">rect</a> property, <code>x</code> represents the\nview's left position, and <code>y</code> represents the view's top position. </p></p>\n\n<p>The <a href=\"#!/api/Titanium.UI.View-property-size\" rel=\"Titanium.UI.View-property-size\" class=\"docClass\">size</a> property returns a dimension object with <code>x</code> and <code>y</code> both set\nto 0.</p>\n\n",
+  "extends": null,
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-Dimension",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "height",
+        "owner": "Dimension",
+        "type": "Number",
+        "doc": "<p>The height measurement.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-height",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 128053
+          }
+        ],
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "width",
+        "owner": "Dimension",
+        "type": "Number",
+        "doc": "<p>The width measurement.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-width",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 128074
+          }
+        ],
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "x",
+        "owner": "Dimension",
+        "type": "Number",
+        "doc": "<p>The x-axis coordinate of the position.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-x",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 128095
+          }
+        ],
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "y",
+        "owner": "Dimension",
+        "type": "Number",
+        "doc": "<p>The y-axis coordinate of the position.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-y",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 128116
+          }
+        ],
+        "html_type": "Number",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 128026
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

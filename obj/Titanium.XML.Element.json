@@ -1,0 +1,3012 @@
+{
+  "tagname": "class",
+  "name": "Titanium.XML.Element",
+  "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8 @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/XML/Element.yml</p>\n\n<p>Represents an element in a DOM document, a <a href=\"#!/api/Titanium.XML.Node\" rel=\"Titanium.XML.Node\" class=\"docClass\">Titanium.XML.Node</a>  defined by a start-tag and end-tag (or an empty tag). Elements may have <a href=\"#!/api/Titanium.XML.Attr\" rel=\"Titanium.XML.Attr\" class=\"docClass\">attributes</a> associated with them.\nImplements the <a href=\"http://www.w3.org/TR/DOM-Level-2-Core/core.html#ID-745549614\">DOM Level 2 API</a>  on Android and iOS with some non-standard extensions. Exposes the  <a href=\"http://www.w3.org/TR/DOM-Level-3-Core/core.html#ID-745549614\">DOM Level 3 API</a> implementation on Mobile Web.</p>\n\n",
+  "extends": "Titanium.XML.Node",
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-Titanium.XML.Element",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "ATTRIBUTE_NODE",
+        "owner": "Titanium.XML.Node",
+        "type": "Number",
+        "doc": "<p>Used with <a href=\"#!/api/Titanium.XML.Node-property-nodeType\" rel=\"Titanium.XML.Node-property-nodeType\" class=\"docClass\">nodeType</a> to identify an\n<a href=\"#!/api/Titanium.XML.Attr\" rel=\"Titanium.XML.Attr\" class=\"docClass\">Attr</a> node.  </p>\n\n\n\n\n<p><b>Constant value:</b>2</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ATTRIBUTE_NODE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151593
+          }
+        ],
+        "shortDoc": "Used with nodeType to identify an\nAttr node. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "CDATA_SECTION_NODE",
+        "owner": "Titanium.XML.Node",
+        "type": "Number",
+        "doc": "<p>Used with <a href=\"#!/api/Titanium.XML.Node-property-nodeType\" rel=\"Titanium.XML.Node-property-nodeType\" class=\"docClass\">nodeType</a> to identify a\n<a href=\"#!/api/Titanium.XML.CDATASection\" rel=\"Titanium.XML.CDATASection\" class=\"docClass\">CDATASection</a> node.  </p>\n\n\n\n\n<p><b>Constant value:</b>4</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-CDATA_SECTION_NODE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151639
+          }
+        ],
+        "shortDoc": "Used with nodeType to identify a\nCDATASection node. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "COMMENT_NODE",
+        "owner": "Titanium.XML.Node",
+        "type": "Number",
+        "doc": "<p>Used with <a href=\"#!/api/Titanium.XML.Node-property-nodeType\" rel=\"Titanium.XML.Node-property-nodeType\" class=\"docClass\">nodeType</a> to identify a\n<a href=\"#!/api/Titanium.XML.Comment\" rel=\"Titanium.XML.Comment\" class=\"docClass\">Comment</a> node.  </p>\n\n\n\n\n<p><b>Constant value:</b>8</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-COMMENT_NODE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151731
+          }
+        ],
+        "shortDoc": "Used with nodeType to identify a\nComment node. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "DOCUMENT_FRAGMENT_NODE",
+        "owner": "Titanium.XML.Node",
+        "type": "Number",
+        "doc": "<p>Used with <a href=\"#!/api/Titanium.XML.Node-property-nodeType\" rel=\"Titanium.XML.Node-property-nodeType\" class=\"docClass\">nodeType</a> to identify a\n<a href=\"#!/api/Titanium.XML.DocumentFragment\" rel=\"Titanium.XML.DocumentFragment\" class=\"docClass\">DocumentFragment</a> node.  </p>\n\n\n\n\n<p><b>Constant value:</b>11</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-DOCUMENT_FRAGMENT_NODE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151800
+          }
+        ],
+        "shortDoc": "Used with nodeType to identify a\nDocumentFragment node. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "DOCUMENT_NODE",
+        "owner": "Titanium.XML.Node",
+        "type": "Number",
+        "doc": "<p>Used with <a href=\"#!/api/Titanium.XML.Node-property-nodeType\" rel=\"Titanium.XML.Node-property-nodeType\" class=\"docClass\">nodeType</a> to identify a\n<a href=\"#!/api/Titanium.XML.Document\" rel=\"Titanium.XML.Document\" class=\"docClass\">Document</a> node.  </p>\n\n\n\n\n<p><b>Constant value:</b>9</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-DOCUMENT_NODE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151754
+          }
+        ],
+        "shortDoc": "Used with nodeType to identify a\nDocument node. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "DOCUMENT_TYPE_NODE",
+        "owner": "Titanium.XML.Node",
+        "type": "Number",
+        "doc": "<p>Used with <a href=\"#!/api/Titanium.XML.Node-property-nodeType\" rel=\"Titanium.XML.Node-property-nodeType\" class=\"docClass\">nodeType</a> to identify a\n<a href=\"#!/api/Titanium.XML.DocumentType\" rel=\"Titanium.XML.DocumentType\" class=\"docClass\">DocumentType</a> node.  </p>\n\n\n\n\n<p><b>Constant value:</b>10</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-DOCUMENT_TYPE_NODE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151777
+          }
+        ],
+        "shortDoc": "Used with nodeType to identify a\nDocumentType node. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ELEMENT_NODE",
+        "owner": "Titanium.XML.Node",
+        "type": "Number",
+        "doc": "<p>Used with <a href=\"#!/api/Titanium.XML.Node-property-nodeType\" rel=\"Titanium.XML.Node-property-nodeType\" class=\"docClass\">nodeType</a> to identify an\n<a href=\"#!/api/Titanium.XML.Element\" rel=\"Titanium.XML.Element\" class=\"docClass\">Element</a> node.  </p>\n\n\n\n\n<p><b>Constant value:</b>1</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ELEMENT_NODE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151570
+          }
+        ],
+        "shortDoc": "Used with nodeType to identify an\nElement node. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ENTITY_NODE",
+        "owner": "Titanium.XML.Node",
+        "type": "Number",
+        "doc": "<p>Used with <a href=\"#!/api/Titanium.XML.Node-property-nodeType\" rel=\"Titanium.XML.Node-property-nodeType\" class=\"docClass\">nodeType</a> to identify an\n<a href=\"#!/api/Titanium.XML.Entity\" rel=\"Titanium.XML.Entity\" class=\"docClass\">Entity</a> node.  </p>\n\n\n\n\n<p><b>Constant value:</b>6</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ENTITY_NODE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151685
+          }
+        ],
+        "shortDoc": "Used with nodeType to identify an\nEntity node. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ENTITY_REFERENCE_NODE",
+        "owner": "Titanium.XML.Node",
+        "type": "Number",
+        "doc": "<p>Used with <a href=\"#!/api/Titanium.XML.Node-property-nodeType\" rel=\"Titanium.XML.Node-property-nodeType\" class=\"docClass\">nodeType</a> to identify an\n<a href=\"#!/api/Titanium.XML.EntityReference\" rel=\"Titanium.XML.EntityReference\" class=\"docClass\">EntityReference</a> node.  </p>\n\n\n\n\n<p><b>Constant value:</b>5</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ENTITY_REFERENCE_NODE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151662
+          }
+        ],
+        "shortDoc": "Used with nodeType to identify an\nEntityReference node. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "NOTATION_NODE",
+        "owner": "Titanium.XML.Node",
+        "type": "Number",
+        "doc": "<p>Used with <a href=\"#!/api/Titanium.XML.Node-property-nodeType\" rel=\"Titanium.XML.Node-property-nodeType\" class=\"docClass\">nodeType</a> to identify a\n<a href=\"#!/api/Titanium.XML.Notation\" rel=\"Titanium.XML.Notation\" class=\"docClass\">Notation</a> node.  </p>\n\n\n\n\n<p><b>Constant value:</b>12</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-NOTATION_NODE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151823
+          }
+        ],
+        "shortDoc": "Used with nodeType to identify a\nNotation node. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "PROCESSING_INSTRUCTION_NODE",
+        "owner": "Titanium.XML.Node",
+        "type": "Number",
+        "doc": "<p>Used with <a href=\"#!/api/Titanium.XML.Node-property-nodeType\" rel=\"Titanium.XML.Node-property-nodeType\" class=\"docClass\">nodeType</a> to identify a\n<a href=\"#!/api/Titanium.XML.ProcessingInstruction\" rel=\"Titanium.XML.ProcessingInstruction\" class=\"docClass\">ProcessingInstruction</a> node.  </p>\n\n\n\n\n<p><b>Constant value:</b>7</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-PROCESSING_INSTRUCTION_NODE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151708
+          }
+        ],
+        "shortDoc": "Used with nodeType to identify a\nProcessingInstruction node. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "TEXT_NODE",
+        "owner": "Titanium.XML.Node",
+        "type": "Number",
+        "doc": "<p>Used with <a href=\"#!/api/Titanium.XML.Node-property-nodeType\" rel=\"Titanium.XML.Node-property-nodeType\" class=\"docClass\">nodeType</a> to identify a\n<a href=\"#!/api/Titanium.XML.Text\" rel=\"Titanium.XML.Text\" class=\"docClass\">Text</a> node.  </p>\n\n\n\n\n<p><b>Constant value:</b>3</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-TEXT_NODE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151616
+          }
+        ],
+        "shortDoc": "Used with nodeType to identify a\nText node. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "apiName",
+        "owner": "Titanium.Proxy",
+        "type": "String",
+        "doc": "<p>The name of the API that this proxy corresponds to.</p>\n\n\n<p>@description <p>The value of this property is the fully qualified name of the API. For example, <a href=\"#!/api/Titanium.UI.Button\" rel=\"Titanium.UI.Button\" class=\"docClass\">Button</a>\nreturns <code>Ti.UI.Button</code>.</p></p>\n\n<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-apiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 235
+          }
+        ],
+        "shortDoc": "The name of the API that this proxy corresponds to. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "attributes",
+        "owner": "Titanium.XML.Node",
+        "type": "Titanium.XML.NamedNodeMap",
+        "doc": "<p>A map of this node's attributes.</p>\n\n\n<p>@description <p>As defined by the DOM specification, only <a href=\"#!/api/Titanium.XML.Element\" rel=\"Titanium.XML.Element\" class=\"docClass\">Element</a> nodes have attributes.\nFor all other node types, this property is always <code>null</code>.</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-attributes",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 152095
+          }
+        ],
+        "shortDoc": "A map of this node's attributes. ...",
+        "html_type": "Titanium.XML.NamedNodeMap",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "bubbleParent",
+        "owner": "Titanium.Proxy",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the proxy will bubble an event to its parent.</p>\n\n\n<p>@description <p>Some proxies (most commonly views) have a relationship to other proxies, often\nestablished by the add() method. For example, for a button added to a window, a\nclick event on the button would bubble up to the window. Other common parents are\ntable sections to their rows, table views to their sections, and scrollable views\nto their views. Set this property to false to disable the bubbling to the proxy's parent.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-bubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 207
+          }
+        ],
+        "shortDoc": "Indicates if the proxy will bubble an event to its parent. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "childNodes",
+        "owner": "Titanium.XML.Node",
+        "type": "Titanium.XML.NodeList",
+        "doc": "<p>A <a href=\"#!/api/Titanium.XML.NodeList\" rel=\"Titanium.XML.NodeList\" class=\"docClass\">Titanium.XML.NodeList</a> of this node's children.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-childNodes",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151990
+          }
+        ],
+        "html_type": "Titanium.XML.NodeList",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "firstChild",
+        "owner": "Titanium.XML.Node",
+        "type": "Titanium.XML.Node",
+        "doc": "<p>This node's first child.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-firstChild",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 152011
+          }
+        ],
+        "html_type": "Titanium.XML.Node",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lastChild",
+        "owner": "Titanium.XML.Node",
+        "type": "Titanium.XML.Node",
+        "doc": "<p>This node's last child.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-lastChild",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 152032
+          }
+        ],
+        "html_type": "Titanium.XML.Node",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "doc": "<p>The Window or TabGroup whose Activity lifecycle should be triggered on the proxy.</p>\n\n\n<p>@description <p>If this property is set to a Window or TabGroup, then the corresponding Activity lifecycle event callbacks\nwill also be called on the proxy. Proxies that require the activity lifecycle will need this property set\nto the appropriate containing Window or TabGroup.</p></p>\n\n<p>@platform android 3.6.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-lifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 262
+          }
+        ],
+        "shortDoc": "The Window or TabGroup whose Activity lifecycle should be triggered on the proxy. ...",
+        "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "localName",
+        "owner": "Titanium.XML.Node",
+        "type": "String",
+        "doc": "<p>Local part of the qualified name of this node.</p>\n\n\n<p>@description <p>The local part of the qualified name that comes after the colon. That is,\nthe name without the namespace prefix.</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-localName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 152184
+          }
+        ],
+        "shortDoc": "Local part of the qualified name of this node. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "namespaceURI",
+        "owner": "Titanium.XML.Node",
+        "type": "String",
+        "doc": "<p>Namespace URI of this node.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-namespaceURI",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 152142
+          }
+        ],
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "nextSibling",
+        "owner": "Titanium.XML.Node",
+        "type": "Titanium.XML.Node",
+        "doc": "<p>This node's next sibling.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-nextSibling",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 152074
+          }
+        ],
+        "html_type": "Titanium.XML.Node",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "nodeName",
+        "owner": "Titanium.XML.Node",
+        "type": "String",
+        "doc": "<p>Name of this node.</p>\n\n\n<p>@description <p>Certain node types have constant values defined by the DOM specification:</p></p>\n\n<ul>\n<li>Text node: <code><a href=\"#!/api/Titanium.XML.Node-property-text\" rel=\"Titanium.XML.Node-property-text\" class=\"docClass\">text</a></code></li>\n<li>Comment node: <code>#comment</code></li>\n<li>CDATA section node: <code>#cdata-section</code></li>\n<li>Document node: <code>#document</code></li>\n<li>Document fragment node: <code>#document-fragment</code></li>\n</ul>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-nodeName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151846
+          }
+        ],
+        "shortDoc": "Name of this node. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "nodeType",
+        "owner": "Titanium.XML.Node",
+        "type": "Number",
+        "doc": "<p>This node's type. One of <code>ELEMENT_NODE</code>, <code>ATTRIBUTE_NODE</code>, <code>TEXT_NODE</code>, <code>CDATA_SECTION_NODE</code>,\n<code>ENTITY_REFERENCE_NODE</code>, <code>ENTITY_NODE</code>, <code>PROCESSING_INSTRUCTION_NODE</code>, <code>COMMENT_NODE</code>,\n<code>DOCUMENT_NODE</code>, <code>DOCUMENT_TYPE_NODE</code>, <code>DOCUMENT_FRAGMENT_NODE</code>, <code>NOTATION_NODE</code>.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-nodeType",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151946
+          }
+        ],
+        "shortDoc": "This node's type. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "nodeValue",
+        "owner": "Titanium.XML.Node",
+        "type": "String",
+        "doc": "<p>Content (value) of this node.</p>\n\n\n<p>@description <p>As defined in the DOM specification, the node value is always <code>null</code> for\nDocument, DocumentFragment, DocumentType, Element, Entity, EntityReference, and\nNotation nodes.</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-nodeValue",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151875
+          }
+        ],
+        "shortDoc": "Content (value) of this node. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ownerDocument",
+        "owner": "Titanium.XML.Node",
+        "type": "Titanium.XML.Document",
+        "doc": "<p>This node's owning document.</p>\n\n\n<p>@description <p>Note that a node always has an owning document, even if it is not part of the\ndocument tree. </p></p>\n\n<p>For more on node ownership, see <a href=\"http://www.w3.org/DOM/faq.html#ownerdoc\">ownerDocument issues</a>\nin the W3C DOM FAQ.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ownerDocument",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 152117
+          }
+        ],
+        "shortDoc": "This node's owning document. ...",
+        "html_type": "Titanium.XML.Document",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "parentNode",
+        "owner": "Titanium.XML.Node",
+        "type": "Titanium.XML.Node",
+        "doc": "<p>This node's parent node.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-parentNode",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151969
+          }
+        ],
+        "html_type": "Titanium.XML.Node",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "prefix",
+        "owner": "Titanium.XML.Node",
+        "type": "String",
+        "doc": "<p>Namespace prefix of this node.</p>\n\n\n<p>@description <p>Read-only on iOS, read-write on other platforms.</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-prefix",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 152163
+          }
+        ],
+        "shortDoc": "Namespace prefix of this node. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "previousSibling",
+        "owner": "Titanium.XML.Node",
+        "type": "Titanium.XML.Node",
+        "doc": "<p>This node's previous sibling.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-previousSibling",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 152053
+          }
+        ],
+        "html_type": "Titanium.XML.Node",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "tagName",
+        "owner": "Titanium.XML.Element",
+        "type": "String",
+        "doc": "<p>The name of the element, as defined by its tag.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-tagName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 150797
+          }
+        ],
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "text",
+        "owner": "Titanium.XML.Element",
+        "type": "String",
+        "doc": "<p>Content (value) of all text nodes within this node.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true,
+          "deprecated": {
+            "text": "2.0.0 Use [textContent](Titanium.XML.Element.textContent) instead.\n\n\n\n\n\n\n@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8"
+          }
+        },
+        "id": "property-text",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 150773
+          }
+        ],
+        "shortDoc": "Content (value) of all text nodes within this node. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null,
+          "deprecated": "        <div class='signature-box deprecated'>\n        <p>This property has been <strong>deprecated</strong> </p>\n        <p>2.0.0 Use <a href=\"Titanium.XML.Element.textContent\">textContent</a> instead.</p>\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n\n        </div>\n"
+        },
+        "overrides": [
+          {
+            "name": "text",
+            "owner": "Titanium.XML.Node",
+            "id": "property-text"
+          }
+        ]
+      },
+      {
+        "tagname": "property",
+        "name": "textContent",
+        "owner": "Titanium.XML.Element",
+        "type": "String",
+        "doc": "<p>Content (value) of all text nodes within this node.</p>\n\n\n<p>@description <p>On Android, <code>textContent</code> is supported on <a href=\"#!/api/Titanium.XML.Element\" rel=\"Titanium.XML.Element\" class=\"docClass\">Element</a> and\n<a href=\"#!/api/Titanium.XML.Text\" rel=\"Titanium.XML.Text\" class=\"docClass\">Text</a> nodes only.</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-textContent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 150751
+          }
+        ],
+        "shortDoc": "Content (value) of all text nodes within this node. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        },
+        "overrides": [
+          {
+            "name": "textContent",
+            "owner": "Titanium.XML.Node",
+            "id": "property-textContent"
+          }
+        ]
+      }
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "addEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Adds the specified callback as an event listener for the named event.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to invoke when the event is fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38
+          }
+        ],
+        "shortDoc": "Adds the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "appendChild",
+        "owner": "Titanium.XML.Node",
+        "doc": "<p>Appends the node <code>newChild</code> as a child of this node.</p>\n\n\n<p>@description <p>On iOS, <code>appendChild</code> is supported on <a href=\"#!/api/Titanium.XML.Element\" rel=\"Titanium.XML.Element\" class=\"docClass\">Element</a>\nnodes <strong>only</strong>.</p></p>\n",
+        "params": [
+          {
+            "type": "Titanium.XML.Node",
+            "name": "newChild",
+            "doc": "<p>New node to append.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.XML.Node"
+          }
+        ],
+        "return": {
+          "type": "Titanium.XML.Node",
+          "name": "return",
+          "doc": "<p>Newly-appended node.</p>\n",
+          "properties": null,
+          "html_type": "Titanium.XML.Node"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-appendChild",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151169
+          }
+        ],
+        "shortDoc": "Appends the node newChild as a child of this node. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "applyProperties",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Applies the properties to the proxy.</p>\n\n\n<p>@description <p>Properties are supplied as a dictionary. Each key-value pair in the object is applied to the proxy such that\nmyproxy[key] = value.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "props",
+            "doc": "<p>A dictionary of properties to apply.</p>\n\n\n<p>@platform android 3.0.0\n@platform blackberry 3.3.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-applyProperties",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 102
+          }
+        ],
+        "shortDoc": "Applies the properties to the proxy. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "cloneNode",
+        "owner": "Titanium.XML.Node",
+        "doc": "<p>Returns a duplicate of this node.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "deep",
+            "doc": "<p>Whether or not to perform a deep copy of this node.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "Titanium.XML.Node",
+          "name": "return",
+          "doc": "<p>Cloned node.</p>\n",
+          "properties": null,
+          "html_type": "Titanium.XML.Node"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-cloneNode",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151185
+          }
+        ],
+        "shortDoc": "Returns a duplicate of this node. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "fireEvent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Fires a synthesized event to any registered listeners.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Dictionary",
+            "name": "event",
+            "doc": "<p>A dictionary of keys and values to add to the <a href=\"#!/api/Titanium.Event\" rel=\"Titanium.Event\" class=\"docClass\">Titanium.Event</a> object sent to the listeners.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-fireEvent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 85
+          }
+        ],
+        "shortDoc": "Fires a synthesized event to any registered listeners. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getApiName",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-apiName\" rel=\"Titanium.Proxy-property-apiName\" class=\"docClass\">apiName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getApiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 157
+          }
+        ],
+        "shortDoc": "Gets the value of the apiName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getAttribute",
+        "owner": "Titanium.XML.Element",
+        "doc": "<p>Retrieves an attribute value by name, returning it as a string.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>The name of the attribute</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>The &lt;<a href=\"#!/api/Titanium.XML.Attr\" rel=\"Titanium.XML.Attr\" class=\"docClass\">Titanium.XML.Attr</a>> value as a string, or empty string if the attribute has no specified or default value.</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getAttribute",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 150464
+          }
+        ],
+        "shortDoc": "Retrieves an attribute value by name, returning it as a string. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getAttributeNS",
+        "owner": "Titanium.XML.Element",
+        "doc": "<p>Retrieves an attribute value by local name and namespace URI, returning it as a string.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "namespaceURI",
+            "doc": "<p>The namespace URI of the attribute to retrieve.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "String",
+            "name": "localName",
+            "doc": "<p>The local name of the attribute to retrieve.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>The &lt;<a href=\"#!/api/Titanium.XML.Attr\" rel=\"Titanium.XML.Attr\" class=\"docClass\">Titanium.XML.Attr</a>> value as a string, or empty string if the attribute has no specified or default value.</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getAttributeNS",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 150572
+          }
+        ],
+        "shortDoc": "Retrieves an attribute value by local name and namespace URI, returning it as a string. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getAttributeNode",
+        "owner": "Titanium.XML.Element",
+        "doc": "<p>Retrieves an attribute value by name, returning it as a <a href=\"#!/api/Titanium.XML.Attr\" rel=\"Titanium.XML.Attr\" class=\"docClass\">Titanium.XML.Attr</a> object.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>The name of the attribute</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "Titanium.XML.Attr",
+          "name": "return",
+          "doc": "<p>The &lt;<a href=\"#!/api/Titanium.XML.Attr\" rel=\"Titanium.XML.Attr\" class=\"docClass\">Titanium.XML.Attr</a>> value, or null if there is no such attribute.</p>\n",
+          "properties": null,
+          "html_type": "Titanium.XML.Attr"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getAttributeNode",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 150512
+          }
+        ],
+        "shortDoc": "Retrieves an attribute value by name, returning it as a Titanium.XML.Attr object. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getAttributeNodeNS",
+        "owner": "Titanium.XML.Element",
+        "doc": "<p>Retrieves an attribute value by local name and namespace URI,  returning it as a <a href=\"#!/api/Titanium.XML.Attr\" rel=\"Titanium.XML.Attr\" class=\"docClass\">Titanium.XML.Attr</a> object.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "namespaceURI",
+            "doc": "<p>The namespace URI of the attribute to retrieve.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "String",
+            "name": "localName",
+            "doc": "<p>The local name of the attribute to retrieve.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "Titanium.XML.Attr",
+          "name": "return",
+          "doc": "<p>The &lt;<a href=\"#!/api/Titanium.XML.Attr\" rel=\"Titanium.XML.Attr\" class=\"docClass\">Titanium.XML.Attr</a>> value, or null if there is no such attribute.</p>\n",
+          "properties": null,
+          "html_type": "Titanium.XML.Attr"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getAttributeNodeNS",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 150626
+          }
+        ],
+        "shortDoc": "Retrieves an attribute value by local name and namespace URI,  returning it as a Titanium.XML.Attr object. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getAttributes",
+        "owner": "Titanium.XML.Node",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.XML.Node-property-attributes\" rel=\"Titanium.XML.Node-property-attributes\" class=\"docClass\">attributes</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.XML.NamedNodeMap",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.XML.NamedNodeMap"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getAttributes",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151473
+          }
+        ],
+        "shortDoc": "Gets the value of the attributes property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 123
+          }
+        ],
+        "shortDoc": "Gets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getChildNodes",
+        "owner": "Titanium.XML.Node",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.XML.Node-property-childNodes\" rel=\"Titanium.XML.Node-property-childNodes\" class=\"docClass\">childNodes</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.XML.NodeList",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.XML.NodeList"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getChildNodes",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151408
+          }
+        ],
+        "shortDoc": "Gets the value of the childNodes property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getElementsByTagName",
+        "owner": "Titanium.XML.Element",
+        "doc": "<p>Retrieves a <a href=\"#!/api/Titanium.XML.NodeList\" rel=\"Titanium.XML.NodeList\" class=\"docClass\">Titanium.XML.NodeList</a> of all descendant elements with a given tag name, in preorder traversal.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>The name of the element. The value <code>*</code> matches all tags.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "Titanium.XML.NodeList",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.XML.NodeList"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getElementsByTagName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 150557
+          }
+        ],
+        "shortDoc": "Retrieves a Titanium.XML.NodeList of all descendant elements with a given tag name, in preorder traversal. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getElementsByTagNameNS",
+        "owner": "Titanium.XML.Element",
+        "doc": "<p>Retrieves a <a href=\"#!/api/Titanium.XML.NodeList\" rel=\"Titanium.XML.NodeList\" class=\"docClass\">Titanium.XML.NodeList</a> of all descendant elements with a given local name and namespace URI, in preorder traversal.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "namespaceURI",
+            "doc": "<p>The namespace URI of the element. The value <code>*</code> matches all namespaces.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "String",
+            "name": "localName",
+            "doc": "<p>The local name of the element. The value <code>*</code> matches all local names.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "Titanium.XML.NodeList",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.XML.NodeList"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getElementsByTagNameNS",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 150658
+          }
+        ],
+        "shortDoc": "Retrieves a Titanium.XML.NodeList of all descendant elements with a given local name and namespace URI, in preorder t...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getFirstChild",
+        "owner": "Titanium.XML.Node",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.XML.Node-property-firstChild\" rel=\"Titanium.XML.Node-property-firstChild\" class=\"docClass\">firstChild</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.XML.Node",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.XML.Node"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getFirstChild",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151421
+          }
+        ],
+        "shortDoc": "Gets the value of the firstChild property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLastChild",
+        "owner": "Titanium.XML.Node",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.XML.Node-property-lastChild\" rel=\"Titanium.XML.Node-property-lastChild\" class=\"docClass\">lastChild</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.XML.Node",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.XML.Node"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLastChild",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151434
+          }
+        ],
+        "shortDoc": "Gets the value of the lastChild property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+          "name": "return",
+          "doc": "<p>@platform android 3.6.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 175
+          }
+        ],
+        "shortDoc": "Gets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLocalName",
+        "owner": "Titanium.XML.Node",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.XML.Node-property-localName\" rel=\"Titanium.XML.Node-property-localName\" class=\"docClass\">localName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLocalName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151540
+          }
+        ],
+        "shortDoc": "Gets the value of the localName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getNamespaceURI",
+        "owner": "Titanium.XML.Node",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.XML.Node-property-namespaceURI\" rel=\"Titanium.XML.Node-property-namespaceURI\" class=\"docClass\">namespaceURI</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getNamespaceURI",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151499
+          }
+        ],
+        "shortDoc": "Gets the value of the namespaceURI property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getNextSibling",
+        "owner": "Titanium.XML.Node",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.XML.Node-property-nextSibling\" rel=\"Titanium.XML.Node-property-nextSibling\" class=\"docClass\">nextSibling</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.XML.Node",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.XML.Node"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getNextSibling",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151460
+          }
+        ],
+        "shortDoc": "Gets the value of the nextSibling property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getNodeName",
+        "owner": "Titanium.XML.Node",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.XML.Node-property-nodeName\" rel=\"Titanium.XML.Node-property-nodeName\" class=\"docClass\">nodeName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getNodeName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151310
+          }
+        ],
+        "shortDoc": "Gets the value of the nodeName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getNodeType",
+        "owner": "Titanium.XML.Node",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.XML.Node-property-nodeType\" rel=\"Titanium.XML.Node-property-nodeType\" class=\"docClass\">nodeType</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getNodeType",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151382
+          }
+        ],
+        "shortDoc": "Gets the value of the nodeType property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getNodeValue",
+        "owner": "Titanium.XML.Node",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.XML.Node-property-nodeValue\" rel=\"Titanium.XML.Node-property-nodeValue\" class=\"docClass\">nodeValue</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getNodeValue",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151323
+          }
+        ],
+        "shortDoc": "Gets the value of the nodeValue property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getOwnerDocument",
+        "owner": "Titanium.XML.Node",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.XML.Node-property-ownerDocument\" rel=\"Titanium.XML.Node-property-ownerDocument\" class=\"docClass\">ownerDocument</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.XML.Document",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.XML.Document"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getOwnerDocument",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151486
+          }
+        ],
+        "shortDoc": "Gets the value of the ownerDocument property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getParentNode",
+        "owner": "Titanium.XML.Node",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.XML.Node-property-parentNode\" rel=\"Titanium.XML.Node-property-parentNode\" class=\"docClass\">parentNode</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.XML.Node",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.XML.Node"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getParentNode",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151395
+          }
+        ],
+        "shortDoc": "Gets the value of the parentNode property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getPrefix",
+        "owner": "Titanium.XML.Node",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.XML.Node-property-prefix\" rel=\"Titanium.XML.Node-property-prefix\" class=\"docClass\">prefix</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getPrefix",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151512
+          }
+        ],
+        "shortDoc": "Gets the value of the prefix property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getPreviousSibling",
+        "owner": "Titanium.XML.Node",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.XML.Node-property-previousSibling\" rel=\"Titanium.XML.Node-property-previousSibling\" class=\"docClass\">previousSibling</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.XML.Node",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.XML.Node"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getPreviousSibling",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151447
+          }
+        ],
+        "shortDoc": "Gets the value of the previousSibling property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getTagName",
+        "owner": "Titanium.XML.Element",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.XML.Element-property-tagName\" rel=\"Titanium.XML.Element-property-tagName\" class=\"docClass\">tagName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getTagName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 150736
+          }
+        ],
+        "shortDoc": "Gets the value of the tagName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getText",
+        "owner": "Titanium.XML.Element",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.XML.Element-property-text\" rel=\"Titanium.XML.Element-property-text\" class=\"docClass\">text</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "deprecated": {
+            "version": "2.0.0",
+            "text": "Use [textContent](Titanium.XML.Element.textContent) instead."
+          }
+        },
+        "id": "method-getText",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 150720
+          }
+        ],
+        "overrides": [
+          {
+            "name": "getText",
+            "owner": "Titanium.XML.Node",
+            "id": "method-getText"
+          }
+        ],
+        "shortDoc": "Gets the value of the text property. ...",
+        "html_meta": {
+          "deprecated": "        <div class='signature-box deprecated'>\n        <p>This method has been <strong>deprecated</strong> since 2.0.0</p>\n        <p>Use <a href=\"Titanium.XML.Element.textContent\">textContent</a> instead.</p>\n\n        </div>\n"
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getTextContent",
+        "owner": "Titanium.XML.Element",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.XML.Element-property-textContent\" rel=\"Titanium.XML.Element-property-textContent\" class=\"docClass\">textContent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getTextContent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 150707
+          }
+        ],
+        "overrides": [
+          {
+            "name": "getTextContent",
+            "owner": "Titanium.XML.Node",
+            "id": "method-getTextContent"
+          }
+        ],
+        "shortDoc": "Gets the value of the textContent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "hasAttribute",
+        "owner": "Titanium.XML.Element",
+        "doc": "<p>Determines whether or not an attribute with the given name is available in the element, or has a default value.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>The name of the attribute to search for.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-hasAttribute",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 150675
+          }
+        ],
+        "shortDoc": "Determines whether or not an attribute with the given name is available in the element, or has a default value. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "hasAttributeNS",
+        "owner": "Titanium.XML.Element",
+        "doc": "<p>Determines whether or not an attribute with the given name is available in the element, or has a default value.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "namespaceURI",
+            "doc": "<p>The namespace URI of the attribute to search for.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "String",
+            "name": "localName",
+            "doc": "<p>The local name of the attribute to search for.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-hasAttributeNS",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 150690
+          }
+        ],
+        "shortDoc": "Determines whether or not an attribute with the given name is available in the element, or has a default value. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "hasAttributes",
+        "owner": "Titanium.XML.Node",
+        "doc": "<p>Returns <code>true</code> if this node has attributes.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>True if this node has attributes, false if it does not.</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-hasAttributes",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151200
+          }
+        ],
+        "shortDoc": "Returns true if this node has attributes. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "hasChildNodes",
+        "owner": "Titanium.XML.Node",
+        "doc": "<p>Returns <code>true</code> if this node has child nodes.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>True if this node has children, false if it does not.</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-hasChildNodes",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151213
+          }
+        ],
+        "shortDoc": "Returns true if this node has child nodes. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "insertBefore",
+        "owner": "Titanium.XML.Node",
+        "doc": "<p>Inserts the node <code>newChild</code> before the node <code>refChild</code>.</p>\n\n\n<p>@description <p>On iOS, <code>insertBefore</code> is supported on <a href=\"#!/api/Titanium.XML.Element\" rel=\"Titanium.XML.Element\" class=\"docClass\">Element</a>\nnodes <strong>only</strong>.</p></p>\n",
+        "params": [
+          {
+            "type": "Titanium.XML.Node",
+            "name": "newChild",
+            "doc": "<p>Node to insert.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.XML.Node"
+          },
+          {
+            "type": "Titanium.XML.Node",
+            "name": "refChild",
+            "doc": "<p>Node to insert <code>newChild</code> before.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.XML.Node"
+          }
+        ],
+        "return": {
+          "type": "Titanium.XML.Node",
+          "name": "return",
+          "doc": "<p>The inserted node.</p>\n",
+          "properties": null,
+          "html_type": "Titanium.XML.Node"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-insertBefore",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151226
+          }
+        ],
+        "shortDoc": "Inserts the node newChild before the node refChild. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "isSupported",
+        "owner": "Titanium.XML.Node",
+        "doc": "<p>Tests whether the DOM implementation supports a specific feature.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "feature",
+            "doc": "<p>Name of the feature.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "String",
+            "name": "version",
+            "doc": "<p>Version number of the feature.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>True if the feature is supported, false if it is not.</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-isSupported",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151244
+          }
+        ],
+        "shortDoc": "Tests whether the DOM implementation supports a specific feature. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "normalize",
+        "owner": "Titanium.XML.Node",
+        "doc": "<p>Normalizes text and attribute nodes in this node's child hierarchy.</p>\n\n\n<p>@platform android 0.8\n@platform mobileweb 1.8</p>\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-normalize",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151261
+          }
+        ],
+        "shortDoc": "Normalizes text and attribute nodes in this node's child hierarchy. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeAttribute",
+        "owner": "Titanium.XML.Element",
+        "doc": "<p>Removes an attribute by name. If the attribute has a default value, it is immediately replaced with this default, including namespace URI and local name. Throws an exception if the element is read-only.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>The name of the attribute to remove.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeAttribute",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 150497
+          }
+        ],
+        "shortDoc": "Removes an attribute by name. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeAttributeNS",
+        "owner": "Titanium.XML.Element",
+        "doc": "<p>Removes an attribute by local name and namespace URI. If the attribute has a default value, it is immediately replaced with this default, including namespace URI and local name. Throws an exception if the element is read-only.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "namespaceURI",
+            "doc": "<p>The namespace URI of the attribute to remove.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "String",
+            "name": "localName",
+            "doc": "<p>The local name of the attribute to remove.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeAttributeNS",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 150609
+          }
+        ],
+        "shortDoc": "Removes an attribute by local name and namespace URI. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeAttributeNode",
+        "owner": "Titanium.XML.Element",
+        "doc": "<p>Removes the specified attribute node. If the removed attribute has a default value, it is replaced immediately, with the same namespace and local name as the removed attribute, if applicable. Throws an exception if the element is read-only, or the attribute is  not an attribute of the element.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.XML.Attr",
+            "name": "oldAttr",
+            "doc": "<p>The attribute to remove.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.XML.Attr"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeAttributeNode",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 150542
+          }
+        ],
+        "shortDoc": "Removes the specified attribute node. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeChild",
+        "owner": "Titanium.XML.Node",
+        "doc": "<p>Removes a child node from this node.</p>\n\n\n<p>@description <p>On iOS, <code>removeChild</code> is supported on <a href=\"#!/api/Titanium.XML.Element\" rel=\"Titanium.XML.Element\" class=\"docClass\">Element</a>\nnodes <strong>only</strong>.</p></p>\n",
+        "params": [
+          {
+            "type": "Titanium.XML.Node",
+            "name": "oldChild",
+            "doc": "<p>Node to remove.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.XML.Node"
+          }
+        ],
+        "return": {
+          "type": "Titanium.XML.Node",
+          "name": "return",
+          "doc": "<p>Node that was removed.</p>\n",
+          "properties": null,
+          "html_type": "Titanium.XML.Node"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeChild",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151276
+          }
+        ],
+        "shortDoc": "Removes a child node from this node. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Removes the specified callback as an event listener for the named event.</p>\n\n\n<p>@description <p>Multiple listeners can be registered for the same event, so the\n<code>callback</code> parameter is used to determine which listener to remove. </p></p>\n\n<p>When adding a listener, you must save a reference to the callback function\nin order to remove the listener later:</p>\n\n\n\n\n<pre><code>var listener = function() { Ti.API.info(\"Event listener called.\"); }\nwindow.addEventListener('click', listener);\n</code></pre>\n\n\n\n\n<p>To remove the listener, pass in a reference to the callback function:</p>\n\n\n\n\n<pre><code>window.removeEventListener('click', listener);\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to remove. Must be the same function passed to <code>addEventListener</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 55
+          }
+        ],
+        "shortDoc": "Removes the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "replaceChild",
+        "owner": "Titanium.XML.Node",
+        "doc": "<p>Replaces the node <code>oldChild</code> with the node <code>newChild</code>.</p>\n\n\n<p>@description <p>On iOS, <code>replaceChild</code> is supported on <a href=\"#!/api/Titanium.XML.Element\" rel=\"Titanium.XML.Element\" class=\"docClass\">Element</a>\nnodes <strong>only</strong>.</p></p>\n",
+        "params": [
+          {
+            "type": "Titanium.XML.Node",
+            "name": "newChild",
+            "doc": "<p>New node.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.XML.Node"
+          },
+          {
+            "type": "Titanium.XML.Node",
+            "name": "oldChild",
+            "doc": "<p>Node being replaced.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.XML.Node"
+          }
+        ],
+        "return": {
+          "type": "Titanium.XML.Node",
+          "name": "return",
+          "doc": "<p>Node that was replaced.</p>\n",
+          "properties": null,
+          "html_type": "Titanium.XML.Node"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-replaceChild",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151292
+          }
+        ],
+        "shortDoc": "Replaces the node oldChild with the node newChild. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setAttribute",
+        "owner": "Titanium.XML.Element",
+        "doc": "<p>Adds a new attribute. Any attribute with the same name is replaced. Throws an exception if the element is read-only, or if the name contains an illegal character.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>The name of the attribute.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "String",
+            "name": "value",
+            "doc": "<p>The value of the attribute. This is value is <strong>not</strong> parsed as part of the assignment. Any markup is treated as literal text, and needs to be escaped.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setAttribute",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 150480
+          }
+        ],
+        "shortDoc": "Adds a new attribute. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setAttributeNS",
+        "owner": "Titanium.XML.Element",
+        "doc": "<p>Adds a new attribute. Any attribute with the same local name and namespace URI is present on the element is replaced, with its prefix changed to that of the <code>qualifiedName</code> parameter.  Throws an exception if the element is read-only, if the name contains an illegal character, or if the qualified name contains an error.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "namespaceURI",
+            "doc": "<p>The namespace URI of the attribute.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "String",
+            "name": "qualifiedName",
+            "doc": "<p>The qualified name of the attribute. If it is malformed, has a prefix and namespaceURI is <code>null</code>, or if the prefix is <code>xml</code> or <code>xmlns</code> but does not correspond to a property defined in the  <a href=\"http://www.w3.org/XML/1998/namespace\">XML</a> or <a href=\"http://www.w3.org/2000/xmlns/\">XMLNS</a> specifications, then it contains an error.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "String",
+            "name": "value",
+            "doc": "<p>The value of the attribute. This is value is <strong>not</strong> parsed as part of the assignment. Any markup is treated as literal text, and needs to be escaped.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setAttributeNS",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 150590
+          }
+        ],
+        "shortDoc": "Adds a new attribute. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setAttributeNode",
+        "owner": "Titanium.XML.Element",
+        "doc": "<p>Adds a new attribute. Any attribute with the same <code>nodeName</code> as the argument is replaced. Throws an exception if the element is read-only, if <code>newAttr</code> is from a different document, or if <code>newAttr</code> is already an attribute of another element.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.XML.Attr",
+            "name": "newAttr",
+            "doc": "<p>The attribute node to add to the element.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.XML.Attr"
+          }
+        ],
+        "return": {
+          "type": "Titanium.XML.Attr",
+          "name": "return",
+          "doc": "<p>The attribute that was replaced, or <code>null</code> otherwise.</p>\n",
+          "properties": null,
+          "html_type": "Titanium.XML.Attr"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setAttributeNode",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 150527
+          }
+        ],
+        "shortDoc": "Adds a new attribute. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setAttributeNodeNS",
+        "owner": "Titanium.XML.Element",
+        "doc": "<p>Adds a new attribute. Any attribute with the same local name and namespace URI is replaced. Throws an exception if the element is read-only, if <code>newAttr</code> is from a different document, or if <code>newAttr</code> is already an attribute of another element.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.XML.Attr",
+            "name": "newAttr",
+            "doc": "<p>The attribute node to add to the element.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.XML.Attr"
+          }
+        ],
+        "return": {
+          "type": "Titanium.XML.Attr",
+          "name": "return",
+          "doc": "<p>The attribute that was replaced, or <code>null</code> otherwise.</p>\n",
+          "properties": null,
+          "html_type": "Titanium.XML.Attr"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setAttributeNodeNS",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 150643
+          }
+        ],
+        "shortDoc": "Adds a new attribute. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "bubbleParent",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139
+          }
+        ],
+        "shortDoc": "Sets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+            "name": "lifecycleContainer",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.6.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 189
+          }
+        ],
+        "shortDoc": "Sets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLocalName",
+        "owner": "Titanium.XML.Node",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.XML.Node-property-localName\" rel=\"Titanium.XML.Node-property-localName\" class=\"docClass\">localName</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "localName",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLocalName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151553
+          }
+        ],
+        "shortDoc": "Sets the value of the localName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setNodeValue",
+        "owner": "Titanium.XML.Node",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.XML.Node-property-nodeValue\" rel=\"Titanium.XML.Node-property-nodeValue\" class=\"docClass\">nodeValue</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "nodeValue",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setNodeValue",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151336
+          }
+        ],
+        "shortDoc": "Sets the value of the nodeValue property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setPrefix",
+        "owner": "Titanium.XML.Node",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.XML.Node-property-prefix\" rel=\"Titanium.XML.Node-property-prefix\" class=\"docClass\">prefix</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "prefix",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setPrefix",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 151525
+          }
+        ],
+        "shortDoc": "Sets the value of the prefix property. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 150443
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+    "Titanium.Proxy",
+    "Titanium.XML.Node"
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

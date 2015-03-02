@@ -1,0 +1,1035 @@
+{
+  "tagname": "class",
+  "name": "Titanium.Stream",
+  "doc": "<p>@platform android 1.7\n@platform blackberry 3.1.2\n@platform iphone 1.7\n@platform ipad 1.7 @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/Stream/Stream.yml</p>\n\n<p>Stream module containing stream utility methods.</p>\n\n\n<p>@description <p>This module provides a set of methods for interacting with\n<a href=\"#!/api/Titanium.IOStream\" rel=\"Titanium.IOStream\" class=\"docClass\">IOStream</a> objects, including asynchronous versions of the\n<code>read</code> and <code>write</code> methods offered by all stream objects. These\nmethods should be used in any place where reading from or writing\nto a stream might block.</p></p>\n\n<p>See also:</p>\n\n\n\n\n<ul>\n<li><a href=\"#!/api/Titanium.IOStream\" rel=\"Titanium.IOStream\" class=\"docClass\">Titanium.IOStream</a></li>\n<li><a href=\"#!/api/Titanium.BlobStream\" rel=\"Titanium.BlobStream\" class=\"docClass\">Titanium.BlobStream</a></li>\n<li><a href=\"#!/api/Titanium.BufferStream\" rel=\"Titanium.BufferStream\" class=\"docClass\">Titanium.BufferStream</a></li>\n<li><a href=\"#!/api/Titanium.Filesystem.FileStream\" rel=\"Titanium.Filesystem.FileStream\" class=\"docClass\">Titanium.Filesystem.FileStream</a></li>\n<li><a href=\"#!/api/Titanium.Network.Socket.TCP\" rel=\"Titanium.Network.Socket.TCP\" class=\"docClass\">Titanium.Network.Socket.TCP</a></li>\n</ul>\n\n\n<h3>Examples</h3>\n\n\n<h4>Stream.pump Example</h4>\n\n\n<p>The following example shows how to use the <a href=\"#!/api/Titanium.Stream-method-pump\" rel=\"Titanium.Stream-method-pump\" class=\"docClass\">pump</a> method.</p>\n\n\n\n\n<pre><code>var pumpCallback = function(arg) {\n    if(arg.bytesProcessed == -1) {\n        Ti.API.info(\"At end of stream.\");\n    } else {\n        Ti.API.info(String.format(\"Received %.0f bytes. Total: %.0f bytes.\",\n                    arg.bytesProcessed, arg.totalBytesProcessed));\n        // do something useful with the data in arg.buffer\n    }\n}\nTi.Stream.pump(inputStream, pumpCallback, 1024);\n</code></pre>\n\n\n<h4>Write Stream to File</h4>\n\n\n<p>The following example uses the <a href=\"#!/api/Titanium.Stream-method-writeStream\" rel=\"Titanium.Stream-method-writeStream\" class=\"docClass\">writeStream</a> method\nto copy the contents of an input stream to a file. This can be used for any kind\nof input stream -- <code>BufferStream</code>, <code>FileStream</code>, or <code>Socket.TCP</code>.</p>\n\n\n\n\n<pre><code>var outFileStream = Ti.Filesystem.getFile('outfile.txt').open(Ti.Filesystem.MODE_WRITE);\n\n// writes all data from inputStream to outFileStream in chunks of 1024 bytes\nvar bytesWritten = Ti.Stream.writeStream(inputStream, outFileStream, 1024);\nTi.API.info('Wrote ' + bytesWritten + ' bytes, closing both streams.');\n\ninputStream.close();\noutFileStream.close();\n</code></pre>\n\n",
+  "extends": "Titanium.Module",
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-Titanium.Stream",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "MODE_APPEND",
+        "owner": "Titanium.Stream",
+        "type": "Number",
+        "doc": "<p>Use with <a href=\"#!/api/Titanium.Stream-method-createStream\" rel=\"Titanium.Stream-method-createStream\" class=\"docClass\">createStream</a> to open a stream in append\nmode.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-MODE_APPEND",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 75887
+          }
+        ],
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "MODE_READ",
+        "owner": "Titanium.Stream",
+        "type": "Number",
+        "doc": "<p>Use with <a href=\"#!/api/Titanium.Stream-method-createStream\" rel=\"Titanium.Stream-method-createStream\" class=\"docClass\">createStream</a> to open a stream in read\nmode.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-MODE_READ",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 75843
+          }
+        ],
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "MODE_WRITE",
+        "owner": "Titanium.Stream",
+        "type": "Number",
+        "doc": "<p>Use with <a href=\"#!/api/Titanium.Stream-method-createStream\" rel=\"Titanium.Stream-method-createStream\" class=\"docClass\">createStream</a> to open a stream in write\nmode.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-MODE_WRITE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 75865
+          }
+        ],
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "apiName",
+        "owner": "Titanium.Proxy",
+        "type": "String",
+        "doc": "<p>The name of the API that this proxy corresponds to.</p>\n\n\n<p>@description <p>The value of this property is the fully qualified name of the API. For example, <a href=\"#!/api/Titanium.UI.Button\" rel=\"Titanium.UI.Button\" class=\"docClass\">Button</a>\nreturns <code>Ti.UI.Button</code>.</p></p>\n\n<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-apiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 235
+          }
+        ],
+        "shortDoc": "The name of the API that this proxy corresponds to. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "bubbleParent",
+        "owner": "Titanium.Proxy",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the proxy will bubble an event to its parent.</p>\n\n\n<p>@description <p>Some proxies (most commonly views) have a relationship to other proxies, often\nestablished by the add() method. For example, for a button added to a window, a\nclick event on the button would bubble up to the window. Other common parents are\ntable sections to their rows, table views to their sections, and scrollable views\nto their views. Set this property to false to disable the bubbling to the proxy's parent.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-bubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 207
+          }
+        ],
+        "shortDoc": "Indicates if the proxy will bubble an event to its parent. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "doc": "<p>The Window or TabGroup whose Activity lifecycle should be triggered on the proxy.</p>\n\n\n<p>@description <p>If this property is set to a Window or TabGroup, then the corresponding Activity lifecycle event callbacks\nwill also be called on the proxy. Proxies that require the activity lifecycle will need this property set\nto the appropriate containing Window or TabGroup.</p></p>\n\n<p>@platform android 3.6.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-lifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 262
+          }
+        ],
+        "shortDoc": "The Window or TabGroup whose Activity lifecycle should be triggered on the proxy. ...",
+        "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "addEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Adds the specified callback as an event listener for the named event.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to invoke when the event is fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38
+          }
+        ],
+        "shortDoc": "Adds the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "applyProperties",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Applies the properties to the proxy.</p>\n\n\n<p>@description <p>Properties are supplied as a dictionary. Each key-value pair in the object is applied to the proxy such that\nmyproxy[key] = value.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "props",
+            "doc": "<p>A dictionary of properties to apply.</p>\n\n\n<p>@platform android 3.0.0\n@platform blackberry 3.3.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-applyProperties",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 102
+          }
+        ],
+        "shortDoc": "Applies the properties to the proxy. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "createStream",
+        "owner": "Titanium.Stream",
+        "doc": "<p>Creates stream from a <code>Buffer</code> or <code>Blob</code> object.</p>\n\n\n<p>@description <p>Returns <a href=\"#!/api/Titanium.BufferStream\" rel=\"Titanium.BufferStream\" class=\"docClass\">Titanium.BufferStream</a> or <a href=\"#!/api/Titanium.BlobStream\" rel=\"Titanium.BlobStream\" class=\"docClass\">Titanium.BlobStream</a> depending on whether a\n<code>Buffer</code> or <code>Blob</code> is provided as the <code>source</code> property in <code>params</code>.  </p></p>\n\n<p><code>Blob</code> obects are read only. Throws an exception if <code>MODE_WRITE</code> or <code>MODE_APPEND</code> is\nspecified along with a blob object.</p>\n\n",
+        "params": [
+          {
+            "type": "CreateStreamArgs",
+            "name": "params",
+            "doc": "<p>Parameter object, for specifying the source object and mode.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "CreateStreamArgs"
+          }
+        ],
+        "return": {
+          "type": "Titanium.IOStream",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.IOStream"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-createStream",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 75643
+          }
+        ],
+        "shortDoc": "Creates stream from a Buffer or Blob object. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "fireEvent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Fires a synthesized event to any registered listeners.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Dictionary",
+            "name": "event",
+            "doc": "<p>A dictionary of keys and values to add to the <a href=\"#!/api/Titanium.Event\" rel=\"Titanium.Event\" class=\"docClass\">Titanium.Event</a> object sent to the listeners.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-fireEvent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 85
+          }
+        ],
+        "shortDoc": "Fires a synthesized event to any registered listeners. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getApiName",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-apiName\" rel=\"Titanium.Proxy-property-apiName\" class=\"docClass\">apiName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getApiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 157
+          }
+        ],
+        "shortDoc": "Gets the value of the apiName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 123
+          }
+        ],
+        "shortDoc": "Gets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+          "name": "return",
+          "doc": "<p>@platform android 3.6.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 175
+          }
+        ],
+        "shortDoc": "Gets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "pump",
+        "owner": "Titanium.Stream",
+        "doc": "<p>Reads data from input stream and passes it to a handler method.</p>\n\n\n<p>@description <p>After the end of the input stream is reached, the handler is called\na final time with no data and <code>bytesProcessed</code> set to -1 to indicate\nthe end of the input data.</p></p>\n",
+        "params": [
+          {
+            "type": "Titanium.IOStream",
+            "name": "inputStream",
+            "doc": "<p>Stream to pump from.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.IOStream"
+          },
+          {
+            "type": "Callback<PumpCallbackArgs>",
+            "name": "handler",
+            "doc": "<p>Handler method that will receive data from <code>inputStream</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<PumpCallbackArgs>"
+          },
+          {
+            "type": "Number",
+            "name": "maxChunkSize",
+            "doc": "<p>Maximum number of bytes to pass to <code>handler</code> in a single call.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Boolean",
+            "name": "isAsync",
+            "doc": "<p>Specifies if the <code>pump</code> operation should run asynchronously.</p>\n\n\n<p>@platform android 1.7\n@platform iphone 1.7\n@platform ipad 1.7</p>\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-pump",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 75815
+          }
+        ],
+        "shortDoc": "Reads data from input stream and passes it to a handler method. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "read",
+        "owner": "Titanium.Stream",
+        "doc": "<p>Asynchronously reads data from an <a href=\"#!/api/Titanium.IOStream\" rel=\"Titanium.IOStream\" class=\"docClass\">IOStream</a> into a buffer.</p>\n\n\n<p>@description <p>Reads data from the stream and writes it to the buffer. The first byte is\nwritten to <code>buffer[offset]</code>. Reads until the provided buffer is full, the end of\nthe stream is detected, or the requested number of bytes have been read. Does not\nresize the supplied buffer.</p></p>\n\n<p>A request must include both <code>offset</code> and <code>length</code> parameters, or omit them both.</p>\n\n\n\n\n<p>If the stream is not readable, an error is reported:</p>\n\n\n\n\n<ul>\n<li><p>On iOS, throws an exception.</p></li>\n<li><p>On Android, calls the callback with an error.</p></li>\n</ul>\n\n\n\n\n<p>If <code>offset</code> is past the last byte of the buffer, throws an exception.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.IOStream",
+            "name": "sourceStream",
+            "doc": "<p>Stream to read from.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.IOStream"
+          },
+          {
+            "type": "Titanium.Buffer",
+            "name": "buffer",
+            "doc": "<p>Buffer to read into.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.Buffer"
+          },
+          {
+            "type": "Number",
+            "name": "offset",
+            "doc": "<p>Offset to start reading stream data from, in bytes.\nIf specified, <code>length</code> must be specified as well.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Number",
+            "name": "length",
+            "doc": "<p>Number of bytes of data to read from the stream.\nIf specified, <code>offset</code> must be specified as well.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Callback<ReadCallbackArgs>",
+            "name": "resultsCallback",
+            "doc": "<p>Function to call with the results of the read operation.</p>\n\n\n<p>@platform android 1.7\n@platform iphone 1.7\n@platform ipad 1.7</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<ReadCallbackArgs>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-read",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 75662
+          }
+        ],
+        "shortDoc": "Asynchronously reads data from an IOStream into a buffer. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "readAll",
+        "owner": "Titanium.Stream",
+        "doc": "<p>Reads all data from the specified <a href=\"#!/api/Titanium.IOStream\" rel=\"Titanium.IOStream\" class=\"docClass\">IOStream</a>.</p>\n\n\n<p>@description <p>Reads data from the stream, either synchronously or asynchronously.</p></p>\n\n<p>Throws an exception if a read error is encountered or data can't be written to the\nbuffer.</p>\n\n\n\n\n<p>If the optional <code>buffer</code> and <code>resultsCallback</code> arguments are specified, the read operation\ntakes place asynchronously, and the results are passed to the callback.\nThe data is written to the provided buffer, which is resized if necessary.</p>\n\n\n\n\n<p>If the <code>buffer</code> and <code>resultsCallback</code> arguments are omitted, a new buffer is\nallocated and returned.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.IOStream",
+            "name": "sourceStream",
+            "doc": "<p>Stream to read from.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.IOStream"
+          },
+          {
+            "type": "Titanium.Buffer",
+            "name": "buffer",
+            "doc": "<p>Buffer to read into. If specified, <code>resultsCallback</code> must be specified as\nwell.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.Buffer"
+          },
+          {
+            "type": "Callback<ReadCallbackArgs>",
+            "name": "resultsCallback",
+            "doc": "<p>Function to call with the results of the read operation.\nIf specified, <code>resultsCallback</code> must be specified as well.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<ReadCallbackArgs>"
+          }
+        ],
+        "return": {
+          "type": "void",
+          "name": "return",
+          "doc": "<p>@platform android 1.7\n@platform iphone 1.7\n@platform ipad 1.7</p>\n",
+          "properties": null,
+          "html_type": "void"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-readAll",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 75704
+          }
+        ],
+        "shortDoc": "Reads all data from the specified IOStream. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Removes the specified callback as an event listener for the named event.</p>\n\n\n<p>@description <p>Multiple listeners can be registered for the same event, so the\n<code>callback</code> parameter is used to determine which listener to remove. </p></p>\n\n<p>When adding a listener, you must save a reference to the callback function\nin order to remove the listener later:</p>\n\n\n\n\n<pre><code>var listener = function() { Ti.API.info(\"Event listener called.\"); }\nwindow.addEventListener('click', listener);\n</code></pre>\n\n\n\n\n<p>To remove the listener, pass in a reference to the callback function:</p>\n\n\n\n\n<pre><code>window.removeEventListener('click', listener);\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to remove. Must be the same function passed to <code>addEventListener</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 55
+          }
+        ],
+        "shortDoc": "Removes the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "bubbleParent",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139
+          }
+        ],
+        "shortDoc": "Sets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+            "name": "lifecycleContainer",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.6.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 189
+          }
+        ],
+        "shortDoc": "Sets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "write",
+        "owner": "Titanium.Stream",
+        "doc": "<p>Asynchronously writes data from a buffer to an <a href=\"#!/api/Titanium.IOStream\" rel=\"Titanium.IOStream\" class=\"docClass\">IOStream</a>.</p>\n\n\n<p>@description <p>Data is read from the buffer and written to the stream. </p></p>\n\n<p>If the <code>offset</code> and <code>length</code> arguments are specified, data is read from the buffer\nstarting at <code>offset</code>, up to <code>offset+length-1</code> or the end of the buffer, whichever\ncomes first.</p>\n\n\n\n\n<p>If <code>offset</code> and <code>length</code> are omitted, the entire buffer is written to the stream.</p>\n\n\n\n\n<p>If the output stream is not writable, an error is reported:</p>\n\n\n\n\n<ul>\n<li><p>On iOS, an exception is thrown.</p></li>\n<li><p>On Android, the callback is invoked with an error.</p></li>\n</ul>\n\n",
+        "params": [
+          {
+            "type": "Titanium.IOStream",
+            "name": "outputStream",
+            "doc": "<p>Stream to write to.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.IOStream"
+          },
+          {
+            "type": "Titanium.Buffer",
+            "name": "buffer",
+            "doc": "<p>Buffer to write from.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.Buffer"
+          },
+          {
+            "type": "Number",
+            "name": "offset",
+            "doc": "<p>Offset to start writing buffer data from.\nIf specified, <code>length</code> must be specified as well.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Number",
+            "name": "length",
+            "doc": "<p>Bytes of data to write. If specified, <code>offset</code> must be specified as well.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Callback<WriteCallbackArgs>",
+            "name": "resultsCallback",
+            "doc": "<p>Function to call with the results of the write operation.</p>\n\n\n<p>@platform android 1.7\n@platform iphone 1.7\n@platform ipad 1.7</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<WriteCallbackArgs>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-write",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 75738
+          }
+        ],
+        "shortDoc": "Asynchronously writes data from a buffer to an IOStream. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "writeStream",
+        "owner": "Titanium.Stream",
+        "doc": "<p>Writes all data from an input stream to an output stream.</p>\n\n\n<p>@description <p>If the optional <code>resultsCallback</code> argument is supplied, the operation is\nperformed asynchronously.</p></p>\n\n<p>If the callback is omitted, this method is synchronous, and blocks until all data has been written. <br>\nThe synchronous version Returns the total number of bytes written.</p>\n\n\n\n\n<p>If no data can be read from the input stream because the input\nstream is at end of stream, behavior varies by platform:</p>\n\n\n\n\n<ul>\n<li><p>iOS throws an exception.</p></li>\n<li><p>Android returns 0, or calls the callback with <code>bytesProcessed</code> set to 0.</p></li>\n</ul>\n\n",
+        "params": [
+          {
+            "type": "Titanium.IOStream",
+            "name": "inputStream",
+            "doc": "<p>Stream to read from.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.IOStream"
+          },
+          {
+            "type": "Titanium.IOStream",
+            "name": "outputStream",
+            "doc": "<p>Stream to write to.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.IOStream"
+          },
+          {
+            "type": "Number",
+            "name": "maxChunkSize",
+            "doc": "<p>Maximum number of bytes to copy from <code>inputStream</code> to <code>outputStream</code> in a\nsingle operation.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Callback<WriteStreamCallbackArgs>",
+            "name": "resultsCallback",
+            "doc": "<p>Function to call with the results of the <code>writeStream</code> operation.</p>\n\n\n<p>@platform android 1.7\n@platform iphone 1.7\n@platform ipad 1.7</p>\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<WriteStreamCallbackArgs>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-writeStream",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 75778
+          }
+        ],
+        "shortDoc": "Writes all data from an input stream to an output stream. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 75582
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+    "Titanium.Proxy",
+    "Titanium.Module"
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

@@ -1,0 +1,925 @@
+{
+  "tagname": "class",
+  "name": "Titanium.Platform.DisplayCaps",
+  "doc": "<p>@platform android 0.8\n@platform blackberry 3.1.2\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8 @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/Platform/DisplayCaps.yml</p>\n\n<p>The Display Caps object returned by the <a href=\"#!/api/Titanium.Platform-property-displayCaps\" rel=\"Titanium.Platform-property-displayCaps\" class=\"docClass\">Titanium.Platform.displayCaps</a> property.</p>\n\n\n<p>@description <p>On iPhone and iPod devices with retina display, the <code>density</code> property is <code>high</code> and the <code>dpi</code>\nproperty is <code>320</code>. For other iPhone and iPod devices, <code>density</code> is <code>medium</code> and <code>dpi</code> is <code>160</code>.</p></p>\n\n<p>On iPad devices with retina display, the <code>density</code> property is <code>high</code> and the <code>dpi</code>\nproperty is <code>260</code>. For other iPad devices, <code>density</code> is <code>medium</code> and <code>dpi</code> is <code>130</code>.</p>\n\n\n\n\n<p>Note that Xcode versions prior to 4.3.1 do not have the correct tools to detect the iPad 3\nretina display. Apps must be built with Xcode 4.3.1 or later to detect iPad 3 retina display.</p>\n\n\n\n\n<p>Note that the <code>displayCaps</code> property begins with a lowercase letter, which differentiates it\nfrom the <code>DisplayCaps</code> object that it returns. Refer to the example to understand how it should\nbe called.</p>\n\n\n<h3>Examples</h3>\n\n\n<h4>System Display Information</h4>\n\n\n<p>Output the display properties to the system log.</p>\n\n\n\n\n<pre><code>Ti.API.info('Ti.Platform.displayCaps.density: ' + Ti.Platform.displayCaps.density);\nTi.API.info('Ti.Platform.displayCaps.dpi: ' + Ti.Platform.displayCaps.dpi);\nTi.API.info('Ti.Platform.displayCaps.platformHeight: ' + Ti.Platform.displayCaps.platformHeight);\nTi.API.info('Ti.Platform.displayCaps.platformWidth: ' + Ti.Platform.displayCaps.platformWidth);\nif((Ti.Platform.osname === 'iphone')||(Ti.Platform.osname === 'ipad')||(Ti.Platform.osname === 'android')){\n  Ti.API.info('Ti.Platform.displayCaps.logicalDensityFactor: ' + Ti.Platform.displayCaps.logicalDensityFactor);\n}\nif(Ti.Platform.osname === 'android'){\n  Ti.API.info('Ti.Platform.displayCaps.xdpi: ' + Ti.Platform.displayCaps.xdpi);\n  Ti.API.info('Ti.Platform.displayCaps.ydpi: ' + Ti.Platform.displayCaps.ydpi);\n}\n</code></pre>\n\n",
+  "extends": "Titanium.Proxy",
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-Titanium.Platform.DisplayCaps",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "apiName",
+        "owner": "Titanium.Proxy",
+        "type": "String",
+        "doc": "<p>The name of the API that this proxy corresponds to.</p>\n\n\n<p>@description <p>The value of this property is the fully qualified name of the API. For example, <a href=\"#!/api/Titanium.UI.Button\" rel=\"Titanium.UI.Button\" class=\"docClass\">Button</a>\nreturns <code>Ti.UI.Button</code>.</p></p>\n\n<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-apiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 235
+          }
+        ],
+        "shortDoc": "The name of the API that this proxy corresponds to. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "bubbleParent",
+        "owner": "Titanium.Proxy",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the proxy will bubble an event to its parent.</p>\n\n\n<p>@description <p>Some proxies (most commonly views) have a relationship to other proxies, often\nestablished by the add() method. For example, for a button added to a window, a\nclick event on the button would bubble up to the window. Other common parents are\ntable sections to their rows, table views to their sections, and scrollable views\nto their views. Set this property to false to disable the bubbling to the proxy's parent.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-bubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 207
+          }
+        ],
+        "shortDoc": "Indicates if the proxy will bubble an event to its parent. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "density",
+        "owner": "Titanium.Platform.DisplayCaps",
+        "type": "String",
+        "doc": "<p>Logical density of the display.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-density",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 74288
+          }
+        ],
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "dpi",
+        "owner": "Titanium.Platform.DisplayCaps",
+        "type": "Number",
+        "doc": "<p>Display density expressed as dots-per-inch.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-dpi",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 74309
+          }
+        ],
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "doc": "<p>The Window or TabGroup whose Activity lifecycle should be triggered on the proxy.</p>\n\n\n<p>@description <p>If this property is set to a Window or TabGroup, then the corresponding Activity lifecycle event callbacks\nwill also be called on the proxy. Proxies that require the activity lifecycle will need this property set\nto the appropriate containing Window or TabGroup.</p></p>\n\n<p>@platform android 3.6.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-lifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 262
+          }
+        ],
+        "shortDoc": "The Window or TabGroup whose Activity lifecycle should be triggered on the proxy. ...",
+        "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "logicalDensityFactor",
+        "owner": "Titanium.Platform.DisplayCaps",
+        "type": "Number",
+        "doc": "<p>Logical density of the display, as a scaling factor for the Density Independent Pixel (dip)\nunit.</p>\n\n\n<p>@description <p>One dip is one pixel on a 160dpi display, approximately, with a 240x320, 1.5\"x2\" display\nproviding a baseline. For example, for a 160dpi display, this value will be 1, and for 120dpi,\nit will be .75.</p></p>\n\n<p>This value does not precisely follow the real display size, as given by <code>xdpi</code> and <code>ydpi</code>,\nbut instead is used to scale the size of the overall UI in steps based on changes in the\ndisplay dpi. For example, a 240x320 screen will have a density of 1, whether its width is\n1.8\" or 1.3\". However, if the resolution is increased to 320x480 but the display remains\n1.5\"x2\" then the density would be increased to about 1.5.</p>\n\n\n\n\n<p>On iOS devices, this property returns 1, 2 and 3 for &#64;1x, &#64;2x and &#64;3x respectively.\nNote for iPhone 6+, this value is 3.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 3.4.1\n@platform ipad 3.4.1</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-logicalDensityFactor",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 74330
+          }
+        ],
+        "shortDoc": "Logical density of the display, as a scaling factor for the Density Independent Pixel (dip)\nunit. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "platformHeight",
+        "owner": "Titanium.Platform.DisplayCaps",
+        "type": "Number",
+        "doc": "<p>Absolute height of the display in relation to UI orientation. Measured in platform-specific\nunits; pixels on Android and density-independent pixels (dip) on iOS.</p>\n\n\n<p>@description <p>This property depends on the orientation of the UI, rather than the physical orientation of\nthe device. While these may often be one in the same, it is not necessarily the case when\norientation is restricted by <a href=\"#!/api/Titanium.UI.Window-property-orientationModes\" rel=\"Titanium.UI.Window-property-orientationModes\" class=\"docClass\">Titanium.UI.Window.orientationModes</a>. See example for\nclarification.</p></p>\n\n<h3>Examples</h3>\n\n\n<h4>Platform Width and Height</h4>\n\n\n<p>Create a window and limit it to portrait mode. Start the app and observe that the platform\nwidth and height is output to the log. Change the physical orientation of the device and\nclick the window to test again. Note that the logged information relates to the UI rather\nthan the physical orientation of the device.</p>\n\n\n\n\n<pre><code>var win = Ti.UI.createWindow({\n  title: 'Click window to output UI dimensions',\n  backgroundColor: 'white',\n  orientationModes: [ <a href=\"#!/api/Titanium.UI-property-PORTRAIT\" rel=\"Titanium.UI-property-PORTRAIT\" class=\"docClass\">Titanium.UI.PORTRAIT</a> ], // UI restricted to portrait mode\n  fullscreen: false,\n  exitOnClose: true\n});\n\nvar label = Ti.UI.createLabel({\n  text:'Hello world'\n});\nwin.add(label);\n\nfunction logDisplayCaps(){\n  Ti.API.info('Width x Height: ' + Ti.Platform.displayCaps.platformWidth + ' x ' + Ti.Platform.displayCaps.platformHeight);\n}\n\nwin.addEventListener('click',function(e){\n  // as the UI orientation is restricted by orientationModes, this will only ever\n  // output the dimensions of the UI in portrait mode. For example, 480 x 800 for the\n  // Android device tested\n  logDisplayCaps();\n});\n\nwin.open();\n\nlogDisplayCaps();\n</code></pre>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-platformHeight",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 74366
+          }
+        ],
+        "shortDoc": "Absolute height of the display in relation to UI orientation. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "platformWidth",
+        "owner": "Titanium.Platform.DisplayCaps",
+        "type": "Number",
+        "doc": "<p>Absolute width of the display in relation to UI orientation. Measured in platform-specific\nunits; pixels on Android and density-independent pixels (dip) on iOS.</p>\n\n\n<p>@description <p>This property depends on the orientation of the UI, rather than the physical orientation of\nthe device. While these may often be one in the same, it is not necessarily the case when\norientation is restricted by <a href=\"#!/api/Titanium.UI.Window-property-orientationModes\" rel=\"Titanium.UI.Window-property-orientationModes\" class=\"docClass\">Titanium.UI.Window.orientationModes</a>. See example for\nclarification.</p></p>\n\n<h3>Examples</h3>\n\n\n<h4>Platform Width and Height</h4>\n\n\n<p>Create a window and limit it to portrait mode. Start the app and observe that the platform\nwidth and height is output to the log. Change the physical orientation of the device and\nclick the window to test again. Note that the logged information relates to the UI rather\nthan the physical orientation of the device.</p>\n\n\n\n\n<pre><code>var win = Ti.UI.createWindow({\n  title: 'Click window to output UI dimensions',\n  backgroundColor: 'white',\n  orientationModes: [ <a href=\"#!/api/Titanium.UI-property-PORTRAIT\" rel=\"Titanium.UI-property-PORTRAIT\" class=\"docClass\">Titanium.UI.PORTRAIT</a> ], // UI restricted to portrait mode\n  fullscreen: false,\n  exitOnClose: true\n});\n\nvar label = Ti.UI.createLabel({\n  text:'Hello world'\n});\nwin.add(label);\n\nfunction logDisplayCaps(){\n  Ti.API.info('Width x Height: ' + Ti.Platform.displayCaps.platformWidth + ' x ' + Ti.Platform.displayCaps.platformHeight);\n}\n\nwin.addEventListener('click',function(e){\n  // as the UI orientation is restricted by orientationModes, this will only ever\n  // output the dimensions of the UI in portrait mode. For example, 480 x 800 for the\n  // Android device tested\n  logDisplayCaps();\n});\n\nwin.open();\n\nlogDisplayCaps();\n</code></pre>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-platformWidth",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 74425
+          }
+        ],
+        "shortDoc": "Absolute width of the display in relation to UI orientation. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "xdpi",
+        "owner": "Titanium.Platform.DisplayCaps",
+        "type": "Number",
+        "doc": "<p>Physical pixels per inch of the display in the X dimension.</p>\n\n\n<p>@platform android 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-xdpi",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 74484
+          }
+        ],
+        "shortDoc": "Physical pixels per inch of the display in the X dimension. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ydpi",
+        "owner": "Titanium.Platform.DisplayCaps",
+        "type": "Number",
+        "doc": "<p>Physical pixels per inch of the display in the Y dimension.</p>\n\n\n<p>@platform android 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ydpi",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 74506
+          }
+        ],
+        "shortDoc": "Physical pixels per inch of the display in the Y dimension. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      }
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "addEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Adds the specified callback as an event listener for the named event.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to invoke when the event is fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38
+          }
+        ],
+        "shortDoc": "Adds the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "applyProperties",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Applies the properties to the proxy.</p>\n\n\n<p>@description <p>Properties are supplied as a dictionary. Each key-value pair in the object is applied to the proxy such that\nmyproxy[key] = value.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "props",
+            "doc": "<p>A dictionary of properties to apply.</p>\n\n\n<p>@platform android 3.0.0\n@platform blackberry 3.3.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-applyProperties",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 102
+          }
+        ],
+        "shortDoc": "Applies the properties to the proxy. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "fireEvent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Fires a synthesized event to any registered listeners.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Dictionary",
+            "name": "event",
+            "doc": "<p>A dictionary of keys and values to add to the <a href=\"#!/api/Titanium.Event\" rel=\"Titanium.Event\" class=\"docClass\">Titanium.Event</a> object sent to the listeners.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-fireEvent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 85
+          }
+        ],
+        "shortDoc": "Fires a synthesized event to any registered listeners. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getApiName",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-apiName\" rel=\"Titanium.Proxy-property-apiName\" class=\"docClass\">apiName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getApiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 157
+          }
+        ],
+        "shortDoc": "Gets the value of the apiName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 123
+          }
+        ],
+        "shortDoc": "Gets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getDensity",
+        "owner": "Titanium.Platform.DisplayCaps",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Platform.DisplayCaps-property-density\" rel=\"Titanium.Platform.DisplayCaps-property-density\" class=\"docClass\">density</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getDensity",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 74190
+          }
+        ],
+        "shortDoc": "Gets the value of the density property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getDpi",
+        "owner": "Titanium.Platform.DisplayCaps",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Platform.DisplayCaps-property-dpi\" rel=\"Titanium.Platform.DisplayCaps-property-dpi\" class=\"docClass\">dpi</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getDpi",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 74203
+          }
+        ],
+        "shortDoc": "Gets the value of the dpi property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+          "name": "return",
+          "doc": "<p>@platform android 3.6.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 175
+          }
+        ],
+        "shortDoc": "Gets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLogicalDensityFactor",
+        "owner": "Titanium.Platform.DisplayCaps",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Platform.DisplayCaps-property-logicalDensityFactor\" rel=\"Titanium.Platform.DisplayCaps-property-logicalDensityFactor\" class=\"docClass\">logicalDensityFactor</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 3.4.1\n@platform ipad 3.4.1</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLogicalDensityFactor",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 74216
+          }
+        ],
+        "shortDoc": "Gets the value of the logicalDensityFactor property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getPlatformHeight",
+        "owner": "Titanium.Platform.DisplayCaps",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Platform.DisplayCaps-property-platformHeight\" rel=\"Titanium.Platform.DisplayCaps-property-platformHeight\" class=\"docClass\">platformHeight</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getPlatformHeight",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 74232
+          }
+        ],
+        "shortDoc": "Gets the value of the platformHeight property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getPlatformWidth",
+        "owner": "Titanium.Platform.DisplayCaps",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Platform.DisplayCaps-property-platformWidth\" rel=\"Titanium.Platform.DisplayCaps-property-platformWidth\" class=\"docClass\">platformWidth</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getPlatformWidth",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 74245
+          }
+        ],
+        "shortDoc": "Gets the value of the platformWidth property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getXdpi",
+        "owner": "Titanium.Platform.DisplayCaps",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Platform.DisplayCaps-property-xdpi\" rel=\"Titanium.Platform.DisplayCaps-property-xdpi\" class=\"docClass\">xdpi</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>@platform android 0.8</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getXdpi",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 74258
+          }
+        ],
+        "shortDoc": "Gets the value of the xdpi property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getYdpi",
+        "owner": "Titanium.Platform.DisplayCaps",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Platform.DisplayCaps-property-ydpi\" rel=\"Titanium.Platform.DisplayCaps-property-ydpi\" class=\"docClass\">ydpi</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>@platform android 0.8</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getYdpi",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 74272
+          }
+        ],
+        "shortDoc": "Gets the value of the ydpi property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Removes the specified callback as an event listener for the named event.</p>\n\n\n<p>@description <p>Multiple listeners can be registered for the same event, so the\n<code>callback</code> parameter is used to determine which listener to remove. </p></p>\n\n<p>When adding a listener, you must save a reference to the callback function\nin order to remove the listener later:</p>\n\n\n\n\n<pre><code>var listener = function() { Ti.API.info(\"Event listener called.\"); }\nwindow.addEventListener('click', listener);\n</code></pre>\n\n\n\n\n<p>To remove the listener, pass in a reference to the callback function:</p>\n\n\n\n\n<pre><code>window.removeEventListener('click', listener);\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to remove. Must be the same function passed to <code>addEventListener</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 55
+          }
+        ],
+        "shortDoc": "Removes the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "bubbleParent",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139
+          }
+        ],
+        "shortDoc": "Sets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+            "name": "lifecycleContainer",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.6.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 189
+          }
+        ],
+        "shortDoc": "Sets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 74143
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+    "Titanium.Proxy"
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

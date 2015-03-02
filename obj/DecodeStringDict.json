@@ -1,0 +1,181 @@
+{
+  "tagname": "class",
+  "name": "DecodeStringDict",
+  "doc": "<p>@platform android 0.8\n@platform blackberry 3.1.2\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8\n@pseudo @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/Codec/Codec.yml</p>\n\n<p>Named parameters for <a href=\"#!/api/Titanium.Codec-method-decodeString\" rel=\"Titanium.Codec-method-decodeString\" class=\"docClass\">Titanium.Codec.decodeString</a>.</p>\n\n",
+  "extends": null,
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-DecodeStringDict",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "charset",
+        "owner": "DecodeStringDict",
+        "type": "String",
+        "doc": "<p>Character set to use when encoding this string to bytes.</p>\n\n\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.Codec-property-CHARSET_ASCII\" rel=\"Titanium.Codec-property-CHARSET_ASCII\" class=\"docClass\">Titanium.Codec.CHARSET_ASCII</a>\n <li> <a href=\"#!/api/Titanium.Codec-property-CHARSET_ISO_LATIN_1\" rel=\"Titanium.Codec-property-CHARSET_ISO_LATIN_1\" class=\"docClass\">Titanium.Codec.CHARSET_ISO_LATIN_1</a>\n <li> <a href=\"#!/api/Titanium.Codec-property-CHARSET_UTF8\" rel=\"Titanium.Codec-property-CHARSET_UTF8\" class=\"docClass\">Titanium.Codec.CHARSET_UTF8</a>\n <li> <a href=\"#!/api/Titanium.Codec-property-CHARSET_UTF16\" rel=\"Titanium.Codec-property-CHARSET_UTF16\" class=\"docClass\">Titanium.Codec.CHARSET_UTF16</a>\n <li> <a href=\"#!/api/Titanium.Codec-property-CHARSET_UTF16BE\" rel=\"Titanium.Codec-property-CHARSET_UTF16BE\" class=\"docClass\">Titanium.Codec.CHARSET_UTF16BE</a>\n <li> <a href=\"#!/api/Titanium.Codec-property-CHARSET_UTF16LE\" rel=\"Titanium.Codec-property-CHARSET_UTF16LE\" class=\"docClass\">Titanium.Codec.CHARSET_UTF16LE</a>\n</ul></p>\n\n",
+        "default": "{@link Titanium.Codec#property-CHARSET_UTF8}",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-charset",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38546
+          }
+        ],
+        "shortDoc": "Character set to use when encoding this string to bytes. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "length",
+        "owner": "DecodeStringDict",
+        "type": "Number",
+        "doc": "<p>Number of bytes to decode.</p>\n\n",
+        "default": "Length of `source`",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-length",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38525
+          }
+        ],
+        "shortDoc": "Number of bytes to decode. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "position",
+        "owner": "DecodeStringDict",
+        "type": "Number",
+        "doc": "<p>Index in the <code>source</code> buffer of the first byte of data to decode.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-position",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38504
+          }
+        ],
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "source",
+        "owner": "DecodeStringDict",
+        "type": "Titanium.Buffer",
+        "doc": "<p>Buffer to decode.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-source",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38483
+          }
+        ],
+        "html_type": "Titanium.Buffer",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 38460
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

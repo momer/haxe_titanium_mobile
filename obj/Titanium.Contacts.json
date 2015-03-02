@@ -1,0 +1,1377 @@
+{
+  "tagname": "class",
+  "name": "Titanium.Contacts",
+  "doc": "<p>@platform android 0.8\n@platform blackberry 3.1.2\n@platform iphone 0.8\n@platform ipad 0.8 @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/Contacts/Contacts.yml</p>\n\n<p>The top-level Contacts module, used for accessing and modifying the system contacts address book.</p>\n\n\n<p>@description <p>See examples for more information.</p></p>\n\n<h4>iOS Platform Notes</h4>\n\n\n\n\n<p>On iOS, the contacts database may be modified by an external application, causing any <code>Person</code> or\n<code>Group</code> objects you've retrieved to be out of sync with the database. The IDs of these objects are\nnot guaranteed to remain the same, so updating an object when it is out of sync may have\nunpredictable results.</p>\n\n\n\n\n<p>To avoid this, listen for the <a href=\"#!/api/Titanium.Contacts-event-reload\" rel=\"Titanium.Contacts-event-reload\" class=\"docClass\">reload</a> event. When you receive a\n<code>reload</code> event, you should assume that any existing <code>Person</code> or <code>Group</code> objects are invalid and\nreload them from the <code>Contacts</code> module before modifying them.</p>\n\n\n\n\n<p>See the examples for sample use of the <code>reload</code> event.</p>\n\n\n<h3>Examples</h3>\n\n\n<h4>Request access to the address book</h4>\n\n\n<p>To safely access the address book given iOS 6's new security model:</p>\n\n\n\n\n<pre><code>var performAddressBookFunction = function(){...};\nvar addressBookDisallowed = function(){...};\nif (Ti.Contacts.contactsAuthorization == Ti.Contacts.AUTHORIZATION_AUTHORIZED){\n    performAddressBookFunction();\n} else if (Ti.Contacts.contactsAuthorization == Ti.Contacts.AUTHORIZATION_UNKNOWN){\n    Ti.Contacts.requestAuthorization(function(e){\n        if (e.success) {\n            performAddressBookFunction();\n        } else {\n            addressBookDisallowed();\n        }\n    });\n} else {\n    addressBookDisallowed();\n}\n</code></pre>\n\n\n<h4>Query Existing System Address Book Records</h4>\n\n\n<p>Output to the console all properties of all people.</p>\n\n\n\n\n<pre><code>var singleValue = [\n  'recordId', 'firstName', 'middleName', 'lastName', 'fullName', 'prefix', 'suffix',\n  'nickname', 'firstPhonetic', 'middlePhonetic', 'lastPhonetic', 'organization',\n  'jobTitle', 'department', 'note', 'birthday', 'created', 'modified', 'kind'\n];\nvar multiValue = [\n  'email', 'address', 'phone', 'instantMessage', 'relatedNames', 'date', 'url'\n];\nvar people = Ti.Contacts.getAllPeople();\nTi.API.info('Total contacts: ' + people.length);\nfor (var i=0, ilen=people.length; i&lt;ilen; i++){\n  Ti.API.info('---------------------');\n  var person = people[i];\n  for (var j=0, jlen=singleValue.length; j&lt;jlen; j++){\n    Ti.API.info(singleValue[j] + ': ' + person[singleValue[j]]);\n  }\n  for (var j=0, jlen=multiValue.length; j&lt;jlen; j++){\n    Ti.API.info(multiValue[j] + ': ' + JSON.stringify(person[multiValue[j]]));\n  }\n}\n</code></pre>\n\n\n<h4>Add New System Address Book Records</h4>\n\n\n<p>Create two new records in the system address book. Note that the <a href=\"#!/api/Titanium.Contacts.Person\" rel=\"Titanium.Contacts.Person\" class=\"docClass\">Titanium.Contacts.Person</a>\nobject is queried in the same way that it is created (as shown in previous example.)</p>\n\n\n\n\n<pre><code>Ti.API.info('Saving contact...');\nTi.Contacts.createPerson({\n  firstName: 'Paul',\n  lastName: 'Dowsett',\n  address:{\n    work:[\n      {\n        CountryCode: 'gb', // determines how the address is displayed\n        Street: '200 Brook Drive\\nGreen Park',\n        City: 'Reading',\n        County: 'Berkshire',\n        Country: 'England',\n        ZIP: 'RG2 6UB'\n      },\n      {\n        CountryCode: 'gb', // determines how the address is displayed\n        Street: '1 St Pauls Road\\nClerkenwell',\n        City: 'City of London',\n        State: 'London',\n        Country: 'England',\n        ZIP: 'EC1 1AA'\n      }\n    ],\n    home:[\n      {\n        CountryCode: 'gb', // determines how the address is displayed\n        Street: '2 Boleyn Court',\n        City: 'London',\n        State: 'Greenwich',\n        Country: 'England',\n        ZIP: 'SE10'\n      }\n    ]\n  },\n  birthday: '2012-01-01T12:00:00.000+0000',\n  instantMessage:{\n    home:[\n      {\n        service: 'AIM',\n        username: 'leisureAIM'\n      },\n      {\n        service: 'MSN',\n        username: 'no_paul_here@msn.com'\n      }\n    ],\n    work:[\n      {\n        service: 'AIM',\n        username: 'seriousAIM'\n      }\n    ]\n  },\n  organization: 'Appcelerator',\n  phone:{\n    mobile: ['07900 000001', '07900 000002'],\n    work: ['+44 (0)118 925 6128', '+44 (0)118 000 0000']\n  },\n  url:{\n    homepage: ['www.google.com'],\n    work: ['www.appcelerator.com', 'www.example.com']\n  }\n});\nTi.API.info('Contact saved');\n\nTi.API.info('Saving contact...');\nvar workAddress1 = {\n  'CountryCode': 'us',\n  'Street':  '440 N. Bernardo Avenue',\n  'City': 'Mountain View',\n  'State': 'California',\n  'Country': 'United States',\n  'ZIP': '94043'\n};\n\nTi.Contacts.createPerson({\n  firstName:'Arthur',\n  lastName:'Evans',\n  address:{\n    'work':[workAddress1]\n  }\n});\nTi.API.info('Contact saved');\n</code></pre>\n\n\n<h4>Repopulate contact data if it was modified externally</h4>\n\n\n<p>Listen for the <code>reload</code> event to repopulate the contact data\nif it was modified externally, for example, in the iOS Contacts app.</p>\n\n\n\n\n<pre><code>var win = Ti.UI.createWindow();\nvar table = Ti.UI.createTableView();\n\n// Repopulate contact data\nfunction reloadContacts() {\n    var contacts = Ti.Contacts.getAllPeople();\n    var data = [];\n    for (var i = 0; i &lt; contacts.length; i++) {\n        var title = contacts[i].fullName;\n        if (!title || title.length === 0) {\n            title = \"(no name)\";\n        }\n        var row = Ti.UI.createTableViewRow({\n            title: title\n        });\n        data.push(row);\n    }\n    table.data = data;\n}\n\nTi.Contacts.addEventListener('reload', function(e){\n    alert('Reloading contacts. Your contacts were changed externally!');\n    reloadContacts();\n});\n\n// initial call to populate contact data\nreloadContacts();\n\nwin.add(table);\nwin.open();\n</code></pre>\n\n",
+  "extends": "Titanium.Module",
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-Titanium.Contacts",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "AUTHORIZATION_AUTHORIZED",
+        "owner": "Titanium.Contacts",
+        "type": "Number",
+        "doc": "<p>A <a href=\"#!/api/Titanium.Contacts-property-contactsAuthorization\" rel=\"Titanium.Contacts-property-contactsAuthorization\" class=\"docClass\">contactsAuthorization</a> value\nindicating that the application is authorized to use the address book.</p>\n\n\n<p>@description <p>This value is always returned on Android devices, as well as on iOS versions earlier than 6.0.</p></p>\n\n<p>@platform android 2.1.3\n@platform iphone 2.1.3\n@platform ipad 2.1.3</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-AUTHORIZATION_AUTHORIZED",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39156
+          }
+        ],
+        "shortDoc": "A contactsAuthorization value\nindicating that the application is authorized to use the address book. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "AUTHORIZATION_DENIED",
+        "owner": "Titanium.Contacts",
+        "type": "Number",
+        "doc": "<p>A <a href=\"#!/api/Titanium.Contacts-property-contactsAuthorization\" rel=\"Titanium.Contacts-property-contactsAuthorization\" class=\"docClass\">contactsAuthorization</a> value\nindicating that the application is not authorized to use the address book.</p>\n\n\n<p>@platform android 2.1.3\n@platform iphone 2.1.3\n@platform ipad 2.1.3</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-AUTHORIZATION_DENIED",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39181
+          }
+        ],
+        "shortDoc": "A contactsAuthorization value\nindicating that the application is not authorized to use the address book. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "AUTHORIZATION_RESTRICTED",
+        "owner": "Titanium.Contacts",
+        "type": "Number",
+        "doc": "<p>A <a href=\"#!/api/Titanium.Contacts-property-contactsAuthorization\" rel=\"Titanium.Contacts-property-contactsAuthorization\" class=\"docClass\">contactsAuthorization</a> value\nindicating that the application is not authorized to use the address book <em>and</em>\nthe user cannot change this application's status.</p>\n\n\n<p>@platform android 2.1.3\n@platform iphone 2.1.3\n@platform ipad 2.1.3</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-AUTHORIZATION_RESTRICTED",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39206
+          }
+        ],
+        "shortDoc": "A contactsAuthorization value\nindicating that the application is not authorized to use the address book and\nthe user ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "AUTHORIZATION_UNKNOWN",
+        "owner": "Titanium.Contacts",
+        "type": "Number",
+        "doc": "<p>A <a href=\"#!/api/Titanium.Contacts-property-contactsAuthorization\" rel=\"Titanium.Contacts-property-contactsAuthorization\" class=\"docClass\">contactsAuthorization</a> value\nindicating that the authorization state is unknown.</p>\n\n\n<p>@platform android 2.1.3\n@platform iphone 2.1.3\n@platform ipad 2.1.3</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-AUTHORIZATION_UNKNOWN",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39232
+          }
+        ],
+        "shortDoc": "A contactsAuthorization value\nindicating that the authorization state is unknown. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "CONTACTS_KIND_ORGANIZATION",
+        "owner": "Titanium.Contacts",
+        "type": "Number",
+        "doc": "<p>Specifies that a contact is an organization.</p>\n\n\n<p>@description <p>Used with the <a href=\"#!/api/Titanium.Contacts.Person-property-kind\" rel=\"Titanium.Contacts.Person-property-kind\" class=\"docClass\">Titanium.Contacts.Person.kind</a> property.</p></p>\n\n<p>One of the group of contact \"kind\" constants\n<a href=\"#!/api/Titanium.Contacts-property-CONTACTS_KIND_ORGANIZATION\" rel=\"Titanium.Contacts-property-CONTACTS_KIND_ORGANIZATION\" class=\"docClass\">CONTACTS_KIND_ORGANIZATION</a>,\nand <a href=\"#!/api/Titanium.Contacts-property-CONTACTS_KIND_PERSON\" rel=\"Titanium.Contacts-property-CONTACTS_KIND_PERSON\" class=\"docClass\">CONTACTS_KIND_PERSON</a>.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-CONTACTS_KIND_ORGANIZATION",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39053
+          }
+        ],
+        "shortDoc": "Specifies that a contact is an organization. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "CONTACTS_KIND_PERSON",
+        "owner": "Titanium.Contacts",
+        "type": "Number",
+        "doc": "<p>Specifies that a contact is a person.</p>\n\n\n<p>@description <p>Used with the <a href=\"#!/api/Titanium.Contacts.Person-property-kind\" rel=\"Titanium.Contacts.Person-property-kind\" class=\"docClass\">Titanium.Contacts.Person.kind</a> property.\nOne of the group of contact \"kind\" constants <a href=\"#!/api/Titanium.Contacts-property-CONTACTS_KIND_ORGANIZATION\" rel=\"Titanium.Contacts-property-CONTACTS_KIND_ORGANIZATION\" class=\"docClass\">CONTACTS_KIND_ORGANIZATION</a>, and <a href=\"#!/api/Titanium.Contacts-property-CONTACTS_KIND_PERSON\" rel=\"Titanium.Contacts-property-CONTACTS_KIND_PERSON\" class=\"docClass\">CONTACTS_KIND_PERSON</a>.</p></p>\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-CONTACTS_KIND_PERSON",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39081
+          }
+        ],
+        "shortDoc": "Specifies that a contact is a person. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "CONTACTS_SORT_FIRST_NAME",
+        "owner": "Titanium.Contacts",
+        "type": "Number",
+        "doc": "<p>Specifies that group members will be sorted by first name.</p>\n\n\n<p>@description <p>Used with the <a href=\"#!/api/Titanium.Contacts.Group-method-sortedMembers\" rel=\"Titanium.Contacts.Group-method-sortedMembers\" class=\"docClass\">Titanium.Contacts.Group.sortedMembers</a> method.\nOne of the group of contact group \"sort\" constants <a href=\"#!/api/Titanium.Contacts-property-CONTACTS_SORT_FIRST_NAME\" rel=\"Titanium.Contacts-property-CONTACTS_SORT_FIRST_NAME\" class=\"docClass\">CONTACTS_SORT_FIRST_NAME</a>, and <a href=\"#!/api/Titanium.Contacts-property-CONTACTS_SORT_LAST_NAME\" rel=\"Titanium.Contacts-property-CONTACTS_SORT_LAST_NAME\" class=\"docClass\">CONTACTS_SORT_LAST_NAME</a>.</p></p>\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-CONTACTS_SORT_FIRST_NAME",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39106
+          }
+        ],
+        "shortDoc": "Specifies that group members will be sorted by first name. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "CONTACTS_SORT_LAST_NAME",
+        "owner": "Titanium.Contacts",
+        "type": "Number",
+        "doc": "<p>Specifies that group members will be sorted by last name.</p>\n\n\n<p>@description <p>Used with the <a href=\"#!/api/Titanium.Contacts.Group-method-sortedMembers\" rel=\"Titanium.Contacts.Group-method-sortedMembers\" class=\"docClass\">Titanium.Contacts.Group.sortedMembers</a> method.\nOne of the group of contact group \"sort\" constants <a href=\"#!/api/Titanium.Contacts-property-CONTACTS_SORT_FIRST_NAME\" rel=\"Titanium.Contacts-property-CONTACTS_SORT_FIRST_NAME\" class=\"docClass\">CONTACTS_SORT_FIRST_NAME</a>, and <a href=\"#!/api/Titanium.Contacts-property-CONTACTS_SORT_LAST_NAME\" rel=\"Titanium.Contacts-property-CONTACTS_SORT_LAST_NAME\" class=\"docClass\">CONTACTS_SORT_LAST_NAME</a>.</p></p>\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-CONTACTS_SORT_LAST_NAME",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39131
+          }
+        ],
+        "shortDoc": "Specifies that group members will be sorted by last name. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "apiName",
+        "owner": "Titanium.Proxy",
+        "type": "String",
+        "doc": "<p>The name of the API that this proxy corresponds to.</p>\n\n\n<p>@description <p>The value of this property is the fully qualified name of the API. For example, <a href=\"#!/api/Titanium.UI.Button\" rel=\"Titanium.UI.Button\" class=\"docClass\">Button</a>\nreturns <code>Ti.UI.Button</code>.</p></p>\n\n<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-apiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 235
+          }
+        ],
+        "shortDoc": "The name of the API that this proxy corresponds to. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "bubbleParent",
+        "owner": "Titanium.Proxy",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the proxy will bubble an event to its parent.</p>\n\n\n<p>@description <p>Some proxies (most commonly views) have a relationship to other proxies, often\nestablished by the add() method. For example, for a button added to a window, a\nclick event on the button would bubble up to the window. Other common parents are\ntable sections to their rows, table views to their sections, and scrollable views\nto their views. Set this property to false to disable the bubbling to the proxy's parent.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-bubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 207
+          }
+        ],
+        "shortDoc": "Indicates if the proxy will bubble an event to its parent. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "contactsAuthorization",
+        "owner": "Titanium.Contacts",
+        "type": "Number",
+        "doc": "<p>Returns an authorization constant indicating if the application has access to the address book.</p>\n\n\n<p>@description <p>Always returns <code>AUTHORIZATION_AUTHORIZED</code> on iOS pre-6.0 and Android devices.</p></p>\n\n<p>If <code>contactsAuthorization</code> is <code>AUTHORIZATION_RESTRICTED</code>, you should not\nattempt to re-authorize: this will lead to issues.</p>\n\n\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.Calendar-property-AUTHORIZATION_AUTHORIZED\" rel=\"Titanium.Calendar-property-AUTHORIZATION_AUTHORIZED\" class=\"docClass\">Titanium.Calendar.AUTHORIZATION_AUTHORIZED</a>\n <li> <a href=\"#!/api/Titanium.Calendar-property-AUTHORIZATION_DENIED\" rel=\"Titanium.Calendar-property-AUTHORIZATION_DENIED\" class=\"docClass\">Titanium.Calendar.AUTHORIZATION_DENIED</a>\n <li> <a href=\"#!/api/Titanium.Calendar-property-AUTHORIZATION_RESTRICTED\" rel=\"Titanium.Calendar-property-AUTHORIZATION_RESTRICTED\" class=\"docClass\">Titanium.Calendar.AUTHORIZATION_RESTRICTED</a>\n <li> <a href=\"#!/api/Titanium.Calendar-property-AUTHORIZATION_UNKNOWN\" rel=\"Titanium.Calendar-property-AUTHORIZATION_UNKNOWN\" class=\"docClass\">Titanium.Calendar.AUTHORIZATION_UNKNOWN</a>\n</ul></p>\n\n\n<p>@platform android 2.1.3\n@platform iphone 2.1.3\n@platform ipad 2.1.3</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-contactsAuthorization",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39257
+          }
+        ],
+        "shortDoc": "Returns an authorization constant indicating if the application has access to the address book. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "doc": "<p>The Window or TabGroup whose Activity lifecycle should be triggered on the proxy.</p>\n\n\n<p>@description <p>If this property is set to a Window or TabGroup, then the corresponding Activity lifecycle event callbacks\nwill also be called on the proxy. Proxies that require the activity lifecycle will need this property set\nto the appropriate containing Window or TabGroup.</p></p>\n\n<p>@platform android 3.6.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-lifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 262
+          }
+        ],
+        "shortDoc": "The Window or TabGroup whose Activity lifecycle should be triggered on the proxy. ...",
+        "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "addEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Adds the specified callback as an event listener for the named event.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to invoke when the event is fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38
+          }
+        ],
+        "shortDoc": "Adds the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "applyProperties",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Applies the properties to the proxy.</p>\n\n\n<p>@description <p>Properties are supplied as a dictionary. Each key-value pair in the object is applied to the proxy such that\nmyproxy[key] = value.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "props",
+            "doc": "<p>A dictionary of properties to apply.</p>\n\n\n<p>@platform android 3.0.0\n@platform blackberry 3.3.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-applyProperties",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 102
+          }
+        ],
+        "shortDoc": "Applies the properties to the proxy. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "createGroup",
+        "owner": "Titanium.Contacts",
+        "doc": "<p>Creates and returns an instance of <a href=\"#!/api/Titanium.Contacts.Group\" rel=\"Titanium.Contacts.Group\" class=\"docClass\">Titanium.Contacts.Group</a>.</p>\n\n\n<p>@description <p>This method must be followed by <a href=\"#!/api/Titanium.Contacts-method-save\" rel=\"Titanium.Contacts-method-save\" class=\"docClass\">save</a> to commit its changes.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary<Titanium.Contacts.Group>",
+            "name": "parameters",
+            "doc": "<p>Properties to set on a new object, including any in <a href=\"#!/api/Titanium.Contacts.Group\" rel=\"Titanium.Contacts.Group\" class=\"docClass\">Titanium.Contacts.Group</a> except\nthose marked as non-creation or read-only.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary<Titanium.Contacts.Group>"
+          }
+        ],
+        "return": {
+          "type": "Titanium.Contacts.Group",
+          "name": "return",
+          "doc": "<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+          "properties": null,
+          "html_type": "Titanium.Contacts.Group"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-createGroup",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38798
+          }
+        ],
+        "shortDoc": "Creates and returns an instance of Titanium.Contacts.Group. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "createPerson",
+        "owner": "Titanium.Contacts",
+        "doc": "<p>Creates and returns an instance of <a href=\"#!/api/Titanium.Contacts.Person\" rel=\"Titanium.Contacts.Person\" class=\"docClass\">Titanium.Contacts.Person</a>, and commits all pending\nchanges to the underlying contacts database.</p>\n\n",
+        "params": [
+          {
+            "type": "Dictionary<Titanium.Contacts.Person>",
+            "name": "parameters",
+            "doc": "<p>Properties to set on a new object, including any in <a href=\"#!/api/Titanium.Contacts.Person\" rel=\"Titanium.Contacts.Person\" class=\"docClass\">Titanium.Contacts.Person</a> except\nthose marked as non-creation or read-only.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary<Titanium.Contacts.Person>"
+          }
+        ],
+        "return": {
+          "type": "Titanium.Contacts.Person",
+          "name": "return",
+          "doc": "<p>@platform android 2.1.0\n@platform blackberry 3.1.2\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+          "properties": null,
+          "html_type": "Titanium.Contacts.Person"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-createPerson",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38816
+          }
+        ],
+        "shortDoc": "Creates and returns an instance of Titanium.Contacts.Person, and commits all pending\nchanges to the underlying contac...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "fireEvent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Fires a synthesized event to any registered listeners.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Dictionary",
+            "name": "event",
+            "doc": "<p>A dictionary of keys and values to add to the <a href=\"#!/api/Titanium.Event\" rel=\"Titanium.Event\" class=\"docClass\">Titanium.Event</a> object sent to the listeners.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-fireEvent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 85
+          }
+        ],
+        "shortDoc": "Fires a synthesized event to any registered listeners. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getAllGroups",
+        "owner": "Titanium.Contacts",
+        "doc": "<p>Gets all groups.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.Contacts.Group[]",
+          "name": "return",
+          "doc": "<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+          "properties": null,
+          "html_type": "Titanium.Contacts.Group[]"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getAllGroups",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38837
+          }
+        ],
+        "shortDoc": "Gets all groups. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getAllPeople",
+        "owner": "Titanium.Contacts",
+        "doc": "<p>Gets all people, unless a limit is specified.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "limit",
+            "doc": "<p>Maximum number of people. Android only.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "Titanium.Contacts.Person[]",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.Contacts.Person[]"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getAllPeople",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38852
+          }
+        ],
+        "shortDoc": "Gets all people, unless a limit is specified. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getApiName",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-apiName\" rel=\"Titanium.Proxy-property-apiName\" class=\"docClass\">apiName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getApiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 157
+          }
+        ],
+        "shortDoc": "Gets the value of the apiName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 123
+          }
+        ],
+        "shortDoc": "Gets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getContactsAuthorization",
+        "owner": "Titanium.Contacts",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Contacts-property-contactsAuthorization\" rel=\"Titanium.Contacts-property-contactsAuthorization\" class=\"docClass\">contactsAuthorization</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>@platform android 2.1.3\n@platform iphone 2.1.3\n@platform ipad 2.1.3</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getContactsAuthorization",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39035
+          }
+        ],
+        "shortDoc": "Gets the value of the contactsAuthorization property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getGroupByID",
+        "owner": "Titanium.Contacts",
+        "doc": "<p>Gets the group with the specified identifier.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "id",
+            "doc": "<p>Group identifier.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "Titanium.Contacts.Group",
+          "name": "return",
+          "doc": "<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+          "properties": null,
+          "html_type": "Titanium.Contacts.Group"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getGroupByID",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38867
+          }
+        ],
+        "shortDoc": "Gets the group with the specified identifier. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+          "name": "return",
+          "doc": "<p>@platform android 3.6.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 175
+          }
+        ],
+        "shortDoc": "Gets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getPeopleWithName",
+        "owner": "Titanium.Contacts",
+        "doc": "<p>Gets people with a <code>firstName</code>, <code>middleName</code> or <code>lastName</code> field, or a combination\nof these fields, that match the specified name.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name to match.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "Titanium.Contacts.Person[]",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.Contacts.Person[]"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getPeopleWithName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38884
+          }
+        ],
+        "shortDoc": "Gets people with a firstName, middleName or lastName field, or a combination\nof these fields, that match the specifie...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getPersonByID",
+        "owner": "Titanium.Contacts",
+        "doc": "<p>Gets the person with the specified identifier.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "id",
+            "doc": "<p>Contact identifier.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "Titanium.Contacts.Person",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.Contacts.Person"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getPersonByID",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38900
+          }
+        ],
+        "shortDoc": "Gets the person with the specified identifier. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Removes the specified callback as an event listener for the named event.</p>\n\n\n<p>@description <p>Multiple listeners can be registered for the same event, so the\n<code>callback</code> parameter is used to determine which listener to remove. </p></p>\n\n<p>When adding a listener, you must save a reference to the callback function\nin order to remove the listener later:</p>\n\n\n\n\n<pre><code>var listener = function() { Ti.API.info(\"Event listener called.\"); }\nwindow.addEventListener('click', listener);\n</code></pre>\n\n\n\n\n<p>To remove the listener, pass in a reference to the callback function:</p>\n\n\n\n\n<pre><code>window.removeEventListener('click', listener);\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to remove. Must be the same function passed to <code>addEventListener</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 55
+          }
+        ],
+        "shortDoc": "Removes the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeGroup",
+        "owner": "Titanium.Contacts",
+        "doc": "<p>Removes a group from the address book.</p>\n\n\n<p>@description <p>This method must be followed by <a href=\"#!/api/Titanium.Contacts-method-save\" rel=\"Titanium.Contacts-method-save\" class=\"docClass\">save</a> to commit its changes.</p></p>\n",
+        "params": [
+          {
+            "type": "Titanium.Contacts.Group",
+            "name": "group",
+            "doc": "<p>Contact group.</p>\n\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.Contacts.Group"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeGroup",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38915
+          }
+        ],
+        "shortDoc": "Removes a group from the address book. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removePerson",
+        "owner": "Titanium.Contacts",
+        "doc": "<p>Removes a contact from the address book.</p>\n\n\n<p>@description <p>On iOS:</p></p>\n\n<p>This method must be followed by a save action to commit the data to the underlying database,\nwhich can be done explicitly using <a href=\"#!/api/Titanium.Contacts-method-save\" rel=\"Titanium.Contacts-method-save\" class=\"docClass\">save</a> or implicitly using\n<a href=\"#!/api/Titanium.Contacts-method-createPerson\" rel=\"Titanium.Contacts-method-createPerson\" class=\"docClass\">createPerson</a>. Although the <a href=\"#!/api/Titanium.Contacts.Person\" rel=\"Titanium.Contacts.Person\" class=\"docClass\">Titanium.Contacts.Person</a> object will still\nexist once committed, it will no longer be valid. Continuing to use it will result in\nunpredictable behavior, including crashes.</p>\n\n\n\n\n<p>On Android:</p>\n\n\n\n\n<p>This method will remove the person from the Contacts book automatically. </p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.Contacts.Person",
+            "name": "person",
+            "doc": "<p>Contact.</p>\n\n\n<p>@platform android 2.1.0\n@platform blackberry 3.1.2\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.Contacts.Person"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removePerson",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38932
+          }
+        ],
+        "shortDoc": "Removes a contact from the address book. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "requestAuthorization",
+        "owner": "Titanium.Contacts",
+        "doc": "<p>If authorization is unknown, will bring up a dialog requesting permission.</p>\n\n\n<p>@description <p>Note that the callback may be synchronous or asynchronous. That is, it may be called\nduring requestAuthorization or much later. See the \"Request access to the address book\"\nexample on how to best use this method. </p></p>\n",
+        "params": [
+          {
+            "type": "Callback<ContactsAuthorizationResponse>",
+            "name": "callback",
+            "doc": "<p>Callback function to execute when when authorization is no longer unknown.</p>\n\n\n<p>@platform android 2.1.3\n@platform iphone 2.1.3\n@platform ipad 2.1.3</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<ContactsAuthorizationResponse>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-requestAuthorization",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39015
+          }
+        ],
+        "shortDoc": "If authorization is unknown, will bring up a dialog requesting permission. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "revert",
+        "owner": "Titanium.Contacts",
+        "doc": "<p>Reverts all changes made by the previous save to the address book.</p>\n\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-revert",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38961
+          }
+        ],
+        "shortDoc": "Reverts all changes made by the previous save to the address book. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "save",
+        "owner": "Titanium.Contacts",
+        "doc": "<p>Commits all pending changes to the underlying contacts database.</p>\n\n\n<p>@description <p>On Android:</p></p>\n\n<p>Takes an array of <a href=\"#!/api/Titanium.Contacts.Person\" rel=\"Titanium.Contacts.Person\" class=\"docClass\">Titanium.Contacts.Person</a> objects and saves changes for\nthe specified contacts only.</p>\n\n",
+        "params": [
+          {
+            "type": "Array<Titanium.Contacts.Person>",
+            "name": "contacts",
+            "doc": "<p>List of contacts to save. Used on Android only.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Array<Titanium.Contacts.Person>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-save",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38976
+          }
+        ],
+        "shortDoc": "Commits all pending changes to the underlying contacts database. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "bubbleParent",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139
+          }
+        ],
+        "shortDoc": "Sets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+            "name": "lifecycleContainer",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.6.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 189
+          }
+        ],
+        "shortDoc": "Sets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "showContacts",
+        "owner": "Titanium.Contacts",
+        "doc": "<p>Displays a picker that allows a person to be selected.</p>\n\n",
+        "params": [
+          {
+            "type": "showContactsParams",
+            "name": "params",
+            "doc": "<p>Argument containing parameters for this method. Optional on Android.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "showContactsParams"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-showContacts",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38997
+          }
+        ],
+        "shortDoc": "Displays a picker that allows a person to be selected. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "event": [
+      {
+        "tagname": "event",
+        "name": "reload",
+        "owner": "Titanium.Contacts",
+        "doc": "<p>Fired when the database backing the contacts module is modified externally.</p>\n\n\n<p>@description <p>If you have an existing reference to a <code>Person</code> or <code>Group</code> object, you should obtain\na new reference from the <code>Contacts</code> module. Using the existing object may result\nin unpredictable behavior, such as updating the wrong contact.</p></p>\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "event-reload",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38772
+          }
+        ],
+        "shortDoc": "Fired when the database backing the contacts module is modified externally. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 38578
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+    "Titanium.Proxy",
+    "Titanium.Module"
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

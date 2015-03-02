@@ -1,0 +1,247 @@
+{
+  "tagname": "class",
+  "name": "SecurityManagerProtocol",
+  "doc": "<p>@platform android 3.3.0\n@platform iphone 3.3.0\n@platform ipad 3.3.0\n@pseudo @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/Network/HTTPClient.yml</p>\n\n<p>The protocol that the <a href=\"#!/api/Titanium.Network.HTTPClient-property-securityManager\" rel=\"Titanium.Network.HTTPClient-property-securityManager\" class=\"docClass\">Titanium.Network.HTTPClient.securityManager</a> must implement.</p>\n\n\n<p>@description <p>The object representing <a href=\"#!/api/Titanium.Network.HTTPClient-property-securityManager\" rel=\"Titanium.Network.HTTPClient-property-securityManager\" class=\"docClass\">Titanium.Network.HTTPClient.securityManager</a> must implement this protocol.\nAssigning the securityManager property to an object that does not implement this protocol will cause an exception to be raised.\nAll methods in this protocol are required.</p></p>\n",
+  "extends": null,
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-SecurityManagerProtocol",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "connectionDelegateForUrl",
+        "owner": "SecurityManagerProtocol",
+        "doc": "<p>The <a href=\"#!/api/APSConnectionDelegate\" rel=\"APSConnectionDelegate\" class=\"docClass\">APSConnectionDelegate</a> for this connection.</p>\n\n\n<p>@description <p>This method is only called if <a href=\"#!/api/SecurityManagerProtocol-method-willHandleURL\" rel=\"SecurityManagerProtocol-method-willHandleURL\" class=\"docClass\">willHandleURL</a> returns true.\nSee <a href=\"#!/api/APSConnectionDelegate\" rel=\"APSConnectionDelegate\" class=\"docClass\">APSConnectionDelegate</a> for further information.</p></p>\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "url",
+            "doc": "<p>The <a href=\"https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSURL_Class/Reference/Reference.html\">NSURL</a> representing the end point of this connection.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          }
+        ],
+        "return": {
+          "type": "APSConnectionDelegate",
+          "name": "return",
+          "doc": "<p>@platform iphone 3.3.0\n@platform ipad 3.3.0</p>\n",
+          "properties": null,
+          "html_type": "APSConnectionDelegate"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-connectionDelegateForUrl",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 70029
+          }
+        ],
+        "shortDoc": "The APSConnectionDelegate for this connection. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getKeyManagers",
+        "owner": "SecurityManagerProtocol",
+        "doc": "<p>Returns an array of objects implementing the <a href=\"http://developer.android.com/reference/javax/net/ssl/X509KeyManager.html\">X509KeyManager</a> protocol for the SSL Context.</p>\n\n\n<p>@description <p>This method is only called if <a href=\"#!/api/SecurityManagerProtocol-method-willHandleURL\" rel=\"SecurityManagerProtocol-method-willHandleURL\" class=\"docClass\">willHandleURL</a> returns true.</p></p>\n\n<p>Return null to set up a SSL Context with the default system key managers.</p>\n\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "proxy",
+            "doc": "<p>The <a href=\"#!/api/Titanium.Network.HTTPClient\" rel=\"Titanium.Network.HTTPClient\" class=\"docClass\">Titanium.Network.HTTPClient</a> representing this connection.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          }
+        ],
+        "return": {
+          "type": "Object[]",
+          "name": "return",
+          "doc": "<p>@platform android 3.3.0</p>\n",
+          "properties": null,
+          "html_type": "Object[]"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getKeyManagers",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 70065
+          }
+        ],
+        "shortDoc": "Returns an array of objects implementing the X509KeyManager protocol for the SSL Context. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getTrustManagers",
+        "owner": "SecurityManagerProtocol",
+        "doc": "<p>Returns an array of objects implementing the <a href=\"http://developer.android.com/reference/javax/net/ssl/X509TrustManager.html\">X509TrustManager</a> protocol for the SSL Context.</p>\n\n\n<p>@description <p>This method is only called if <a href=\"#!/api/SecurityManagerProtocol-method-willHandleURL\" rel=\"SecurityManagerProtocol-method-willHandleURL\" class=\"docClass\">willHandleURL</a> returns true.</p></p>\n\n<p>Return null to set up a SSL Context with the default system trust managers.</p>\n\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "proxy",
+            "doc": "<p>The <a href=\"#!/api/Titanium.Network.HTTPClient\" rel=\"Titanium.Network.HTTPClient\" class=\"docClass\">Titanium.Network.HTTPClient</a> representing this connection.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          }
+        ],
+        "return": {
+          "type": "Object[]",
+          "name": "return",
+          "doc": "<p>@platform android 3.3.0</p>\n",
+          "properties": null,
+          "html_type": "Object[]"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getTrustManagers",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 70047
+          }
+        ],
+        "shortDoc": "Returns an array of objects implementing the X509TrustManager protocol for the SSL Context. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "willHandleURL",
+        "owner": "SecurityManagerProtocol",
+        "doc": "<p>Returns if the security manager will participate in authentication of this end point.</p>\n\n\n<p>@description <p>The parameter passed to this method is a <a href=\"https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSURL_Class/Reference/Reference.html\">NSURL</a>\non iOS and a <a href=\"http://developer.android.com/reference/android/net/Uri.html\">Uri</a> on android. </p></p>\n\n<p>Return <strong>true</strong> to participate, <strong>false</strong> to allow default authentication flow. </p>\n\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "url",
+            "doc": "<p>The Object representing representing the end point of this connection.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          }
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-willHandleURL",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 70011
+          }
+        ],
+        "shortDoc": "Returns if the security manager will participate in authentication of this end point. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 69990
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

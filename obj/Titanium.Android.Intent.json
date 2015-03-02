@@ -1,0 +1,1594 @@
+{
+  "tagname": "class",
+  "name": "Titanium.Android.Intent",
+  "doc": "<p>@platform android 1.5 @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/Android/Intent.yml</p>\n\n<p>Message objects passed between Android application components.</p>\n\n\n<p>@description <p>In Android, applications and application components cannot directly communicate with each other.\nIn order to communicate with another application, use an intent. An intent is a message sent\nto the Android OS. Android directs the message to an application or application component based\non the intent's settings.</p></p>\n\n<p>To receive an intent, an application needs to declare an Intent Filter. An intent filter\nindicates to the Android OS that your application can handle certain data types or URIs.\nFor details on using Intent Filters, see the\n<a href=\"http://docs.appcelerator.com/titanium/latest/#!/guide/Android_Intent_Filters\">Android Intent Filters guide</a>.</p>\n\n\n\n\n<p>Intents can be used to start an activity, start a service or start a broadcast.</p>\n\n\n\n\n<ul>\n<li>To create an intent to start an <strong>Activity</strong>, use the <a href=\"#!/api/Titanium.Android-method-createIntent\" rel=\"Titanium.Android-method-createIntent\" class=\"docClass\">Titanium.Android.createIntent</a> method.</li>\n<li>To create an intent to start a <strong>Broadcast</strong>, use the <a href=\"#!/api/Titanium.Android-method-createBroadcastIntent\" rel=\"Titanium.Android-method-createBroadcastIntent\" class=\"docClass\">Titanium.Android.createBroadcastIntent</a> method.</li>\n<li>To create an intent to start a <strong>Service</strong>, use the <a href=\"#!/api/Titanium.Android-method-createServiceIntent\" rel=\"Titanium.Android-method-createServiceIntent\" class=\"docClass\">Titanium.Android.createServiceIntent</a> method.</li>\n</ul>\n\n\n\n\n<p>You can create either an implicit intent or an explicit intent.</p>\n\n\n\n\n<p>An <em>explicit intent</em> specifies the application or application component to launch. To create an\nexplicit intent, specify the Intent's <code>className</code> and <code>packageName</code> properties to specify the\napplication component to launch or the <code>url</code> property to specify a JavaScript file to handle\nthe data.</p>\n\n\n\n\n<p>An <em>implicit intent</em> does not specify a particular application.  Android will present the options\nto the user of which applications to launch if a default application was not selected to handle\na particular data type or content URI. To create an implicit intent, do not specify the\n<code>className</code>, <code>packageName</code> or <code>url</code> properties.</p>\n\n\n\n\n<p>Note that the parameters to create a Service Intent are different than the ones used to\ncreate an Activity or Broadcast.  The properties and methods listed below\nare used for Activity and Broadcast Intents.  See the <a href=\"#!/api/Titanium.Android-method-createServiceIntent\" rel=\"Titanium.Android-method-createServiceIntent\" class=\"docClass\">Titanium.Android.createServiceIntent</a> method\nfor the parameters to create a Service Intent.</p>\n\n\n\n\n<h4>Action</h4>\n\n\n\n\n<p>The <code>action</code> property specifies the action you want the activity to perform, or in the case of\nbroadcasts, the action that just completed you want to report.</p>\n\n\n\n\n<p>Titanium exposes some of the Android Intent actions as the <code><a href=\"#!/api/Titanium.Android\" rel=\"Titanium.Android\" class=\"docClass\">Titanium.Android</a>.ACTION_*</code> constants.\nNote that some of these actions are for system-level broadcasts that only Android can send.\nIf Titanium has not exposed a particular constant, you can pass the string value listed in the\nAndroid API reference guide instead.</p>\n\n\n\n\n<p>You can also define your own custom action names. Use a reverse domain scheme to name the\naction to avoid potential conflicts, for example, <code>com.appcelerator.action.LINT</code>.\nCustom actions are only useful to communicate between your applications and application\nactivities using intents.</p>\n\n\n\n\n<h4>Data</h4>\n\n\n\n\n<p>The <a href=\"#!/api/Titanium.Android.Intent-property-data\" rel=\"Titanium.Android.Intent-property-data\" class=\"docClass\">data</a> property specifies a content URI you want the activity to handle.</p>\n\n\n\n\n<p>The <a href=\"#!/api/Titanium.Android.Intent-property-type\" rel=\"Titanium.Android.Intent-property-type\" class=\"docClass\">type</a> property specifies a MIME type the activity can handle.</p>\n\n\n\n\n<p>For Broadcast Intents, do not use the <code>data</code> or <code>type</code> properties. Use extras to pass data.\nSee the <em>Extras</em> section below.</p>\n\n\n\n\n<h4>Category</h4>\n\n\n\n\n<p>Add a category to your Intent by invoking the <a href=\"#!/api/Titanium.Android.Intent-method-addCategory\" rel=\"Titanium.Android.Intent-method-addCategory\" class=\"docClass\">addCategory()</a>\nmethod on it.  A category provides additional details about the purpose of the intent.\nNote that most categories are only useful for intent filters.</p>\n\n\n\n\n<p>Titanium exposes some of the Android Intent categories as the <code><a href=\"#!/api/Titanium.Android\" rel=\"Titanium.Android\" class=\"docClass\">Titanium.Android</a>.CATEGORY_*</code> constants.\nNote that some of these categories are for Notifications.  If Titanium has not exposed a\nparticular constant, you can pass the string value listed in the Android API reference instead.</p>\n\n\n\n\n<p>You can also define your own custom category names. Use a reverse domain scheme to name the\ncategory to avoid potential conflicts, for example, <code>org.foo.category.SUPER</code>.\nCustom categories are only useful to communicate between your applications and application\nactivities using intents.</p>\n\n\n\n\n<h4>Flags</h4>\n\n\n\n\n<p>Bitwise-OR flags with the Intent's <a href=\"#!/api/Titanium.Android.Intent-property-flags\" rel=\"Titanium.Android.Intent-property-flags\" class=\"docClass\">flags</a> property\nor pass a flag to the <a href=\"#!/api/Titanium.Android.Intent-method-addFlags\" rel=\"Titanium.Android.Intent-method-addFlags\" class=\"docClass\">addFlags()</a> method.\nFlags modify the behavior of the intent.</p>\n\n\n\n\n<p>Titanium exposes some of the Android Intent flags as the <code><a href=\"#!/api/Titanium.Android\" rel=\"Titanium.Android\" class=\"docClass\">Titanium.Android</a>.FLAG_*</code> constants.\nIf Titanium has not exposed a particular constant, you can pass the constant value listed in\nthe Android API reference instead.</p>\n\n\n\n\n<h4>Extras</h4>\n\n\n\n\n<p>Extras are key-value pairs that are useful to pass on extra data with the Intent that can be\nused by another application component.</p>\n\n\n\n\n<ul>\n<li>Use one of the <code>get*Extra()</code> methods to retrieve the data. Pass the method the extra key.</li>\n<li>Use the <a href=\"#!/api/Titanium.Android.Intent-method-hasExtra\" rel=\"Titanium.Android.Intent-method-hasExtra\" class=\"docClass\">hasExtra()</a> method to check if the intent contains an extra.\nPass the method the key of the extra.</li>\n<li>Use the <a href=\"#!/api/Titanium.Android.Intent-method-putExtra\" rel=\"Titanium.Android.Intent-method-putExtra\" class=\"docClass\">putExtra()</a> method to add data to the intent.\nPass the method the extra key and data.</li>\n</ul>\n\n\n\n\n<p>Titanium exposes the Android-defined extra keys as the <code><a href=\"#!/api/Titanium.Android\" rel=\"Titanium.Android\" class=\"docClass\">Titanium.Android</a>.EXTRA_*</code> constants.\nYou can also define your own custom extra keys to use between your applications and application\ncomponents.</p>\n\n\n\n\n<h4>Further Reading</h4>\n\n\n\n\n<ul>\n<li><a href=\"http://docs.appcelerator.com/titanium/latest/#!/guide/Android_Intents\">Android Intents guide</a></li>\n<li><a href=\"http://developer.android.com/reference/android/content/Intent.html\">Android Developer: Intent</a></li>\n</ul>\n\n\n<h3>Examples</h3>\n\n\n<h4>Create an Intent for Launching an Activity</h4>\n\n\n<p>This example creates an intent and uses it to launch a new activity.</p>\n\n\n\n\n<pre><code>var intent = Ti.Android.createIntent({\n    action: Ti.Android.ACTION_MAIN,\n    url: 'activity1.js'\n});\nintent.addCategory(Ti.Android.CATEGORY_LAUNCHER);\nTi.Android.currentActivity.startActivity(intent);\n</code></pre>\n\n\n<h4>Create an Intent to get a Contact URI</h4>\n\n\n<p>This example creates an intent to retrieve contact information from the user's\ncontacts.</p>\n\n\n\n\n<pre><code>var intent = Ti.Android.createIntent({\n    action: Ti.Android.ACTION_GET_CONTENT,\n    type: \"vnd.android.cursor.item/phone\"\n});\n</code></pre>\n\n\n<h4>Pick a Photo from the Photo Gallery</h4>\n\n\n<p>This example creates an intent to pick an image from the photo gallery.</p>\n\n\n\n\n<pre><code>var intent = Ti.Android.createIntent({\n    action: Ti.Android.ACTION_PICK,\n    type: \"image&#47;&#42;\"\n});\nintent.addCategory(Ti.Android.CATEGORY_DEFAULT);\n</code></pre>\n\n\n<h4>Create an ImageView from an Image Send Intent</h4>\n\n\n<p>This example requires that an intent filter be set up in the project's <code>tiapp.xml</code> file.\nAfter copying the default root activity of your application from the <code>AndroidManifest.xml</code>\nfile to the Android manifest section of the <code>tiapp.xml</code> file, add an intent filter.\nFor detailed instructions, refer to the\n<a href=\"http://docs.appcelerator.com/titanium/latest/#!/guide/Android_Intent_Filters\">Android Intent Filters guide</a>.</p>\n\n\n\n\n<p>You can trigger this intent filter by long pressing on an image in the Android gallery\nand selecting \"share\".</p>\n\n\n\n\n<p><code>tiapp.xml</code>:</p>\n\n\n\n\n<pre><code>&lt;ti:app&gt;\n    &lt;android&gt;\n        &lt;manifest&gt;\n            &lt;application&gt;\n                &lt;activity android:name=\".YourapplicationnameActivity\"&gt;\n                    &lt;intent-filter&gt;\n                        &lt;data android:mimeType=\"image/*\"/&gt;\n                        &lt;action android:name=\"android.intent.action.SEND\"/&gt;\n                        &lt;category android:name=\"android.intent.category.DEFAULT\"/&gt;\n                    &lt;/intent-filter&gt;\n                &lt;/activity&gt;\n            &lt;/application&gt;\n        &lt;/manifest&gt;\n    &lt;/android&gt;\n&lt;/ti:app&gt;\n</code></pre>\n\n\n\n\n<p><code>app.js</code>:</p>\n\n\n\n\n<pre><code> var win = Ti.UI.createWindow({\n     backgroundColor: '#fff',\n     fullscreen: false,\n     exitOnClose: true\n });\n win.addEventListener('open', function(e) {\n     var intent = Ti.Android.currentActivity.getIntent();\n     var iname = Ti.Android.EXTRA_STREAM;\n     if (intent &amp;&amp; intent.hasExtra(iname)) {\n         // Create ImageView from TiBlob\n         var blob = intent.getBlobExtra(iname);\n         win.add(Ti.UI.createImageView({\n             image: blob,\n             height: 300,\n             width: 300,\n             left: 0,\n             top: 0\n         }));\n     } else {\n         Ti.API.info('No extra named \"' + iname + '\" found in Intent');\n     }\n });\n win.open();\n</code></pre>\n\n",
+  "extends": "Titanium.Proxy",
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-Titanium.Android.Intent",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "action",
+        "owner": "Titanium.Android.Intent",
+        "type": "String",
+        "doc": "<p>The action associated with this intent.</p>\n\n\n<p>@description <p>Specify one of the <code>ACTION</code> constants from <a href=\"#!/api/Titanium.Android\" rel=\"Titanium.Android\" class=\"docClass\">Titanium.Android</a>, or an application-specific custom action string.</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-action",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 15510
+          }
+        ],
+        "shortDoc": "The action associated with this intent. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "apiName",
+        "owner": "Titanium.Proxy",
+        "type": "String",
+        "doc": "<p>The name of the API that this proxy corresponds to.</p>\n\n\n<p>@description <p>The value of this property is the fully qualified name of the API. For example, <a href=\"#!/api/Titanium.UI.Button\" rel=\"Titanium.UI.Button\" class=\"docClass\">Button</a>\nreturns <code>Ti.UI.Button</code>.</p></p>\n\n<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-apiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 235
+          }
+        ],
+        "shortDoc": "The name of the API that this proxy corresponds to. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "bubbleParent",
+        "owner": "Titanium.Proxy",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the proxy will bubble an event to its parent.</p>\n\n\n<p>@description <p>Some proxies (most commonly views) have a relationship to other proxies, often\nestablished by the add() method. For example, for a button added to a window, a\nclick event on the button would bubble up to the window. Other common parents are\ntable sections to their rows, table views to their sections, and scrollable views\nto their views. Set this property to false to disable the bubbling to the proxy's parent.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-bubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 207
+          }
+        ],
+        "shortDoc": "Indicates if the proxy will bubble an event to its parent. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "className",
+        "owner": "Titanium.Android.Intent",
+        "type": "String",
+        "doc": "<p>The Java class name of the activity associated with this intent\n(<a href=\"#!/api/Titanium.Android.Intent-property-packageName\" rel=\"Titanium.Android.Intent-property-packageName\" class=\"docClass\">packageName</a> must also be set).</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-className",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 15531
+          }
+        ],
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "data",
+        "owner": "Titanium.Android.Intent",
+        "type": "String",
+        "doc": "<p>The Intent's Data URI.</p>\n\n\n<p>@description <p>The data URI can be set when the intent is created. It is read-only after the\nintent is created.</p></p>\n\n<p>For more information on data URIs, see:\n<a href=\"http://developer.android.com/reference/android/content/Intent.html#setData%28android.net.Uri%29\">Intent.setData in the Android API Reference</a></p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-data",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 15553
+          }
+        ],
+        "shortDoc": "The Intent's Data URI. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "flags",
+        "owner": "Titanium.Android.Intent",
+        "type": "Number",
+        "doc": "<p>Intent flags.</p>\n\n\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ACTIVITY_BROUGHT_TO_FRONT\" rel=\"Titanium.Android-property-FLAG_ACTIVITY_BROUGHT_TO_FRONT\" class=\"docClass\">Titanium.Android.FLAG_ACTIVITY_BROUGHT_TO_FRONT</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ACTIVITY_CLEAR_TOP\" rel=\"Titanium.Android-property-FLAG_ACTIVITY_CLEAR_TOP\" class=\"docClass\">Titanium.Android.FLAG_ACTIVITY_CLEAR_TOP</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET\" rel=\"Titanium.Android-property-FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET\" class=\"docClass\">Titanium.Android.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS\" rel=\"Titanium.Android-property-FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS\" class=\"docClass\">Titanium.Android.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ACTIVITY_FORWARD_RESULT\" rel=\"Titanium.Android-property-FLAG_ACTIVITY_FORWARD_RESULT\" class=\"docClass\">Titanium.Android.FLAG_ACTIVITY_FORWARD_RESULT</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY\" rel=\"Titanium.Android-property-FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY\" class=\"docClass\">Titanium.Android.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ACTIVITY_MULTIPLE_TASK\" rel=\"Titanium.Android-property-FLAG_ACTIVITY_MULTIPLE_TASK\" class=\"docClass\">Titanium.Android.FLAG_ACTIVITY_MULTIPLE_TASK</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ACTIVITY_NEW_TASK\" rel=\"Titanium.Android-property-FLAG_ACTIVITY_NEW_TASK\" class=\"docClass\">Titanium.Android.FLAG_ACTIVITY_NEW_TASK</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ACTIVITY_NO_ANIMATION\" rel=\"Titanium.Android-property-FLAG_ACTIVITY_NO_ANIMATION\" class=\"docClass\">Titanium.Android.FLAG_ACTIVITY_NO_ANIMATION</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ACTIVITY_NO_HISTORY\" rel=\"Titanium.Android-property-FLAG_ACTIVITY_NO_HISTORY\" class=\"docClass\">Titanium.Android.FLAG_ACTIVITY_NO_HISTORY</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ACTIVITY_NO_USER_ACTION\" rel=\"Titanium.Android-property-FLAG_ACTIVITY_NO_USER_ACTION\" class=\"docClass\">Titanium.Android.FLAG_ACTIVITY_NO_USER_ACTION</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ACTIVITY_PREVIOUS_IS_TOP\" rel=\"Titanium.Android-property-FLAG_ACTIVITY_PREVIOUS_IS_TOP\" class=\"docClass\">Titanium.Android.FLAG_ACTIVITY_PREVIOUS_IS_TOP</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ACTIVITY_REORDER_TO_FRONT\" rel=\"Titanium.Android-property-FLAG_ACTIVITY_REORDER_TO_FRONT\" class=\"docClass\">Titanium.Android.FLAG_ACTIVITY_REORDER_TO_FRONT</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ACTIVITY_RESET_TASK_IF_NEEDED\" rel=\"Titanium.Android-property-FLAG_ACTIVITY_RESET_TASK_IF_NEEDED\" class=\"docClass\">Titanium.Android.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ACTIVITY_SINGLE_TOP\" rel=\"Titanium.Android-property-FLAG_ACTIVITY_SINGLE_TOP\" class=\"docClass\">Titanium.Android.FLAG_ACTIVITY_SINGLE_TOP</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_DEBUG_LOG_RESOLUTION\" rel=\"Titanium.Android-property-FLAG_DEBUG_LOG_RESOLUTION\" class=\"docClass\">Titanium.Android.FLAG_DEBUG_LOG_RESOLUTION</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_FROM_BACKGROUND\" rel=\"Titanium.Android-property-FLAG_FROM_BACKGROUND\" class=\"docClass\">Titanium.Android.FLAG_FROM_BACKGROUND</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_GRANT_READ_URI_PERMISSION\" rel=\"Titanium.Android-property-FLAG_GRANT_READ_URI_PERMISSION\" class=\"docClass\">Titanium.Android.FLAG_GRANT_READ_URI_PERMISSION</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_GRANT_WRITE_URI_PERMISSION\" rel=\"Titanium.Android-property-FLAG_GRANT_WRITE_URI_PERMISSION\" class=\"docClass\">Titanium.Android.FLAG_GRANT_WRITE_URI_PERMISSION</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_RECEIVER_REGISTERED_ONLY\" rel=\"Titanium.Android-property-FLAG_RECEIVER_REGISTERED_ONLY\" class=\"docClass\">Titanium.Android.FLAG_RECEIVER_REGISTERED_ONLY</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_CANCEL_CURRENT\" rel=\"Titanium.Android-property-FLAG_CANCEL_CURRENT\" class=\"docClass\">Titanium.Android.FLAG_CANCEL_CURRENT</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_NO_CREATE\" rel=\"Titanium.Android-property-FLAG_NO_CREATE\" class=\"docClass\">Titanium.Android.FLAG_NO_CREATE</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ONE_SHOT\" rel=\"Titanium.Android-property-FLAG_ONE_SHOT\" class=\"docClass\">Titanium.Android.FLAG_ONE_SHOT</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_UPDATE_CURRENT\" rel=\"Titanium.Android-property-FLAG_UPDATE_CURRENT\" class=\"docClass\">Titanium.Android.FLAG_UPDATE_CURRENT</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_AUTO_CANCEL\" rel=\"Titanium.Android-property-FLAG_AUTO_CANCEL\" class=\"docClass\">Titanium.Android.FLAG_AUTO_CANCEL</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_INSISTENT\" rel=\"Titanium.Android-property-FLAG_INSISTENT\" class=\"docClass\">Titanium.Android.FLAG_INSISTENT</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_NO_CLEAR\" rel=\"Titanium.Android-property-FLAG_NO_CLEAR\" class=\"docClass\">Titanium.Android.FLAG_NO_CLEAR</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ONGOING_EVENT\" rel=\"Titanium.Android-property-FLAG_ONGOING_EVENT\" class=\"docClass\">Titanium.Android.FLAG_ONGOING_EVENT</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ONLY_ALERT_ONCE\" rel=\"Titanium.Android-property-FLAG_ONLY_ALERT_ONCE\" class=\"docClass\">Titanium.Android.FLAG_ONLY_ALERT_ONCE</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_SHOW_LIGHTS\" rel=\"Titanium.Android-property-FLAG_SHOW_LIGHTS\" class=\"docClass\">Titanium.Android.FLAG_SHOW_LIGHTS</a>\n</ul></p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-flags",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 15578
+          }
+        ],
+        "shortDoc": "Intent flags. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "doc": "<p>The Window or TabGroup whose Activity lifecycle should be triggered on the proxy.</p>\n\n\n<p>@description <p>If this property is set to a Window or TabGroup, then the corresponding Activity lifecycle event callbacks\nwill also be called on the proxy. Proxies that require the activity lifecycle will need this property set\nto the appropriate containing Window or TabGroup.</p></p>\n\n<p>@platform android 3.6.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-lifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 262
+          }
+        ],
+        "shortDoc": "The Window or TabGroup whose Activity lifecycle should be triggered on the proxy. ...",
+        "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "packageName",
+        "owner": "Titanium.Android.Intent",
+        "type": "String",
+        "doc": "<p>The fully-qualified Java package name of the activity.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-packageName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 15632
+          }
+        ],
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "type",
+        "owner": "Titanium.Android.Intent",
+        "type": "String",
+        "doc": "<p>The MIME type for this Intent.</p>\n\n\n<p>@description <p>The MIME type can be set when the intent is created. It is read-only after the\nintent is created.</p></p>\n\n<p>For information on MIME types and intents, see:\n<a href=\"http://developer.android.com/reference/android/content/Intent.html#setType%28java.lang.String%29\">Intent.setType in the Android API Reference</a>.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-type",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 15653
+          }
+        ],
+        "shortDoc": "The MIME type for this Intent. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "url",
+        "owner": "Titanium.Android.Intent",
+        "type": "String",
+        "doc": "<p>The URL to a Titanium JavaScript Activity.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-url",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 15678
+          }
+        ],
+        "html_type": "String",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "addCategory",
+        "owner": "Titanium.Android.Intent",
+        "doc": "<p>Adds a category to this Intent.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>The category name.</p>\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.Android-property-CATEGORY_ALTERNATIVE\" rel=\"Titanium.Android-property-CATEGORY_ALTERNATIVE\" class=\"docClass\">Titanium.Android.CATEGORY_ALTERNATIVE</a>\n <li> <a href=\"#!/api/Titanium.Android-property-CATEGORY_BROWSABLE\" rel=\"Titanium.Android-property-CATEGORY_BROWSABLE\" class=\"docClass\">Titanium.Android.CATEGORY_BROWSABLE</a>\n <li> <a href=\"#!/api/Titanium.Android-property-CATEGORY_DEFAULT\" rel=\"Titanium.Android-property-CATEGORY_DEFAULT\" class=\"docClass\">Titanium.Android.CATEGORY_DEFAULT</a>\n <li> <a href=\"#!/api/Titanium.Android-property-CATEGORY_DEVELOPMENT_PREFERENCE\" rel=\"Titanium.Android-property-CATEGORY_DEVELOPMENT_PREFERENCE\" class=\"docClass\">Titanium.Android.CATEGORY_DEVELOPMENT_PREFERENCE</a>\n <li> <a href=\"#!/api/Titanium.Android-property-CATEGORY_EMBED\" rel=\"Titanium.Android-property-CATEGORY_EMBED\" class=\"docClass\">Titanium.Android.CATEGORY_EMBED</a>\n <li> <a href=\"#!/api/Titanium.Android-property-CATEGORY_FRAMEWORK_INSTRUMENTATION_TEST\" rel=\"Titanium.Android-property-CATEGORY_FRAMEWORK_INSTRUMENTATION_TEST\" class=\"docClass\">Titanium.Android.CATEGORY_FRAMEWORK_INSTRUMENTATION_TEST</a>\n <li> <a href=\"#!/api/Titanium.Android-property-CATEGORY_HOME\" rel=\"Titanium.Android-property-CATEGORY_HOME\" class=\"docClass\">Titanium.Android.CATEGORY_HOME</a>\n <li> <a href=\"#!/api/Titanium.Android-property-CATEGORY_INFO\" rel=\"Titanium.Android-property-CATEGORY_INFO\" class=\"docClass\">Titanium.Android.CATEGORY_INFO</a>\n <li> <a href=\"#!/api/Titanium.Android-property-CATEGORY_LAUNCHER\" rel=\"Titanium.Android-property-CATEGORY_LAUNCHER\" class=\"docClass\">Titanium.Android.CATEGORY_LAUNCHER</a>\n <li> <a href=\"#!/api/Titanium.Android-property-CATEGORY_MONKEY\" rel=\"Titanium.Android-property-CATEGORY_MONKEY\" class=\"docClass\">Titanium.Android.CATEGORY_MONKEY</a>\n <li> <a href=\"#!/api/Titanium.Android-property-CATEGORY_OPENABLE\" rel=\"Titanium.Android-property-CATEGORY_OPENABLE\" class=\"docClass\">Titanium.Android.CATEGORY_OPENABLE</a>\n <li> <a href=\"#!/api/Titanium.Android-property-CATEGORY_PREFERENCE\" rel=\"Titanium.Android-property-CATEGORY_PREFERENCE\" class=\"docClass\">Titanium.Android.CATEGORY_PREFERENCE</a>\n <li> <a href=\"#!/api/Titanium.Android-property-CATEGORY_SAMPLE_CODE\" rel=\"Titanium.Android-property-CATEGORY_SAMPLE_CODE\" class=\"docClass\">Titanium.Android.CATEGORY_SAMPLE_CODE</a>\n <li> <a href=\"#!/api/Titanium.Android-property-CATEGORY_SELECTED_ALTERNATIVE\" rel=\"Titanium.Android-property-CATEGORY_SELECTED_ALTERNATIVE\" class=\"docClass\">Titanium.Android.CATEGORY_SELECTED_ALTERNATIVE</a>\n <li> <a href=\"#!/api/Titanium.Android-property-CATEGORY_TAB\" rel=\"Titanium.Android-property-CATEGORY_TAB\" class=\"docClass\">Titanium.Android.CATEGORY_TAB</a>\n <li> <a href=\"#!/api/Titanium.Android-property-CATEGORY_TEST\" rel=\"Titanium.Android-property-CATEGORY_TEST\" class=\"docClass\">Titanium.Android.CATEGORY_TEST</a>\n <li> <a href=\"#!/api/Titanium.Android-property-CATEGORY_UNIT_TEST\" rel=\"Titanium.Android-property-CATEGORY_UNIT_TEST\" class=\"docClass\">Titanium.Android.CATEGORY_UNIT_TEST</a>\n <li> <a href=\"#!/api/Titanium.Android-property-CATEGORY_ALARM\" rel=\"Titanium.Android-property-CATEGORY_ALARM\" class=\"docClass\">Titanium.Android.CATEGORY_ALARM</a>\n <li> <a href=\"#!/api/Titanium.Android-property-CATEGORY_CALL\" rel=\"Titanium.Android-property-CATEGORY_CALL\" class=\"docClass\">Titanium.Android.CATEGORY_CALL</a>\n <li> <a href=\"#!/api/Titanium.Android-property-CATEGORY_EMAIL\" rel=\"Titanium.Android-property-CATEGORY_EMAIL\" class=\"docClass\">Titanium.Android.CATEGORY_EMAIL</a>\n <li> <a href=\"#!/api/Titanium.Android-property-CATEGORY_ERROR\" rel=\"Titanium.Android-property-CATEGORY_ERROR\" class=\"docClass\">Titanium.Android.CATEGORY_ERROR</a>\n <li> <a href=\"#!/api/Titanium.Android-property-CATEGORY_EVENT\" rel=\"Titanium.Android-property-CATEGORY_EVENT\" class=\"docClass\">Titanium.Android.CATEGORY_EVENT</a>\n <li> <a href=\"#!/api/Titanium.Android-property-CATEGORY_MESSAGE\" rel=\"Titanium.Android-property-CATEGORY_MESSAGE\" class=\"docClass\">Titanium.Android.CATEGORY_MESSAGE</a>\n <li> <a href=\"#!/api/Titanium.Android-property-CATEGORY_PROGRESS\" rel=\"Titanium.Android-property-CATEGORY_PROGRESS\" class=\"docClass\">Titanium.Android.CATEGORY_PROGRESS</a>\n <li> <a href=\"#!/api/Titanium.Android-property-CATEGORY_PROMO\" rel=\"Titanium.Android-property-CATEGORY_PROMO\" class=\"docClass\">Titanium.Android.CATEGORY_PROMO</a>\n <li> <a href=\"#!/api/Titanium.Android-property-CATEGORY_RECOMMENDATION\" rel=\"Titanium.Android-property-CATEGORY_RECOMMENDATION\" class=\"docClass\">Titanium.Android.CATEGORY_RECOMMENDATION</a>\n <li> <a href=\"#!/api/Titanium.Android-property-CATEGORY_SERVICE\" rel=\"Titanium.Android-property-CATEGORY_SERVICE\" class=\"docClass\">Titanium.Android.CATEGORY_SERVICE</a>\n <li> <a href=\"#!/api/Titanium.Android-property-CATEGORY_SOCIAL\" rel=\"Titanium.Android-property-CATEGORY_SOCIAL\" class=\"docClass\">Titanium.Android.CATEGORY_SOCIAL</a>\n <li> <a href=\"#!/api/Titanium.Android-property-CATEGORY_STATUS\" rel=\"Titanium.Android-property-CATEGORY_STATUS\" class=\"docClass\">Titanium.Android.CATEGORY_STATUS</a>\n <li> <a href=\"#!/api/Titanium.Android-property-CATEGORY_TRANSPORT\" rel=\"Titanium.Android-property-CATEGORY_TRANSPORT\" class=\"docClass\">Titanium.Android.CATEGORY_TRANSPORT</a>\n</ul></p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addCategory",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 15085
+          }
+        ],
+        "shortDoc": "Adds a category to this Intent. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "addEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Adds the specified callback as an event listener for the named event.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to invoke when the event is fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38
+          }
+        ],
+        "shortDoc": "Adds the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "addFlags",
+        "owner": "Titanium.Android.Intent",
+        "doc": "<p>Adds to the existing flags on the <code>Intent</code>.</p>\n\n\n<p>@description <p>The specified flag are combined with the existing flags using a bitwise OR.</p></p>\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "flags",
+            "doc": "<p>Bitwise OR of the flags to add to the existing set.</p>\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ACTIVITY_BROUGHT_TO_FRONT\" rel=\"Titanium.Android-property-FLAG_ACTIVITY_BROUGHT_TO_FRONT\" class=\"docClass\">Titanium.Android.FLAG_ACTIVITY_BROUGHT_TO_FRONT</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ACTIVITY_CLEAR_TOP\" rel=\"Titanium.Android-property-FLAG_ACTIVITY_CLEAR_TOP\" class=\"docClass\">Titanium.Android.FLAG_ACTIVITY_CLEAR_TOP</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET\" rel=\"Titanium.Android-property-FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET\" class=\"docClass\">Titanium.Android.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS\" rel=\"Titanium.Android-property-FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS\" class=\"docClass\">Titanium.Android.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ACTIVITY_FORWARD_RESULT\" rel=\"Titanium.Android-property-FLAG_ACTIVITY_FORWARD_RESULT\" class=\"docClass\">Titanium.Android.FLAG_ACTIVITY_FORWARD_RESULT</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY\" rel=\"Titanium.Android-property-FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY\" class=\"docClass\">Titanium.Android.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ACTIVITY_MULTIPLE_TASK\" rel=\"Titanium.Android-property-FLAG_ACTIVITY_MULTIPLE_TASK\" class=\"docClass\">Titanium.Android.FLAG_ACTIVITY_MULTIPLE_TASK</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ACTIVITY_NEW_TASK\" rel=\"Titanium.Android-property-FLAG_ACTIVITY_NEW_TASK\" class=\"docClass\">Titanium.Android.FLAG_ACTIVITY_NEW_TASK</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ACTIVITY_NO_ANIMATION\" rel=\"Titanium.Android-property-FLAG_ACTIVITY_NO_ANIMATION\" class=\"docClass\">Titanium.Android.FLAG_ACTIVITY_NO_ANIMATION</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ACTIVITY_NO_HISTORY\" rel=\"Titanium.Android-property-FLAG_ACTIVITY_NO_HISTORY\" class=\"docClass\">Titanium.Android.FLAG_ACTIVITY_NO_HISTORY</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ACTIVITY_NO_USER_ACTION\" rel=\"Titanium.Android-property-FLAG_ACTIVITY_NO_USER_ACTION\" class=\"docClass\">Titanium.Android.FLAG_ACTIVITY_NO_USER_ACTION</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ACTIVITY_PREVIOUS_IS_TOP\" rel=\"Titanium.Android-property-FLAG_ACTIVITY_PREVIOUS_IS_TOP\" class=\"docClass\">Titanium.Android.FLAG_ACTIVITY_PREVIOUS_IS_TOP</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ACTIVITY_REORDER_TO_FRONT\" rel=\"Titanium.Android-property-FLAG_ACTIVITY_REORDER_TO_FRONT\" class=\"docClass\">Titanium.Android.FLAG_ACTIVITY_REORDER_TO_FRONT</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ACTIVITY_RESET_TASK_IF_NEEDED\" rel=\"Titanium.Android-property-FLAG_ACTIVITY_RESET_TASK_IF_NEEDED\" class=\"docClass\">Titanium.Android.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ACTIVITY_SINGLE_TOP\" rel=\"Titanium.Android-property-FLAG_ACTIVITY_SINGLE_TOP\" class=\"docClass\">Titanium.Android.FLAG_ACTIVITY_SINGLE_TOP</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_DEBUG_LOG_RESOLUTION\" rel=\"Titanium.Android-property-FLAG_DEBUG_LOG_RESOLUTION\" class=\"docClass\">Titanium.Android.FLAG_DEBUG_LOG_RESOLUTION</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_FROM_BACKGROUND\" rel=\"Titanium.Android-property-FLAG_FROM_BACKGROUND\" class=\"docClass\">Titanium.Android.FLAG_FROM_BACKGROUND</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_GRANT_READ_URI_PERMISSION\" rel=\"Titanium.Android-property-FLAG_GRANT_READ_URI_PERMISSION\" class=\"docClass\">Titanium.Android.FLAG_GRANT_READ_URI_PERMISSION</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_GRANT_WRITE_URI_PERMISSION\" rel=\"Titanium.Android-property-FLAG_GRANT_WRITE_URI_PERMISSION\" class=\"docClass\">Titanium.Android.FLAG_GRANT_WRITE_URI_PERMISSION</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_RECEIVER_REGISTERED_ONLY\" rel=\"Titanium.Android-property-FLAG_RECEIVER_REGISTERED_ONLY\" class=\"docClass\">Titanium.Android.FLAG_RECEIVER_REGISTERED_ONLY</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_CANCEL_CURRENT\" rel=\"Titanium.Android-property-FLAG_CANCEL_CURRENT\" class=\"docClass\">Titanium.Android.FLAG_CANCEL_CURRENT</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_NO_CREATE\" rel=\"Titanium.Android-property-FLAG_NO_CREATE\" class=\"docClass\">Titanium.Android.FLAG_NO_CREATE</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ONE_SHOT\" rel=\"Titanium.Android-property-FLAG_ONE_SHOT\" class=\"docClass\">Titanium.Android.FLAG_ONE_SHOT</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_UPDATE_CURRENT\" rel=\"Titanium.Android-property-FLAG_UPDATE_CURRENT\" class=\"docClass\">Titanium.Android.FLAG_UPDATE_CURRENT</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_AUTO_CANCEL\" rel=\"Titanium.Android-property-FLAG_AUTO_CANCEL\" class=\"docClass\">Titanium.Android.FLAG_AUTO_CANCEL</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_INSISTENT\" rel=\"Titanium.Android-property-FLAG_INSISTENT\" class=\"docClass\">Titanium.Android.FLAG_INSISTENT</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_NO_CLEAR\" rel=\"Titanium.Android-property-FLAG_NO_CLEAR\" class=\"docClass\">Titanium.Android.FLAG_NO_CLEAR</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ONGOING_EVENT\" rel=\"Titanium.Android-property-FLAG_ONGOING_EVENT\" class=\"docClass\">Titanium.Android.FLAG_ONGOING_EVENT</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_ONLY_ALERT_ONCE\" rel=\"Titanium.Android-property-FLAG_ONLY_ALERT_ONCE\" class=\"docClass\">Titanium.Android.FLAG_ONLY_ALERT_ONCE</a>\n <li> <a href=\"#!/api/Titanium.Android-property-FLAG_SHOW_LIGHTS\" rel=\"Titanium.Android-property-FLAG_SHOW_LIGHTS\" class=\"docClass\">Titanium.Android.FLAG_SHOW_LIGHTS</a>\n</ul></p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addFlags",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 15133
+          }
+        ],
+        "shortDoc": "Adds to the existing flags on the Intent. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "applyProperties",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Applies the properties to the proxy.</p>\n\n\n<p>@description <p>Properties are supplied as a dictionary. Each key-value pair in the object is applied to the proxy such that\nmyproxy[key] = value.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "props",
+            "doc": "<p>A dictionary of properties to apply.</p>\n\n\n<p>@platform android 3.0.0\n@platform blackberry 3.3.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-applyProperties",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 102
+          }
+        ],
+        "shortDoc": "Applies the properties to the proxy. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "fireEvent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Fires a synthesized event to any registered listeners.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Dictionary",
+            "name": "event",
+            "doc": "<p>A dictionary of keys and values to add to the <a href=\"#!/api/Titanium.Event\" rel=\"Titanium.Event\" class=\"docClass\">Titanium.Event</a> object sent to the listeners.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-fireEvent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 85
+          }
+        ],
+        "shortDoc": "Fires a synthesized event to any registered listeners. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getAction",
+        "owner": "Titanium.Android.Intent",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Android.Intent-property-action\" rel=\"Titanium.Android.Intent-property-action\" class=\"docClass\">action</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getAction",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 15342
+          }
+        ],
+        "shortDoc": "Gets the value of the action property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getApiName",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-apiName\" rel=\"Titanium.Proxy-property-apiName\" class=\"docClass\">apiName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getApiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 157
+          }
+        ],
+        "shortDoc": "Gets the value of the apiName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBlobExtra",
+        "owner": "Titanium.Android.Intent",
+        "doc": "<p>Get a <a href=\"#!/api/Titanium.Blob\" rel=\"Titanium.Blob\" class=\"docClass\">Titanium.Blob</a> property from this <code>Intent</code>.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>The <a href=\"#!/api/Titanium.Blob\" rel=\"Titanium.Blob\" class=\"docClass\">Titanium.Blob</a> extra to get, most commonly <a href=\"#!/api/Titanium.Android-property-EXTRA_STREAM\" rel=\"Titanium.Android-property-EXTRA_STREAM\" class=\"docClass\">Titanium.Android.EXTRA_STREAM</a>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "Titanium.Blob",
+          "name": "return",
+          "doc": "<p>@platform android 2.1.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.Blob"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBlobExtra",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 15181
+          }
+        ],
+        "shortDoc": "Get a Titanium.Blob property from this Intent. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBooleanExtra",
+        "owner": "Titanium.Android.Intent",
+        "doc": "<p>Get a boolean property from this Intent.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Property to get.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBooleanExtra",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 15197
+          }
+        ],
+        "shortDoc": "Get a boolean property from this Intent. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 123
+          }
+        ],
+        "shortDoc": "Gets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getClassName",
+        "owner": "Titanium.Android.Intent",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Android.Intent-property-className\" rel=\"Titanium.Android.Intent-property-className\" class=\"docClass\">className</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getClassName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 15370
+          }
+        ],
+        "shortDoc": "Gets the value of the className property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getData",
+        "owner": "Titanium.Android.Intent",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Android.Intent-property-data\" rel=\"Titanium.Android.Intent-property-data\" class=\"docClass\">data</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getData",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 15398
+          }
+        ],
+        "shortDoc": "Gets the value of the data property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getDoubleExtra",
+        "owner": "Titanium.Android.Intent",
+        "doc": "<p>Get a double property from this <code>Intent</code>.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Property to get.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getDoubleExtra",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 15225
+          }
+        ],
+        "shortDoc": "Get a double property from this Intent. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getFlags",
+        "owner": "Titanium.Android.Intent",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Android.Intent-property-flags\" rel=\"Titanium.Android.Intent-property-flags\" class=\"docClass\">flags</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getFlags",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 15411
+          }
+        ],
+        "shortDoc": "Gets the value of the flags property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getIntExtra",
+        "owner": "Titanium.Android.Intent",
+        "doc": "<p>Get an integer property from this <code>Intent</code>.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Property to get.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getIntExtra",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 15240
+          }
+        ],
+        "shortDoc": "Get an integer property from this Intent. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+          "name": "return",
+          "doc": "<p>@platform android 3.6.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 175
+          }
+        ],
+        "shortDoc": "Gets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLongExtra",
+        "owner": "Titanium.Android.Intent",
+        "doc": "<p>Get a long property from this <code>Intent</code>.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Property to get.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLongExtra",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 15255
+          }
+        ],
+        "shortDoc": "Get a long property from this Intent. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getPackageName",
+        "owner": "Titanium.Android.Intent",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Android.Intent-property-packageName\" rel=\"Titanium.Android.Intent-property-packageName\" class=\"docClass\">packageName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getPackageName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 15439
+          }
+        ],
+        "shortDoc": "Gets the value of the packageName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getStringExtra",
+        "owner": "Titanium.Android.Intent",
+        "doc": "<p>Get a string property from this <code>Intent</code>.</p>\n\n\n<p>@description <p>Can also be used to get the string representation of a property that's stored\nas an Android <code>Parcel</code>, such as a URI.</p></p>\n\n<p>Titanium does not support <code>getParcelableExtra</code> due to the inability to translate\nall of its possible return types to JavaScript.</p>\n\n\n\n\n<p>See also:\n[getParcelableExtra](<a href=\"http://developer.android.com/reference/android/content/Intent.html#getParcelableExtra(java.lang.String)\">http://developer.android.com/reference/android/content/Intent.html#getParcelableExtra(java.lang.String)</a>\nin the Android Developer Reference.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Property to get.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getStringExtra",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 15270
+          }
+        ],
+        "shortDoc": "Get a string property from this Intent. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getType",
+        "owner": "Titanium.Android.Intent",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Android.Intent-property-type\" rel=\"Titanium.Android.Intent-property-type\" class=\"docClass\">type</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getType",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 15467
+          }
+        ],
+        "shortDoc": "Gets the value of the type property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getUrl",
+        "owner": "Titanium.Android.Intent",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Android.Intent-property-url\" rel=\"Titanium.Android.Intent-property-url\" class=\"docClass\">url</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getUrl",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 15480
+          }
+        ],
+        "shortDoc": "Gets the value of the url property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "hasExtra",
+        "owner": "Titanium.Android.Intent",
+        "doc": "<p>Returns <code>true</code> if this <code>Intent</code> has the specified property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Property name to check for.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-hasExtra",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 15293
+          }
+        ],
+        "shortDoc": "Returns true if this Intent has the specified property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "putExtra",
+        "owner": "Titanium.Android.Intent",
+        "doc": "<p>Puts an extra property on this <code>Intent</code>.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the property to add.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Object",
+            "name": "value",
+            "doc": "<p>Property value to set.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-putExtra",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 15308
+          }
+        ],
+        "shortDoc": "Puts an extra property on this Intent. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "putExtraUri",
+        "owner": "Titanium.Android.Intent",
+        "doc": "<p>Put a URI property on this <code>Intent</code> (useful for <a href=\"#!/api/Titanium.Android-property-EXTRA_STREAM\" rel=\"Titanium.Android-property-EXTRA_STREAM\" class=\"docClass\">Titanium.Android.EXTRA_STREAM</a>).</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>The property name.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "String",
+            "name": "value",
+            "doc": "<p>The URI, as a string.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-putExtraUri",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 15325
+          }
+        ],
+        "shortDoc": "Put a URI property on this Intent (useful for Titanium.Android.EXTRA_STREAM). ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Removes the specified callback as an event listener for the named event.</p>\n\n\n<p>@description <p>Multiple listeners can be registered for the same event, so the\n<code>callback</code> parameter is used to determine which listener to remove. </p></p>\n\n<p>When adding a listener, you must save a reference to the callback function\nin order to remove the listener later:</p>\n\n\n\n\n<pre><code>var listener = function() { Ti.API.info(\"Event listener called.\"); }\nwindow.addEventListener('click', listener);\n</code></pre>\n\n\n\n\n<p>To remove the listener, pass in a reference to the callback function:</p>\n\n\n\n\n<pre><code>window.removeEventListener('click', listener);\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to remove. Must be the same function passed to <code>addEventListener</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 55
+          }
+        ],
+        "shortDoc": "Removes the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setAction",
+        "owner": "Titanium.Android.Intent",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Android.Intent-property-action\" rel=\"Titanium.Android.Intent-property-action\" class=\"docClass\">action</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "action",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setAction",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 15355
+          }
+        ],
+        "shortDoc": "Sets the value of the action property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "bubbleParent",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139
+          }
+        ],
+        "shortDoc": "Sets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setClassName",
+        "owner": "Titanium.Android.Intent",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Android.Intent-property-className\" rel=\"Titanium.Android.Intent-property-className\" class=\"docClass\">className</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "className",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setClassName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 15383
+          }
+        ],
+        "shortDoc": "Sets the value of the className property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setFlags",
+        "owner": "Titanium.Android.Intent",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Android.Intent-property-flags\" rel=\"Titanium.Android.Intent-property-flags\" class=\"docClass\">flags</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "flags",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setFlags",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 15424
+          }
+        ],
+        "shortDoc": "Sets the value of the flags property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+            "name": "lifecycleContainer",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.6.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 189
+          }
+        ],
+        "shortDoc": "Sets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setPackageName",
+        "owner": "Titanium.Android.Intent",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Android.Intent-property-packageName\" rel=\"Titanium.Android.Intent-property-packageName\" class=\"docClass\">packageName</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "packageName",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setPackageName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 15452
+          }
+        ],
+        "shortDoc": "Sets the value of the packageName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setUrl",
+        "owner": "Titanium.Android.Intent",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Android.Intent-property-url\" rel=\"Titanium.Android.Intent-property-url\" class=\"docClass\">url</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "url",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setUrl",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 15493
+          }
+        ],
+        "shortDoc": "Sets the value of the url property. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 14882
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+    "Titanium.Proxy"
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

@@ -1,0 +1,1366 @@
+{
+  "tagname": "class",
+  "name": "Titanium.Buffer",
+  "doc": "<p>@platform android 1.7\n@platform iphone 1.7\n@platform ipad 1.7\n@platform mobileweb 1.8 @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/Buffer.yml</p>\n\n<p>Buffer is a mutable, resizable container for raw data.</p>\n\n\n<p>@description <p>A <code>Buffer</code> works like a resizable array of byte values.</p></p>\n\n<p>Use the <a href=\"#!/api/Titanium-method-createBuffer\" rel=\"Titanium-method-createBuffer\" class=\"docClass\">Titanium.createBuffer</a> method to create a buffer.</p>\n\n",
+  "extends": "Titanium.Proxy",
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-Titanium.Buffer",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "apiName",
+        "owner": "Titanium.Proxy",
+        "type": "String",
+        "doc": "<p>The name of the API that this proxy corresponds to.</p>\n\n\n<p>@description <p>The value of this property is the fully qualified name of the API. For example, <a href=\"#!/api/Titanium.UI.Button\" rel=\"Titanium.UI.Button\" class=\"docClass\">Button</a>\nreturns <code>Ti.UI.Button</code>.</p></p>\n\n<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-apiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 235
+          }
+        ],
+        "shortDoc": "The name of the API that this proxy corresponds to. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "bubbleParent",
+        "owner": "Titanium.Proxy",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the proxy will bubble an event to its parent.</p>\n\n\n<p>@description <p>Some proxies (most commonly views) have a relationship to other proxies, often\nestablished by the add() method. For example, for a button added to a window, a\nclick event on the button would bubble up to the window. Other common parents are\ntable sections to their rows, table views to their sections, and scrollable views\nto their views. Set this property to false to disable the bubbling to the proxy's parent.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-bubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 207
+          }
+        ],
+        "shortDoc": "Indicates if the proxy will bubble an event to its parent. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "byteOrder",
+        "owner": "Titanium.Buffer",
+        "type": "Number",
+        "doc": "<p>Byte order of this buffer.</p>\n\n\n<p>@description <p>Specify either <a href=\"#!/api/Titanium.Codec-property-BIG_ENDIAN\" rel=\"Titanium.Codec-property-BIG_ENDIAN\" class=\"docClass\">Titanium.Codec.BIG_ENDIAN</a> or <a href=\"#!/api/Titanium.Codec-property-LITTLE_ENDIAN\" rel=\"Titanium.Codec-property-LITTLE_ENDIAN\" class=\"docClass\">Titanium.Codec.LITTLE_ENDIAN</a>.   </p></p>\n",
+        "default": "OS native byte order.",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-byteOrder",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 24745
+          }
+        ],
+        "shortDoc": "Byte order of this buffer. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "length",
+        "owner": "Titanium.Buffer",
+        "type": "Number",
+        "doc": "<p>Length of the buffer in bytes.</p>\n\n\n<p>@description <p>When <code>length</code> is modified the buffer will be re-sized while preserving existing data where\npossible. If the new buffer length is smaller than the length of the existing data then the\nexisting data will be truncated down to the size of the new buffer. </p></p>\n\n<p>Resizing a buffer by setting its length should be used sparingly due to the associated overhead.</p>\n\n",
+        "default": "0 unless `value` is specified, in which case the length of the encoded data is used.",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-length",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 24674
+          }
+        ],
+        "shortDoc": "Length of the buffer in bytes. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "doc": "<p>The Window or TabGroup whose Activity lifecycle should be triggered on the proxy.</p>\n\n\n<p>@description <p>If this property is set to a Window or TabGroup, then the corresponding Activity lifecycle event callbacks\nwill also be called on the proxy. Proxies that require the activity lifecycle will need this property set\nto the appropriate containing Window or TabGroup.</p></p>\n\n<p>@platform android 3.6.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-lifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 262
+          }
+        ],
+        "shortDoc": "The Window or TabGroup whose Activity lifecycle should be triggered on the proxy. ...",
+        "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "type",
+        "owner": "Titanium.Buffer",
+        "type": "String",
+        "doc": "<p>(<a href=\"#!/api/Titanium.Codec\" rel=\"Titanium.Codec\" class=\"docClass\">Titanium.Codec</a>.CHARSET_UTF8).] <p>The type of data encoding to use with <code>value</code>.</p></p>\n\n<p>@description <p>Required when <code>value</code> is a Number. For numbers, specify a <code>TYPE</code> constant\nfrom <a href=\"#!/api/Titanium.Codec\" rel=\"Titanium.Codec\" class=\"docClass\">Titanium.Codec</a>, for example, <a href=\"#!/api/Titanium.Codec-property-TYPE_DOUBLE\" rel=\"Titanium.Codec-property-TYPE_DOUBLE\" class=\"docClass\">Titanium.Codec.TYPE_DOUBLE</a>.</p></p>\n\n<p>When <code>value</code> is a String, specify a <code>CHARSET</code> constant from <a href=\"#!/api/Titanium.Codec\" rel=\"Titanium.Codec\" class=\"docClass\">Titanium.Codec</a>.</p>\n\n",
+        "default": "For string values, defaults to [CHARSET_UTF8",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-type",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 24721
+          }
+        ],
+        "shortDoc": "(Titanium.Codec.CHARSET_UTF8).] The type of data encoding to use with value. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "value",
+        "owner": "Titanium.Buffer",
+        "type": "Number/String",
+        "doc": "<p>Data to be encoded.</p>\n\n\n<p>@description <p>If <code>value</code> is a Number, <code>type</code> must also be set. (This is simply a convenient way of\ncalling <a href=\"#!/api/Titanium.Codec-method-encodeString\" rel=\"Titanium.Codec-method-encodeString\" class=\"docClass\">Titanium.Codec.encodeString</a> or <a href=\"#!/api/Titanium.Codec-method-encodeNumber\" rel=\"Titanium.Codec-method-encodeNumber\" class=\"docClass\">Titanium.Codec.encodeNumber</a>.)</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-value",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 24699
+          }
+        ],
+        "shortDoc": "Data to be encoded. ...",
+        "html_type": "Number/String",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "addEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Adds the specified callback as an event listener for the named event.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to invoke when the event is fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38
+          }
+        ],
+        "shortDoc": "Adds the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "append",
+        "owner": "Titanium.Buffer",
+        "doc": "<p>Appends <code>sourceBuffer</code> to the this buffer.</p>\n\n\n<p>@description <p>This buffer is grown dynamically to accommodate the additional data if need be.</p></p>\n\n<p>If <code>sourceOffset</code> and <code>sourceLength</code> are specified, data from <code>sourceBuffer</code> is\ncopied starting at position <code>sourceOffset</code>, and no more than <code>sourceLength</code> bytes\nare copied.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.Buffer",
+            "name": "sourceBuffer",
+            "doc": "<p>Buffer to append to this buffer.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.Buffer"
+          },
+          {
+            "type": "Number",
+            "name": "sourceOffset",
+            "doc": "<p>Offset to start reading buffer data from.\nIf specified, <code>sourceLength</code> must also be specified.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Number",
+            "name": "sourceLength",
+            "doc": "<p>Number of bytes to read from <code>sourceBuffer</code>.\nIf specified, <code>sourceOffset</code> must also be specified.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>The number of bytes appended.</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-append",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 24383
+          }
+        ],
+        "shortDoc": "Appends sourceBuffer to the this buffer. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "applyProperties",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Applies the properties to the proxy.</p>\n\n\n<p>@description <p>Properties are supplied as a dictionary. Each key-value pair in the object is applied to the proxy such that\nmyproxy[key] = value.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "props",
+            "doc": "<p>A dictionary of properties to apply.</p>\n\n\n<p>@platform android 3.0.0\n@platform blackberry 3.3.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-applyProperties",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 102
+          }
+        ],
+        "shortDoc": "Applies the properties to the proxy. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "clear",
+        "owner": "Titanium.Buffer",
+        "doc": "<p>Clears this buffer's contents but does not change the size of the buffer.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-clear",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 24508
+          }
+        ],
+        "shortDoc": "Clears this buffer's contents but does not change the size of the buffer. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "clone",
+        "owner": "Titanium.Buffer",
+        "doc": "<p>Creates a complete or partial copy of this buffer.</p>\n\n\n<p>@description <p>If called with no arguments, retuns a complete copy of the current buffer.</p></p>\n\n<p>If <code>offset</code> and <code>length</code> are specified, creates a new buffer from the original\nbuffer contents starting at <code>offset</code> and ending at <code>offset</code>+<code>length</code>-1.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "offset",
+            "doc": "<p>Offset of first byte of this buffer to clone.\nIf specified, <code>length</code> must be specified as well.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Number",
+            "name": "length",
+            "doc": "<p>Number of bytes of data to clone.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "Titanium.Buffer",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.Buffer"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-clone",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 24463
+          }
+        ],
+        "shortDoc": "Creates a complete or partial copy of this buffer. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "copy",
+        "owner": "Titanium.Buffer",
+        "doc": "<p>Copies data from <code>sourceBuffer</code> into the current buffer at <code>offset</code>.</p>\n\n\n<p>@description <p>Does not expand this buffer if there is not enough room  to accomodate the data\nfrom <code>sourceBuffer</code>.</p></p>\n\n<p>If <code>sourceOffset</code> and <code>sourceLength</code> are specified, bytes are copied from\n<code>sourceBuffer</code> starting at <code>sourceOffset</code>, and a maximum of <code>sourceLength</code> bytes\nare copied.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.Buffer",
+            "name": "sourceBuffer",
+            "doc": "<p>Buffer to copy data from.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.Buffer"
+          },
+          {
+            "type": "Number",
+            "name": "offset",
+            "doc": "<p>Offset in this buffer for the first byte of the copied data.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Number",
+            "name": "sourceOffset",
+            "doc": "<p>Offset in <code>sourceBuffer</code> to copy data from.\nIf specified, <code>sourceLength</code> must be specified as well.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Number",
+            "name": "sourceLength",
+            "doc": "<p>Number of bytes to copy from <code>sourceBuffer</code>.\nIf specified, <code>sourceOffset</code> must be specified as well.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>The number of bytes copied.</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-copy",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 24435
+          }
+        ],
+        "shortDoc": "Copies data from sourceBuffer into the current buffer at offset. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "fill",
+        "owner": "Titanium.Buffer",
+        "doc": "<p>Fills this buffer with the specified byte value.</p>\n\n\n<p>@description <p>Fills the buffer by setting byte values to <code>fillByte</code>.</p></p>\n\n<p>If <code>offset</code> and <code>length</code> are specified, fills the buffer starting at\n<code>offset</code> and ending at <code>offset</code>+<code>length</code>-1.</p>\n\n\n\n\n<p>If <code>offset</code> and <code>length</code> are omitted, fills the entire buffer.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "fillByte",
+            "doc": "<p>Byte to fill buffer with.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Number",
+            "name": "offset",
+            "doc": "<p>Offset of the first byte to set to <code>fillByte</code>.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Number",
+            "name": "length",
+            "doc": "<p>Number of bytes to fill.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-fill",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 24484
+          }
+        ],
+        "shortDoc": "Fills this buffer with the specified byte value. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "fireEvent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Fires a synthesized event to any registered listeners.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Dictionary",
+            "name": "event",
+            "doc": "<p>A dictionary of keys and values to add to the <a href=\"#!/api/Titanium.Event\" rel=\"Titanium.Event\" class=\"docClass\">Titanium.Event</a> object sent to the listeners.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-fireEvent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 85
+          }
+        ],
+        "shortDoc": "Fires a synthesized event to any registered listeners. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getApiName",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-apiName\" rel=\"Titanium.Proxy-property-apiName\" class=\"docClass\">apiName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getApiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 157
+          }
+        ],
+        "shortDoc": "Gets the value of the apiName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 123
+          }
+        ],
+        "shortDoc": "Gets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getByteOrder",
+        "owner": "Titanium.Buffer",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Buffer-property-byteOrder\" rel=\"Titanium.Buffer-property-byteOrder\" class=\"docClass\">byteOrder</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getByteOrder",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 24644
+          }
+        ],
+        "shortDoc": "Gets the value of the byteOrder property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLength",
+        "owner": "Titanium.Buffer",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Buffer-property-length\" rel=\"Titanium.Buffer-property-length\" class=\"docClass\">length</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLength",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 24560
+          }
+        ],
+        "shortDoc": "Gets the value of the length property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+          "name": "return",
+          "doc": "<p>@platform android 3.6.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 175
+          }
+        ],
+        "shortDoc": "Gets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getType",
+        "owner": "Titanium.Buffer",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Buffer-property-type\" rel=\"Titanium.Buffer-property-type\" class=\"docClass\">type</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getType",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 24616
+          }
+        ],
+        "shortDoc": "Gets the value of the type property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getValue",
+        "owner": "Titanium.Buffer",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Buffer-property-value\" rel=\"Titanium.Buffer-property-value\" class=\"docClass\">value</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number/String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number/String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getValue",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 24588
+          }
+        ],
+        "shortDoc": "Gets the value of the value property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "insert",
+        "owner": "Titanium.Buffer",
+        "doc": "<p>Inserts data from <code>sourceBuffer</code> into this buffer at <code>offset</code>.</p>\n\n\n<p>@description <p>Buffer is grown to accommodate the new data.</p></p>\n\n<p>If <code>sourceOffset</code> and <code>sourceLength</code> are specified, <code>sourceLength</code> bytes\nof data are copied from <code>sourceBuffer</code>, with the first byte at <code>sourceOffset</code>.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.Buffer",
+            "name": "sourceBuffer",
+            "doc": "<p>Buffer holding data to insert into this buffer.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.Buffer"
+          },
+          {
+            "type": "Number",
+            "name": "offset",
+            "doc": "<p>Offset in this buffer to insert the first byte copied from\n<code>sourceBuffer</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Number",
+            "name": "sourceOffset",
+            "doc": "<p>Offset in <code>sourceBuffer</code> of the first byte to insert.\nIf specified, <code>sourceLength</code> must be specified as well.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Number",
+            "name": "sourceLength",
+            "doc": "<p>Number of bytes to insert from <code>sourceBuffer</code>.\nIf specified, <code>sourceOffset</code> must be specified as well.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>The number of bytes inserted.</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-insert",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 24408
+          }
+        ],
+        "shortDoc": "Inserts data from sourceBuffer into this buffer at offset. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "release",
+        "owner": "Titanium.Buffer",
+        "doc": "<p>Releases the space allocated to the buffer, and sets its length to 0.</p>\n\n\n<p>@description <p>This is effectively the same as <code>buffer.length = 0</code>.</p></p>\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-release",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 24521
+          }
+        ],
+        "shortDoc": "Releases the space allocated to the buffer, and sets its length to 0. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Removes the specified callback as an event listener for the named event.</p>\n\n\n<p>@description <p>Multiple listeners can be registered for the same event, so the\n<code>callback</code> parameter is used to determine which listener to remove. </p></p>\n\n<p>When adding a listener, you must save a reference to the callback function\nin order to remove the listener later:</p>\n\n\n\n\n<pre><code>var listener = function() { Ti.API.info(\"Event listener called.\"); }\nwindow.addEventListener('click', listener);\n</code></pre>\n\n\n\n\n<p>To remove the listener, pass in a reference to the callback function:</p>\n\n\n\n\n<pre><code>window.removeEventListener('click', listener);\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to remove. Must be the same function passed to <code>addEventListener</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 55
+          }
+        ],
+        "shortDoc": "Removes the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "bubbleParent",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139
+          }
+        ],
+        "shortDoc": "Sets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setByteOrder",
+        "owner": "Titanium.Buffer",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Buffer-property-byteOrder\" rel=\"Titanium.Buffer-property-byteOrder\" class=\"docClass\">byteOrder</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "byteOrder",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setByteOrder",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 24657
+          }
+        ],
+        "shortDoc": "Sets the value of the byteOrder property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLength",
+        "owner": "Titanium.Buffer",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Buffer-property-length\" rel=\"Titanium.Buffer-property-length\" class=\"docClass\">length</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "length",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLength",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 24573
+          }
+        ],
+        "shortDoc": "Sets the value of the length property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+            "name": "lifecycleContainer",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.6.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 189
+          }
+        ],
+        "shortDoc": "Sets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setType",
+        "owner": "Titanium.Buffer",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Buffer-property-type\" rel=\"Titanium.Buffer-property-type\" class=\"docClass\">type</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "type",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setType",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 24629
+          }
+        ],
+        "shortDoc": "Sets the value of the type property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setValue",
+        "owner": "Titanium.Buffer",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Buffer-property-value\" rel=\"Titanium.Buffer-property-value\" class=\"docClass\">value</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number/String",
+            "name": "value",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number/String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setValue",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 24601
+          }
+        ],
+        "shortDoc": "Sets the value of the value property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "toBlob",
+        "owner": "Titanium.Buffer",
+        "doc": "<p>Converts this buffer to a <a href=\"#!/api/Titanium.Blob\" rel=\"Titanium.Blob\" class=\"docClass\">Titanium.Blob</a>.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.Blob",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.Blob"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-toBlob",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 24547
+          }
+        ],
+        "shortDoc": "Converts this buffer to a Titanium.Blob. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "toString",
+        "owner": "Titanium.Buffer",
+        "doc": "<p>Converts this buffer to a String.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-toString",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 24534
+          }
+        ],
+        "shortDoc": "Converts this buffer to a String. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 24361
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+    "Titanium.Proxy"
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

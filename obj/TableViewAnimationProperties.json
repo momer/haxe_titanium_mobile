@@ -1,0 +1,159 @@
+{
+  "tagname": "class",
+  "name": "TableViewAnimationProperties",
+  "doc": "<p>@platform android 0.8\n@platform blackberry 3.1.2\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8\n@pseudo @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/UI/TableView.yml</p>\n\n<p>A simple object for specifying the animation properties to use when inserting or deleting rows, or scrolling the table.</p>\n\n\n<p>@description <p>These properties are only used on iOS. Not all properties apply to all methods.</p></p>\n\n<p><code>animationStyle</code> does not apply to the <code>scrollToTop</code> or <code>scrollToIndex</code> methods.</p>\n\n\n\n\n<p><code>positon</code> only applies to the <code>scrollToIndex</code> method.</p>\n\n",
+  "extends": null,
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-TableViewAnimationProperties",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "animated",
+        "owner": "TableViewAnimationProperties",
+        "type": "Boolean",
+        "doc": "<p>Whether this table change should be animated. Ignored if any <code>animationStyle</code> value is specified.</p>\n\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-animated",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 114922
+          }
+        ],
+        "shortDoc": "Whether this table change should be animated. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "animationStyle",
+        "owner": "TableViewAnimationProperties",
+        "type": "Number",
+        "doc": "<p>(<a href=\"#!/api/Titanium.UI.iPhone.RowAnimationStyle-property-FADE\" rel=\"Titanium.UI.iPhone.RowAnimationStyle-property-FADE\" class=\"docClass\">Titanium.UI.iPhone.RowAnimationStyle.FADE</a>).\n] <p>Type of animation to use for row insertions and deletions.</p></p>\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.UI.iPhone.RowAnimationStyle-property-BOTTOM\" rel=\"Titanium.UI.iPhone.RowAnimationStyle-property-BOTTOM\" class=\"docClass\">Titanium.UI.iPhone.RowAnimationStyle.BOTTOM</a>\n <li> <a href=\"#!/api/Titanium.UI.iPhone.RowAnimationStyle-property-FADE\" rel=\"Titanium.UI.iPhone.RowAnimationStyle-property-FADE\" class=\"docClass\">Titanium.UI.iPhone.RowAnimationStyle.FADE</a>\n <li> <a href=\"#!/api/Titanium.UI.iPhone.RowAnimationStyle-property-LEFT\" rel=\"Titanium.UI.iPhone.RowAnimationStyle-property-LEFT\" class=\"docClass\">Titanium.UI.iPhone.RowAnimationStyle.LEFT</a>\n <li> <a href=\"#!/api/Titanium.UI.iPhone.RowAnimationStyle-property-NONE\" rel=\"Titanium.UI.iPhone.RowAnimationStyle-property-NONE\" class=\"docClass\">Titanium.UI.iPhone.RowAnimationStyle.NONE</a>\n <li> <a href=\"#!/api/Titanium.UI.iPhone.RowAnimationStyle-property-RIGHT\" rel=\"Titanium.UI.iPhone.RowAnimationStyle-property-RIGHT\" class=\"docClass\">Titanium.UI.iPhone.RowAnimationStyle.RIGHT</a>\n <li> <a href=\"#!/api/Titanium.UI.iPhone.RowAnimationStyle-property-TOP\" rel=\"Titanium.UI.iPhone.RowAnimationStyle-property-TOP\" class=\"docClass\">Titanium.UI.iPhone.RowAnimationStyle.TOP</a>\n</ul></p>\n\n",
+        "default": "If `animated` is `true` but no `animationStyle` is specified, the style defaults to\n[FADE",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-animationStyle",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 114943
+          }
+        ],
+        "shortDoc": "(Titanium.UI.iPhone.RowAnimationStyle.FADE). ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "position",
+        "owner": "TableViewAnimationProperties",
+        "type": "Number",
+        "doc": "<p>Specifies what position to scroll the selected row to.</p>\n\n\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.UI.iPhone.TableViewScrollPosition-property-BOTTOM\" rel=\"Titanium.UI.iPhone.TableViewScrollPosition-property-BOTTOM\" class=\"docClass\">Titanium.UI.iPhone.TableViewScrollPosition.BOTTOM</a>\n <li> <a href=\"#!/api/Titanium.UI.iPhone.TableViewScrollPosition-property-MIDDLE\" rel=\"Titanium.UI.iPhone.TableViewScrollPosition-property-MIDDLE\" class=\"docClass\">Titanium.UI.iPhone.TableViewScrollPosition.MIDDLE</a>\n <li> <a href=\"#!/api/Titanium.UI.iPhone.TableViewScrollPosition-property-NONE\" rel=\"Titanium.UI.iPhone.TableViewScrollPosition-property-NONE\" class=\"docClass\">Titanium.UI.iPhone.TableViewScrollPosition.NONE</a>\n <li> <a href=\"#!/api/Titanium.UI.iPhone.TableViewScrollPosition-property-TOP\" rel=\"Titanium.UI.iPhone.TableViewScrollPosition-property-TOP\" class=\"docClass\">Titanium.UI.iPhone.TableViewScrollPosition.TOP</a>\n</ul></p>\n\n",
+        "default": "{@link Titanium.UI.iPhone.TableViewScrollPosition#property-NONE}",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-position",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 114975
+          }
+        ],
+        "shortDoc": "Specifies what position to scroll the selected row to. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 114895
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

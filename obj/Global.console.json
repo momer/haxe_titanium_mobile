@@ -1,0 +1,297 @@
+{
+  "tagname": "class",
+  "name": "Global.console",
+  "doc": "<p>@platform android 2.1.0\n@platform blackberry 3.1.2\n@platform iphone 2.1.0\n@platform ipad 2.1.0\n@platform mobileweb 2.1.0 @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Global/console/console.yml</p>\n\n<p>Console logging facilities.</p>\n\n\n<p>@description <p>The toplevel <code>console</code> support is intended to supplement <a href=\"#!/api/Titanium.API\" rel=\"Titanium.API\" class=\"docClass\">Titanium.API</a>\nand make it easier for developers to port existing javascript code\n(especially CommonJS modules) to Titanium.</p></p>\n\n<p>Note that <code>console</code> does not currently implement the complete\n<a href=\"http://getfirebug.com/wiki/index.php/Console_API\">firebug specification</a>.\nOur support is roughly equivalent to that offered by\n<a href=\"http://nodejs.org/api/stdio.html\">node.js's console</a>.</p>\n\n",
+  "extends": null,
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-Global.console",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "debug",
+        "owner": "Global.console",
+        "doc": "<p>Log a message at the <code>debug</code> level.</p>\n\n\n<p>@description <p>The message to log can either be a single argument, or any number\nof arguments, which will be converted to strings and then concatenated\ntogether with a space character.</p></p>\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "message",
+            "doc": "<p>The message(s) to log.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-debug",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 5070
+          }
+        ],
+        "shortDoc": "Log a message at the debug level. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "error",
+        "owner": "Global.console",
+        "doc": "<p>Log a message at the <code>error</code> level.</p>\n\n\n<p>@description <p>The message to log can either be a single argument, or any number\nof arguments, which will be converted to strings and then concatenated\ntogether with a space character.</p></p>\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "message",
+            "doc": "<p>The message(s) to log.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-error",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 5053
+          }
+        ],
+        "shortDoc": "Log a message at the error level. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "info",
+        "owner": "Global.console",
+        "doc": "<p>Log a message at the <code>info</code> level.</p>\n\n\n<p>@description <p>The message to log can either be a single argument, or any number\nof arguments, which will be converted to strings and then concatenated\ntogether with a space character.</p></p>\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "message",
+            "doc": "<p>The message(s) to log.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-info",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 5019
+          }
+        ],
+        "shortDoc": "Log a message at the info level. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "log",
+        "owner": "Global.console",
+        "doc": "<p>Log a message at the <code>info</code> level.</p>\n\n\n<p>@description <p>The message to log can either be a single argument, or any number\nof arguments, which will be converted to strings and then concatenated\ntogether with a space character.</p></p>\n\n<p>Note that this method has different behavior from <a href=\"#!/api/Titanium.API-method-log\" rel=\"Titanium.API-method-log\" class=\"docClass\">Titanium.API.log</a>,\nwhich can take multiple arguments, but in doing so interprets the\nfirst argument as a custom log level.</p>\n\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "message",
+            "doc": "<p>The message(s) to log.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-log",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 4998
+          }
+        ],
+        "shortDoc": "Log a message at the info level. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "warn",
+        "owner": "Global.console",
+        "doc": "<p>Log a message at the <code>warn</code> level.</p>\n\n\n<p>@description <p>The message to log can either be a single argument, or any number\nof arguments, which will be converted to strings and then concatenated\ntogether with a space character.</p></p>\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "message",
+            "doc": "<p>The message(s) to log.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-warn",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 5036
+          }
+        ],
+        "shortDoc": "Log a message at the warn level. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 4970
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

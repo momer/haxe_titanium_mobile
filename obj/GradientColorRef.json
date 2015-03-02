@@ -1,0 +1,134 @@
+{
+  "tagname": "class",
+  "name": "GradientColorRef",
+  "doc": "<p>@platform android 0.8\n@platform blackberry 3.1.2\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8\n@pseudo @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/UI/View.yml</p>\n\n<p>A simple object consisting of a color and an offset.</p>\n\n",
+  "extends": null,
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-GradientColorRef",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "color",
+        "owner": "GradientColorRef",
+        "type": "String",
+        "doc": "<p>Color value at this point in the gradient, as a color name or hex triplet.</p>\n\n\n<p>@description <p>For information about color values, see the \"Colors\" section of <a href=\"#!/api/Titanium.UI\" rel=\"Titanium.UI\" class=\"docClass\">Titanium.UI</a>. </p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-color",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 127982
+          }
+        ],
+        "shortDoc": "Color value at this point in the gradient, as a color name or hex triplet. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "offset",
+        "owner": "GradientColorRef",
+        "type": "Number",
+        "doc": "<p>Offset of this color in the gradient, from 0 (start) to 1 (end).</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-offset",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 128003
+          }
+        ],
+        "html_type": "Number",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 127959
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

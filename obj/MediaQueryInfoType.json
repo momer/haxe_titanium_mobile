@@ -1,0 +1,135 @@
+{
+  "tagname": "class",
+  "name": "MediaQueryInfoType",
+  "doc": "<p>@platform iphone 1.8\n@platform ipad 1.8\n@pseudo @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/Media/Media.yml</p>\n\n<p>A full query descriptor for a filtering predicate.</p>\n\n",
+  "extends": null,
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-MediaQueryInfoType",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "exact",
+        "owner": "MediaQueryInfoType",
+        "type": "Boolean",
+        "doc": "<p>Whether or not the predicate is for an exact match.  The default is <code>true</code>.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-exact",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 61733
+          }
+        ],
+        "shortDoc": "Whether or not the predicate is for an exact match. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "value",
+        "owner": "MediaQueryInfoType",
+        "type": "Number/String/Boolean",
+        "doc": "<p>The value for the given predicate. See the descriptions in <a href=\"#!/api/MediaQueryType\" rel=\"MediaQueryType\" class=\"docClass\">MediaQueryType</a> for information about which properties require which values.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-value",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 61712
+          }
+        ],
+        "shortDoc": "The value for the given predicate. ...",
+        "html_type": "Number/String/Boolean",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 61692
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

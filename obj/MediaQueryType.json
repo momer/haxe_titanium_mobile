@@ -1,0 +1,303 @@
+{
+  "tagname": "class",
+  "name": "MediaQueryType",
+  "doc": "<p>@platform iphone 1.8\n@platform ipad 1.8\n@pseudo @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/Media/Media.yml</p>\n\n<p>A specifier for a media library query. By default, filters perform an exact match.</p>\n\n",
+  "extends": null,
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-MediaQueryType",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "albumArtist",
+        "owner": "MediaQueryType",
+        "type": "MediaQueryInfoType/String",
+        "doc": "<p>The album artist to filter on. Value should be a String.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-albumArtist",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 61606
+          }
+        ],
+        "shortDoc": "The album artist to filter on. ...",
+        "html_type": "MediaQueryInfoType/String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "albumTitle",
+        "owner": "MediaQueryType",
+        "type": "MediaQueryInfoType/String",
+        "doc": "<p>The album title to filter on. Value should be a String.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-albumTitle",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 61564
+          }
+        ],
+        "shortDoc": "The album title to filter on. ...",
+        "html_type": "MediaQueryInfoType/String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "artist",
+        "owner": "MediaQueryType",
+        "type": "MediaQueryInfoType/String",
+        "doc": "<p>The artist to filter on. Value should be a String.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-artist",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 61585
+          }
+        ],
+        "shortDoc": "The artist to filter on. ...",
+        "html_type": "MediaQueryInfoType/String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "composer",
+        "owner": "MediaQueryType",
+        "type": "MediaQueryInfoType/String",
+        "doc": "<p>The composer to filter on. Value should be a String.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-composer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 61648
+          }
+        ],
+        "shortDoc": "The composer to filter on. ...",
+        "html_type": "MediaQueryInfoType/String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "genre",
+        "owner": "MediaQueryType",
+        "type": "MediaQueryInfoType/String",
+        "doc": "<p>The genre to filter on. Value should be a String.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-genre",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 61627
+          }
+        ],
+        "shortDoc": "The genre to filter on. ...",
+        "html_type": "MediaQueryInfoType/String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "grouping",
+        "owner": "MediaQueryType",
+        "type": "Number",
+        "doc": "<p>A constant that specifies the ordering of the result array.</p>\n\n\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.Media-property-MUSIC_MEDIA_GROUP_TITLE\" rel=\"Titanium.Media-property-MUSIC_MEDIA_GROUP_TITLE\" class=\"docClass\">Titanium.Media.MUSIC_MEDIA_GROUP_TITLE</a>\n <li> <a href=\"#!/api/Titanium.Media-property-MUSIC_MEDIA_GROUP_ALBUM\" rel=\"Titanium.Media-property-MUSIC_MEDIA_GROUP_ALBUM\" class=\"docClass\">Titanium.Media.MUSIC_MEDIA_GROUP_ALBUM</a>\n <li> <a href=\"#!/api/Titanium.Media-property-MUSIC_MEDIA_GROUP_ARTIST\" rel=\"Titanium.Media-property-MUSIC_MEDIA_GROUP_ARTIST\" class=\"docClass\">Titanium.Media.MUSIC_MEDIA_GROUP_ARTIST</a>\n <li> <a href=\"#!/api/Titanium.Media-property-MUSIC_MEDIA_GROUP_ALBUM_ARTIST\" rel=\"Titanium.Media-property-MUSIC_MEDIA_GROUP_ALBUM_ARTIST\" class=\"docClass\">Titanium.Media.MUSIC_MEDIA_GROUP_ALBUM_ARTIST</a>\n <li> <a href=\"#!/api/Titanium.Media-property-MUSIC_MEDIA_GROUP_COMPOSER\" rel=\"Titanium.Media-property-MUSIC_MEDIA_GROUP_COMPOSER\" class=\"docClass\">Titanium.Media.MUSIC_MEDIA_GROUP_COMPOSER</a>\n <li> <a href=\"#!/api/Titanium.Media-property-MUSIC_MEDIA_GROUP_GENRE\" rel=\"Titanium.Media-property-MUSIC_MEDIA_GROUP_GENRE\" class=\"docClass\">Titanium.Media.MUSIC_MEDIA_GROUP_GENRE</a>\n <li> <a href=\"#!/api/Titanium.Media-property-MUSIC_MEDIA_GROUP_PLAYLIST\" rel=\"Titanium.Media-property-MUSIC_MEDIA_GROUP_PLAYLIST\" class=\"docClass\">Titanium.Media.MUSIC_MEDIA_GROUP_PLAYLIST</a>\n <li> <a href=\"#!/api/Titanium.Media-property-MUSIC_MEDIA_GROUP_PODCAST_TITLE\" rel=\"Titanium.Media-property-MUSIC_MEDIA_GROUP_PODCAST_TITLE\" class=\"docClass\">Titanium.Media.MUSIC_MEDIA_GROUP_PODCAST_TITLE</a>\n</ul></p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-grouping",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 61482
+          }
+        ],
+        "shortDoc": "A constant that specifies the ordering of the result array. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "isCompilation",
+        "owner": "MediaQueryType",
+        "type": "MediaQueryInfoType/Boolean",
+        "doc": "<p>Filter by whether or not the item is a compilation. Value should be a Boolean.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-isCompilation",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 61669
+          }
+        ],
+        "shortDoc": "Filter by whether or not the item is a compilation. ...",
+        "html_type": "MediaQueryInfoType/Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "mediaType",
+        "owner": "MediaQueryType",
+        "type": "MediaQueryInfoType/Number",
+        "doc": "<p>The media type to filter on.</p>\n\n\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.Media-property-MUSIC_MEDIA_TYPE_ALL\" rel=\"Titanium.Media-property-MUSIC_MEDIA_TYPE_ALL\" class=\"docClass\">Titanium.Media.MUSIC_MEDIA_TYPE_ALL</a>\n <li> <a href=\"#!/api/Titanium.Media-property-MUSIC_MEDIA_TYPE_ANY_AUDIO\" rel=\"Titanium.Media-property-MUSIC_MEDIA_TYPE_ANY_AUDIO\" class=\"docClass\">Titanium.Media.MUSIC_MEDIA_TYPE_ANY_AUDIO</a>\n <li> <a href=\"#!/api/Titanium.Media-property-MUSIC_MEDIA_TYPE_AUDIOBOOK\" rel=\"Titanium.Media-property-MUSIC_MEDIA_TYPE_AUDIOBOOK\" class=\"docClass\">Titanium.Media.MUSIC_MEDIA_TYPE_AUDIOBOOK</a>\n <li> <a href=\"#!/api/Titanium.Media-property-MUSIC_MEDIA_TYPE_MUSIC\" rel=\"Titanium.Media-property-MUSIC_MEDIA_TYPE_MUSIC\" class=\"docClass\">Titanium.Media.MUSIC_MEDIA_TYPE_MUSIC</a>\n <li> <a href=\"#!/api/Titanium.Media-property-MUSIC_MEDIA_TYPE_PODCAST\" rel=\"Titanium.Media-property-MUSIC_MEDIA_TYPE_PODCAST\" class=\"docClass\">Titanium.Media.MUSIC_MEDIA_TYPE_PODCAST</a>\n</ul></p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-mediaType",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 61514
+          }
+        ],
+        "shortDoc": "The media type to filter on. ...",
+        "html_type": "MediaQueryInfoType/Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "title",
+        "owner": "MediaQueryType",
+        "type": "MediaQueryInfoType/String",
+        "doc": "<p>The title to filter on. Value should be a String.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-title",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 61543
+          }
+        ],
+        "shortDoc": "The title to filter on. ...",
+        "html_type": "MediaQueryInfoType/String",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 61462
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

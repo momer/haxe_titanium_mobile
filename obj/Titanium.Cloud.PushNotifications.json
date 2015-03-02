@@ -1,0 +1,1172 @@
+{
+  "tagname": "class",
+  "name": "Titanium.Cloud.PushNotifications",
+  "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8 @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/Cloud/PushNotifications/PushNotifications.yml</p>\n\n<p>Provides methods for accessing ACS push notification channels.</p>\n\n\n<p>@description <p>For information on configuring and setting up push notifications,\nsee the <a href=\"http://docs.appcelerator.com/titanium/latest/#!/guide/Push_Notifications\">Push Notifications guide</a>.</p></p>\n\n<p>The methods in this module are used to subscribe and unsubscribe from ACS push notification\nchannels, and to generate ACS push notifications. Push notifications are received using\nplatform-specific mechanisms:</p>\n\n\n\n\n<ul>\n<li>On iOS, push notifications are received through the standard iOS push notification\nmechanism. When you register for push notifications, incoming push notifications\nare passed to the <code>callback</code> callback. See\n<a href=\"#!/api/Titanium.Network-method-registerForPushNotifications\" rel=\"Titanium.Network-method-registerForPushNotifications\" class=\"docClass\">Network.registerForPushNotifications</a>\nfor details.</li>\n<li>On Android, push notifications are received through the <a href=\"#!/api/Titanium.CloudPush\" rel=\"Titanium.CloudPush\" class=\"docClass\">Titanium.CloudPush</a> module.\nAdd a listener for the <a href=\"#!/api/Titanium.CloudPush-event-callback\" rel=\"Titanium.CloudPush-event-callback\" class=\"docClass\">callback</a> event to receive push notifications.</li>\n</ul>\n\n\n\n\n<p>To register for push notifications, you need to obtain an application-specific <em>device\ntoken</em>. To obtain a device token:</p>\n\n\n\n\n<ul>\n<li>On iOS, when you successfully register for push notifications, the device token is\npassed to the <code>success</code> callback.</li>\n<li>On Android, use\n<a href=\"#!/api/Titanium.CloudPush-method-retrieveDeviceToken\" rel=\"Titanium.CloudPush-method-retrieveDeviceToken\" class=\"docClass\">CloudPush.retrieveDeviceToken</a> to request\na device token. The device token is passed to the <code>success</code> callback.</li>\n</ul>\n\n\n<h3>Examples</h3>\n\n\n<h4>Subscribe to Channel</h4>\n\n\n<p>This example subscribes to a push notification channel and checks the response.</p>\n\n\n\n\n<pre><code>Cloud.PushNotifications.subscribe({\n    channel: 'friend_request',\n    device_token: myPushDeviceToken\n}, function (e) {\n    if (e.success) {\n        alert('Success');\n    } else {\n        alert('Error:\\n' +\n            ((e.error &amp;&amp; e.message) || JSON.stringify(e)));\n    }\n});\n</code></pre>\n\n\n<h4>Unsubscribe to Channel</h4>\n\n\n<p>This example unsubscribes from a push notification channel and checks the response.</p>\n\n\n\n\n<pre><code>Cloud.PushNotifications.unsubscribe({\n    channel: 'friend_request',\n    device_token: myPushDeviceToken\n}, function (e) {\n    if (e.success) {\n        alert('Success');\n    } else {\n        alert('Error:\\n' +\n            ((e.error &amp;&amp; e.message) || JSON.stringify(e)));\n    }\n});\n</code></pre>\n\n\n<h4>Notify Channel</h4>\n\n\n<p>This example sends a push notification to a channel and checks the response.</p>\n\n\n\n\n<pre><code>Cloud.PushNotifications.notify({\n    channel: 'friend_request',\n    payload: 'Welcome to push notifications'\n}, function (e) {\n    if (e.success) {\n        alert('Success');\n    } else {\n        alert('Error:\\n' +\n            ((e.error &amp;&amp; e.message) || JSON.stringify(e)));\n    }\n});\n</code></pre>\n\n\n<h4>Update Subscription</h4>\n\n\n<p>This example updates the user's notification subscription with the device's current\nlocation, upon successfully obtaining the device's current position.</p>\n\n\n\n\n<pre><code>var latitude, longitude,\nvar pushDeviceToken; // Device token obtained earlier...\n\n<a href=\"#!/api/Titanium.Geolocation-method-getCurrentPosition\" rel=\"Titanium.Geolocation-method-getCurrentPosition\" class=\"docClass\">Titanium.Geolocation.getCurrentPosition</a>(function(e) {\n    if (e.error) {\n        Ti.API.error('Error: ' + e.error);\n    } else {\n        latitude = e.coords.latitude;\n        longitude = e.coords.longitude;\n        Cloud.PushNotifications.updateSubscription({\n            device_token: pushDeviceToken,\n            loc: [longitude, latitude]\n        }, function (e) {\n            if (e.success) {\n                alert('Subscription Updated.');\n            }\n            else {\n                alert(e);\n            }\n        });\n    }\n});\n</code></pre>\n\n",
+  "extends": "Titanium.Module",
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-Titanium.Cloud.PushNotifications",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "apiName",
+        "owner": "Titanium.Proxy",
+        "type": "String",
+        "doc": "<p>The name of the API that this proxy corresponds to.</p>\n\n\n<p>@description <p>The value of this property is the fully qualified name of the API. For example, <a href=\"#!/api/Titanium.UI.Button\" rel=\"Titanium.UI.Button\" class=\"docClass\">Button</a>\nreturns <code>Ti.UI.Button</code>.</p></p>\n\n<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-apiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 235
+          }
+        ],
+        "shortDoc": "The name of the API that this proxy corresponds to. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "bubbleParent",
+        "owner": "Titanium.Proxy",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the proxy will bubble an event to its parent.</p>\n\n\n<p>@description <p>Some proxies (most commonly views) have a relationship to other proxies, often\nestablished by the add() method. For example, for a button added to a window, a\nclick event on the button would bubble up to the window. Other common parents are\ntable sections to their rows, table views to their sections, and scrollable views\nto their views. Set this property to false to disable the bubbling to the proxy's parent.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-bubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 207
+          }
+        ],
+        "shortDoc": "Indicates if the proxy will bubble an event to its parent. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "doc": "<p>The Window or TabGroup whose Activity lifecycle should be triggered on the proxy.</p>\n\n\n<p>@description <p>If this property is set to a Window or TabGroup, then the corresponding Activity lifecycle event callbacks\nwill also be called on the proxy. Proxies that require the activity lifecycle will need this property set\nto the appropriate containing Window or TabGroup.</p></p>\n\n<p>@platform android 3.6.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-lifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 262
+          }
+        ],
+        "shortDoc": "The Window or TabGroup whose Activity lifecycle should be triggered on the proxy. ...",
+        "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "addEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Adds the specified callback as an event listener for the named event.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to invoke when the event is fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38
+          }
+        ],
+        "shortDoc": "Adds the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "applyProperties",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Applies the properties to the proxy.</p>\n\n\n<p>@description <p>Properties are supplied as a dictionary. Each key-value pair in the object is applied to the proxy such that\nmyproxy[key] = value.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "props",
+            "doc": "<p>A dictionary of properties to apply.</p>\n\n\n<p>@platform android 3.0.0\n@platform blackberry 3.3.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-applyProperties",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 102
+          }
+        ],
+        "shortDoc": "Applies the properties to the proxy. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "fireEvent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Fires a synthesized event to any registered listeners.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Dictionary",
+            "name": "event",
+            "doc": "<p>A dictionary of keys and values to add to the <a href=\"#!/api/Titanium.Event\" rel=\"Titanium.Event\" class=\"docClass\">Titanium.Event</a> object sent to the listeners.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-fireEvent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 85
+          }
+        ],
+        "shortDoc": "Fires a synthesized event to any registered listeners. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getApiName",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-apiName\" rel=\"Titanium.Proxy-property-apiName\" class=\"docClass\">apiName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getApiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 157
+          }
+        ],
+        "shortDoc": "Gets the value of the apiName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 123
+          }
+        ],
+        "shortDoc": "Gets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+          "name": "return",
+          "doc": "<p>@platform android 3.6.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 175
+          }
+        ],
+        "shortDoc": "Gets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "notify",
+        "owner": "Titanium.Cloud.PushNotifications",
+        "doc": "<p>Send a push notification to a channel.</p>\n\n\n<p>@description <p>Requires user login. </p></p>\n\n<p>See <a href=\"http://docs.appcelerator.com/cloud/latest/#!/api/PushNotifications-method-notify\">push_notifications/notify.json</a>\nfor the request parameters supported by this method.</p>\n\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "parameters",
+            "doc": "<p>Parameters to send in the request.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          },
+          {
+            "type": "Callback<CloudPushNotificationsResponse>",
+            "name": "callback",
+            "doc": "<p>Callback function to execute when the method completes.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<CloudPushNotificationsResponse>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-notify",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 34496
+          }
+        ],
+        "shortDoc": "Send a push notification to a channel. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "notifyTokens",
+        "owner": "Titanium.Cloud.PushNotifications",
+        "doc": "<p>Send a push notification to a channel to the specified devices.</p>\n\n\n<p>@description <p>See <a href=\"http://docs.appcelerator.com/cloud/latest/#!/api/PushNotifications-method-notify_tokens\">push_notifications/notify_tokens.json</a>\nfor the request parameters supported by this method.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "parameters",
+            "doc": "<p>Parameters to send in the request.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          },
+          {
+            "type": "Callback<CloudPushNotificationsResponse>",
+            "name": "callback",
+            "doc": "<p>Callback function to execute when the method completes.</p>\n\n\n<p>@platform android 3.1.2\n@platform iphone 3.1.2\n@platform ipad 3.1.2</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<CloudPushNotificationsResponse>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-notifyTokens",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 34516
+          }
+        ],
+        "shortDoc": "Send a push notification to a channel to the specified devices. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "query",
+        "owner": "Titanium.Cloud.PushNotifications",
+        "doc": "<p>Custom query of push notification subscriptions with paginating.</p>\n\n\n<p>@description <p>See <a href=\"http://docs.appcelerator.com/cloud/latest/#!/api/PushNotifications-method-query\">push_notifications/query.json</a>\nfor the request parameters supported by this method.</p></p>\n\n<p>Data is returned in the <code>subscriptions</code> property of the parameter passed to the callback.</p>\n\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "parameters",
+            "doc": "<p>Parameters to send in the request.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          },
+          {
+            "type": "Callback<CloudPushNotificationsQueryResponse>",
+            "name": "callback",
+            "doc": "<p>Callback function to execute when the method completes.</p>\n\n\n<p>@platform android 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<CloudPushNotificationsQueryResponse>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-query",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 34739
+          }
+        ],
+        "shortDoc": "Custom query of push notification subscriptions with paginating. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "queryChannels",
+        "owner": "Titanium.Cloud.PushNotifications",
+        "doc": "<p>Returns a list of push notification channels the user is subscribed to.</p>\n\n\n<p>@description <p>Requires user login. </p></p>\n\n<p>See <a href=\"http://docs.appcelerator.com/cloud/latest/#!/api/PushNotifications-method-channels_query\">push_notifications/channels/query.json</a>\nfor the request parameters supported by this method.</p>\n\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "parameters",
+            "doc": "<p>Parameters to send in the request.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          },
+          {
+            "type": "Callback<CloudPushNotificationsQueryChannelResponse>",
+            "name": "callback",
+            "doc": "<p>Callback function to execute when the method completes.</p>\n\n\n<p>@platform android 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<CloudPushNotificationsQueryChannelResponse>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-queryChannels",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 34693
+          }
+        ],
+        "shortDoc": "Returns a list of push notification channels the user is subscribed to. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Removes the specified callback as an event listener for the named event.</p>\n\n\n<p>@description <p>Multiple listeners can be registered for the same event, so the\n<code>callback</code> parameter is used to determine which listener to remove. </p></p>\n\n<p>When adding a listener, you must save a reference to the callback function\nin order to remove the listener later:</p>\n\n\n\n\n<pre><code>var listener = function() { Ti.API.info(\"Event listener called.\"); }\nwindow.addEventListener('click', listener);\n</code></pre>\n\n\n\n\n<p>To remove the listener, pass in a reference to the callback function:</p>\n\n\n\n\n<pre><code>window.removeEventListener('click', listener);\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to remove. Must be the same function passed to <code>addEventListener</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 55
+          }
+        ],
+        "shortDoc": "Removes the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "resetBadge",
+        "owner": "Titanium.Cloud.PushNotifications",
+        "doc": "<p>Resets the badge value to zero but does not update it on the device.</p>\n\n\n<p>@description <p>To update the badge in the device's UI, send a push notification to the device with the\n<code>badge</code> field defined.</p></p>\n\n<p>The REST API call supports calling this method as either a PUT request or a GET request.\nThis method only supports the PUT request, which means a device token must be passed to this\nmethod.</p>\n\n\n\n\n<p>See <a href=\"http://docs.appcelerator.com/cloud/latest/#!/api/PushNotifications-method-reset_badge_put\">push_notifications/reset_badge.json</a>\nfor the request parameter supported by this method.</p>\n\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "parameters",
+            "doc": "<p>Parameters to send in the request.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          },
+          {
+            "type": "Callback<CloudPushNotificationsResponse>",
+            "name": "callback",
+            "doc": "<p>Callback function to execute when the method completes.</p>\n\n\n<p>@platform android 3.2.1\n@platform iphone 3.2.1\n@platform ipad 3.2.1</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<CloudPushNotificationsResponse>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-resetBadge",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 34537
+          }
+        ],
+        "shortDoc": "Resets the badge value to zero but does not update it on the device. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setBadge",
+        "owner": "Titanium.Cloud.PushNotifications",
+        "doc": "<p>Sets the badge value but does not update it on the device.</p>\n\n\n<p>@description <p>To update the badge in the device's UI, send a push notification to the device with the\n<code>badge</code> field defined.</p></p>\n\n<p>See <a href=\"http://docs.appcelerator.com/cloud/latest/#!/api/PushNotifications-method-set_badge\">push_notifications/set_badge.json</a>\nfor the request parameter supported by this method.</p>\n\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "parameters",
+            "doc": "<p>Parameters to send in the request.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          },
+          {
+            "type": "Callback<CloudPushNotificationsResponse>",
+            "name": "callback",
+            "doc": "<p>Callback function to execute when the method completes.</p>\n\n\n<p>@platform android 3.2.1\n@platform iphone 3.2.1\n@platform ipad 3.2.1</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<CloudPushNotificationsResponse>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setBadge",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 34565
+          }
+        ],
+        "shortDoc": "Sets the badge value but does not update it on the device. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "bubbleParent",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139
+          }
+        ],
+        "shortDoc": "Sets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+            "name": "lifecycleContainer",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.6.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 189
+          }
+        ],
+        "shortDoc": "Sets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "showChannels",
+        "owner": "Titanium.Cloud.PushNotifications",
+        "doc": "<p>Returns the number of devices subscribed to the specified channel.</p>\n\n\n<p>@description <p>Requires user login. </p></p>\n\n<p>See <a href=\"http://docs.appcelerator.com/cloud/latest/#!/api/PushNotifications-method-channels_show\">push_notifications/channels/show.json</a>\nfor the request parameters supported by this method.</p>\n\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "parameters",
+            "doc": "<p>Parameters to send in the request.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          },
+          {
+            "type": "Callback<CloudPushNotificationsShowChannelResponse>",
+            "name": "callback",
+            "doc": "<p>Callback function to execute when the method completes.</p>\n\n\n<p>@platform android 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<CloudPushNotificationsShowChannelResponse>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-showChannels",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 34716
+          }
+        ],
+        "shortDoc": "Returns the number of devices subscribed to the specified channel. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "subscribe",
+        "owner": "Titanium.Cloud.PushNotifications",
+        "doc": "<p>Subscribe a mobile device to a push notification channel.</p>\n\n\n<p>@description <p>Requires user login. </p></p>\n\n<p>See <a href=\"http://docs.appcelerator.com/cloud/latest/#!/api/PushNotifications-method-subscribe\">push_notifications/subscribe.json</a>\nfor the request parameters supported by this method.</p>\n\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "parameters",
+            "doc": "<p>Parameters to send in the request.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          },
+          {
+            "type": "Callback<CloudPushNotificationsResponse>",
+            "name": "callback",
+            "doc": "<p>Callback function to execute when the method completes.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<CloudPushNotificationsResponse>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-subscribe",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 34589
+          }
+        ],
+        "shortDoc": "Subscribe a mobile device to a push notification channel. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "subscribeToken",
+        "owner": "Titanium.Cloud.PushNotifications",
+        "doc": "<p>Subscribe a mobile device to a push notification channel using a device token.</p>\n\n\n<p>@description <p>See <a href=\"http://docs.appcelerator.com/cloud/latest/#!/api/PushNotifications-method-subscribe_token\">push_notifications/subsribe_tokens.json</a>\nfor the request parameters supported by this method.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "parameters",
+            "doc": "<p>Parameters to send in the request.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          },
+          {
+            "type": "Callback<CloudPushNotificationsResponse>",
+            "name": "callback",
+            "doc": "<p>Callback function to execute when the method completes.</p>\n\n\n<p>@platform android 3.1.2\n@platform iphone 3.1.2\n@platform ipad 3.1.2</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<CloudPushNotificationsResponse>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-subscribeToken",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 34609
+          }
+        ],
+        "shortDoc": "Subscribe a mobile device to a push notification channel using a device token. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "unsubscribe",
+        "owner": "Titanium.Cloud.PushNotifications",
+        "doc": "<p>Unsubscribe a mobile device from a push notification channel.</p>\n\n\n<p>@description <p>Requires user login. </p></p>\n\n<p>See <a href=\"http://docs.appcelerator.com/cloud/latest/#!/api/PushNotifications-method-unsubscribe\">push_notifications/unsubscribe.json</a>\nfor the request parameters supported by this method.</p>\n\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "parameters",
+            "doc": "<p>Parameters to send in the request.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          },
+          {
+            "type": "Callback<CloudPushNotificationsResponse>",
+            "name": "callback",
+            "doc": "<p>Callback function to execute when the method completes.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<CloudPushNotificationsResponse>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-unsubscribe",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 34630
+          }
+        ],
+        "shortDoc": "Unsubscribe a mobile device from a push notification channel. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "unsubscribeToken",
+        "owner": "Titanium.Cloud.PushNotifications",
+        "doc": "<p>Unsubscribe a mobile device from a push notification channel using a device token.</p>\n\n\n<p>@description <p>See <a href=\"http://docs.appcelerator.com/cloud/latest/#!/api/PushNotifications-method-unsubscribe_token\">push_notifications/unsubscribe_tokens.json</a>\nfor the request parameters supported by this method.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "parameters",
+            "doc": "<p>Parameters to send in the request.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          },
+          {
+            "type": "Callback<CloudPushNotificationsResponse>",
+            "name": "callback",
+            "doc": "<p>Callback function to execute when the method completes.</p>\n\n\n<p>@platform android 3.1.2\n@platform iphone 3.1.2\n@platform ipad 3.1.2</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<CloudPushNotificationsResponse>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-unsubscribeToken",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 34650
+          }
+        ],
+        "shortDoc": "Unsubscribe a mobile device from a push notification channel using a device token. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "updateSubscription",
+        "owner": "Titanium.Cloud.PushNotifications",
+        "doc": "<p>Updates a user's notification subscription with the device's location.</p>\n\n\n<p>@description <p>This allows an Appcelerator Dashboard administrator\nto send push notifications to devices located within a specified geographic region. For details, see\n<a href=\"http://docs.appcelerator.com/platform/latest/#!/guide/Sending_and_scheduling_push_notifications\">Sending and scheduling push notifications</a>. </p></p>\n\n<p>See <a href=\"http://docs.appcelerator.com/cloud/latest/#!/api/PushNotifications-method-subscription_update\">push_notifications/unsubscribe.json</a>\nfor the request parameters supported by this method.</p>\n\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "parameters",
+            "doc": "<p>Parameters to send in the request.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          },
+          {
+            "type": "Callback<CloudPushNotificationsResponse>",
+            "name": "callback",
+            "doc": "<p>Callback function to execute when the method completes.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<CloudPushNotificationsResponse>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-updateSubscription",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 34671
+          }
+        ],
+        "shortDoc": "Updates a user's notification subscription with the device's location. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 34382
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+    "Titanium.Proxy",
+    "Titanium.Module"
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

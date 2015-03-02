@@ -1,0 +1,1909 @@
+{
+  "tagname": "class",
+  "name": "Titanium.UI.ActivityIndicator",
+  "doc": "<p>@platform android 0.8\n@platform blackberry 3.1.2\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8 @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/UI/ActivityIndicator.yml</p>\n\n<p>An activity indicator that lets the user know an action is taking place.</p>\n\n\n<p>@description <table id=\"platformComparison\">\n  <tr>\n    <td><img src=\"images/activityindicator/activityindicator_android.png\" height=\"75\" /></td>\n    <td><img src=\"images/activityindicator/activityindicator_bb.png\" height=\"75\" /></td>\n    <td><img src=\"images/activityindicator/activityindicator_ios.png\" height=\"75\" /></td>\n    <td><img src=\"images/activityindicator/activityindicator_mobileweb.png\" height=\"75\" /></td>\n  </tr>\n  <tr><th>Android</th><th>BlackBerry</th><th>iOS</th><th>Mobile Web</th></tr>\n</table></p>\n\n<p>An activity indicator can be used to show the progress of an operation in the UI to let the\nuser know that some action is taking place. An activity indicator consists of a spinning\nanimation and an optional text message, and is used to indicate an ongoing activity of\nindeterminate length. To show progress, use <a href=\"#!/api/Titanium.UI.ProgressBar\" rel=\"Titanium.UI.ProgressBar\" class=\"docClass\">Titanium.UI.ProgressBar</a> instead.</p>\n\n\n\n\n<p>Use the <a href=\"#!/api/Titanium.UI-method-createActivityIndicator\" rel=\"Titanium.UI-method-createActivityIndicator\" class=\"docClass\">Titanium.UI.createActivityIndicator</a> method or <strong><code>&lt;ActivityIndicator&gt;</code></strong> Alloy element to\ncreate an <code>ActivityIndicator</code> object.</p>\n\n\n\n\n<p><code>ActivityIndicator</code> is a view and, like any view, must be added to a window or other top-level\nview before it can be shown. Unlike most views, <code>ActivityIndicator</code> is hidden by\ndefault and must be shown explicitly by calling its <a href=\"#!/api/Titanium.UI.ActivityIndicator-method-show\" rel=\"Titanium.UI.ActivityIndicator-method-show\" class=\"docClass\">show</a> method.</p>\n\n\n\n\n<h4>Android Platform Notes</h4>\n\n\n\n\n<p>Prior to SDK 3.0, activity indicator on Android produced a modal dialog containing a spinner or\nprogress bar. In SDK 3.0, this legacy Android activity indicator was renamed to\n<a href=\"#!/api/Titanium.UI.Android.ProgressIndicator\" rel=\"Titanium.UI.Android.ProgressIndicator\" class=\"docClass\">Titanium.UI.Android.ProgressIndicator</a>.</p>\n\n\n\n\n<p>In SDK 3.0, use <code>ActivityIndicator</code> for a view that can be added as a child of another view.\nUse <code>ProgressIndicator</code> to display a progress indicator in a modal dialog or window title bar.</p>\n\n\n<h3>Examples</h3>\n\n\n<h4>Simple Activity Indicator</h4>\n\n\n<p>Open a yellow window immediately after a blue window. Show an activity indicator while\nsome code executes and hide it on completion. Then close the yellow window.</p>\n\n\n\n\n<pre><code>Ti.UI.backgroundColor = 'white';\n\nvar win1 = Ti.UI.createWindow({\n  backgroundColor: 'blue'\n});\n\nvar win2 = Ti.UI.createWindow({\n  backgroundColor: 'yellow',\n  fullscreen: true\n});\n\nvar style;\nif (Ti.Platform.name === 'iPhone OS'){\n  style = Ti.UI.iPhone.ActivityIndicatorStyle.DARK;\n}\nelse {\n  style = Ti.UI.ActivityIndicatorStyle.DARK;\n}\nvar activityIndicator = Ti.UI.createActivityIndicator({\n  color: 'green',\n  font: {fontFamily:'Helvetica Neue', fontSize:26, fontWeight:'bold'},\n  message: 'Loading...',\n  style:style,\n  top:10,\n  left:10,\n  height:Ti.UI.SIZE,\n  width:Ti.UI.SIZE\n});\n\n// The activity indicator must be added to a window or view for it to appear\nwin2.add(activityIndicator);\n\n// eventListeners must always be loaded before the event is likely to fire\n// hence, the open() method must be positioned before the window is opened\nwin2.addEventListener('open', function (e) {\n  activityIndicator.show();\n  // do some work that takes 6 seconds\n  // ie. replace the following setTimeout block with your code\n  setTimeout(function(){\n    e.source.close();\n    activityIndicator.hide();\n  }, 6000);\n});\n\nwin1.open();\nwin2.open();\n</code></pre>\n\n\n<h4>Alloy XML Markup</h4>\n\n\n<p>Previous example as two Alloy views.</p>\n\n\n\n\n<p>win1.xml:</p>\n\n\n\n\n<pre><code>&lt;Alloy&gt;\n    &lt;Window onOpen=\"openWin2\" backgroundColor=\"blue\" /&gt;\n&lt;/Alloy&gt;\n</code></pre>\n\n\n\n\n<p>win1.js:</p>\n\n\n\n\n<pre><code>function openWin2 () {\n    var win2 = Alloy.createController('win2').getView();\n    win2.open();\n}\n</code></pre>\n\n\n\n\n<p>win2.xml:</p>\n\n\n\n\n<pre><code>&lt;Alloy&gt;\n    &lt;Window onOpen=\"showIndicator\" fullscreen=\"true\" backgroundColor=\"yellow\"&gt;\n\n        &lt;!-- Define the styling properties in the TSS file --&gt;\n        &lt;ActivityIndicator id=\"activityIndicator\" message=\"Loading...\"/&gt;\n    &lt;/Window&gt;\n&lt;/Alloy&gt;\n</code></pre>\n\n\n\n\n<p>win2.js:</p>\n\n\n\n\n<pre><code>function showIndicator(e){\n    $.activityIndicator.show();\n    // do some work that takes 6 seconds\n    // ie. replace the following setTimeout block with your code\n    setTimeout(function(){\n        e.source.close();\n        $.activityIndicator.hide();\n    }, 6000);\n}\n</code></pre>\n\n",
+  "extends": "Titanium.Proxy",
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-Titanium.UI.ActivityIndicator",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "apiName",
+        "owner": "Titanium.Proxy",
+        "type": "String",
+        "doc": "<p>The name of the API that this proxy corresponds to.</p>\n\n\n<p>@description <p>The value of this property is the fully qualified name of the API. For example, <a href=\"#!/api/Titanium.UI.Button\" rel=\"Titanium.UI.Button\" class=\"docClass\">Button</a>\nreturns <code>Ti.UI.Button</code>.</p></p>\n\n<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-apiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 235
+          }
+        ],
+        "shortDoc": "The name of the API that this proxy corresponds to. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "bottom",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "type": "Number/String",
+        "doc": "<p>Bottom position of the view.</p>\n\n\n<p>@description <p>Determines the absolute position of the view relative to its parent.  </p></p>\n\n<p>Can be either a float value or a dimension string (for example <code>100</code> or <code>'50%'</code>.)</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-bottom",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79358
+          }
+        ],
+        "shortDoc": "Bottom position of the view. ...",
+        "html_type": "Number/String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "bubbleParent",
+        "owner": "Titanium.Proxy",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the proxy will bubble an event to its parent.</p>\n\n\n<p>@description <p>Some proxies (most commonly views) have a relationship to other proxies, often\nestablished by the add() method. For example, for a button added to a window, a\nclick event on the button would bubble up to the window. Other common parents are\ntable sections to their rows, table views to their sections, and scrollable views\nto their views. Set this property to false to disable the bubbling to the proxy's parent.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-bubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 207
+          }
+        ],
+        "shortDoc": "Indicates if the proxy will bubble an event to its parent. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "color",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "type": "String",
+        "doc": "<p>Color of the message text, as a color name or hex triplet.</p>\n\n\n<p>@description <p>For information about color values, see the \"Colors\" section of <a href=\"#!/api/Titanium.UI\" rel=\"Titanium.UI\" class=\"docClass\">Titanium.UI</a>.</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-color",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79381
+          }
+        ],
+        "shortDoc": "Color of the message text, as a color name or hex triplet. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "font",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "type": "Font",
+        "doc": "<p>Font used for the message text.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-font",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79402
+          }
+        ],
+        "html_type": "Font",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "height",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "type": "String",
+        "doc": "<p>Width of the view. Only accepts value of <a href=\"#!/api/Titanium.UI-property-SIZE\" rel=\"Titanium.UI-property-SIZE\" class=\"docClass\">Titanium.UI.SIZE</a>, which must be explicitly set in order to\ndisplay the message and to position the view correctly.</p>\n\n\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.UI-property-SIZE\" rel=\"Titanium.UI-property-SIZE\" class=\"docClass\">Titanium.UI.SIZE</a>\n</ul></p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-height",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79423
+          }
+        ],
+        "shortDoc": "Width of the view. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "indicatorColor",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "type": "String",
+        "doc": "<p>Color of the animated indicator.</p>\n\n\n<p>@platform mobileweb 2.1.0</p>\n",
+        "default": "<pre>#fff</pre>",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-indicatorColor",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79581
+          }
+        ],
+        "shortDoc": "Color of the animated indicator. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "indicatorDiameter",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "type": "String",
+        "doc": "<p>Diameter of the indicator.</p>\n\n\n<p>@description <p>The diameter of the animated indicator, exclusive of any message text.</p></p>\n\n<p>@platform mobileweb 2.1.0</p>\n",
+        "default": "36",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-indicatorDiameter",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79603
+          }
+        ],
+        "shortDoc": "Diameter of the indicator. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "left",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "type": "Number/String",
+        "doc": "<p>Left position of the view.</p>\n\n\n<p>@description <p>Determines the absolute position of the view relative to its parent.  </p></p>\n\n<p>Can be either a float value or a dimension string (for example <code>100</code> or <code>'50%'</code>.)</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-left",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79449
+          }
+        ],
+        "shortDoc": "Left position of the view. ...",
+        "html_type": "Number/String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "doc": "<p>The Window or TabGroup whose Activity lifecycle should be triggered on the proxy.</p>\n\n\n<p>@description <p>If this property is set to a Window or TabGroup, then the corresponding Activity lifecycle event callbacks\nwill also be called on the proxy. Proxies that require the activity lifecycle will need this property set\nto the appropriate containing Window or TabGroup.</p></p>\n\n<p>@platform android 3.6.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-lifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 262
+          }
+        ],
+        "shortDoc": "The Window or TabGroup whose Activity lifecycle should be triggered on the proxy. ...",
+        "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "message",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "type": "String",
+        "doc": "<p>Message text.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-message",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79472
+          }
+        ],
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "messageid",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "type": "String",
+        "doc": "<p>Key identifying a string in the locale file to use for the message text.</p>\n\n\n<p>@description <p>Only one of <code>message</code> or <code>messageid</code> should be specified.</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-messageid",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79493
+          }
+        ],
+        "shortDoc": "Key identifying a string in the locale file to use for the message text. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "right",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "type": "Number/String",
+        "doc": "<p>Right position of the view.</p>\n\n\n<p>@description <p>Determines the absolute position of the view relative to its parent.  </p></p>\n\n<p>Can be either a float value or a dimension string (for example <code>100</code> or <code>'50%'</code>.)</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-right",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79514
+          }
+        ],
+        "shortDoc": "Right position of the view. ...",
+        "html_type": "Number/String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "style",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "type": "Number",
+        "doc": "<p>The style for the activity indicator.</p>\n\n\n<p>@description <p>One of the activity indicator style constants.</p></p>\n\n<p>For iOS, use one of the constants with <code>iPhone</code> in the namespace.</p>\n\n\n\n\n<p>For Android and Mobile Web, use a constant without <code>iPhone</code> in the namespace.</p>\n\n\n\n\n<p>On Mobile Web, setting the style automatically sets the indicator color and diameter.</p>\n\n\n\n\n<p>See also: <a href=\"#!/api/Titanium.UI.ActivityIndicator-property-indicatorColor\" rel=\"Titanium.UI.ActivityIndicator-property-indicatorColor\" class=\"docClass\">indicatorColor</a>,\n<a href=\"#!/api/Titanium.UI.ActivityIndicator-property-indicatorDiameter\" rel=\"Titanium.UI.ActivityIndicator-property-indicatorDiameter\" class=\"docClass\">indicatorDiameter</a></p>\n\n\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.UI.iPhone.ActivityIndicatorStyle-property-BIG\" rel=\"Titanium.UI.iPhone.ActivityIndicatorStyle-property-BIG\" class=\"docClass\">Titanium.UI.iPhone.ActivityIndicatorStyle.BIG</a>\n <li> <a href=\"#!/api/Titanium.UI.iPhone.ActivityIndicatorStyle-property-DARK\" rel=\"Titanium.UI.iPhone.ActivityIndicatorStyle-property-DARK\" class=\"docClass\">Titanium.UI.iPhone.ActivityIndicatorStyle.DARK</a>\n <li> <a href=\"#!/api/Titanium.UI.iPhone.ActivityIndicatorStyle-property-PLAIN\" rel=\"Titanium.UI.iPhone.ActivityIndicatorStyle-property-PLAIN\" class=\"docClass\">Titanium.UI.iPhone.ActivityIndicatorStyle.PLAIN</a>\n <li> <a href=\"#!/api/Titanium.UI.ActivityIndicatorStyle-property-BIG\" rel=\"Titanium.UI.ActivityIndicatorStyle-property-BIG\" class=\"docClass\">Titanium.UI.ActivityIndicatorStyle.BIG</a>\n <li> <a href=\"#!/api/Titanium.UI.ActivityIndicatorStyle-property-DARK\" rel=\"Titanium.UI.ActivityIndicatorStyle-property-DARK\" class=\"docClass\">Titanium.UI.ActivityIndicatorStyle.DARK</a>\n <li> <a href=\"#!/api/Titanium.UI.ActivityIndicatorStyle-property-BIG_DARK\" rel=\"Titanium.UI.ActivityIndicatorStyle-property-BIG_DARK\" class=\"docClass\">Titanium.UI.ActivityIndicatorStyle.BIG_DARK</a>\n <li> <a href=\"#!/api/Titanium.UI.ActivityIndicatorStyle-property-PLAIN\" rel=\"Titanium.UI.ActivityIndicatorStyle-property-PLAIN\" class=\"docClass\">Titanium.UI.ActivityIndicatorStyle.PLAIN</a>\n</ul></p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+        "default": "{@link Titanium.UI.iPhone.ActivityIndicatorStyle#property-PLAIN} (iOS), {@link Titanium.UI.ActivityIndicatorStyle#property-PLAIN} (Android and Mobile Web)",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-style",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79537
+          }
+        ],
+        "shortDoc": "The style for the activity indicator. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "top",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "type": "Number/String",
+        "doc": "<p>Top position of the view.</p>\n\n\n<p>@description <p>Determines the absolute position of the view relative to its parent.  </p></p>\n\n<p>Can be either a float value or a dimension string (for example <code>100</code> or<code>'50%'</code>.)</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-top",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79625
+          }
+        ],
+        "shortDoc": "Top position of the view. ...",
+        "html_type": "Number/String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "width",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "type": "String",
+        "doc": "<p>Width of the view. Only accepts value of <a href=\"#!/api/Titanium.UI-property-SIZE\" rel=\"Titanium.UI-property-SIZE\" class=\"docClass\">Titanium.UI.SIZE</a>, which must be explicitly set in order to\ndisplay the message and to position the view correctly.</p>\n\n\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.UI-property-SIZE\" rel=\"Titanium.UI-property-SIZE\" class=\"docClass\">Titanium.UI.SIZE</a>\n</ul></p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-width",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79648
+          }
+        ],
+        "shortDoc": "Width of the view. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "add",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "doc": "<p>Adds a child to this activity indicator's hierarchy.</p>\n\n\n<p>@description <p>Adding children to an <code>ActivityIndicator</code> is not supported on all platforms.</p></p>\n\n<p>If you need to display views on top of this object, consider using\nanother view as a container for both this object and the views you want\nto appear on top of it.</p>\n\n\n\n\n<p>See also: <a href=\"#!/api/Titanium.UI.View-method-add\" rel=\"Titanium.UI.View-method-add\" class=\"docClass\">Titanium.UI.View.add</a>.</p>\n\n\n<p>@platform blackberry 3.1.2\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-add",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 78913
+          }
+        ],
+        "shortDoc": "Adds a child to this activity indicator's hierarchy. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "addEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Adds the specified callback as an event listener for the named event.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to invoke when the event is fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38
+          }
+        ],
+        "shortDoc": "Adds the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "applyProperties",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Applies the properties to the proxy.</p>\n\n\n<p>@description <p>Properties are supplied as a dictionary. Each key-value pair in the object is applied to the proxy such that\nmyproxy[key] = value.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "props",
+            "doc": "<p>A dictionary of properties to apply.</p>\n\n\n<p>@platform android 3.0.0\n@platform blackberry 3.3.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-applyProperties",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 102
+          }
+        ],
+        "shortDoc": "Applies the properties to the proxy. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "fireEvent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Fires a synthesized event to any registered listeners.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Dictionary",
+            "name": "event",
+            "doc": "<p>A dictionary of keys and values to add to the <a href=\"#!/api/Titanium.Event\" rel=\"Titanium.Event\" class=\"docClass\">Titanium.Event</a> object sent to the listeners.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-fireEvent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 85
+          }
+        ],
+        "shortDoc": "Fires a synthesized event to any registered listeners. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getApiName",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-apiName\" rel=\"Titanium.Proxy-property-apiName\" class=\"docClass\">apiName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getApiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 157
+          }
+        ],
+        "shortDoc": "Gets the value of the apiName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBottom",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.ActivityIndicator-property-bottom\" rel=\"Titanium.UI.ActivityIndicator-property-bottom\" class=\"docClass\">bottom</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number/String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number/String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBottom",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 78980
+          }
+        ],
+        "shortDoc": "Gets the value of the bottom property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 123
+          }
+        ],
+        "shortDoc": "Gets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getColor",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.ActivityIndicator-property-color\" rel=\"Titanium.UI.ActivityIndicator-property-color\" class=\"docClass\">color</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getColor",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79008
+          }
+        ],
+        "shortDoc": "Gets the value of the color property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getFont",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.ActivityIndicator-property-font\" rel=\"Titanium.UI.ActivityIndicator-property-font\" class=\"docClass\">font</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Font",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Font"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getFont",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79036
+          }
+        ],
+        "shortDoc": "Gets the value of the font property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getHeight",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.ActivityIndicator-property-height\" rel=\"Titanium.UI.ActivityIndicator-property-height\" class=\"docClass\">height</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getHeight",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79064
+          }
+        ],
+        "shortDoc": "Gets the value of the height property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getIndicatorColor",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.ActivityIndicator-property-indicatorColor\" rel=\"Titanium.UI.ActivityIndicator-property-indicatorColor\" class=\"docClass\">indicatorColor</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform mobileweb 2.1.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getIndicatorColor",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79240
+          }
+        ],
+        "shortDoc": "Gets the value of the indicatorColor property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getIndicatorDiameter",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.ActivityIndicator-property-indicatorDiameter\" rel=\"Titanium.UI.ActivityIndicator-property-indicatorDiameter\" class=\"docClass\">indicatorDiameter</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform mobileweb 2.1.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getIndicatorDiameter",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79270
+          }
+        ],
+        "shortDoc": "Gets the value of the indicatorDiameter property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLeft",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.ActivityIndicator-property-left\" rel=\"Titanium.UI.ActivityIndicator-property-left\" class=\"docClass\">left</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number/String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number/String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLeft",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79092
+          }
+        ],
+        "shortDoc": "Gets the value of the left property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+          "name": "return",
+          "doc": "<p>@platform android 3.6.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 175
+          }
+        ],
+        "shortDoc": "Gets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getMessage",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.ActivityIndicator-property-message\" rel=\"Titanium.UI.ActivityIndicator-property-message\" class=\"docClass\">message</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getMessage",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79120
+          }
+        ],
+        "shortDoc": "Gets the value of the message property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getMessageid",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.ActivityIndicator-property-messageid\" rel=\"Titanium.UI.ActivityIndicator-property-messageid\" class=\"docClass\">messageid</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getMessageid",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79148
+          }
+        ],
+        "shortDoc": "Gets the value of the messageid property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getRight",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.ActivityIndicator-property-right\" rel=\"Titanium.UI.ActivityIndicator-property-right\" class=\"docClass\">right</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number/String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number/String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getRight",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79176
+          }
+        ],
+        "shortDoc": "Gets the value of the right property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getStyle",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.ActivityIndicator-property-style\" rel=\"Titanium.UI.ActivityIndicator-property-style\" class=\"docClass\">style</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getStyle",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79204
+          }
+        ],
+        "shortDoc": "Gets the value of the style property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getTop",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.ActivityIndicator-property-top\" rel=\"Titanium.UI.ActivityIndicator-property-top\" class=\"docClass\">top</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number/String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number/String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getTop",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79300
+          }
+        ],
+        "shortDoc": "Gets the value of the top property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getWidth",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.ActivityIndicator-property-width\" rel=\"Titanium.UI.ActivityIndicator-property-width\" class=\"docClass\">width</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getWidth",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79328
+          }
+        ],
+        "shortDoc": "Gets the value of the width property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "hide",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "doc": "<p>Hides the activity indicator and stops the animation.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-hide",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 78936
+          }
+        ],
+        "shortDoc": "Hides the activity indicator and stops the animation. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "remove",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "doc": "<p>Removes a child from this activity indicator's hierarchy.</p>\n\n\n<p>@description <p>Adding children to an <code>ActivityIndicator</code> is not supported on all platforms.</p></p>\n\n<p>See also: <a href=\"#!/api/Titanium.UI.ActivityIndicator-method-add\" rel=\"Titanium.UI.ActivityIndicator-method-add\" class=\"docClass\">add</a>, <a href=\"#!/api/Titanium.UI.View-method-add\" rel=\"Titanium.UI.View-method-add\" class=\"docClass\">Titanium.UI.View.add</a>.</p>\n\n\n<p>@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-remove",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 78949
+          }
+        ],
+        "shortDoc": "Removes a child from this activity indicator's hierarchy. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Removes the specified callback as an event listener for the named event.</p>\n\n\n<p>@description <p>Multiple listeners can be registered for the same event, so the\n<code>callback</code> parameter is used to determine which listener to remove. </p></p>\n\n<p>When adding a listener, you must save a reference to the callback function\nin order to remove the listener later:</p>\n\n\n\n\n<pre><code>var listener = function() { Ti.API.info(\"Event listener called.\"); }\nwindow.addEventListener('click', listener);\n</code></pre>\n\n\n\n\n<p>To remove the listener, pass in a reference to the callback function:</p>\n\n\n\n\n<pre><code>window.removeEventListener('click', listener);\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to remove. Must be the same function passed to <code>addEventListener</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 55
+          }
+        ],
+        "shortDoc": "Removes the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setBottom",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.ActivityIndicator-property-bottom\" rel=\"Titanium.UI.ActivityIndicator-property-bottom\" class=\"docClass\">bottom</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number/String",
+            "name": "bottom",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number/String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setBottom",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 78993
+          }
+        ],
+        "shortDoc": "Sets the value of the bottom property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "bubbleParent",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139
+          }
+        ],
+        "shortDoc": "Sets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setColor",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.ActivityIndicator-property-color\" rel=\"Titanium.UI.ActivityIndicator-property-color\" class=\"docClass\">color</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "color",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setColor",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79021
+          }
+        ],
+        "shortDoc": "Sets the value of the color property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setFont",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.ActivityIndicator-property-font\" rel=\"Titanium.UI.ActivityIndicator-property-font\" class=\"docClass\">font</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Font",
+            "name": "font",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Font"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setFont",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79049
+          }
+        ],
+        "shortDoc": "Sets the value of the font property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setHeight",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.ActivityIndicator-property-height\" rel=\"Titanium.UI.ActivityIndicator-property-height\" class=\"docClass\">height</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "height",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setHeight",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79077
+          }
+        ],
+        "shortDoc": "Sets the value of the height property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setIndicatorColor",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.ActivityIndicator-property-indicatorColor\" rel=\"Titanium.UI.ActivityIndicator-property-indicatorColor\" class=\"docClass\">indicatorColor</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "indicatorColor",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform mobileweb 2.1.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setIndicatorColor",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79254
+          }
+        ],
+        "shortDoc": "Sets the value of the indicatorColor property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setIndicatorDiameter",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.ActivityIndicator-property-indicatorDiameter\" rel=\"Titanium.UI.ActivityIndicator-property-indicatorDiameter\" class=\"docClass\">indicatorDiameter</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "indicatorDiameter",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform mobileweb 2.1.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setIndicatorDiameter",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79284
+          }
+        ],
+        "shortDoc": "Sets the value of the indicatorDiameter property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLeft",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.ActivityIndicator-property-left\" rel=\"Titanium.UI.ActivityIndicator-property-left\" class=\"docClass\">left</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number/String",
+            "name": "left",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number/String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLeft",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79105
+          }
+        ],
+        "shortDoc": "Sets the value of the left property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+            "name": "lifecycleContainer",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.6.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 189
+          }
+        ],
+        "shortDoc": "Sets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setMessage",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.ActivityIndicator-property-message\" rel=\"Titanium.UI.ActivityIndicator-property-message\" class=\"docClass\">message</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "message",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setMessage",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79133
+          }
+        ],
+        "shortDoc": "Sets the value of the message property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setMessageid",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.ActivityIndicator-property-messageid\" rel=\"Titanium.UI.ActivityIndicator-property-messageid\" class=\"docClass\">messageid</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "messageid",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setMessageid",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79161
+          }
+        ],
+        "shortDoc": "Sets the value of the messageid property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setRight",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.ActivityIndicator-property-right\" rel=\"Titanium.UI.ActivityIndicator-property-right\" class=\"docClass\">right</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number/String",
+            "name": "right",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number/String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setRight",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79189
+          }
+        ],
+        "shortDoc": "Sets the value of the right property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setStyle",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.ActivityIndicator-property-style\" rel=\"Titanium.UI.ActivityIndicator-property-style\" class=\"docClass\">style</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "style",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setStyle",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79221
+          }
+        ],
+        "shortDoc": "Sets the value of the style property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setTop",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.ActivityIndicator-property-top\" rel=\"Titanium.UI.ActivityIndicator-property-top\" class=\"docClass\">top</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number/String",
+            "name": "top",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number/String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setTop",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79313
+          }
+        ],
+        "shortDoc": "Sets the value of the top property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setWidth",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.ActivityIndicator-property-width\" rel=\"Titanium.UI.ActivityIndicator-property-width\" class=\"docClass\">width</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "width",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setWidth",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 79341
+          }
+        ],
+        "shortDoc": "Sets the value of the width property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "show",
+        "owner": "Titanium.UI.ActivityIndicator",
+        "doc": "<p>Shows the activity indicator and starts the animation.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-show",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 78967
+          }
+        ],
+        "shortDoc": "Shows the activity indicator and starts the animation. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 78772
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+    "Titanium.Proxy"
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

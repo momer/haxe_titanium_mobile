@@ -1,0 +1,111 @@
+{
+  "tagname": "class",
+  "name": "LocationCoordinatesFloor",
+  "doc": "<p>@platform android 0.8\n@platform blackberry 3.1.2\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8\n@pseudo @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/Geolocation/Geolocation.yml</p>\n\n<p>Simple object holding floor of the building on which the user is located.\nIn places where floor information can be determined.</p>\n\n",
+  "extends": null,
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-LocationCoordinatesFloor",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "level",
+        "owner": "LocationCoordinatesFloor",
+        "type": "Number",
+        "doc": "<p>The logical floor of the building.</p>\n\n\n<p>@description <p>Level values represent logical levels above or below ground level and are not\nintended to correspond to any numbering scheme in use by the building itself.\nThe ground floor of a building is always represented by the value 0. Floors\nabove the ground floor are represented by positive integers, so a value of 1\nrepresents the floor above ground level, a value of 2 represents two floors\nabove ground level, and so on. Floors below the ground floor are represented\nby corresponding negative integers, with a value of -1 representing the floor\nimmediately below ground level and so on.</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-level",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 48795
+          }
+        ],
+        "shortDoc": "The logical floor of the building. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 48771
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

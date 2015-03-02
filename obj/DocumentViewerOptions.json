@@ -1,0 +1,134 @@
+{
+  "tagname": "class",
+  "name": "DocumentViewerOptions",
+  "doc": "<p>@platform iphone 2.1.1\n@platform ipad 2.1.1\n@pseudo @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/UI/iOS/DocumentViewer.yml</p>\n\n<p>A simple object for specifying options when showing or dismissing a <a href=\"#!/api/Titanium.UI.iOS.DocumentViewer\" rel=\"Titanium.UI.iOS.DocumentViewer\" class=\"docClass\">Titanium.UI.iOS.DocumentViewer</a>.</p>\n\n\n<p>@description <p>The <code>view</code> property does not apply to the <code>hide</code> method.</p></p>\n",
+  "extends": null,
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-DocumentViewerOptions",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "animated",
+        "owner": "DocumentViewerOptions",
+        "type": "Boolean",
+        "doc": "<p>Indicates whether to animate the transition.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-animated",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 138188
+          }
+        ],
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "view",
+        "owner": "DocumentViewerOptions",
+        "type": "Titanium.UI.View",
+        "doc": "<p>Anchors the options menu to the specified view.</p>\n\n\n<p>@description <p>Only used with the <code>show</code> method.</p></p>\n\n<p>Currently, this property can only be set to a button in the <a href=\"#!/api/Titanium.UI.iOS.Toolbar\" rel=\"Titanium.UI.iOS.Toolbar\" class=\"docClass\">Titanium.UI.iOS.Toolbar</a>,\nor the window's <code>leftNavButton</code> or <code>rightNavButton</code> property.</p>\n\n\n\n\n<p>If this property is not specified, the <code>show</code> method launches the document in the viewer\nwithout showing the options menu.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-view",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 138209
+          }
+        ],
+        "shortDoc": "Anchors the options menu to the specified view. ...",
+        "html_type": "Titanium.UI.View",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 138168
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

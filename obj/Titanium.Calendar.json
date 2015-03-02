@@ -1,0 +1,1798 @@
+{
+  "tagname": "class",
+  "name": "Titanium.Calendar",
+  "doc": "<p>@platform android 3.2.0\n@platform iphone 3.1.0\n@platform ipad 3.1.0 @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/Calendar/Calendar.yml</p>\n\n<p>The Calendar module provides an API for accessing the native calendar functionality.</p>\n\n\n<p>@description <p>This module supports retrieving information about existing events and creating new events.\nModifying or deleting existing events and creating recurring events are only supported on iOS.</p></p>\n\n<p>Currently, on Android, calendar permissions must be explicitly configured in <code>tiapp.xml</code> in order to access the\ncalendar. See \"Common Requirements\" in\n<a href=\"http://docs.appcelerator.com/titanium/latest/#!/guide/tiapp.xml_and_timodule.xml_Reference\">tiapp.xml and timodule.xml Reference</a>.</p>\n\n\n<h3>Examples</h3>\n\n\n<h4>All Calendars vs Selectable Calendars</h4>\n\n\n<p>Print the names of all calendars, and the names of calendars that\nhave been selected in the native Android calendar application.</p>\n\n\n\n\n<pre><code>function showCalendars(calendars) {\n    for (var i = 0; i &lt; calendars.length; i++) {\n        Ti.API.info(calendars[i].name);\n    }\n}\n\nTi.API.info('ALL CALENDARS:');\nshowCalendars(Ti.Calendar.allCalendars);\nif (Ti.Platform.osname === 'android') {\n    Ti.API.info('SELECTABLE CALENDARS:');\n    showCalendars(Ti.Calendar.selectableCalendars);\n}\n</code></pre>\n\n\n<h4>Create an Event and Reminder on Android</h4>\n\n\n<p>Creates an event and adds an e-mail reminder for 10 minutes before the event.</p>\n\n\n\n\n<pre><code>var CALENDAR_TO_USE = 3;\nvar calendar = Ti.Calendar.getCalendarById(CALENDAR_TO_USE);\n\n// Create the event\nvar eventBegins = new Date(2010, 11, 26, 12, 0, 0);\nvar eventEnds = new Date(2010, 11, 26, 14, 0, 0);\nvar details = {\n    title: 'Do some stuff',\n    description: \"I'm going to do some stuff at this time.\",\n    begin: eventBegins,\n    end: eventEnds\n};\n\nvar event = calendar.createEvent(details);\n\n// Now add a reminder via e-mail for 10 minutes before the event.\nvar reminderDetails = {\n    minutes: 10,\n    method: Ti.Calendar.METHOD_EMAIL\n};\n\nevent.createReminder(reminderDetails);\n</code></pre>\n\n\n<h4>Events in a year</h4>\n\n\n<p>Create a picker to allow an existing calendar to be selected and, when a button is clicked,\ngenerate details of all events in that calendar for the current year .</p>\n\n\n\n\n<pre><code>var calendars = [];\nvar selectedCalendarName;\nvar selectedid;\nvar pickerData = [];\nvar osname = Ti.Platform.osname;\n\n/&#47;&#42;*read events from calendar*******\nfunction performCalendarReadFunctions(){\n    var scrollView = Ti.UI.createScrollView({\n      backgroundColor: '#eee',\n      height: 500,\n      top: 20\n    });\n\n    var label = Ti.UI.createLabel({\n      backgroundColor: 'white',\n      text: 'Click on the button to display the events for the selected calendar',\n      textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,\n      top: 20\n    });\n    scrollView.add(label);\n\n    var selectableCalendars = Ti.Calendar.allCalendars;\n    for (var i = 0, ilen = selectableCalendars.length; i &lt; ilen; i++) {\n      calendars.push({ name: selectableCalendars[i].name, id: selectableCalendars[i].id });\n      pickerData.push( Ti.UI.createPickerRow({ title: calendars[i].name }) );\n      if(i === 0){\n        selectedCalendarName = selectableCalendars[i].name;\n        selectedid = selectableCalendars[i].id;\n      }\n    }\n\n    if(!calendars.length){\n      label.text = 'No calendars available. Select at least one in the native calendar before using this app';\n    } else {\n      label.text = 'Click button to view calendar events';\n\n      var picker = Ti.UI.createPicker({\n        top:20\n      });\n\n      picker.add(pickerData);\n      win.add(picker);\n\n      picker.addEventListener('change', function(e){\n        for (var i = 0, ilen = calendars.length; i &lt; ilen; i++) {\n          if(calendars[i].name === e.row.title){\n            selectedCalendarName = calendars[i].name;\n            selectedid = calendars[i].id;\n            Ti.API.info('Selected calendar that we are going to fetch is :: '+ selectedid + ' name:' + selectedCalendarName);\n          }\n        }\n      });\n\n      var button = Ti.UI.createButton({\n        title: 'View events',\n        top: 20\n      });\n      win.add(button);\n\n      button.addEventListener('click', function(e){\n        label.text = 'Generating...';\n\n        var currentYear = new Date().getFullYear();\n\n        var consoleString = '';\n\n        function print(s) {\n          if (consoleString.length) {\n            consoleString = consoleString + '\\n';\n          }\n          consoleString = consoleString + s;\n        }\n\n        var calendar = Ti.Calendar.getCalendarById(selectedid);\n        Ti.API.info('Calendar was of type' + calendar);\n        Ti.API.info('calendar that we are going to fetch is :: '+ calendar.id + ' name:' + calendar.name);\n\n        function printReminder(r) {\n            if (osname === 'android') {\n                var typetext = '[method unknown]';\n                if (r.method == Ti.Calendar.METHOD_EMAIL) {\n                    typetext = 'Email';\n                } else if (r.method == Ti.Calendar.METHOD_SMS) {\n                    typetext = 'SMS';\n                } else if (r.method == Ti.Calendar.METHOD_ALERT) {\n                    typetext = 'Alert';\n                } else if (r.method == Ti.Calendar.METHOD_DEFAULT) {\n                    typetext = '[default reminder method]';\n                }\n                print(typetext + ' reminder to be sent ' + r.minutes + ' minutes before the event');\n            }\n        }\n\n        function printAlert(a) {\n            if (osname === 'android') {\n                print('Alert id ' + a.id + ' begin ' + a.begin + '; end ' + a.end + '; alarmTime ' + a.alarmTime + '; minutes ' + a.minutes);\n            } else if (osname === 'iphone' || osname === 'ipad') {\n                print('Alert absoluteDate ' + a.absoluteDate + ' relativeOffset ' + a.relativeOffset);\n            }\n        }\n\n        function printEvent(event) {\n          if (event.allDay) {\n            print('Event: ' + event.title + '; ' + event.begin + ' (all day)');\n          } else {\n            print('Event: ' + event.title + '; ' + event.begin + ' ' + event.begin+ '-' + event.end);\n          }\n\n          var reminders = event.reminders;\n          if (reminders &amp;&amp; reminders.length) {\n            print('There is/are ' + reminders.length + ' reminder(s)');\n            for (var i = 0; i &lt; reminders.length; i++) {\n                printReminder(reminders[i]);\n            }\n          }\n          print('hasAlarm? ' + event.hasAlarm);\n          var alerts = event.alerts;\n          if (alerts &amp;&amp; alerts.length) {\n            for (var i = 0; i &lt; alerts.length; i++) {\n              printAlert(alerts[i]);\n            }\n          }\n\n          var status = event.status;\n          if (status == Ti.Calendar.STATUS_TENTATIVE) {\n            print('This event is tentative');\n          }\n          if (status == Ti.Calendar.STATUS_CONFIRMED) {\n            print('This event is confirmed');\n          }\n          if (status == Ti.Calendar.STATUS_CANCELED) {\n            print('This event was canceled');\n          }\n        }\n\n        var events = calendar.getEventsInYear(currentYear);\n        if (events &amp;&amp; events.length) {\n          print(events.length + ' event(s) in ' + currentYear);\n          print('');\n          for (var i = 0; i &lt; events.length; i++) {\n            printEvent(events[i]);\n            print('');\n          }\n        } else {\n          print('No events');\n        }\n\n        label.text = consoleString;\n      });\n    }\n\n    win.add(scrollView);\n}\n\n\nvar win = Ti.UI.createWindow({\n  backgroundColor: 'white',\n  exitOnClose: true,\n  fullscreen: false,\n  layout: 'vertical',\n  title: 'Calendar Demo'\n});\n\nif (osname === 'android') {\n    performCalendarReadFunctions();\n} else if (osname === 'iphone' || osname === 'ipad') {\n    if (Ti.Calendar.eventsAuthorization == Ti.Calendar.AUTHORIZATION_AUTHORIZED) {\n        performCalendarReadFunctions();\n    } else {\n        Ti.Calendar.requestEventsAuthorization(function(e){\n            if (e.success) {\n                performCalendarReadFunctions();\n            } else {\n                alert('Access to calendar is not allowed');\n            }\n        });\n    }\n}\n\nwin.open();\n</code></pre>\n\n\n<h4>Create a Recurring Event with Alerts on iOS</h4>\n\n\n<p>Create a recurring event with alerts.</p>\n\n\n\n\n<pre><code>function printEventDetails(eventID) {\n    Ti.API.info('eventID:' + eventID);\n    var defCalendar = Ti.Calendar.defaultCalendar;\n    var eventFromCalendar = defCalendar.getEventById(eventID);\n    if (eventFromCalendar != null) {\n        Ti.API.info('Printing event values ::');\n        Ti.API.info('title : '+ eventFromCalendar.title);\n        Ti.API.info('notes : ' + eventFromCalendar.notes);\n        Ti.API.info('location:' + eventFromCalendar.location);\n        Ti.API.info('allDay ? :' + eventFromCalendar.allDay);\n        Ti.API.info('status : '+ eventFromCalendar.status);\n        Ti.API.info('availability : '+ eventFromCalendar.availability);\n        Ti.API.info('hasAlarm ? : '+ eventFromCalendar.hasAlarm);\n        Ti.API.info('id : '+ eventFromCalendar.id);\n        Ti.API.info('isDetached ? : '+ eventFromCalendar.isDetached);\n        Ti.API.info('begin : '+ eventFromCalendar.begin);\n        Ti.API.info('end : '+ eventFromCalendar.end);\n        var eventRule = eventFromCalendar.recurrenceRules;\n        Ti.API.info(\"recurrenceRules : \" + eventRule);\n        for (var i = 0; i &lt; eventRule.length; i++) {\n            Ti.API.info(\"Rule # \"+ i);\n            Ti.API.info('frequency : ' + eventRule[i].frequency);\n            Ti.API.info('interval : ' + eventRule[i].interval);\n            Ti.API.info('daysofTheWeek : ' );\n            var daysofTheWeek = eventRule[i].daysOfTheWeek;\n            for (var j = 0; j &lt; daysofTheWeek.length; j++) {\n                Ti.API.info('{ dayOfWeek : '+ daysofTheWeek[j].dayOfWeek +'weekNumber : '+daysofTheWeek[j].week +'}, ');\n            }\n            Ti.API.info('firstDayOfTheWeek : ' + eventRule[i].firstDayOfTheWeek);\n            Ti.API.info('daysOfTheMonth : ');\n            var daysOfTheMonth = eventRule[i].daysOfTheMonth;\n            for(var j=0;j&lt;daysOfTheMonth.length;j++) {\n                Ti.API.info(' ' + daysOfTheMonth[j]);\n            }\n            Ti.API.info('daysOfTheYear : ');\n            var daysOfTheYear = eventRule[i].daysOfTheYear;\n            for(var j=0;i&lt;daysOfTheYear.length;j++) {\n                Ti.API.info(' ' + daysOfTheYear[j]);\n            }\n            Ti.API.info('weeksOfTheYear : ');\n            var weeksOfTheYear = eventRule[i].weeksOfTheYear;\n            for(var j=0;j&lt;weeksOfTheYear.length;j++) {\n                Ti.API.info(' ' + weeksOfTheYear[j]);\n            }\n            Ti.API.info('monthsOfTheYear : ');\n            var monthsOfTheYear = eventRule[i].monthsOfTheYear;\n            for(var j=0;j&lt;monthsOfTheYear.length;j++) {\n                Ti.API.info(' ' + monthsOfTheYear[j]);\n            }\n            Ti.API.info('daysOfTheYear : ');\n            var setPositions = eventRule[i].setPositions;\n            for(var j=0;j&lt;setPositions.length;j++) {\n                Ti.API.info(' ' + setPositions[j]);\n            }\n        };\n        Ti.API.info('alerts : '+ eventFromCalendar.alerts);\n        var newAlerts = eventFromCalendar.alerts;\n\n        for(var i=0 ; i &lt; newAlerts.length ; i++) {\n            Ti.API.info('*****ALert '+ i);\n            Ti.API.info('absoluteDate :'+ newAlerts[i].absoluteDate);\n            Ti.API.info('relativeOffset ;' + newAlerts[i].relativeOffset);\n        }\n   }\n}\nfunction performCalendarWriteFunctions(){\n    var defCalendar = Ti.Calendar.defaultCalendar;\n    var date1 = new Date(new Date().getTime() + 3000),\n        date2 = new Date(new Date().getTime() + 900000);\n    Ti.API.info('Date1 : '+ date1 + 'Date2 : '+ date2);\n    var event1 = defCalendar.createEvent({\n                        title: 'Sample Event',\n                        notes: 'This is a test event which has some values assigned to it.',\n                        location: 'Appcelerator Inc',\n                        begin: date1,\n                        end: date2,\n                        availability: Ti.Calendar.AVAILABILITY_FREE,\n                        allDay: false,\n                });\n    var alert1 = event1.createAlert({\n                        absoluteDate: new Date(new Date().getTime() - (1000*60*20))\n                });\n    var alert2 = event1.createAlert({\n        relativeOffset:-(60*15)\n    })\n    var allAlerts = new Array(alert1,alert2);\n    event1.alerts = allAlerts;\n    var newRule = event1.createRecurenceRule({\n                        frequency: Ti.Calendar.RECURRENCEFREQUENCY_MONTHLY,\n                        interval: 1,\n                        daysOfTheWeek: [{dayOfWeek:1,week:2},{dayOfWeek:2}],\n                        end: {occurrenceCount:10}\n                });\n    Ti.API.info('newRule : '+ newRule);\n    event1.recurrenceRules = [newRule];\n    Ti.API.info('Going to save event now');\n    event1.save(Ti.Calendar.SPAN_THISEVENT);\n    Ti.API.info('Done with saving event,\\n Now trying to retreive it.');\n    printEventDetails(event1.id);\n}\nvar win = Ti.UI.createWindow({\n                        backgroundColor: 'white',\n                        title: 'Calendar Demo'\n            });\n\nvar label = Ti.UI.createLabel({\n                        text: 'Check console log',\n                        height: Ti.UI.size,\n                        width: Ti.UI.size\n            });\nwin.add(label);\n\nif(Ti.Calendar.eventsAuthorization == Ti.Calendar.AUTHORIZATION_AUTHORIZED) {\n    performCalendarWriteFunctions();\n} else {\n    Ti.Calendar.requestEventsAuthorization(function(e){\n            if (e.success) {\n                performCalendarWriteFunctions();\n            } else {\n                alert('Access to calendar is not allowed');\n            }\n        });\n}\nwin.open();\n</code></pre>\n\n",
+  "extends": "Titanium.Module",
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-Titanium.Calendar",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "AUTHORIZATION_AUTHORIZED",
+        "owner": "Titanium.Calendar",
+        "type": "Number",
+        "doc": "<p>A <a href=\"#!/api/Titanium.Calendar-property-eventsAuthorization\" rel=\"Titanium.Calendar-property-eventsAuthorization\" class=\"docClass\">eventsAuthorization</a> value\nindicating that the application is authorized to use events in the Calendar.</p>\n\n\n<p>@description <p>This value is always returned if the device is running an iOS release prior to 6.0.</p></p>\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-AUTHORIZATION_AUTHORIZED",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 26165
+          }
+        ],
+        "shortDoc": "A eventsAuthorization value\nindicating that the application is authorized to use events in the Calendar. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "AUTHORIZATION_DENIED",
+        "owner": "Titanium.Calendar",
+        "type": "Number",
+        "doc": "<p>A <a href=\"#!/api/Titanium.Calendar-property-eventsAuthorization\" rel=\"Titanium.Calendar-property-eventsAuthorization\" class=\"docClass\">eventsAuthorization</a> value\nindicating that the application is not authorized to use events in the Calendar.</p>\n\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-AUTHORIZATION_DENIED",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 26189
+          }
+        ],
+        "shortDoc": "A eventsAuthorization value\nindicating that the application is not authorized to use events in the Calendar. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "AUTHORIZATION_RESTRICTED",
+        "owner": "Titanium.Calendar",
+        "type": "Number",
+        "doc": "<p>A <a href=\"#!/api/Titanium.Calendar-property-eventsAuthorization\" rel=\"Titanium.Calendar-property-eventsAuthorization\" class=\"docClass\">eventsAuthorization</a> value\nindicating that the application is not authorized to use events in the Calendar.\nthe user cannot change this application's status.</p>\n\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-AUTHORIZATION_RESTRICTED",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 26213
+          }
+        ],
+        "shortDoc": "A eventsAuthorization value\nindicating that the application is not authorized to use events in the Calendar. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "AUTHORIZATION_UNKNOWN",
+        "owner": "Titanium.Calendar",
+        "type": "Number",
+        "doc": "<p>A <a href=\"#!/api/Titanium.Calendar-property-eventsAuthorization\" rel=\"Titanium.Calendar-property-eventsAuthorization\" class=\"docClass\">eventsAuthorization</a> value\nindicating that the authorization state is unknown.</p>\n\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-AUTHORIZATION_UNKNOWN",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 26238
+          }
+        ],
+        "shortDoc": "A eventsAuthorization value\nindicating that the authorization state is unknown. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "AVAILABILITY_BUSY",
+        "owner": "Titanium.Calendar",
+        "type": "Number",
+        "doc": "<p>Event has a busy availability setting.</p>\n\n\n<p>@description <p>A <a href=\"#!/api/Titanium.Calendar.Event-property-availability\" rel=\"Titanium.Calendar.Event-property-availability\" class=\"docClass\">event availability</a> value.</p></p>\n\n<p>One of the group of event method constants,\n<a href=\"#!/api/Titanium.Calendar-property-AVAILABILITY_NOTSUPPORTED\" rel=\"Titanium.Calendar-property-AVAILABILITY_NOTSUPPORTED\" class=\"docClass\">AVAILABILITY_NOTSUPPORTED</a>,\n<a href=\"#!/api/Titanium.Calendar-property-AVAILABILITY_BUSY\" rel=\"Titanium.Calendar-property-AVAILABILITY_BUSY\" class=\"docClass\">AVAILABILITY_BUSY</a>,\n<a href=\"#!/api/Titanium.Calendar-property-AVAILABILITY_FREE\" rel=\"Titanium.Calendar-property-AVAILABILITY_FREE\" class=\"docClass\">AVAILABILITY_FREE</a>,\n<a href=\"#!/api/Titanium.Calendar-property-AVAILABILITY_TENTATIVE\" rel=\"Titanium.Calendar-property-AVAILABILITY_TENTATIVE\" class=\"docClass\">AVAILABILITY_TENTATIVE</a>,\nand <a href=\"#!/api/Titanium.Calendar-property-AVAILABILITY_UNAVAILABLE\" rel=\"Titanium.Calendar-property-AVAILABILITY_UNAVAILABLE\" class=\"docClass\">AVAILABILITY_UNAVAILABLE</a>.</p>\n\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-AVAILABILITY_BUSY",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 26045
+          }
+        ],
+        "shortDoc": "Event has a busy availability setting. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "AVAILABILITY_FREE",
+        "owner": "Titanium.Calendar",
+        "type": "Number",
+        "doc": "<p>Event has a free availability setting.</p>\n\n\n<p>@description <p>A <a href=\"#!/api/Titanium.Calendar.Event-property-availability\" rel=\"Titanium.Calendar.Event-property-availability\" class=\"docClass\">event availability</a> value.</p></p>\n\n<p>One of the group of event method constants,\n<a href=\"#!/api/Titanium.Calendar-property-AVAILABILITY_NOTSUPPORTED\" rel=\"Titanium.Calendar-property-AVAILABILITY_NOTSUPPORTED\" class=\"docClass\">AVAILABILITY_NOTSUPPORTED</a>,\n<a href=\"#!/api/Titanium.Calendar-property-AVAILABILITY_BUSY\" rel=\"Titanium.Calendar-property-AVAILABILITY_BUSY\" class=\"docClass\">AVAILABILITY_BUSY</a>,\n<a href=\"#!/api/Titanium.Calendar-property-AVAILABILITY_FREE\" rel=\"Titanium.Calendar-property-AVAILABILITY_FREE\" class=\"docClass\">AVAILABILITY_FREE</a>,\n<a href=\"#!/api/Titanium.Calendar-property-AVAILABILITY_TENTATIVE\" rel=\"Titanium.Calendar-property-AVAILABILITY_TENTATIVE\" class=\"docClass\">AVAILABILITY_TENTATIVE</a>,\nand <a href=\"#!/api/Titanium.Calendar-property-AVAILABILITY_UNAVAILABLE\" rel=\"Titanium.Calendar-property-AVAILABILITY_UNAVAILABLE\" class=\"docClass\">AVAILABILITY_UNAVAILABLE</a>.</p>\n\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-AVAILABILITY_FREE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 26075
+          }
+        ],
+        "shortDoc": "Event has a free availability setting. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "AVAILABILITY_NOTSUPPORTED",
+        "owner": "Titanium.Calendar",
+        "type": "Number",
+        "doc": "<p>Availability settings are not supported by the event's calendar.</p>\n\n\n<p>@description <p>A <a href=\"#!/api/Titanium.Calendar.Event-property-availability\" rel=\"Titanium.Calendar.Event-property-availability\" class=\"docClass\">event availability</a> value.</p></p>\n\n<p>One of the group of event method constants,\n<a href=\"#!/api/Titanium.Calendar-property-AVAILABILITY_NOTSUPPORTED\" rel=\"Titanium.Calendar-property-AVAILABILITY_NOTSUPPORTED\" class=\"docClass\">AVAILABILITY_NOTSUPPORTED</a>,\n<a href=\"#!/api/Titanium.Calendar-property-AVAILABILITY_BUSY\" rel=\"Titanium.Calendar-property-AVAILABILITY_BUSY\" class=\"docClass\">AVAILABILITY_BUSY</a>,\n<a href=\"#!/api/Titanium.Calendar-property-AVAILABILITY_FREE\" rel=\"Titanium.Calendar-property-AVAILABILITY_FREE\" class=\"docClass\">AVAILABILITY_FREE</a>,\n<a href=\"#!/api/Titanium.Calendar-property-AVAILABILITY_TENTATIVE\" rel=\"Titanium.Calendar-property-AVAILABILITY_TENTATIVE\" class=\"docClass\">AVAILABILITY_TENTATIVE</a>,\nand <a href=\"#!/api/Titanium.Calendar-property-AVAILABILITY_UNAVAILABLE\" rel=\"Titanium.Calendar-property-AVAILABILITY_UNAVAILABLE\" class=\"docClass\">AVAILABILITY_UNAVAILABLE</a>.</p>\n\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-AVAILABILITY_NOTSUPPORTED",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 26015
+          }
+        ],
+        "shortDoc": "Availability settings are not supported by the event's calendar. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "AVAILABILITY_TENTATIVE",
+        "owner": "Titanium.Calendar",
+        "type": "Number",
+        "doc": "<p>Event has a tentative availability setting.</p>\n\n\n<p>@description <p>A <a href=\"#!/api/Titanium.Calendar.Event-property-availability\" rel=\"Titanium.Calendar.Event-property-availability\" class=\"docClass\">event availability</a> value.</p></p>\n\n<p>One of the group of event method constants,\n<a href=\"#!/api/Titanium.Calendar-property-AVAILABILITY_NOTSUPPORTED\" rel=\"Titanium.Calendar-property-AVAILABILITY_NOTSUPPORTED\" class=\"docClass\">AVAILABILITY_NOTSUPPORTED</a>,\n<a href=\"#!/api/Titanium.Calendar-property-AVAILABILITY_BUSY\" rel=\"Titanium.Calendar-property-AVAILABILITY_BUSY\" class=\"docClass\">AVAILABILITY_BUSY</a>,\n<a href=\"#!/api/Titanium.Calendar-property-AVAILABILITY_FREE\" rel=\"Titanium.Calendar-property-AVAILABILITY_FREE\" class=\"docClass\">AVAILABILITY_FREE</a>,\n<a href=\"#!/api/Titanium.Calendar-property-AVAILABILITY_TENTATIVE\" rel=\"Titanium.Calendar-property-AVAILABILITY_TENTATIVE\" class=\"docClass\">AVAILABILITY_TENTATIVE</a>,\nand <a href=\"#!/api/Titanium.Calendar-property-AVAILABILITY_UNAVAILABLE\" rel=\"Titanium.Calendar-property-AVAILABILITY_UNAVAILABLE\" class=\"docClass\">AVAILABILITY_UNAVAILABLE</a>.</p>\n\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-AVAILABILITY_TENTATIVE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 26105
+          }
+        ],
+        "shortDoc": "Event has a tentative availability setting. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "AVAILABILITY_UNAVAILABLE",
+        "owner": "Titanium.Calendar",
+        "type": "Number",
+        "doc": "<p>Event has a tentative availability setting.</p>\n\n\n<p>@description <p>A <a href=\"#!/api/Titanium.Calendar.Event-property-availability\" rel=\"Titanium.Calendar.Event-property-availability\" class=\"docClass\">event availability</a> value.</p></p>\n\n<p>One of the group of event method constants,\n<a href=\"#!/api/Titanium.Calendar-property-AVAILABILITY_NOTSUPPORTED\" rel=\"Titanium.Calendar-property-AVAILABILITY_NOTSUPPORTED\" class=\"docClass\">AVAILABILITY_NOTSUPPORTED</a>,\n<a href=\"#!/api/Titanium.Calendar-property-AVAILABILITY_BUSY\" rel=\"Titanium.Calendar-property-AVAILABILITY_BUSY\" class=\"docClass\">AVAILABILITY_BUSY</a>,\n<a href=\"#!/api/Titanium.Calendar-property-AVAILABILITY_FREE\" rel=\"Titanium.Calendar-property-AVAILABILITY_FREE\" class=\"docClass\">AVAILABILITY_FREE</a>,\n<a href=\"#!/api/Titanium.Calendar-property-AVAILABILITY_TENTATIVE\" rel=\"Titanium.Calendar-property-AVAILABILITY_TENTATIVE\" class=\"docClass\">AVAILABILITY_TENTATIVE</a>,\nand <a href=\"#!/api/Titanium.Calendar-property-AVAILABILITY_UNAVAILABLE\" rel=\"Titanium.Calendar-property-AVAILABILITY_UNAVAILABLE\" class=\"docClass\">AVAILABILITY_UNAVAILABLE</a>.</p>\n\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-AVAILABILITY_UNAVAILABLE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 26135
+          }
+        ],
+        "shortDoc": "Event has a tentative availability setting. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "METHOD_ALERT",
+        "owner": "Titanium.Calendar",
+        "type": "Number",
+        "doc": "<p>Reminder alert delivery method.</p>\n\n\n<p>@description <p>Used with <a href=\"#!/api/Titanium.Calendar.Reminder\" rel=\"Titanium.Calendar.Reminder\" class=\"docClass\">Titanium.Calendar.Reminder</a>.</p></p>\n\n<p>One of the group of reminder method constants,\n<a href=\"#!/api/Titanium.Calendar-property-METHOD_ALERT\" rel=\"Titanium.Calendar-property-METHOD_ALERT\" class=\"docClass\">METHOD_ALERT</a>,\n<a href=\"#!/api/Titanium.Calendar-property-METHOD_DEFAULT\" rel=\"Titanium.Calendar-property-METHOD_DEFAULT\" class=\"docClass\">METHOD_DEFAULT</a>,\n<a href=\"#!/api/Titanium.Calendar-property-METHOD_EMAIL\" rel=\"Titanium.Calendar-property-METHOD_EMAIL\" class=\"docClass\">METHOD_EMAIL</a>,\nand <a href=\"#!/api/Titanium.Calendar-property-METHOD_SMS\" rel=\"Titanium.Calendar-property-METHOD_SMS\" class=\"docClass\">METHOD_SMS</a>.</p>\n\n\n<p>@platform android 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-METHOD_ALERT",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 25713
+          }
+        ],
+        "shortDoc": "Reminder alert delivery method. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "METHOD_DEFAULT",
+        "owner": "Titanium.Calendar",
+        "type": "Number",
+        "doc": "<p>Reminder default delivery method.</p>\n\n\n<p>@description <p>Used with <a href=\"#!/api/Titanium.Calendar.Reminder\" rel=\"Titanium.Calendar.Reminder\" class=\"docClass\">Titanium.Calendar.Reminder</a>.</p></p>\n\n<p>One of the group of reminder method constants,\n<a href=\"#!/api/Titanium.Calendar-property-METHOD_ALERT\" rel=\"Titanium.Calendar-property-METHOD_ALERT\" class=\"docClass\">METHOD_ALERT</a>,\n<a href=\"#!/api/Titanium.Calendar-property-METHOD_DEFAULT\" rel=\"Titanium.Calendar-property-METHOD_DEFAULT\" class=\"docClass\">METHOD_DEFAULT</a>,\n<a href=\"#!/api/Titanium.Calendar-property-METHOD_EMAIL\" rel=\"Titanium.Calendar-property-METHOD_EMAIL\" class=\"docClass\">METHOD_EMAIL</a>,\nand <a href=\"#!/api/Titanium.Calendar-property-METHOD_SMS\" rel=\"Titanium.Calendar-property-METHOD_SMS\" class=\"docClass\">METHOD_SMS</a>.</p>\n\n\n<p>@platform android 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-METHOD_DEFAULT",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 25741
+          }
+        ],
+        "shortDoc": "Reminder default delivery method. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "METHOD_EMAIL",
+        "owner": "Titanium.Calendar",
+        "type": "Number",
+        "doc": "<p>Reminder email delivery method.</p>\n\n\n<p>@description <p>Used with <a href=\"#!/api/Titanium.Calendar.Reminder\" rel=\"Titanium.Calendar.Reminder\" class=\"docClass\">Titanium.Calendar.Reminder</a>.</p></p>\n\n<p>One of the group of reminder method constants,\n<a href=\"#!/api/Titanium.Calendar-property-METHOD_ALERT\" rel=\"Titanium.Calendar-property-METHOD_ALERT\" class=\"docClass\">METHOD_ALERT</a>,\n<a href=\"#!/api/Titanium.Calendar-property-METHOD_DEFAULT\" rel=\"Titanium.Calendar-property-METHOD_DEFAULT\" class=\"docClass\">METHOD_DEFAULT</a>,\n<a href=\"#!/api/Titanium.Calendar-property-METHOD_EMAIL\" rel=\"Titanium.Calendar-property-METHOD_EMAIL\" class=\"docClass\">METHOD_EMAIL</a>,\nand <a href=\"#!/api/Titanium.Calendar-property-METHOD_SMS\" rel=\"Titanium.Calendar-property-METHOD_SMS\" class=\"docClass\">METHOD_SMS</a>.</p>\n\n\n<p>@platform android 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-METHOD_EMAIL",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 25769
+          }
+        ],
+        "shortDoc": "Reminder email delivery method. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "METHOD_SMS",
+        "owner": "Titanium.Calendar",
+        "type": "Number",
+        "doc": "<p>Reminder SMS delivery method.</p>\n\n\n<p>@description <p>Used with <a href=\"#!/api/Titanium.Calendar.Reminder\" rel=\"Titanium.Calendar.Reminder\" class=\"docClass\">Titanium.Calendar.Reminder</a>.</p></p>\n\n<p>One of the group of reminder method constants,\n<a href=\"#!/api/Titanium.Calendar-property-METHOD_ALERT\" rel=\"Titanium.Calendar-property-METHOD_ALERT\" class=\"docClass\">METHOD_ALERT</a>,\n<a href=\"#!/api/Titanium.Calendar-property-METHOD_DEFAULT\" rel=\"Titanium.Calendar-property-METHOD_DEFAULT\" class=\"docClass\">METHOD_DEFAULT</a>,\n<a href=\"#!/api/Titanium.Calendar-property-METHOD_EMAIL\" rel=\"Titanium.Calendar-property-METHOD_EMAIL\" class=\"docClass\">METHOD_EMAIL</a>,\nand <a href=\"#!/api/Titanium.Calendar-property-METHOD_SMS\" rel=\"Titanium.Calendar-property-METHOD_SMS\" class=\"docClass\">METHOD_SMS</a>.</p>\n\n\n<p>@platform android 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-METHOD_SMS",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 25797
+          }
+        ],
+        "shortDoc": "Reminder SMS delivery method. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "RECURRENCEFREQUENCY_DAILY",
+        "owner": "Titanium.Calendar",
+        "type": "Number",
+        "doc": "<p>Indicates a daily recurrence rule for a events reccurance frequency.</p>\n\n\n<p>@description <p>Used with the <a href=\"#!/api/Titanium.Calendar.RecurrenceRule-property-frequency\" rel=\"Titanium.Calendar.RecurrenceRule-property-frequency\" class=\"docClass\">Titanium.Calendar.RecurrenceRule.frequency</a> property.</p></p>\n\n<p>One of the group of event \"frequency\" constants\n<a href=\"#!/api/Titanium.Calendar-property-RECURRENCEFREQUENCY_DAILY\" rel=\"Titanium.Calendar-property-RECURRENCEFREQUENCY_DAILY\" class=\"docClass\">RECURRENCEFREQUENCY_DAILY</a>,\n<a href=\"#!/api/Titanium.Calendar-property-RECURRENCEFREQUENCY_WEEKLY\" rel=\"Titanium.Calendar-property-RECURRENCEFREQUENCY_WEEKLY\" class=\"docClass\">RECURRENCEFREQUENCY_WEEKLY</a>,\n<a href=\"#!/api/Titanium.Calendar-property-RECURRENCEFREQUENCY_MONTHLY\" rel=\"Titanium.Calendar-property-RECURRENCEFREQUENCY_MONTHLY\" class=\"docClass\">RECURRENCEFREQUENCY_MONTHLY</a>,\nand <a href=\"#!/api/Titanium.Calendar-property-RECURRENCEFREQUENCY_YEARLY\" rel=\"Titanium.Calendar-property-RECURRENCEFREQUENCY_YEARLY\" class=\"docClass\">RECURRENCEFREQUENCY_YEARLY</a>.</p>\n\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-RECURRENCEFREQUENCY_DAILY",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 26310
+          }
+        ],
+        "shortDoc": "Indicates a daily recurrence rule for a events reccurance frequency. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "RECURRENCEFREQUENCY_MONTHLY",
+        "owner": "Titanium.Calendar",
+        "type": "Number",
+        "doc": "<p>Indicates a monthly recurrence rule for a events reccurance frequency.</p>\n\n\n<p>@description <p>Used with the <a href=\"#!/api/Titanium.Calendar.RecurrenceRule-property-frequency\" rel=\"Titanium.Calendar.RecurrenceRule-property-frequency\" class=\"docClass\">Titanium.Calendar.RecurrenceRule.frequency</a> property.</p></p>\n\n<p>One of the group of event \"frequency\" constants\n<a href=\"#!/api/Titanium.Calendar-property-RECURRENCEFREQUENCY_DAILY\" rel=\"Titanium.Calendar-property-RECURRENCEFREQUENCY_DAILY\" class=\"docClass\">RECURRENCEFREQUENCY_DAILY</a>,\n<a href=\"#!/api/Titanium.Calendar-property-RECURRENCEFREQUENCY_WEEKLY\" rel=\"Titanium.Calendar-property-RECURRENCEFREQUENCY_WEEKLY\" class=\"docClass\">RECURRENCEFREQUENCY_WEEKLY</a>,\n<a href=\"#!/api/Titanium.Calendar-property-RECURRENCEFREQUENCY_MONTHLY\" rel=\"Titanium.Calendar-property-RECURRENCEFREQUENCY_MONTHLY\" class=\"docClass\">RECURRENCEFREQUENCY_MONTHLY</a>,\nand <a href=\"#!/api/Titanium.Calendar-property-RECURRENCEFREQUENCY_YEARLY\" rel=\"Titanium.Calendar-property-RECURRENCEFREQUENCY_YEARLY\" class=\"docClass\">RECURRENCEFREQUENCY_YEARLY</a>.</p>\n\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-RECURRENCEFREQUENCY_MONTHLY",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 26368
+          }
+        ],
+        "shortDoc": "Indicates a monthly recurrence rule for a events reccurance frequency. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "RECURRENCEFREQUENCY_WEEKLY",
+        "owner": "Titanium.Calendar",
+        "type": "Number",
+        "doc": "<p>Indicates a weekly recurrence rule for a events reccurance frequency.</p>\n\n\n<p>@description <p>Used with the <a href=\"#!/api/Titanium.Calendar.RecurrenceRule-property-frequency\" rel=\"Titanium.Calendar.RecurrenceRule-property-frequency\" class=\"docClass\">Titanium.Calendar.RecurrenceRule.frequency</a> property.</p></p>\n\n<p>One of the group of event \"frequency\" constants\n<a href=\"#!/api/Titanium.Calendar-property-RECURRENCEFREQUENCY_DAILY\" rel=\"Titanium.Calendar-property-RECURRENCEFREQUENCY_DAILY\" class=\"docClass\">RECURRENCEFREQUENCY_DAILY</a>,\n<a href=\"#!/api/Titanium.Calendar-property-RECURRENCEFREQUENCY_WEEKLY\" rel=\"Titanium.Calendar-property-RECURRENCEFREQUENCY_WEEKLY\" class=\"docClass\">RECURRENCEFREQUENCY_WEEKLY</a>,\n<a href=\"#!/api/Titanium.Calendar-property-RECURRENCEFREQUENCY_MONTHLY\" rel=\"Titanium.Calendar-property-RECURRENCEFREQUENCY_MONTHLY\" class=\"docClass\">RECURRENCEFREQUENCY_MONTHLY</a>,\nand <a href=\"#!/api/Titanium.Calendar-property-RECURRENCEFREQUENCY_YEARLY\" rel=\"Titanium.Calendar-property-RECURRENCEFREQUENCY_YEARLY\" class=\"docClass\">RECURRENCEFREQUENCY_YEARLY</a>.</p>\n\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-RECURRENCEFREQUENCY_WEEKLY",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 26339
+          }
+        ],
+        "shortDoc": "Indicates a weekly recurrence rule for a events reccurance frequency. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "RECURRENCEFREQUENCY_YEARLY",
+        "owner": "Titanium.Calendar",
+        "type": "Number",
+        "doc": "<p>Indicates a yearly recurrence rule for a events reccurance frequency.</p>\n\n\n<p>@description <p>Used with the <a href=\"#!/api/Titanium.Calendar.RecurrenceRule-property-frequency\" rel=\"Titanium.Calendar.RecurrenceRule-property-frequency\" class=\"docClass\">Titanium.Calendar.RecurrenceRule.frequency</a> property.</p></p>\n\n<p>One of the group of event \"frequency\" constants\n<a href=\"#!/api/Titanium.Calendar-property-RECURRENCEFREQUENCY_DAILY\" rel=\"Titanium.Calendar-property-RECURRENCEFREQUENCY_DAILY\" class=\"docClass\">RECURRENCEFREQUENCY_DAILY</a>,\n<a href=\"#!/api/Titanium.Calendar-property-RECURRENCEFREQUENCY_WEEKLY\" rel=\"Titanium.Calendar-property-RECURRENCEFREQUENCY_WEEKLY\" class=\"docClass\">RECURRENCEFREQUENCY_WEEKLY</a>,\n<a href=\"#!/api/Titanium.Calendar-property-RECURRENCEFREQUENCY_MONTHLY\" rel=\"Titanium.Calendar-property-RECURRENCEFREQUENCY_MONTHLY\" class=\"docClass\">RECURRENCEFREQUENCY_MONTHLY</a>,\nand <a href=\"#!/api/Titanium.Calendar-property-RECURRENCEFREQUENCY_YEARLY\" rel=\"Titanium.Calendar-property-RECURRENCEFREQUENCY_YEARLY\" class=\"docClass\">RECURRENCEFREQUENCY_YEARLY</a>.</p>\n\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-RECURRENCEFREQUENCY_YEARLY",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 26397
+          }
+        ],
+        "shortDoc": "Indicates a yearly recurrence rule for a events reccurance frequency. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "SPAN_FUTUREEVENTS",
+        "owner": "Titanium.Calendar",
+        "type": "Number",
+        "doc": "<p>A <a href=\"#!/api/Titanium.Calendar.Event-method-save\" rel=\"Titanium.Calendar.Event-method-save\" class=\"docClass\">save</a>/<a href=\"#!/api/Titanium.Calendar.Event-method-remove\" rel=\"Titanium.Calendar.Event-method-remove\" class=\"docClass\">remove</a> event value,\nindicating modifications to this event instance should also affect future instances of this event.</p>\n\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-SPAN_FUTUREEVENTS",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 26286
+          }
+        ],
+        "shortDoc": "A save/remove event value,\nindicating modifications to this event instance should also affect future instances of thi...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "SPAN_THISEVENT",
+        "owner": "Titanium.Calendar",
+        "type": "Number",
+        "doc": "<p>A <a href=\"#!/api/Titanium.Calendar.Event-method-save\" rel=\"Titanium.Calendar.Event-method-save\" class=\"docClass\">save</a>/<a href=\"#!/api/Titanium.Calendar.Event-method-remove\" rel=\"Titanium.Calendar.Event-method-remove\" class=\"docClass\">remove</a> event value,\nindicating modifications to this event instance should affect only this instance.</p>\n\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-SPAN_THISEVENT",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 26262
+          }
+        ],
+        "shortDoc": "A save/remove event value,\nindicating modifications to this event instance should affect only this instance. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "STATE_DISMISSED",
+        "owner": "Titanium.Calendar",
+        "type": "Number",
+        "doc": "<p>Alert dismissed state.</p>\n\n\n<p>@description <p>Used with <a href=\"#!/api/Titanium.Calendar.Alert\" rel=\"Titanium.Calendar.Alert\" class=\"docClass\">Titanium.Calendar.Alert</a>.</p></p>\n\n<p>One of the group of reminder method constants,\n<a href=\"#!/api/Titanium.Calendar-property-STATE_DISMISSED\" rel=\"Titanium.Calendar-property-STATE_DISMISSED\" class=\"docClass\">STATE_DISMISSED</a>,\n<a href=\"#!/api/Titanium.Calendar-property-STATE_FIRED\" rel=\"Titanium.Calendar-property-STATE_FIRED\" class=\"docClass\">STATE_FIRED</a>,\nand <a href=\"#!/api/Titanium.Calendar-property-STATE_SCHEDULED\" rel=\"Titanium.Calendar-property-STATE_SCHEDULED\" class=\"docClass\">STATE_SCHEDULED</a>.</p>\n\n\n<p>@platform android 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-STATE_DISMISSED",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 25825
+          }
+        ],
+        "shortDoc": "Alert dismissed state. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "STATE_FIRED",
+        "owner": "Titanium.Calendar",
+        "type": "Number",
+        "doc": "<p>Alert fired state.</p>\n\n\n<p>@description <p>Used with <a href=\"#!/api/Titanium.Calendar.Alert\" rel=\"Titanium.Calendar.Alert\" class=\"docClass\">Titanium.Calendar.Alert</a>.</p></p>\n\n<p>One of the group of reminder method constants,\n<a href=\"#!/api/Titanium.Calendar-property-STATE_DISMISSED\" rel=\"Titanium.Calendar-property-STATE_DISMISSED\" class=\"docClass\">STATE_DISMISSED</a>,\n<a href=\"#!/api/Titanium.Calendar-property-STATE_FIRED\" rel=\"Titanium.Calendar-property-STATE_FIRED\" class=\"docClass\">STATE_FIRED</a>,\nand <a href=\"#!/api/Titanium.Calendar-property-STATE_SCHEDULED\" rel=\"Titanium.Calendar-property-STATE_SCHEDULED\" class=\"docClass\">STATE_SCHEDULED</a>.</p>\n\n\n<p>@platform android 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-STATE_FIRED",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 25852
+          }
+        ],
+        "shortDoc": "Alert fired state. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "STATE_SCHEDULED",
+        "owner": "Titanium.Calendar",
+        "type": "Number",
+        "doc": "<p>Alert scheduled status.</p>\n\n\n<p>@description <p>Used with <a href=\"#!/api/Titanium.Calendar.Alert\" rel=\"Titanium.Calendar.Alert\" class=\"docClass\">Titanium.Calendar.Alert</a>.</p></p>\n\n<p>One of the group of reminder method constants,\n<a href=\"#!/api/Titanium.Calendar-property-STATE_DISMISSED\" rel=\"Titanium.Calendar-property-STATE_DISMISSED\" class=\"docClass\">STATE_DISMISSED</a>,\n<a href=\"#!/api/Titanium.Calendar-property-STATE_FIRED\" rel=\"Titanium.Calendar-property-STATE_FIRED\" class=\"docClass\">STATE_FIRED</a>,\nand <a href=\"#!/api/Titanium.Calendar-property-STATE_SCHEDULED\" rel=\"Titanium.Calendar-property-STATE_SCHEDULED\" class=\"docClass\">STATE_SCHEDULED</a>.</p>\n\n\n<p>@platform android 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-STATE_SCHEDULED",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 25879
+          }
+        ],
+        "shortDoc": "Alert scheduled status. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "STATUS_CANCELED",
+        "owner": "Titanium.Calendar",
+        "type": "Number",
+        "doc": "<p>Event canceled status.</p>\n\n\n<p>@description <p>A [event status]<a href=\"#!/api/Titanium.Calendar.Event-property-status\" rel=\"Titanium.Calendar.Event-property-status\" class=\"docClass\">Titanium.Calendar.Event.status</a> value.</p></p>\n\n<p>One of the group of event \"status\" constants,\n<a href=\"#!/api/Titanium.Calendar-property-STATUS_NONE\" rel=\"Titanium.Calendar-property-STATUS_NONE\" class=\"docClass\">STATUS_NONE</a>,\n<a href=\"#!/api/Titanium.Calendar-property-STATUS_CANCELED\" rel=\"Titanium.Calendar-property-STATUS_CANCELED\" class=\"docClass\">STATUS_CANCELED</a>,\n<a href=\"#!/api/Titanium.Calendar-property-STATUS_CONFIRMED\" rel=\"Titanium.Calendar-property-STATUS_CONFIRMED\" class=\"docClass\">STATUS_CONFIRMED</a>,\nand <a href=\"#!/api/Titanium.Calendar-property-STATUS_TENTATIVE\" rel=\"Titanium.Calendar-property-STATUS_TENTATIVE\" class=\"docClass\">STATUS_TENTATIVE</a>.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-STATUS_CANCELED",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 25934
+          }
+        ],
+        "shortDoc": "Event canceled status. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "STATUS_CONFIRMED",
+        "owner": "Titanium.Calendar",
+        "type": "Number",
+        "doc": "<p>Event confirmed status.</p>\n\n\n<p>@description <p>A [event status]<a href=\"#!/api/Titanium.Calendar.Event-property-status\" rel=\"Titanium.Calendar.Event-property-status\" class=\"docClass\">Titanium.Calendar.Event.status</a> value.</p></p>\n\n<p>One of the group of event \"status\" constants,\n<a href=\"#!/api/Titanium.Calendar-property-STATUS_NONE\" rel=\"Titanium.Calendar-property-STATUS_NONE\" class=\"docClass\">STATUS_NONE</a>,\n<a href=\"#!/api/Titanium.Calendar-property-STATUS_CANCELED\" rel=\"Titanium.Calendar-property-STATUS_CANCELED\" class=\"docClass\">STATUS_CANCELED</a>,\n<a href=\"#!/api/Titanium.Calendar-property-STATUS_CONFIRMED\" rel=\"Titanium.Calendar-property-STATUS_CONFIRMED\" class=\"docClass\">STATUS_CONFIRMED</a>,\nand <a href=\"#!/api/Titanium.Calendar-property-STATUS_TENTATIVE\" rel=\"Titanium.Calendar-property-STATUS_TENTATIVE\" class=\"docClass\">STATUS_TENTATIVE</a>.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-STATUS_CONFIRMED",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 25961
+          }
+        ],
+        "shortDoc": "Event confirmed status. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "STATUS_NONE",
+        "owner": "Titanium.Calendar",
+        "type": "Number",
+        "doc": "<p>Event has no status.</p>\n\n\n<p>@description <p>A [event status]<a href=\"#!/api/Titanium.Calendar.Event-property-status\" rel=\"Titanium.Calendar.Event-property-status\" class=\"docClass\">Titanium.Calendar.Event.status</a> value.</p></p>\n\n<p>One of the group of event \"status\" constants,\n<a href=\"#!/api/Titanium.Calendar-property-STATUS_CANCELED\" rel=\"Titanium.Calendar-property-STATUS_CANCELED\" class=\"docClass\">STATUS_CANCELED</a>,\n<a href=\"#!/api/Titanium.Calendar-property-STATUS_CONFIRMED\" rel=\"Titanium.Calendar-property-STATUS_CONFIRMED\" class=\"docClass\">STATUS_CONFIRMED</a>,\nand <a href=\"#!/api/Titanium.Calendar-property-STATUS_TENTATIVE\" rel=\"Titanium.Calendar-property-STATUS_TENTATIVE\" class=\"docClass\">STATUS_TENTATIVE</a>.</p>\n\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-STATUS_NONE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 25906
+          }
+        ],
+        "shortDoc": "Event has no status. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "STATUS_TENTATIVE",
+        "owner": "Titanium.Calendar",
+        "type": "Number",
+        "doc": "<p>Event tentative status.</p>\n\n\n<p>@description <p>A [event status]<a href=\"#!/api/Titanium.Calendar.Event-property-status\" rel=\"Titanium.Calendar.Event-property-status\" class=\"docClass\">Titanium.Calendar.Event.status</a> value.</p></p>\n\n<p>One of the group of event \"status\" constants,\n<a href=\"#!/api/Titanium.Calendar-property-STATUS_NONE\" rel=\"Titanium.Calendar-property-STATUS_NONE\" class=\"docClass\">STATUS_NONE</a>,\n<a href=\"#!/api/Titanium.Calendar-property-STATUS_CANCELED\" rel=\"Titanium.Calendar-property-STATUS_CANCELED\" class=\"docClass\">STATUS_CANCELED</a>,\n<a href=\"#!/api/Titanium.Calendar-property-STATUS_CONFIRMED\" rel=\"Titanium.Calendar-property-STATUS_CONFIRMED\" class=\"docClass\">STATUS_CONFIRMED</a>,\nand <a href=\"#!/api/Titanium.Calendar-property-STATUS_TENTATIVE\" rel=\"Titanium.Calendar-property-STATUS_TENTATIVE\" class=\"docClass\">STATUS_TENTATIVE</a>.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-STATUS_TENTATIVE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 25988
+          }
+        ],
+        "shortDoc": "Event tentative status. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "VISIBILITY_CONFIDENTIAL",
+        "owner": "Titanium.Calendar",
+        "type": "Number",
+        "doc": "<p>Event confidential visibility.</p>\n\n\n<p>@description <p>Used with <a href=\"#!/api/Titanium.Calendar.Event\" rel=\"Titanium.Calendar.Event\" class=\"docClass\">Titanium.Calendar.Event</a>.</p></p>\n\n<p>One of the group of reminder method constants,\n<a href=\"#!/api/Titanium.Calendar-property-VISIBILITY_CONFIDENTIAL\" rel=\"Titanium.Calendar-property-VISIBILITY_CONFIDENTIAL\" class=\"docClass\">VISIBILITY_CONFIDENTIAL</a>,\n<a href=\"#!/api/Titanium.Calendar-property-VISIBILITY_DEFAULT\" rel=\"Titanium.Calendar-property-VISIBILITY_DEFAULT\" class=\"docClass\">VISIBILITY_DEFAULT</a>,\n<a href=\"#!/api/Titanium.Calendar-property-VISIBILITY_PRIVATE\" rel=\"Titanium.Calendar-property-VISIBILITY_PRIVATE\" class=\"docClass\">VISIBILITY_PRIVATE</a>,\nand <a href=\"#!/api/Titanium.Calendar-property-VISIBILITY_PUBLIC\" rel=\"Titanium.Calendar-property-VISIBILITY_PUBLIC\" class=\"docClass\">VISIBILITY_PUBLIC</a>.</p>\n\n\n<p>@platform android 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-VISIBILITY_CONFIDENTIAL",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 26426
+          }
+        ],
+        "shortDoc": "Event confidential visibility. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "VISIBILITY_DEFAULT",
+        "owner": "Titanium.Calendar",
+        "type": "Number",
+        "doc": "<p>Event default visibility.</p>\n\n\n<p>@description <p>Used with <a href=\"#!/api/Titanium.Calendar.Event\" rel=\"Titanium.Calendar.Event\" class=\"docClass\">Titanium.Calendar.Event</a>.</p></p>\n\n<p>One of the group of reminder method constants,\n<a href=\"#!/api/Titanium.Calendar-property-VISIBILITY_CONFIDENTIAL\" rel=\"Titanium.Calendar-property-VISIBILITY_CONFIDENTIAL\" class=\"docClass\">VISIBILITY_CONFIDENTIAL</a>,\n<a href=\"#!/api/Titanium.Calendar-property-VISIBILITY_DEFAULT\" rel=\"Titanium.Calendar-property-VISIBILITY_DEFAULT\" class=\"docClass\">VISIBILITY_DEFAULT</a>,\n<a href=\"#!/api/Titanium.Calendar-property-VISIBILITY_PRIVATE\" rel=\"Titanium.Calendar-property-VISIBILITY_PRIVATE\" class=\"docClass\">VISIBILITY_PRIVATE</a>,\nand <a href=\"#!/api/Titanium.Calendar-property-VISIBILITY_PUBLIC\" rel=\"Titanium.Calendar-property-VISIBILITY_PUBLIC\" class=\"docClass\">VISIBILITY_PUBLIC</a>.</p>\n\n\n<p>@platform android 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-VISIBILITY_DEFAULT",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 26454
+          }
+        ],
+        "shortDoc": "Event default visibility. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "VISIBILITY_PRIVATE",
+        "owner": "Titanium.Calendar",
+        "type": "Number",
+        "doc": "<p>Event private visibility.</p>\n\n\n<p>@description <p>Used with <a href=\"#!/api/Titanium.Calendar.Event\" rel=\"Titanium.Calendar.Event\" class=\"docClass\">Titanium.Calendar.Event</a>.</p></p>\n\n<p>One of the group of reminder method constants,\n<a href=\"#!/api/Titanium.Calendar-property-VISIBILITY_CONFIDENTIAL\" rel=\"Titanium.Calendar-property-VISIBILITY_CONFIDENTIAL\" class=\"docClass\">VISIBILITY_CONFIDENTIAL</a>,\n<a href=\"#!/api/Titanium.Calendar-property-VISIBILITY_DEFAULT\" rel=\"Titanium.Calendar-property-VISIBILITY_DEFAULT\" class=\"docClass\">VISIBILITY_DEFAULT</a>,\n<a href=\"#!/api/Titanium.Calendar-property-VISIBILITY_PRIVATE\" rel=\"Titanium.Calendar-property-VISIBILITY_PRIVATE\" class=\"docClass\">VISIBILITY_PRIVATE</a>,\nand <a href=\"#!/api/Titanium.Calendar-property-VISIBILITY_PUBLIC\" rel=\"Titanium.Calendar-property-VISIBILITY_PUBLIC\" class=\"docClass\">VISIBILITY_PUBLIC</a>.</p>\n\n\n<p>@platform android 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-VISIBILITY_PRIVATE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 26482
+          }
+        ],
+        "shortDoc": "Event private visibility. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "VISIBILITY_PUBLIC",
+        "owner": "Titanium.Calendar",
+        "type": "Number",
+        "doc": "<p>Event public visibility.</p>\n\n\n<p>@description <p>Used with <a href=\"#!/api/Titanium.Calendar.Event\" rel=\"Titanium.Calendar.Event\" class=\"docClass\">Titanium.Calendar.Event</a>.</p></p>\n\n<p>One of the group of reminder method constants,\n<a href=\"#!/api/Titanium.Calendar-property-VISIBILITY_CONFIDENTIAL\" rel=\"Titanium.Calendar-property-VISIBILITY_CONFIDENTIAL\" class=\"docClass\">VISIBILITY_CONFIDENTIAL</a>,\n<a href=\"#!/api/Titanium.Calendar-property-VISIBILITY_DEFAULT\" rel=\"Titanium.Calendar-property-VISIBILITY_DEFAULT\" class=\"docClass\">VISIBILITY_DEFAULT</a>,\n<a href=\"#!/api/Titanium.Calendar-property-VISIBILITY_PRIVATE\" rel=\"Titanium.Calendar-property-VISIBILITY_PRIVATE\" class=\"docClass\">VISIBILITY_PRIVATE</a>,\nand <a href=\"#!/api/Titanium.Calendar-property-VISIBILITY_PUBLIC\" rel=\"Titanium.Calendar-property-VISIBILITY_PUBLIC\" class=\"docClass\">VISIBILITY_PUBLIC</a>.</p>\n\n\n<p>@platform android 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-VISIBILITY_PUBLIC",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 26510
+          }
+        ],
+        "shortDoc": "Event public visibility. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "allAlerts",
+        "owner": "Titanium.Calendar",
+        "type": "Titanium.Calendar.Alert[]",
+        "doc": "<p>All alerts in selected calendars.</p>\n\n\n<p>@platform android 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-allAlerts",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 26568
+          }
+        ],
+        "shortDoc": "All alerts in selected calendars. ...",
+        "html_type": "Titanium.Calendar.Alert[]",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "allCalendars",
+        "owner": "Titanium.Calendar",
+        "type": "Titanium.Calendar.Calendar[]",
+        "doc": "<p>All calendars known to the native calendar app.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-allCalendars",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 26590
+          }
+        ],
+        "html_type": "Titanium.Calendar.Calendar[]",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "allEditableCalendars",
+        "owner": "Titanium.Calendar",
+        "type": "Titanium.Calendar.Calendar[]",
+        "doc": "<p>All calendars known to the native calendar app that can add, edit, and\ndelete items in the calendar.</p>\n\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-allEditableCalendars",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 26611
+          }
+        ],
+        "shortDoc": "All calendars known to the native calendar app that can add, edit, and\ndelete items in the calendar. ...",
+        "html_type": "Titanium.Calendar.Calendar[]",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "apiName",
+        "owner": "Titanium.Proxy",
+        "type": "String",
+        "doc": "<p>The name of the API that this proxy corresponds to.</p>\n\n\n<p>@description <p>The value of this property is the fully qualified name of the API. For example, <a href=\"#!/api/Titanium.UI.Button\" rel=\"Titanium.UI.Button\" class=\"docClass\">Button</a>\nreturns <code>Ti.UI.Button</code>.</p></p>\n\n<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-apiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 235
+          }
+        ],
+        "shortDoc": "The name of the API that this proxy corresponds to. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "bubbleParent",
+        "owner": "Titanium.Proxy",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the proxy will bubble an event to its parent.</p>\n\n\n<p>@description <p>Some proxies (most commonly views) have a relationship to other proxies, often\nestablished by the add() method. For example, for a button added to a window, a\nclick event on the button would bubble up to the window. Other common parents are\ntable sections to their rows, table views to their sections, and scrollable views\nto their views. Set this property to false to disable the bubbling to the proxy's parent.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-bubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 207
+          }
+        ],
+        "shortDoc": "Indicates if the proxy will bubble an event to its parent. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "defaultCalendar",
+        "owner": "Titanium.Calendar",
+        "type": "Titanium.Calendar.Calendar",
+        "doc": "<p>Calendar that events are added to by default, as specified by user settings.</p>\n\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-defaultCalendar",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 26659
+          }
+        ],
+        "shortDoc": "Calendar that events are added to by default, as specified by user settings. ...",
+        "html_type": "Titanium.Calendar.Calendar",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "eventsAuthorization",
+        "owner": "Titanium.Calendar",
+        "type": "Number",
+        "doc": "<p>Returns an authorization constant indicating if the application has access to the events in the EventKit.</p>\n\n\n<p>@description <p>Always returns <code>AUTHORIZATION_AUTHORIZED</code> on iOS pre-6.0.</p></p>\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.Calendar-property-AUTHORIZATION_AUTHORIZED\" rel=\"Titanium.Calendar-property-AUTHORIZATION_AUTHORIZED\" class=\"docClass\">AUTHORIZATION_AUTHORIZED</a>\n <li> <a href=\"#!/api/Titanium.Calendar-property-AUTHORIZATION_DENIED\" rel=\"Titanium.Calendar-property-AUTHORIZATION_DENIED\" class=\"docClass\">AUTHORIZATION_DENIED</a>\n <li> <a href=\"#!/api/Titanium.Calendar-property-AUTHORIZATION_RESTRICTED\" rel=\"Titanium.Calendar-property-AUTHORIZATION_RESTRICTED\" class=\"docClass\">AUTHORIZATION_RESTRICTED</a>\n <li> <a href=\"#!/api/Titanium.Calendar-property-AUTHORIZATION_UNKNOWN\" rel=\"Titanium.Calendar-property-AUTHORIZATION_UNKNOWN\" class=\"docClass\">AUTHORIZATION_UNKNOWN</a>\n</ul></p>\n\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-eventsAuthorization",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 26538
+          }
+        ],
+        "shortDoc": "Returns an authorization constant indicating if the application has access to the events in the EventKit. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "doc": "<p>The Window or TabGroup whose Activity lifecycle should be triggered on the proxy.</p>\n\n\n<p>@description <p>If this property is set to a Window or TabGroup, then the corresponding Activity lifecycle event callbacks\nwill also be called on the proxy. Proxies that require the activity lifecycle will need this property set\nto the appropriate containing Window or TabGroup.</p></p>\n\n<p>@platform android 3.6.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-lifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 262
+          }
+        ],
+        "shortDoc": "The Window or TabGroup whose Activity lifecycle should be triggered on the proxy. ...",
+        "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "selectableCalendars",
+        "owner": "Titanium.Calendar",
+        "type": "Titanium.Calendar.Calendar[]",
+        "doc": "<p>All calendars selected within the native calendar app, which may be a subset of <code>allCalendars</code>. </p>\n\n\n<p>@description <p>The native calendar application may know via the registered webservices, such as Gooogle or\nFacebook accounts about calendars that it has access to but have not been selected to be\ndisplayed in the native calendar app.</p></p>\n\n<p>@platform android 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-selectableCalendars",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 26635
+          }
+        ],
+        "shortDoc": "All calendars selected within the native calendar app, which may be a subset of allCalendars. ...",
+        "html_type": "Titanium.Calendar.Calendar[]",
+        "html_meta": {
+          "readonly": null
+        }
+      }
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "addEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Adds the specified callback as an event listener for the named event.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to invoke when the event is fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38
+          }
+        ],
+        "shortDoc": "Adds the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "applyProperties",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Applies the properties to the proxy.</p>\n\n\n<p>@description <p>Properties are supplied as a dictionary. Each key-value pair in the object is applied to the proxy such that\nmyproxy[key] = value.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "props",
+            "doc": "<p>A dictionary of properties to apply.</p>\n\n\n<p>@platform android 3.0.0\n@platform blackberry 3.3.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-applyProperties",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 102
+          }
+        ],
+        "shortDoc": "Applies the properties to the proxy. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "fireEvent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Fires a synthesized event to any registered listeners.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Dictionary",
+            "name": "event",
+            "doc": "<p>A dictionary of keys and values to add to the <a href=\"#!/api/Titanium.Event\" rel=\"Titanium.Event\" class=\"docClass\">Titanium.Event</a> object sent to the listeners.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-fireEvent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 85
+          }
+        ],
+        "shortDoc": "Fires a synthesized event to any registered listeners. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getAllAlerts",
+        "owner": "Titanium.Calendar",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Calendar-property-allAlerts\" rel=\"Titanium.Calendar-property-allAlerts\" class=\"docClass\">allAlerts</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.Calendar.Alert[]",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.Calendar.Alert[]"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getAllAlerts",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 25640
+          }
+        ],
+        "shortDoc": "Gets the value of the allAlerts property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getAllCalendars",
+        "owner": "Titanium.Calendar",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Calendar-property-allCalendars\" rel=\"Titanium.Calendar-property-allCalendars\" class=\"docClass\">allCalendars</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.Calendar.Calendar[]",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.Calendar.Calendar[]"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getAllCalendars",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 25654
+          }
+        ],
+        "shortDoc": "Gets the value of the allCalendars property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getAllEditableCalendars",
+        "owner": "Titanium.Calendar",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Calendar-property-allEditableCalendars\" rel=\"Titanium.Calendar-property-allEditableCalendars\" class=\"docClass\">allEditableCalendars</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.Calendar.Calendar[]",
+          "name": "return",
+          "doc": "<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.Calendar.Calendar[]"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getAllEditableCalendars",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 25667
+          }
+        ],
+        "shortDoc": "Gets the value of the allEditableCalendars property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getApiName",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-apiName\" rel=\"Titanium.Proxy-property-apiName\" class=\"docClass\">apiName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getApiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 157
+          }
+        ],
+        "shortDoc": "Gets the value of the apiName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 123
+          }
+        ],
+        "shortDoc": "Gets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getCalendarById",
+        "owner": "Titanium.Calendar",
+        "doc": "<p>Gets the calendar with the specified identifier.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "id",
+            "doc": "<p>Identifier of the calendar.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "Titanium.Calendar.Calendar",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.Calendar.Calendar"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getCalendarById",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 25591
+          }
+        ],
+        "shortDoc": "Gets the calendar with the specified identifier. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getDefaultCalendar",
+        "owner": "Titanium.Calendar",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Calendar-property-defaultCalendar\" rel=\"Titanium.Calendar-property-defaultCalendar\" class=\"docClass\">defaultCalendar</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.Calendar.Calendar",
+          "name": "return",
+          "doc": "<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.Calendar.Calendar"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getDefaultCalendar",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 25696
+          }
+        ],
+        "shortDoc": "Gets the value of the defaultCalendar property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getEventsAuthorization",
+        "owner": "Titanium.Calendar",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Calendar-property-eventsAuthorization\" rel=\"Titanium.Calendar-property-eventsAuthorization\" class=\"docClass\">eventsAuthorization</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getEventsAuthorization",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 25625
+          }
+        ],
+        "shortDoc": "Gets the value of the eventsAuthorization property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+          "name": "return",
+          "doc": "<p>@platform android 3.6.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 175
+          }
+        ],
+        "shortDoc": "Gets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getSelectableCalendars",
+        "owner": "Titanium.Calendar",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Calendar-property-selectableCalendars\" rel=\"Titanium.Calendar-property-selectableCalendars\" class=\"docClass\">selectableCalendars</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.Calendar.Calendar[]",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.Calendar.Calendar[]"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getSelectableCalendars",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 25682
+          }
+        ],
+        "shortDoc": "Gets the value of the selectableCalendars property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Removes the specified callback as an event listener for the named event.</p>\n\n\n<p>@description <p>Multiple listeners can be registered for the same event, so the\n<code>callback</code> parameter is used to determine which listener to remove. </p></p>\n\n<p>When adding a listener, you must save a reference to the callback function\nin order to remove the listener later:</p>\n\n\n\n\n<pre><code>var listener = function() { Ti.API.info(\"Event listener called.\"); }\nwindow.addEventListener('click', listener);\n</code></pre>\n\n\n\n\n<p>To remove the listener, pass in a reference to the callback function:</p>\n\n\n\n\n<pre><code>window.removeEventListener('click', listener);\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to remove. Must be the same function passed to <code>addEventListener</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 55
+          }
+        ],
+        "shortDoc": "Removes the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "requestEventsAuthorization",
+        "owner": "Titanium.Calendar",
+        "doc": "<p>If authorization is unknown, will bring up a dialog requesting permission.</p>\n\n\n<p>@description <p>Note that the callback may be synchronous or asynchronous. That is, it may be called\nduring requestEventsAuthorization or much later. See the \"Request access to the events\"\nexample on how to best use this method. </p></p>\n",
+        "params": [
+          {
+            "type": "Callback<EventsAuthorizationResponse>",
+            "name": "callback",
+            "doc": "<p>Callback function to execute when when authorization is no longer unknown.</p>\n\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<EventsAuthorizationResponse>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-requestEventsAuthorization",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 25606
+          }
+        ],
+        "shortDoc": "If authorization is unknown, will bring up a dialog requesting permission. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "bubbleParent",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139
+          }
+        ],
+        "shortDoc": "Sets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+            "name": "lifecycleContainer",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.6.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 189
+          }
+        ],
+        "shortDoc": "Sets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "event": [
+      {
+        "tagname": "event",
+        "name": "change",
+        "owner": "Titanium.Calendar",
+        "doc": "<p>Fired when the database backing the EventKit module is modified.</p>\n\n\n<p>@description <p>This eventis fired when changes are made to the Calendar database, including adding,\nremoving, and changing events or reminders. Individual changes are not described.\nWhen you receive this notification, you should refetch all Event objects you have\naccessed, as they are considered stale. If you are actively editing an event and\ndo not wish to refetch it unless it is absolutely necessary to do so, you can call\nthe <a href=\"#!/api/Titanium.Calendar.Event-method-refresh\" rel=\"Titanium.Calendar.Event-method-refresh\" class=\"docClass\">refresh</a> method on it. If the method returns\nYES, you do not need to refetch the event.</p></p>\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "event-change",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 25561
+          }
+        ],
+        "shortDoc": "Fired when the database backing the EventKit module is modified. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 25185
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+    "Titanium.Proxy",
+    "Titanium.Module"
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

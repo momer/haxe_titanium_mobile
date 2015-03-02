@@ -1,0 +1,1767 @@
+{
+  "tagname": "class",
+  "name": "Titanium.Media.MusicPlayer",
+  "doc": "<p>@platform iphone 1.4.0\n@platform ipad 1.4.0 @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/Media/MusicPlayer.yml</p>\n\n<p>This object represents a music controller.</p>\n\n\n<p>@description <p>A <code>MusicPlayer</code> lets you manage and playback a queue of media <a href=\"#!/api/Titanium.Media.Item\" rel=\"Titanium.Media.Item\" class=\"docClass\">Item</a> objects.</p></p>\n\n<p>To retrieve an instance of a MusicPlayer object, use either the\n<a href=\"#!/api/Titanium.Media-property-appMusicPlayer\" rel=\"Titanium.Media-property-appMusicPlayer\" class=\"docClass\">Titanium.Media.appMusicPlayer</a> or the <a href=\"#!/api/Titanium.Media-property-systemMusicPlayer\" rel=\"Titanium.Media-property-systemMusicPlayer\" class=\"docClass\">Titanium.Media.systemMusicPlayer</a> property.</p>\n\n\n\n\n<p>Use the <a href=\"#!/api/Titanium.Media\" rel=\"Titanium.Media\" class=\"docClass\">Media</a> module's <a href=\"#!/api/Titanium.Media-method-openMusicLibrary\" rel=\"Titanium.Media-method-openMusicLibrary\" class=\"docClass\">openMusicLibrary</a> and\n<a href=\"#!/api/Titanium.Media-method-queryMusicLibrary\" rel=\"Titanium.Media-method-queryMusicLibrary\" class=\"docClass\">queryMusicLibrary</a> methods to access the media items in the\ndevice's media library.</p>\n\n",
+  "extends": "Titanium.Proxy",
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-Titanium.Media.MusicPlayer",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "apiName",
+        "owner": "Titanium.Proxy",
+        "type": "String",
+        "doc": "<p>The name of the API that this proxy corresponds to.</p>\n\n\n<p>@description <p>The value of this property is the fully qualified name of the API. For example, <a href=\"#!/api/Titanium.UI.Button\" rel=\"Titanium.UI.Button\" class=\"docClass\">Button</a>\nreturns <code>Ti.UI.Button</code>.</p></p>\n\n<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-apiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 235
+          }
+        ],
+        "shortDoc": "The name of the API that this proxy corresponds to. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "bubbleParent",
+        "owner": "Titanium.Proxy",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the proxy will bubble an event to its parent.</p>\n\n\n<p>@description <p>Some proxies (most commonly views) have a relationship to other proxies, often\nestablished by the add() method. For example, for a button added to a window, a\nclick event on the button would bubble up to the window. Other common parents are\ntable sections to their rows, table views to their sections, and scrollable views\nto their views. Set this property to false to disable the bubbling to the proxy's parent.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-bubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 207
+          }
+        ],
+        "shortDoc": "Indicates if the proxy will bubble an event to its parent. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "currentPlaybackTime",
+        "owner": "Titanium.Media.MusicPlayer",
+        "type": "Number",
+        "doc": "<p>Current point in song playback, in seconds.</p>\n\n\n<p>@description <p>This property is read/write, so you can update the music player's current position\nby setting this property.</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-currentPlaybackTime",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63476
+          }
+        ],
+        "shortDoc": "Current point in song playback, in seconds. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "doc": "<p>The Window or TabGroup whose Activity lifecycle should be triggered on the proxy.</p>\n\n\n<p>@description <p>If this property is set to a Window or TabGroup, then the corresponding Activity lifecycle event callbacks\nwill also be called on the proxy. Proxies that require the activity lifecycle will need this property set\nto the appropriate containing Window or TabGroup.</p></p>\n\n<p>@platform android 3.6.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-lifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 262
+          }
+        ],
+        "shortDoc": "The Window or TabGroup whose Activity lifecycle should be triggered on the proxy. ...",
+        "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "nowPlaying",
+        "owner": "Titanium.Media.MusicPlayer",
+        "type": "Titanium.Media.Item",
+        "doc": "<p>An <code>Item</code> object representing the currently playing media item.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-nowPlaying",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63498
+          }
+        ],
+        "html_type": "Titanium.Media.Item",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "playbackState",
+        "owner": "Titanium.Media.MusicPlayer",
+        "type": "Number",
+        "doc": "<p>Playback state.</p>\n\n\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.Media-property-MUSIC_PLAYER_STATE_INTERRUPTED\" rel=\"Titanium.Media-property-MUSIC_PLAYER_STATE_INTERRUPTED\" class=\"docClass\">Titanium.Media.MUSIC_PLAYER_STATE_INTERRUPTED</a>\n <li> <a href=\"#!/api/Titanium.Media-property-MUSIC_PLAYER_STATE_PAUSED\" rel=\"Titanium.Media-property-MUSIC_PLAYER_STATE_PAUSED\" class=\"docClass\">Titanium.Media.MUSIC_PLAYER_STATE_PAUSED</a>\n <li> <a href=\"#!/api/Titanium.Media-property-MUSIC_PLAYER_STATE_PLAYING\" rel=\"Titanium.Media-property-MUSIC_PLAYER_STATE_PLAYING\" class=\"docClass\">Titanium.Media.MUSIC_PLAYER_STATE_PLAYING</a>\n <li> <a href=\"#!/api/Titanium.Media-property-MUSIC_PLAYER_STATE_SEEK_BACKWARD\" rel=\"Titanium.Media-property-MUSIC_PLAYER_STATE_SEEK_BACKWARD\" class=\"docClass\">Titanium.Media.MUSIC_PLAYER_STATE_SEEK_BACKWARD</a>\n <li> <a href=\"#!/api/Titanium.Media-property-MUSIC_PLAYER_STATE_SEEK_FORWARD\" rel=\"Titanium.Media-property-MUSIC_PLAYER_STATE_SEEK_FORWARD\" class=\"docClass\">Titanium.Media.MUSIC_PLAYER_STATE_SEEK_FORWARD</a>\n <li> <a href=\"#!/api/Titanium.Media-property-MUSIC_PLAYER_STATE_STOPPED\" rel=\"Titanium.Media-property-MUSIC_PLAYER_STATE_STOPPED\" class=\"docClass\">Titanium.Media.MUSIC_PLAYER_STATE_STOPPED</a>\n</ul></p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-playbackState",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63519
+          }
+        ],
+        "shortDoc": "Playback state. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "repeatMode",
+        "owner": "Titanium.Media.MusicPlayer",
+        "type": "Number",
+        "doc": "<p>Repeat setting.</p>\n\n\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.Media-property-MUSIC_PLAYER_REPEAT_ALL\" rel=\"Titanium.Media-property-MUSIC_PLAYER_REPEAT_ALL\" class=\"docClass\">Titanium.Media.MUSIC_PLAYER_REPEAT_ALL</a>\n <li> <a href=\"#!/api/Titanium.Media-property-MUSIC_PLAYER_REPEAT_DEFAULT\" rel=\"Titanium.Media-property-MUSIC_PLAYER_REPEAT_DEFAULT\" class=\"docClass\">Titanium.Media.MUSIC_PLAYER_REPEAT_DEFAULT</a>\n <li> <a href=\"#!/api/Titanium.Media-property-MUSIC_PLAYER_REPEAT_NONE\" rel=\"Titanium.Media-property-MUSIC_PLAYER_REPEAT_NONE\" class=\"docClass\">Titanium.Media.MUSIC_PLAYER_REPEAT_NONE</a>\n <li> <a href=\"#!/api/Titanium.Media-property-MUSIC_PLAYER_REPEAT_ONE\" rel=\"Titanium.Media-property-MUSIC_PLAYER_REPEAT_ONE\" class=\"docClass\">Titanium.Media.MUSIC_PLAYER_REPEAT_ONE</a>\n</ul></p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-repeatMode",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63549
+          }
+        ],
+        "shortDoc": "Repeat setting. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "shuffleMode",
+        "owner": "Titanium.Media.MusicPlayer",
+        "type": "Number",
+        "doc": "<p>Shuffle setting.</p>\n\n\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.Media-property-MUSIC_PLAYER_SHUFFLE_ALBUMS\" rel=\"Titanium.Media-property-MUSIC_PLAYER_SHUFFLE_ALBUMS\" class=\"docClass\">Titanium.Media.MUSIC_PLAYER_SHUFFLE_ALBUMS</a>\n <li> <a href=\"#!/api/Titanium.Media-property-MUSIC_PLAYER_SHUFFLE_DEFAULT\" rel=\"Titanium.Media-property-MUSIC_PLAYER_SHUFFLE_DEFAULT\" class=\"docClass\">Titanium.Media.MUSIC_PLAYER_SHUFFLE_DEFAULT</a>\n <li> <a href=\"#!/api/Titanium.Media-property-MUSIC_PLAYER_SHUFFLE_NONE\" rel=\"Titanium.Media-property-MUSIC_PLAYER_SHUFFLE_NONE\" class=\"docClass\">Titanium.Media.MUSIC_PLAYER_SHUFFLE_NONE</a>\n <li> <a href=\"#!/api/Titanium.Media-property-MUSIC_PLAYER_SHUFFLE_SONGS\" rel=\"Titanium.Media-property-MUSIC_PLAYER_SHUFFLE_SONGS\" class=\"docClass\">Titanium.Media.MUSIC_PLAYER_SHUFFLE_SONGS</a>\n</ul></p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-shuffleMode",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63577
+          }
+        ],
+        "shortDoc": "Shuffle setting. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "volume",
+        "owner": "Titanium.Media.MusicPlayer",
+        "type": "Number",
+        "doc": "<p>Volume level for the music player from 0.0 (muted) to 1.0 (loudest).</p>\n\n\n\n\n<p> <b>Requires:</b>\niOS 7.0 and earlier\n</p>\n\n\n<p>@description <p>This property has no effect on devices running iOS 8.0 and later.</p></p>\n\n<p>This adjusts the volume of the application's session.</p>\n\n\n\n\n<p>The iOS simulator ignores this volume setting. This is a known issue\nwith Apple's simulator.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-volume",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63605
+          }
+        ],
+        "shortDoc": "Volume level for the music player from 0.0 (muted) to 1.0 (loudest). ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "addEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Adds the specified callback as an event listener for the named event.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to invoke when the event is fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38
+          }
+        ],
+        "shortDoc": "Adds the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "applyProperties",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Applies the properties to the proxy.</p>\n\n\n<p>@description <p>Properties are supplied as a dictionary. Each key-value pair in the object is applied to the proxy such that\nmyproxy[key] = value.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "props",
+            "doc": "<p>A dictionary of properties to apply.</p>\n\n\n<p>@platform android 3.0.0\n@platform blackberry 3.3.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-applyProperties",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 102
+          }
+        ],
+        "shortDoc": "Applies the properties to the proxy. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "fireEvent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Fires a synthesized event to any registered listeners.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Dictionary",
+            "name": "event",
+            "doc": "<p>A dictionary of keys and values to add to the <a href=\"#!/api/Titanium.Event\" rel=\"Titanium.Event\" class=\"docClass\">Titanium.Event</a> object sent to the listeners.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-fireEvent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 85
+          }
+        ],
+        "shortDoc": "Fires a synthesized event to any registered listeners. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getApiName",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-apiName\" rel=\"Titanium.Proxy-property-apiName\" class=\"docClass\">apiName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getApiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 157
+          }
+        ],
+        "shortDoc": "Gets the value of the apiName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 123
+          }
+        ],
+        "shortDoc": "Gets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getCurrentPlaybackTime",
+        "owner": "Titanium.Media.MusicPlayer",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Media.MusicPlayer-property-currentPlaybackTime\" rel=\"Titanium.Media.MusicPlayer-property-currentPlaybackTime\" class=\"docClass\">currentPlaybackTime</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getCurrentPlaybackTime",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63336
+          }
+        ],
+        "shortDoc": "Gets the value of the currentPlaybackTime property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+          "name": "return",
+          "doc": "<p>@platform android 3.6.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 175
+          }
+        ],
+        "shortDoc": "Gets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getNowPlaying",
+        "owner": "Titanium.Media.MusicPlayer",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Media.MusicPlayer-property-nowPlaying\" rel=\"Titanium.Media.MusicPlayer-property-nowPlaying\" class=\"docClass\">nowPlaying</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.Media.Item",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.Media.Item"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getNowPlaying",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63364
+          }
+        ],
+        "shortDoc": "Gets the value of the nowPlaying property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getPlaybackState",
+        "owner": "Titanium.Media.MusicPlayer",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Media.MusicPlayer-property-playbackState\" rel=\"Titanium.Media.MusicPlayer-property-playbackState\" class=\"docClass\">playbackState</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getPlaybackState",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63377
+          }
+        ],
+        "shortDoc": "Gets the value of the playbackState property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getRepeatMode",
+        "owner": "Titanium.Media.MusicPlayer",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Media.MusicPlayer-property-repeatMode\" rel=\"Titanium.Media.MusicPlayer-property-repeatMode\" class=\"docClass\">repeatMode</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getRepeatMode",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63390
+          }
+        ],
+        "shortDoc": "Gets the value of the repeatMode property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getShuffleMode",
+        "owner": "Titanium.Media.MusicPlayer",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Media.MusicPlayer-property-shuffleMode\" rel=\"Titanium.Media.MusicPlayer-property-shuffleMode\" class=\"docClass\">shuffleMode</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getShuffleMode",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63418
+          }
+        ],
+        "shortDoc": "Gets the value of the shuffleMode property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getVolume",
+        "owner": "Titanium.Media.MusicPlayer",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Media.MusicPlayer-property-volume\" rel=\"Titanium.Media.MusicPlayer-property-volume\" class=\"docClass\">volume</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getVolume",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63446
+          }
+        ],
+        "shortDoc": "Gets the value of the volume property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "pause",
+        "owner": "Titanium.Media.MusicPlayer",
+        "doc": "<p>Pauses playback of the current media item.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-pause",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63194
+          }
+        ],
+        "shortDoc": "Pauses playback of the current media item. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "play",
+        "owner": "Titanium.Media.MusicPlayer",
+        "doc": "<p>Begins playback of the current media item.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-play",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63207
+          }
+        ],
+        "shortDoc": "Begins playback of the current media item. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Removes the specified callback as an event listener for the named event.</p>\n\n\n<p>@description <p>Multiple listeners can be registered for the same event, so the\n<code>callback</code> parameter is used to determine which listener to remove. </p></p>\n\n<p>When adding a listener, you must save a reference to the callback function\nin order to remove the listener later:</p>\n\n\n\n\n<pre><code>var listener = function() { Ti.API.info(\"Event listener called.\"); }\nwindow.addEventListener('click', listener);\n</code></pre>\n\n\n\n\n<p>To remove the listener, pass in a reference to the callback function:</p>\n\n\n\n\n<pre><code>window.removeEventListener('click', listener);\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to remove. Must be the same function passed to <code>addEventListener</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 55
+          }
+        ],
+        "shortDoc": "Removes the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "seekBackward",
+        "owner": "Titanium.Media.MusicPlayer",
+        "doc": "<p>Begins seeking backward in the currently playing media.</p>\n\n\n<p>@description <p>Seeking speed increases as seeking continues.</p></p>\n\n<p>Call <a href=\"#!/api/Titanium.Media.MusicPlayer-method-stopSeeking\" rel=\"Titanium.Media.MusicPlayer-method-stopSeeking\" class=\"docClass\">stopSeeking</a> to\nreturn to normal play.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-seekBackward",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63220
+          }
+        ],
+        "shortDoc": "Begins seeking backward in the currently playing media. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "seekForward",
+        "owner": "Titanium.Media.MusicPlayer",
+        "doc": "<p>Begins seeking forward in the currently playing media item.</p>\n\n\n<p>@description <p>While seeking forward audio plays faster than usual. The speed increases as\nseeking continues.</p></p>\n\n<p>Call <a href=\"#!/api/Titanium.Media.MusicPlayer-method-stopSeeking\" rel=\"Titanium.Media.MusicPlayer-method-stopSeeking\" class=\"docClass\">stopSeeking</a> to\nreturn to normal play.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-seekForward",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63236
+          }
+        ],
+        "shortDoc": "Begins seeking forward in the currently playing media item. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "bubbleParent",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139
+          }
+        ],
+        "shortDoc": "Sets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setCurrentPlaybackTime",
+        "owner": "Titanium.Media.MusicPlayer",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Media.MusicPlayer-property-currentPlaybackTime\" rel=\"Titanium.Media.MusicPlayer-property-currentPlaybackTime\" class=\"docClass\">currentPlaybackTime</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "currentPlaybackTime",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setCurrentPlaybackTime",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63349
+          }
+        ],
+        "shortDoc": "Sets the value of the currentPlaybackTime property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+            "name": "lifecycleContainer",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.6.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 189
+          }
+        ],
+        "shortDoc": "Sets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setQueue",
+        "owner": "Titanium.Media.MusicPlayer",
+        "doc": "<p>Sets the media queue.</p>\n\n\n<p>@description <p>Sets the media queue to a single media item or a list of items.</p></p>\n",
+        "params": [
+          {
+            "type": "Titanium.Media.Item/Array<Titanium.Media.Item>/PlayerQueue",
+            "name": "queue",
+            "doc": "<p>One or more media items.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.Media.Item/Array<Titanium.Media.Item>/PlayerQueue"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setQueue",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63253
+          }
+        ],
+        "shortDoc": "Sets the media queue. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setRepeatMode",
+        "owner": "Titanium.Media.MusicPlayer",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Media.MusicPlayer-property-repeatMode\" rel=\"Titanium.Media.MusicPlayer-property-repeatMode\" class=\"docClass\">repeatMode</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "repeatMode",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setRepeatMode",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63403
+          }
+        ],
+        "shortDoc": "Sets the value of the repeatMode property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setShuffleMode",
+        "owner": "Titanium.Media.MusicPlayer",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Media.MusicPlayer-property-shuffleMode\" rel=\"Titanium.Media.MusicPlayer-property-shuffleMode\" class=\"docClass\">shuffleMode</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "shuffleMode",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setShuffleMode",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63431
+          }
+        ],
+        "shortDoc": "Sets the value of the shuffleMode property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setVolume",
+        "owner": "Titanium.Media.MusicPlayer",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Media.MusicPlayer-property-volume\" rel=\"Titanium.Media.MusicPlayer-property-volume\" class=\"docClass\">volume</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "volume",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setVolume",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63459
+          }
+        ],
+        "shortDoc": "Sets the value of the volume property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "skipToBeginning",
+        "owner": "Titanium.Media.MusicPlayer",
+        "doc": "<p>Skips to the beginning of the currently playing media item.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-skipToBeginning",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63268
+          }
+        ],
+        "shortDoc": "Skips to the beginning of the currently playing media item. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "skipToNext",
+        "owner": "Titanium.Media.MusicPlayer",
+        "doc": "<p>Skips to the next media item in the queue.</p>\n\n\n<p>@description <p>If there are no more media items in the queue, ends playback.</p></p>\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-skipToNext",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63281
+          }
+        ],
+        "shortDoc": "Skips to the next media item in the queue. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "skipToPrevious",
+        "owner": "Titanium.Media.MusicPlayer",
+        "doc": "<p>Skips to the previous media item in the queue.</p>\n\n\n<p>@description <p>If there are no previous media items in the queue, ends playback.</p></p>\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-skipToPrevious",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63294
+          }
+        ],
+        "shortDoc": "Skips to the previous media item in the queue. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "stop",
+        "owner": "Titanium.Media.MusicPlayer",
+        "doc": "<p>Stops playback of the current media queue.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-stop",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63307
+          }
+        ],
+        "shortDoc": "Stops playback of the current media queue. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "stopSeeking",
+        "owner": "Titanium.Media.MusicPlayer",
+        "doc": "<p>Ends a seek operation and returns to the previous playback state.</p>\n\n\n\n\n<p>See also: <a href=\"#!/api/Titanium.Media.MusicPlayer-method-seekForward\" rel=\"Titanium.Media.MusicPlayer-method-seekForward\" class=\"docClass\">seekForward</a> and\n<a href=\"#!/api/Titanium.Media.MusicPlayer-method-seekBackward\" rel=\"Titanium.Media.MusicPlayer-method-seekBackward\" class=\"docClass\">seekBackward</a>.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-stopSeeking",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63320
+          }
+        ],
+        "shortDoc": "Ends a seek operation and returns to the previous playback state. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "event": [
+      {
+        "tagname": "event",
+        "name": "playingChange",
+        "owner": "Titanium.Media.MusicPlayer",
+        "doc": "<p>Fired when the currently playing media item changes.</p>\n\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "deprecated": {
+            "text": "3.0.0 Renamed to [playingchange](Titanium.Media.MusicPlayer.playingchange)\n(all lowercase).\n\n\n@description <p>See {@link Titanium.Media.MusicPlayer#property-nowPlaying nowPlaying} to identify the current\nmedia item.</p>"
+          }
+        },
+        "id": "event-playingChange",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63052
+          }
+        ],
+        "shortDoc": "Fired when the currently playing media item changes. ...",
+        "html_meta": {
+          "deprecated": "        <div class='signature-box deprecated'>\n        <p>This event has been <strong>deprecated</strong> </p>\n        <p>3.0.0 Renamed to <a href=\"Titanium.Media.MusicPlayer.playingchange\">playingchange</a>\n(all lowercase).</p>\n\n<p>@description <p>See <a href=\"#!/api/Titanium.Media.MusicPlayer-property-nowPlaying\" rel=\"Titanium.Media.MusicPlayer-property-nowPlaying\" class=\"docClass\">nowPlaying</a> to identify the current\nmedia item.</p></p>\n\n        </div>\n"
+        }
+      },
+      {
+        "tagname": "event",
+        "name": "playingchange",
+        "owner": "Titanium.Media.MusicPlayer",
+        "doc": "<p>Fired when the currently playing media item changes.</p>\n\n\n<p>@description <p>See <a href=\"#!/api/Titanium.Media.MusicPlayer-property-nowPlaying\" rel=\"Titanium.Media.MusicPlayer-property-nowPlaying\" class=\"docClass\">nowPlaying</a> to identify the current\nmedia item.</p></p>\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n\n<p>@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "event-playingchange",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63123
+          }
+        ],
+        "shortDoc": "Fired when the currently playing media item changes. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "event",
+        "name": "stateChange",
+        "owner": "Titanium.Media.MusicPlayer",
+        "doc": "<p>Fired when the music player's playback state changes.</p>\n\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "deprecated": {
+            "text": "3.0.0 Renamed to [statechange](Titanium.Media.MusicPlayer.statechange)\n(all lowercase).\n\n\n@description <p>See {@link Titanium.Media.MusicPlayer#property-playbackState playbackState} to identify the current\nplayback state.</p>"
+          }
+        },
+        "id": "event-stateChange",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63075
+          }
+        ],
+        "shortDoc": "Fired when the music player's playback state changes. ...",
+        "html_meta": {
+          "deprecated": "        <div class='signature-box deprecated'>\n        <p>This event has been <strong>deprecated</strong> </p>\n        <p>3.0.0 Renamed to <a href=\"Titanium.Media.MusicPlayer.statechange\">statechange</a>\n(all lowercase).</p>\n\n<p>@description <p>See <a href=\"#!/api/Titanium.Media.MusicPlayer-property-playbackState\" rel=\"Titanium.Media.MusicPlayer-property-playbackState\" class=\"docClass\">playbackState</a> to identify the current\nplayback state.</p></p>\n\n        </div>\n"
+        }
+      },
+      {
+        "tagname": "event",
+        "name": "statechange",
+        "owner": "Titanium.Media.MusicPlayer",
+        "doc": "<p>Fired when the music player's playback state changes.</p>\n\n\n<p>@description <p>See <a href=\"#!/api/Titanium.Media.MusicPlayer-property-playbackState\" rel=\"Titanium.Media.MusicPlayer-property-playbackState\" class=\"docClass\">playbackState</a> to identify the current\nplayback state.</p></p>\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n\n<p>@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "event-statechange",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63146
+          }
+        ],
+        "shortDoc": "Fired when the music player's playback state changes. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "event",
+        "name": "volumeChange",
+        "owner": "Titanium.Media.MusicPlayer",
+        "doc": "<p>Fired when the volume changes.</p>\n\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "deprecated": {
+            "text": "3.0.0 Renamed to [volumechange](Titanium.Media.MusicPlayer.volumechange)\n(all lowercase).\n\n\n@description <p>This event has been deprecated and renamed volumechange (lower case).</p>\n\n<p>Use the {@link Titanium.Media.MusicPlayer#property-volume volume} property to set or determine\nthe current volume level for this player.</p>"
+          }
+        },
+        "id": "event-volumeChange",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63098
+          }
+        ],
+        "shortDoc": "Fired when the volume changes. ...",
+        "html_meta": {
+          "deprecated": "        <div class='signature-box deprecated'>\n        <p>This event has been <strong>deprecated</strong> </p>\n        <p>3.0.0 Renamed to <a href=\"Titanium.Media.MusicPlayer.volumechange\">volumechange</a>\n(all lowercase).</p>\n\n<p>@description <p>This event has been deprecated and renamed volumechange (lower case).</p></p>\n\n<p>Use the <a href=\"#!/api/Titanium.Media.MusicPlayer-property-volume\" rel=\"Titanium.Media.MusicPlayer-property-volume\" class=\"docClass\">volume</a> property to set or determine\nthe current volume level for this player.</p>\n\n\n        </div>\n"
+        }
+      },
+      {
+        "tagname": "event",
+        "name": "volumechange",
+        "owner": "Titanium.Media.MusicPlayer",
+        "doc": "<p>Fired when the volume changes.</p>\n\n\n<p>@description <p>Use the <a href=\"#!/api/Titanium.Media.MusicPlayer-property-volume\" rel=\"Titanium.Media.MusicPlayer-property-volume\" class=\"docClass\">volume</a> property to set or determine\nthe current volume level for this player.</p></p>\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n\n<p>@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "event-volumechange",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 63169
+          }
+        ],
+        "shortDoc": "Fired when the volume changes. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 63029
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+    "Titanium.Proxy"
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

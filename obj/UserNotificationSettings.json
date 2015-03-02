@@ -1,0 +1,134 @@
+{
+  "tagname": "class",
+  "name": "UserNotificationSettings",
+  "doc": "<p>@platform iphone 3.4.0\n@platform ipad 3.4.0\n@pseudo @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/App/iOS/iOS.yml</p>\n\n<p>Dictionary object of parameters used to register the application with local notifications using\nthe <a href=\"#!/api/Titanium.App.iOS-method-registerUserNotificationSettings\" rel=\"Titanium.App.iOS-method-registerUserNotificationSettings\" class=\"docClass\">Titanium.App.iOS.registerUserNotificationSettings</a> method.</p>\n\n\n\n\n<p>To retrieve the current notification settings, use the\n<a href=\"#!/api/Titanium.App.iOS-property-currentUserNotificationSettings\" rel=\"Titanium.App.iOS-property-currentUserNotificationSettings\" class=\"docClass\">Titanium.App.iOS.currentUserNotificationSettings</a> property.</p>\n\n",
+  "extends": null,
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-UserNotificationSettings",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "categories",
+        "owner": "UserNotificationSettings",
+        "type": "Titanium.App.iOS.UserNotificationCategory[]",
+        "doc": "<p>Set of categories of user notification actions required by the applicaiton to use.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-categories",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 23712
+          }
+        ],
+        "html_type": "Titanium.App.iOS.UserNotificationCategory[]",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "types",
+        "owner": "UserNotificationSettings",
+        "type": "Number[]",
+        "doc": "<p>Notification types to use.</p>\n\n\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.App.iOS-property-USER_NOTIFICATION_TYPE_NONE\" rel=\"Titanium.App.iOS-property-USER_NOTIFICATION_TYPE_NONE\" class=\"docClass\">Titanium.App.iOS.USER_NOTIFICATION_TYPE_NONE</a>\n <li> <a href=\"#!/api/Titanium.App.iOS-property-USER_NOTIFICATION_TYPE_BADGE\" rel=\"Titanium.App.iOS-property-USER_NOTIFICATION_TYPE_BADGE\" class=\"docClass\">Titanium.App.iOS.USER_NOTIFICATION_TYPE_BADGE</a>\n <li> <a href=\"#!/api/Titanium.App.iOS-property-USER_NOTIFICATION_TYPE_SOUND\" rel=\"Titanium.App.iOS-property-USER_NOTIFICATION_TYPE_SOUND\" class=\"docClass\">Titanium.App.iOS.USER_NOTIFICATION_TYPE_SOUND</a>\n <li> <a href=\"#!/api/Titanium.App.iOS-property-USER_NOTIFICATION_TYPE_ALERT\" rel=\"Titanium.App.iOS-property-USER_NOTIFICATION_TYPE_ALERT\" class=\"docClass\">Titanium.App.iOS.USER_NOTIFICATION_TYPE_ALERT</a>\n</ul></p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-types",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 23684
+          }
+        ],
+        "shortDoc": "Notification types to use. ...",
+        "html_type": "Number[]",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 23660
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

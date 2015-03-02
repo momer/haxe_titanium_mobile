@@ -1,0 +1,134 @@
+{
+  "tagname": "class",
+  "name": "AcceptedCallbackArgs",
+  "doc": "<p>@platform android 1.7\n@platform blackberry 3.1.2\n@platform iphone 1.7\n@platform ipad 1.7\n@platform mobileweb 1.8\n@pseudo @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/Network/Socket/TCP.yml</p>\n\n<p>Argument object passed to the <a href=\"#!/api/Titanium.Network.Socket.TCP-property-accepted\" rel=\"Titanium.Network.Socket.TCP-property-accepted\" class=\"docClass\">accepted</a>\ncallback when a listener accepts a connection.</p>\n\n",
+  "extends": null,
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-AcceptedCallbackArgs",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "inbound",
+        "owner": "AcceptedCallbackArgs",
+        "type": "Titanium.Network.Socket.TCP",
+        "doc": "<p>Socket which represents the inbound connection.</p>\n\n\n<p>@description <p>This should be considered a 'connected' socket and is created in\nthe <a href=\"#!/api/Titanium.Network.Socket-property-CONNECTED\" rel=\"Titanium.Network.Socket-property-CONNECTED\" class=\"docClass\">CONNECTED</a> state.</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-inbound",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 73028
+          }
+        ],
+        "shortDoc": "Socket which represents the inbound connection. ...",
+        "html_type": "Titanium.Network.Socket.TCP",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "socket",
+        "owner": "AcceptedCallbackArgs",
+        "type": "Titanium.Network.Socket.TCP",
+        "doc": "<p>Socket which received the connection.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-socket",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 73007
+          }
+        ],
+        "html_type": "Titanium.Network.Socket.TCP",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 72983
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

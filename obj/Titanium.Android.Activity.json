@@ -1,0 +1,2609 @@
+{
+  "tagname": "class",
+  "name": "Titanium.Android.Activity",
+  "doc": "<p>@platform android 1.5 @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/Android/Activity.yml</p>\n\n<p>The Titanium binding of an Android Activity.</p>\n\n\n<p>@description <p>According to the Android API Reference, an activity is \"a single, focused thing that a\nuser can do.\"</p></p>\n\n<p>In almost all cases, an activity is associated with a window.  Activities are central\nto the Android <strong>Back</strong> button navigation -- the <strong>Back</strong> button closes the current\nactivity and returns to whatever activity was open previously.</p>\n\n\n\n\n<p>In Titanium, the Android Activity is not created until a window or tab group is opened.\nAfter a Window or TabGroup object is created but before it is opened, its <code>activity</code> property\nrefers to an empty JavaScript object. You can use it to set properties on the activity, such as\nthe <code>onCreateOptionsMenu</code> property, but you cannot invoke any Activity methods.</p>\n\n\n\n\n<p>After the window or tab group opens, a real Activity object is created and the properties from\nthe JavaScript object are copied over. The <code>activity</code> property now refers to this real Activity object,\nwhich you can use to call the various Activity methods. For example, to use the\n<code>invalidateOptionsMenu</code> method, you need to get the activity after the window or tab group opens.</p>\n\n\n\n\n<p>See also <a href=\"http://developer.android.com/reference/android/app/Activity.html\">android.app.Activity</a>\nin the Android API Reference.</p>\n\n\n\n\n<h4>Activity Lifecycle</h4>\n\n\n\n\n<p>In Android, activities are created, started, resumed, paused, stopped, destroyed and restarted.\nTitanium generates lifecycle events for activities but does not generate application-level events.\nTo be notified when an activity's lifecycle event is triggered, assign callbacks to the following activity\nproperties:</p>\n\n\n\n\n<ul>\n<li><a href=\"#!/api/Titanium.Android.Activity-property-onCreate\" rel=\"Titanium.Android.Activity-property-onCreate\" class=\"docClass\">onCreate</a></li>\n<li><a href=\"#!/api/Titanium.Android.Activity-property-onStart\" rel=\"Titanium.Android.Activity-property-onStart\" class=\"docClass\">onStart</a></li>\n<li><a href=\"#!/api/Titanium.Android.Activity-property-onResume\" rel=\"Titanium.Android.Activity-property-onResume\" class=\"docClass\">onResume</a></li>\n<li><a href=\"#!/api/Titanium.Android.Activity-property-onPause\" rel=\"Titanium.Android.Activity-property-onPause\" class=\"docClass\">onPause</a></li>\n<li><a href=\"#!/api/Titanium.Android.Activity-property-onStop\" rel=\"Titanium.Android.Activity-property-onStop\" class=\"docClass\">onStop</a></li>\n<li><a href=\"#!/api/Titanium.Android.Activity-property-onDestroy\" rel=\"Titanium.Android.Activity-property-onDestroy\" class=\"docClass\">onDestroy</a></li>\n<li><a href=\"#!/api/Titanium.Android.Activity-property-onRestart\" rel=\"Titanium.Android.Activity-property-onRestart\" class=\"docClass\">onRestart</a></li>\n</ul>\n\n\n\n\n<p>See also the \"Understand the Lifecycle Callbacks\" section in\n<a href=\"http://developer.android.com/training/basics/activity-lifecycle/starting.html\">Android Developers: Activity Lifecycle</a>.</p>\n\n\n\n\n<h4>Handling Application Restarts</h4>\n\n\n\n\n<p>Every Android application has a root activity that starts the application. For Titanium\napplications, the root activity displays the splash screen. When a backgrounded\napplication is left inactive (for about 30 minutes or so), upon reopening the app Android\nkills off activities above the root activity. This reveals the splash screen activity, making it\nappear as if the application is hung. There are two ways to handle this scenario:</p>\n\n\n\n\n<ul>\n<li><p>Add the following to the root <code>&lt;ti:app&gt;</code> element in your project's tiapp.xml:</p>\n\n<pre><code>&lt;property name=\"ti.android.root.reappears.restart\" type=\"bool\"&gt;true&lt;/property&gt;\n</code></pre></li>\n<li><p>Create an event listener for the <code>\"resume\"</code> event on the current Android activity that\nre-intiializes the application. The benefit to this approach is that it avoids a full\napplication restart, which occurs with the first option.</p>\n\n<pre><code>var initialLaunchPerformed = false;\nTi.Android.currentActivity.addEventListener(\"resume\", function() {\n    if (!initialLaunchPerformed) {\n        initialLaunchPerformed = true;\n        return;\n    }\n    // If we reach this point the root activity is being resumed for the second (or greater time).\n    // Re-run the application-specific start-up code again.\n    runApplication();\n});\n\nfunction runApplication() {\n    // Start-up code here...\n}\n</code></pre></li>\n</ul>\n\n\n\n\n<h4>Don't keep activities option</h4>\n\n\n\n\n<p>Android 4.0 and greater devices have an option called <strong>Don't keep activities</strong> under the <strong>Developer\nOptions</strong> menu. When this option is enabled, the Android OS will destroy an activity as soon as it\nis stopped. It is intended to help developers debug their apps. For example, it can simulate the\ncase that Android will kill an activity in the background due to memory pressure. In\nnormal use, it is not recommended to turn this option on because this may lead to unexpected issues\non the apps, such as freezes, force closes and reboots.</p>\n\n\n\n\n<p>When the <strong>Don't keep activities</strong> option is enabled, the lifecycle of the activity is different\nfrom the normal case. Whenever the user leaves an activity, such as backgrounding the app using the\nHOME button, this activity is destroyed by Android, which calls <code>onDestroy</code>.  In the normal case, <code>onStop</code>\nwould be called and the activity would not be destroyed.  Later, when the user goes back to that activity, this\nactivity will be recreated, which calls <code>onCreate</code>.  In the normal case, since the activity is not destroyed,\n<code>onRestart</code> would be called instead.  Therefore, some events, such as the open and close events on the Window\nor TabGroup, will be fired differently from the normal case, and the root window of the app must set\n<a href=\"#!/api/Titanium.UI.Window-property-exitOnClose\" rel=\"Titanium.UI.Window-property-exitOnClose\" class=\"docClass\">exitOnClose</a> to true; otherwise, the app will be unable to back out, that is,\nhitting the BACK button in the root window will not allow the application to exit.</p>\n\n\n\n\n<h4>Deprecated Behavior</h4>\n\n\n\n\n<p>Prior to Release 3.4.0, to monitor lifecycle events, use the activity's events, <code>create</code>, <code>destroy</code>,\n<code>pause</code>, <code>resume</code>, <code>start</code> and <code>stop</code>, to be notified when an activity is created, destroyed, paused,\nresumed, started and stopped, respectively.</p>\n\n\n\n\n<p>You can only set Activity properties from a TabGroup object after the tab group opens.</p>\n\n\n\n\n<p>Prior to Release 3.2.0, you can create either a \"lightweight\" or \"heavyweight\" window, as\ndescribed on the <a href=\"#!/api/Titanium.UI.Window\" rel=\"Titanium.UI.Window\" class=\"docClass\">Titanium.UI.Window</a> reference page. A <em>heavyweight</em> window creates a\nnew <code>Activity</code>. A <em>lightweight</em> window runs inside the same activity as the code that\ncreated it.  If you try to reference the activity of lightweight window, it returns undefined.</p>\n\n\n<h3>Examples</h3>\n\n\n<h4>Callback Example</h4>\n\n\n<p>The following example shows how to start an activity and retrieve a result code\nand optional data intent when the activity ends.</p>\n\n\n\n\n<pre><code>activity.startActivityForResult(intent, function(e) {\n    // The request code used to start this Activity\n    var requestCode = e.requestCode;\n    // The result code returned from the activity\n    // (http://developer.android.com/reference/android/app/Activity.html#StartingActivities)\n    var resultCode = e.resultCode;\n    // A <a href=\"#!/api/Titanium.Android.Intent\" rel=\"Titanium.Android.Intent\" class=\"docClass\">Titanium.Android.Intent</a> filled with data returned from the Activity\n    var intent = e.intent;\n    // The Activity the received the result\n    var source = e.source;\n});\n</code></pre>\n\n",
+  "extends": "Titanium.Proxy",
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-Titanium.Android.Activity",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "actionBar",
+        "owner": "Titanium.Android.Activity",
+        "type": "Titanium.Android.ActionBar",
+        "doc": "<p>The action bar for this activity.</p>\n\n\n<p>@description <p>See also: <a href=\"http://developer.android.com/guide/topics/ui/actionbar.html\">Action Bar</a> in\nthe Android Developer Reference.</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-actionBar",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 7018
+          }
+        ],
+        "shortDoc": "The action bar for this activity. ...",
+        "html_type": "Titanium.Android.ActionBar",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "apiName",
+        "owner": "Titanium.Proxy",
+        "type": "String",
+        "doc": "<p>The name of the API that this proxy corresponds to.</p>\n\n\n<p>@description <p>The value of this property is the fully qualified name of the API. For example, <a href=\"#!/api/Titanium.UI.Button\" rel=\"Titanium.UI.Button\" class=\"docClass\">Button</a>\nreturns <code>Ti.UI.Button</code>.</p></p>\n\n<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-apiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 235
+          }
+        ],
+        "shortDoc": "The name of the API that this proxy corresponds to. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "bubbleParent",
+        "owner": "Titanium.Proxy",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the proxy will bubble an event to its parent.</p>\n\n\n<p>@description <p>Some proxies (most commonly views) have a relationship to other proxies, often\nestablished by the add() method. For example, for a button added to a window, a\nclick event on the button would bubble up to the window. Other common parents are\ntable sections to their rows, table views to their sections, and scrollable views\nto their views. Set this property to false to disable the bubbling to the proxy's parent.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-bubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 207
+          }
+        ],
+        "shortDoc": "Indicates if the proxy will bubble an event to its parent. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "intent",
+        "owner": "Titanium.Android.Activity",
+        "type": "Titanium.Android.Intent",
+        "doc": "<p>The <code>Intent</code> that was used to start this Activity.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-intent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 7040
+          }
+        ],
+        "html_type": "Titanium.Android.Intent",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "doc": "<p>The Window or TabGroup whose Activity lifecycle should be triggered on the proxy.</p>\n\n\n<p>@description <p>If this property is set to a Window or TabGroup, then the corresponding Activity lifecycle event callbacks\nwill also be called on the proxy. Proxies that require the activity lifecycle will need this property set\nto the appropriate containing Window or TabGroup.</p></p>\n\n<p>@platform android 3.6.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-lifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 262
+          }
+        ],
+        "shortDoc": "The Window or TabGroup whose Activity lifecycle should be triggered on the proxy. ...",
+        "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "onCreate",
+        "owner": "Titanium.Android.Activity",
+        "type": "Callback<Object>",
+        "doc": "<p>Callback function called when the Android activity is created.</p>\n\n\n<p>@platform android 3.4.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-onCreate",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 7061
+          }
+        ],
+        "shortDoc": "Callback function called when the Android activity is created. ...",
+        "html_type": "Callback<Object>",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "onCreateOptionsMenu",
+        "owner": "Titanium.Android.Activity",
+        "type": "Callback<Object>",
+        "doc": "<p>Callback function called to initially create an Android options menu\nfor this Activity when the user presses the <strong>Menu</strong> button.</p>\n\n\n<p>@description <p>See the menu examples in <a href=\"#!/api/Titanium.Android.Menu\" rel=\"Titanium.Android.Menu\" class=\"docClass\">Titanium.Android.Menu</a>.</p></p>\n\n<p>See also:\n<a href=\"http://developer.android.com/guide/topics/ui/menus.html#options-menu\">Creating an Options Menu</a>\nin the Android Developer's Guide.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-onCreateOptionsMenu",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 7083
+          }
+        ],
+        "shortDoc": "Callback function called to initially create an Android options menu\nfor this Activity when the user presses the Menu...",
+        "html_type": "Callback<Object>",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "onDestroy",
+        "owner": "Titanium.Android.Activity",
+        "type": "Callback<Object>",
+        "doc": "<p>Callback function called when the Android activity is destroyed.</p>\n\n\n<p>@platform android 3.4.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-onDestroy",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 7109
+          }
+        ],
+        "shortDoc": "Callback function called when the Android activity is destroyed. ...",
+        "html_type": "Callback<Object>",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "onPause",
+        "owner": "Titanium.Android.Activity",
+        "type": "Callback<Object>",
+        "doc": "<p>Callback function called when the Android activity is paused.</p>\n\n\n<p>@platform android 3.4.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-onPause",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 7131
+          }
+        ],
+        "shortDoc": "Callback function called when the Android activity is paused. ...",
+        "html_type": "Callback<Object>",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "onPrepareOptionsMenu",
+        "owner": "Titanium.Android.Activity",
+        "type": "Callback<Object>",
+        "doc": "<p>Callback function called to prepare an options menu for display when the user presses\nthe <strong>Menu</strong> button. </p>\n\n\n<p>@description <p>See the menu examples in <a href=\"#!/api/Titanium.Android.Menu\" rel=\"Titanium.Android.Menu\" class=\"docClass\">Titanium.Android.Menu</a>.</p></p>\n\n<p>See also:\n<a href=\"http://developer.android.com/guide/topics/ui/menus.html#options-menu\">Creating an Options Menu</a>\nin the Android Developer's Guide.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-onPrepareOptionsMenu",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 7153
+          }
+        ],
+        "shortDoc": "Callback function called to prepare an options menu for display when the user presses\nthe Menu button. ...",
+        "html_type": "Callback<Object>",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "onRestart",
+        "owner": "Titanium.Android.Activity",
+        "type": "Callback<Object>",
+        "doc": "<p>Callback function called when the Android activity is restarted.</p>\n\n\n<p>@platform android 3.4.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-onRestart",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 7179
+          }
+        ],
+        "shortDoc": "Callback function called when the Android activity is restarted. ...",
+        "html_type": "Callback<Object>",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "onResume",
+        "owner": "Titanium.Android.Activity",
+        "type": "Callback<Object>",
+        "doc": "<p>Callback function called when the Android activity is resumed.</p>\n\n\n<p>@platform android 3.4.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-onResume",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 7201
+          }
+        ],
+        "shortDoc": "Callback function called when the Android activity is resumed. ...",
+        "html_type": "Callback<Object>",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "onStart",
+        "owner": "Titanium.Android.Activity",
+        "type": "Callback<Object>",
+        "doc": "<p>Callback function called when the Android activity is started.</p>\n\n\n<p>@platform android 3.4.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-onStart",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 7223
+          }
+        ],
+        "shortDoc": "Callback function called when the Android activity is started. ...",
+        "html_type": "Callback<Object>",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "onStop",
+        "owner": "Titanium.Android.Activity",
+        "type": "Callback<Object>",
+        "doc": "<p>Callback function called when the Android activity is stopped.</p>\n\n\n<p>@platform android 3.4.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-onStop",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 7245
+          }
+        ],
+        "shortDoc": "Callback function called when the Android activity is stopped. ...",
+        "html_type": "Callback<Object>",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "requestedOrientation",
+        "owner": "Titanium.Android.Activity",
+        "type": "Number",
+        "doc": "<p>@writeonly</p>\n\n<p>Specifies a specific orientation for this activity.</p>\n\n\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.Android-property-SCREEN_ORIENTATION_BEHIND\" rel=\"Titanium.Android-property-SCREEN_ORIENTATION_BEHIND\" class=\"docClass\">Titanium.Android.SCREEN_ORIENTATION_BEHIND</a>\n <li> <a href=\"#!/api/Titanium.Android-property-SCREEN_ORIENTATION_LANDSCAPE\" rel=\"Titanium.Android-property-SCREEN_ORIENTATION_LANDSCAPE\" class=\"docClass\">Titanium.Android.SCREEN_ORIENTATION_LANDSCAPE</a>\n <li> <a href=\"#!/api/Titanium.Android-property-SCREEN_ORIENTATION_NOSENSOR\" rel=\"Titanium.Android-property-SCREEN_ORIENTATION_NOSENSOR\" class=\"docClass\">Titanium.Android.SCREEN_ORIENTATION_NOSENSOR</a>\n <li> <a href=\"#!/api/Titanium.Android-property-SCREEN_ORIENTATION_PORTRAIT\" rel=\"Titanium.Android-property-SCREEN_ORIENTATION_PORTRAIT\" class=\"docClass\">Titanium.Android.SCREEN_ORIENTATION_PORTRAIT</a>\n <li> <a href=\"#!/api/Titanium.Android-property-SCREEN_ORIENTATION_SENSOR\" rel=\"Titanium.Android-property-SCREEN_ORIENTATION_SENSOR\" class=\"docClass\">Titanium.Android.SCREEN_ORIENTATION_SENSOR</a>\n <li> <a href=\"#!/api/Titanium.Android-property-SCREEN_ORIENTATION_UNSPECIFIED\" rel=\"Titanium.Android-property-SCREEN_ORIENTATION_UNSPECIFIED\" class=\"docClass\">Titanium.Android.SCREEN_ORIENTATION_UNSPECIFIED</a>\n <li> <a href=\"#!/api/Titanium.Android-property-SCREEN_ORIENTATION_USER\" rel=\"Titanium.Android-property-SCREEN_ORIENTATION_USER\" class=\"docClass\">Titanium.Android.SCREEN_ORIENTATION_USER</a>\n</ul></p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-requestedOrientation",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 7267
+          }
+        ],
+        "shortDoc": "@writeonly\n\nSpecifies a specific orientation for this activity. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "addEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Adds the specified callback as an event listener for the named event.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to invoke when the event is fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38
+          }
+        ],
+        "shortDoc": "Adds the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "applyProperties",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Applies the properties to the proxy.</p>\n\n\n<p>@description <p>Properties are supplied as a dictionary. Each key-value pair in the object is applied to the proxy such that\nmyproxy[key] = value.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "props",
+            "doc": "<p>A dictionary of properties to apply.</p>\n\n\n<p>@platform android 3.0.0\n@platform blackberry 3.3.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-applyProperties",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 102
+          }
+        ],
+        "shortDoc": "Applies the properties to the proxy. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "finish",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Closes this activity.</p>\n\n\n<p>@description <p>See also:\n<a href=\"http://developer.android.com/reference/android/app/Activity.html#finish%28%29\">finish</a>\nin the Android API Reference.</p></p>\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-finish",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6514
+          }
+        ],
+        "shortDoc": "Closes this activity. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "fireEvent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Fires a synthesized event to any registered listeners.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Dictionary",
+            "name": "event",
+            "doc": "<p>A dictionary of keys and values to add to the <a href=\"#!/api/Titanium.Event\" rel=\"Titanium.Event\" class=\"docClass\">Titanium.Event</a> object sent to the listeners.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-fireEvent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 85
+          }
+        ],
+        "shortDoc": "Fires a synthesized event to any registered listeners. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getActionBar",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Android.Activity-property-actionBar\" rel=\"Titanium.Android.Activity-property-actionBar\" class=\"docClass\">actionBar</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.Android.ActionBar",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.Android.ActionBar"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getActionBar",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6724
+          }
+        ],
+        "shortDoc": "Gets the value of the actionBar property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getApiName",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-apiName\" rel=\"Titanium.Proxy-property-apiName\" class=\"docClass\">apiName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getApiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 157
+          }
+        ],
+        "shortDoc": "Gets the value of the apiName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 123
+          }
+        ],
+        "shortDoc": "Gets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getIntent",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Android.Activity-property-intent\" rel=\"Titanium.Android.Activity-property-intent\" class=\"docClass\">intent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.Android.Intent",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.Android.Intent"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getIntent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6737
+          }
+        ],
+        "shortDoc": "Gets the value of the intent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+          "name": "return",
+          "doc": "<p>@platform android 3.6.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 175
+          }
+        ],
+        "shortDoc": "Gets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getOnCreate",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Android.Activity-property-onCreate\" rel=\"Titanium.Android.Activity-property-onCreate\" class=\"docClass\">onCreate</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Callback<Object>",
+          "name": "return",
+          "doc": "<p>@platform android 3.4.0</p>\n",
+          "properties": null,
+          "html_type": "Callback<Object>"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getOnCreate",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6750
+          }
+        ],
+        "shortDoc": "Gets the value of the onCreate property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getOnCreateOptionsMenu",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Android.Activity-property-onCreateOptionsMenu\" rel=\"Titanium.Android.Activity-property-onCreateOptionsMenu\" class=\"docClass\">onCreateOptionsMenu</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Callback<Object>",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Callback<Object>"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getOnCreateOptionsMenu",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6780
+          }
+        ],
+        "shortDoc": "Gets the value of the onCreateOptionsMenu property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getOnDestroy",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Android.Activity-property-onDestroy\" rel=\"Titanium.Android.Activity-property-onDestroy\" class=\"docClass\">onDestroy</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Callback<Object>",
+          "name": "return",
+          "doc": "<p>@platform android 3.4.0</p>\n",
+          "properties": null,
+          "html_type": "Callback<Object>"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getOnDestroy",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6808
+          }
+        ],
+        "shortDoc": "Gets the value of the onDestroy property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getOnPause",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Android.Activity-property-onPause\" rel=\"Titanium.Android.Activity-property-onPause\" class=\"docClass\">onPause</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Callback<Object>",
+          "name": "return",
+          "doc": "<p>@platform android 3.4.0</p>\n",
+          "properties": null,
+          "html_type": "Callback<Object>"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getOnPause",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6838
+          }
+        ],
+        "shortDoc": "Gets the value of the onPause property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getOnPrepareOptionsMenu",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Android.Activity-property-onPrepareOptionsMenu\" rel=\"Titanium.Android.Activity-property-onPrepareOptionsMenu\" class=\"docClass\">onPrepareOptionsMenu</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Callback<Object>",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Callback<Object>"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getOnPrepareOptionsMenu",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6868
+          }
+        ],
+        "shortDoc": "Gets the value of the onPrepareOptionsMenu property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getOnRestart",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Android.Activity-property-onRestart\" rel=\"Titanium.Android.Activity-property-onRestart\" class=\"docClass\">onRestart</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Callback<Object>",
+          "name": "return",
+          "doc": "<p>@platform android 3.4.0</p>\n",
+          "properties": null,
+          "html_type": "Callback<Object>"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getOnRestart",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6896
+          }
+        ],
+        "shortDoc": "Gets the value of the onRestart property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getOnResume",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Android.Activity-property-onResume\" rel=\"Titanium.Android.Activity-property-onResume\" class=\"docClass\">onResume</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Callback<Object>",
+          "name": "return",
+          "doc": "<p>@platform android 3.4.0</p>\n",
+          "properties": null,
+          "html_type": "Callback<Object>"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getOnResume",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6926
+          }
+        ],
+        "shortDoc": "Gets the value of the onResume property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getOnStart",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Android.Activity-property-onStart\" rel=\"Titanium.Android.Activity-property-onStart\" class=\"docClass\">onStart</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Callback<Object>",
+          "name": "return",
+          "doc": "<p>@platform android 3.4.0</p>\n",
+          "properties": null,
+          "html_type": "Callback<Object>"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getOnStart",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6956
+          }
+        ],
+        "shortDoc": "Gets the value of the onStart property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getOnStop",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Android.Activity-property-onStop\" rel=\"Titanium.Android.Activity-property-onStop\" class=\"docClass\">onStop</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Callback<Object>",
+          "name": "return",
+          "doc": "<p>@platform android 3.4.0</p>\n",
+          "properties": null,
+          "html_type": "Callback<Object>"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getOnStop",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6986
+          }
+        ],
+        "shortDoc": "Gets the value of the onStop property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getString",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Gets an Android or Application string using the specified Resource ID and optional format arguments.</p>\n\n\n<p>@description <p>If the optional format arguments are supplied, these are substituted for the\ncorresponding format specifiers in the string. For example, given the following\nstring resource:</p></p>\n\n<pre><code>&lt;string name=\"greeting\"&gt;\"Hello %1$s, this is %2$s.\"&lt;/string&gt;\n</code></pre>\n\n\n\n\n<p>You could call <code>getString</code> like this:</p>\n\n\n\n\n<pre><code>Ti.Android.currentActivity.getString(Ti.App.Android.R.string.greeting,  \"Bob\", \"Doug\" );\n</code></pre>\n\n\n\n\n<p>The resulting string is:</p>\n\n\n\n\n<pre><code>\"Hello Bob, this is Doug.\"\n</code></pre>\n\n\n\n\n<p>See also:\n  <a href=\"http://developer.android.com/reference/android/content/Context.html#getString%28int%29\">getString</a>\n    in the Android Developer Reference\n  <a href=\"http://developer.android.com/reference/java/util/Formatter.html\">Formatter</a>\n    in the Android Developer Reference\n  <a href=\"http://developer.android.com/guide/topics/resources/string-resource.html#String\">String Resources</a>\n    in the Android Developer Guide</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "resourceId",
+            "doc": "<p>Resource ID from the Application or Android.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Object",
+            "name": "format",
+            "doc": "<p>Optional format arguments for the String resource. May be repeated.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          }
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getString",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6529
+          }
+        ],
+        "shortDoc": "Gets an Android or Application string using the specified Resource ID and optional format arguments. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "invalidateOptionsMenu",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Declares that the option menu has changed and should be recreated.</p>\n\n\n<p>@description <p>This method needs to be used in Android 3.0 and above when changing menus at runtime.  See\n<a href=\"http://developer.android.com/guide/topics/ui/menus.html#ChangingTheMenu\">changingTheMenu</a> in\nthe Android API Reference for more details. </p></p>\n\n<p>@platform android 3.0.0</p>\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-invalidateOptionsMenu",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6569
+          }
+        ],
+        "shortDoc": "Declares that the option menu has changed and should be recreated. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "openOptionsMenu",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Programmatically opens the options menu.</p>\n\n\n<p>@description <p>See also: <a href=\"http://developer.android.com/reference/android/app/Activity.html#onMenuOpened%28int, android.view.Menu%29\">onMenuOpened</a>\nin the Android API Reference.</p></p>\n\n<p>@platform android 3.0.0</p>\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-openOptionsMenu",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6675
+          }
+        ],
+        "shortDoc": "Programmatically opens the options menu. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Removes the specified callback as an event listener for the named event.</p>\n\n\n<p>@description <p>Multiple listeners can be registered for the same event, so the\n<code>callback</code> parameter is used to determine which listener to remove. </p></p>\n\n<p>When adding a listener, you must save a reference to the callback function\nin order to remove the listener later:</p>\n\n\n\n\n<pre><code>var listener = function() { Ti.API.info(\"Event listener called.\"); }\nwindow.addEventListener('click', listener);\n</code></pre>\n\n\n\n\n<p>To remove the listener, pass in a reference to the callback function:</p>\n\n\n\n\n<pre><code>window.removeEventListener('click', listener);\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to remove. Must be the same function passed to <code>addEventListener</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 55
+          }
+        ],
+        "shortDoc": "Removes the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "sendBroadcast",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Broadcast the passed in <code>Intent</code> to all <code>BroadcastReceiver</code>s.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.Android.Intent",
+            "name": "intent",
+            "doc": "<p>Description of the broadcast.</p>\n\n\n<p>@platform android 3.2.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.Android.Intent"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-sendBroadcast",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6690
+          }
+        ],
+        "shortDoc": "Broadcast the passed in Intent to all BroadcastReceivers. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "sendBroadcastWithPermission",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Broadcast the passed in <code>Intent</code> to all <code>BroadcastReceiver</code>s with an optional permission.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.Android.Intent",
+            "name": "intent",
+            "doc": "<p>Description of the broadcast.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.Android.Intent"
+          },
+          {
+            "type": "String",
+            "name": "receiverPermission",
+            "doc": "<p>Name of the permission that the receiver should hold in order to receive the broadcast.</p>\n\n\n<p>@platform android 3.2.0</p>\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-sendBroadcastWithPermission",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6706
+          }
+        ],
+        "shortDoc": "Broadcast the passed in Intent to all BroadcastReceivers with an optional permission. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "bubbleParent",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139
+          }
+        ],
+        "shortDoc": "Sets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+            "name": "lifecycleContainer",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.6.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 189
+          }
+        ],
+        "shortDoc": "Sets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setOnCreate",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Android.Activity-property-onCreate\" rel=\"Titanium.Android.Activity-property-onCreate\" class=\"docClass\">onCreate</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Callback<Object>",
+            "name": "onCreate",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.4.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setOnCreate",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6764
+          }
+        ],
+        "shortDoc": "Sets the value of the onCreate property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setOnCreateOptionsMenu",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Android.Activity-property-onCreateOptionsMenu\" rel=\"Titanium.Android.Activity-property-onCreateOptionsMenu\" class=\"docClass\">onCreateOptionsMenu</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Callback<Object>",
+            "name": "onCreateOptionsMenu",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setOnCreateOptionsMenu",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6793
+          }
+        ],
+        "shortDoc": "Sets the value of the onCreateOptionsMenu property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setOnDestroy",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Android.Activity-property-onDestroy\" rel=\"Titanium.Android.Activity-property-onDestroy\" class=\"docClass\">onDestroy</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Callback<Object>",
+            "name": "onDestroy",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.4.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setOnDestroy",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6822
+          }
+        ],
+        "shortDoc": "Sets the value of the onDestroy property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setOnPause",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Android.Activity-property-onPause\" rel=\"Titanium.Android.Activity-property-onPause\" class=\"docClass\">onPause</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Callback<Object>",
+            "name": "onPause",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.4.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setOnPause",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6852
+          }
+        ],
+        "shortDoc": "Sets the value of the onPause property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setOnPrepareOptionsMenu",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Android.Activity-property-onPrepareOptionsMenu\" rel=\"Titanium.Android.Activity-property-onPrepareOptionsMenu\" class=\"docClass\">onPrepareOptionsMenu</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Callback<Object>",
+            "name": "onPrepareOptionsMenu",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setOnPrepareOptionsMenu",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6881
+          }
+        ],
+        "shortDoc": "Sets the value of the onPrepareOptionsMenu property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setOnRestart",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Android.Activity-property-onRestart\" rel=\"Titanium.Android.Activity-property-onRestart\" class=\"docClass\">onRestart</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Callback<Object>",
+            "name": "onRestart",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.4.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setOnRestart",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6910
+          }
+        ],
+        "shortDoc": "Sets the value of the onRestart property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setOnResume",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Android.Activity-property-onResume\" rel=\"Titanium.Android.Activity-property-onResume\" class=\"docClass\">onResume</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Callback<Object>",
+            "name": "onResume",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.4.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setOnResume",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6940
+          }
+        ],
+        "shortDoc": "Sets the value of the onResume property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setOnStart",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Android.Activity-property-onStart\" rel=\"Titanium.Android.Activity-property-onStart\" class=\"docClass\">onStart</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Callback<Object>",
+            "name": "onStart",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.4.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setOnStart",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6970
+          }
+        ],
+        "shortDoc": "Sets the value of the onStart property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setOnStop",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Android.Activity-property-onStop\" rel=\"Titanium.Android.Activity-property-onStop\" class=\"docClass\">onStop</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Callback<Object>",
+            "name": "onStop",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.4.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setOnStop",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 7000
+          }
+        ],
+        "shortDoc": "Sets the value of the onStop property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setRequestedOrientation",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Sets the requested Activity orientation.</p>\n\n\n<p>@description <p>See also:\n<a href=\"http://developer.android.com/reference/android/app/Activity.html#setRequestedOrientation%28int%29\">setRequestedOrientation</a>\nin the Android API Reference.</p></p>\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "orientation",
+            "doc": "<p>Orientation mode for the activity.</p>\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.Android-property-SCREEN_ORIENTATION_BEHIND\" rel=\"Titanium.Android-property-SCREEN_ORIENTATION_BEHIND\" class=\"docClass\">Titanium.Android.SCREEN_ORIENTATION_BEHIND</a>\n <li> <a href=\"#!/api/Titanium.Android-property-SCREEN_ORIENTATION_LANDSCAPE\" rel=\"Titanium.Android-property-SCREEN_ORIENTATION_LANDSCAPE\" class=\"docClass\">Titanium.Android.SCREEN_ORIENTATION_LANDSCAPE</a>\n <li> <a href=\"#!/api/Titanium.Android-property-SCREEN_ORIENTATION_NOSENSOR\" rel=\"Titanium.Android-property-SCREEN_ORIENTATION_NOSENSOR\" class=\"docClass\">Titanium.Android.SCREEN_ORIENTATION_NOSENSOR</a>\n <li> <a href=\"#!/api/Titanium.Android-property-SCREEN_ORIENTATION_PORTRAIT\" rel=\"Titanium.Android-property-SCREEN_ORIENTATION_PORTRAIT\" class=\"docClass\">Titanium.Android.SCREEN_ORIENTATION_PORTRAIT</a>\n <li> <a href=\"#!/api/Titanium.Android-property-SCREEN_ORIENTATION_SENSOR\" rel=\"Titanium.Android-property-SCREEN_ORIENTATION_SENSOR\" class=\"docClass\">Titanium.Android.SCREEN_ORIENTATION_SENSOR</a>\n <li> <a href=\"#!/api/Titanium.Android-property-SCREEN_ORIENTATION_UNSPECIFIED\" rel=\"Titanium.Android-property-SCREEN_ORIENTATION_UNSPECIFIED\" class=\"docClass\">Titanium.Android.SCREEN_ORIENTATION_UNSPECIFIED</a>\n <li> <a href=\"#!/api/Titanium.Android-property-SCREEN_ORIENTATION_USER\" rel=\"Titanium.Android-property-SCREEN_ORIENTATION_USER\" class=\"docClass\">Titanium.Android.SCREEN_ORIENTATION_USER</a>\n</ul></p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setRequestedOrientation",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6585
+          }
+        ],
+        "shortDoc": "Sets the requested Activity orientation. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setResult",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Sets the result of this activity using an <code>Intent</code>.</p>\n\n\n<p>@description <p>This should be used in the case when the Activity responds to\n<a href=\"#!/api/Titanium.Android.Activity-method-startActivityForResult\" rel=\"Titanium.Android.Activity-method-startActivityForResult\" class=\"docClass\">startActivityForResult</a>. </p></p>\n\n<p>Also see Android's documentation for\n<a href=\"http://developer.android.com/reference/android/app/Activity.html#setResult%28int%29\">setResult</a>.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "resultCode",
+            "doc": "<p>Result code for this activity.</p>\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.Android-property-RESULT_CANCELED\" rel=\"Titanium.Android-property-RESULT_CANCELED\" class=\"docClass\">Titanium.Android.RESULT_CANCELED</a>\n <li> <a href=\"#!/api/Titanium.Android-property-RESULT_FIRST_USER\" rel=\"Titanium.Android-property-RESULT_FIRST_USER\" class=\"docClass\">Titanium.Android.RESULT_FIRST_USER</a>\n <li> <a href=\"#!/api/Titanium.Android-property-RESULT_OK\" rel=\"Titanium.Android-property-RESULT_OK\" class=\"docClass\">Titanium.Android.RESULT_OK</a>\n</ul></p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Titanium.Android.Intent",
+            "name": "intent",
+            "doc": "<p>An optional <code>Intent</code> with extra result data.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.Android.Intent"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setResult",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6612
+          }
+        ],
+        "shortDoc": "Sets the result of this activity using an Intent. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "startActivity",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Starts a new activity, using the passed in <code>Intent</code> as the description.</p>\n\n\n<p>@description <p>See also: <a href=\"http://developer.android.com/reference/android/app/Activity.html#startActivity%28android.content.Intent%29\">startActivity</a>\n    in the Android Developer Reference.</p></p>\n",
+        "params": [
+          {
+            "type": "Titanium.Android.Intent",
+            "name": "intent",
+            "doc": "<p>Description of the activity to start.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.Android.Intent"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-startActivity",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6639
+          }
+        ],
+        "shortDoc": "Starts a new activity, using the passed in Intent as the description. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "startActivityForResult",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>The same as <code>startActivity</code>, but also accepts a callback function for handling the result of the started Activity.</p>\n\n\n<p>@description <p>See also:\n<a href=\"http://developer.android.com/reference/android/app/Activity.html#startActivityForResult%28android.content.Intent, int%29\">startActivityForResult</a>\nin the Android Developer Reference.</p></p>\n",
+        "params": [
+          {
+            "type": "Titanium.Android.Intent",
+            "name": "intent",
+            "doc": "<p>Description of the activity to start.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.Android.Intent"
+          },
+          {
+            "type": "Callback<ActivityResult>",
+            "name": "callback",
+            "doc": "<p>Callback function to be executed when the activity sets result. See\nexamples.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<ActivityResult>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-startActivityForResult",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6655
+          }
+        ],
+        "shortDoc": "The same as startActivity, but also accepts a callback function for handling the result of the started Activity. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "event": [
+      {
+        "tagname": "event",
+        "name": "create",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Fired from the activity's <code>onCreate</code> method.</p>\n\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "deprecated": {
+            "text": "3.4.0 Use the [onCreate](Titanium.Android.Activity.onCreate) property instead.\n\n@description <p>See also:\n<a href=\"http://developer.android.com/reference/android/app/Activity.html#onCreate%28android.os.Bundle%29\">onCreate</a>\nin the Android Developer Reference.</p>"
+          }
+        },
+        "id": "event-create",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6310
+          }
+        ],
+        "shortDoc": "Fired from the activity's onCreate method. ...",
+        "html_meta": {
+          "deprecated": "        <div class='signature-box deprecated'>\n        <p>This event has been <strong>deprecated</strong> </p>\n        <p>3.4.0 Use the <a href=\"Titanium.Android.Activity.onCreate\">onCreate</a> property instead.</p>\n\n<p>@description <p>See also:\n<a href=\"http://developer.android.com/reference/android/app/Activity.html#onCreate%28android.os.Bundle%29\">onCreate</a>\nin the Android Developer Reference.</p></p>\n\n        </div>\n"
+        }
+      },
+      {
+        "tagname": "event",
+        "name": "destroy",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Fired from the activity's <code>onDestroy</code> method.</p>\n\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "deprecated": {
+            "text": "3.4.0 Use the [onDestroy](Titanium.Android.Activity.onDestroy) property instead.\n\n@description <p>See also: <a href=\"http://developer.android.com/reference/android/app/Activity.html#onDestroy%28%29\">onDestroy</a>\nin the Android Developer Reference.</p>"
+          }
+        },
+        "id": "event-destroy",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6332
+          }
+        ],
+        "shortDoc": "Fired from the activity's onDestroy method. ...",
+        "html_meta": {
+          "deprecated": "        <div class='signature-box deprecated'>\n        <p>This event has been <strong>deprecated</strong> </p>\n        <p>3.4.0 Use the <a href=\"Titanium.Android.Activity.onDestroy\">onDestroy</a> property instead.</p>\n\n<p>@description <p>See also: <a href=\"http://developer.android.com/reference/android/app/Activity.html#onDestroy%28%29\">onDestroy</a>\nin the Android Developer Reference.</p></p>\n\n        </div>\n"
+        }
+      },
+      {
+        "tagname": "event",
+        "name": "newIntent",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Fired when the activity is already running and certain flags are set in its intent.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.Android.Intent",
+            "name": "intent",
+            "doc": "<p>The <code>Intent</code> passed to the native <code>onNewIntent</code> method.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.Android.Intent"
+          },
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "deprecated": {
+            "text": "3.0.0 Renamed to [newintent](Titanium.Android.Activity.newintent)\n(all lowercase).\n\n\n@description <p>See also:\n<a href=\"http://developer.android.com/reference/android/app/Activity.html#onNewIntent%28android.content.Intent%29\">onNewIntent</a>\nin the Android Developer Reference.</p>"
+          }
+        },
+        "id": "event-newIntent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6353
+          }
+        ],
+        "shortDoc": "Fired when the activity is already running and certain flags are set in its intent. ...",
+        "html_meta": {
+          "deprecated": "        <div class='signature-box deprecated'>\n        <p>This event has been <strong>deprecated</strong> </p>\n        <p>3.0.0 Renamed to <a href=\"Titanium.Android.Activity.newintent\">newintent</a>\n(all lowercase).</p>\n\n<p>@description <p>See also:\n<a href=\"http://developer.android.com/reference/android/app/Activity.html#onNewIntent%28android.content.Intent%29\">onNewIntent</a>\nin the Android Developer Reference.</p></p>\n\n        </div>\n"
+        }
+      },
+      {
+        "tagname": "event",
+        "name": "newintent",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Fired when the activity is already running and certain flags are set in its intent.</p>\n\n\n<p>@description <p>See also:\n<a href=\"http://developer.android.com/reference/android/app/Activity.html#onNewIntent%28android.content.Intent%29\">onNewIntent</a>\nin the Android Developer Reference.</p></p>\n",
+        "params": [
+          {
+            "type": "Titanium.Android.Intent",
+            "name": "intent",
+            "doc": "<p>The <code>Intent</code> passed to the native <code>onNewIntent</code> method.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.Android.Intent"
+          },
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n\n<p>@platform android 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "event-newintent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6379
+          }
+        ],
+        "shortDoc": "Fired when the activity is already running and certain flags are set in its intent. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "event",
+        "name": "pause",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Fired when the activity is paused.</p>\n\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "deprecated": {
+            "text": "3.4.0 Use the [onPause](Titanium.Android.Activity.onPause) property instead.\n\n@description <p>See also:\n<a href=\"http://developer.android.com/reference/android/app/Activity.html#onPause%28%29\">onPause</a>\nin the Android Developer Reference.</p>"
+          }
+        },
+        "id": "event-pause",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6404
+          }
+        ],
+        "shortDoc": "Fired when the activity is paused. ...",
+        "html_meta": {
+          "deprecated": "        <div class='signature-box deprecated'>\n        <p>This event has been <strong>deprecated</strong> </p>\n        <p>3.4.0 Use the <a href=\"Titanium.Android.Activity.onPause\">onPause</a> property instead.</p>\n\n<p>@description <p>See also:\n<a href=\"http://developer.android.com/reference/android/app/Activity.html#onPause%28%29\">onPause</a>\nin the Android Developer Reference.</p></p>\n\n        </div>\n"
+        }
+      },
+      {
+        "tagname": "event",
+        "name": "resume",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Fired when the activity is resumed.</p>\n\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "deprecated": {
+            "text": "3.4.0 Use the [onResume](Titanium.Android.Activity.onResume) property instead.\n\n@description <p>See also: <a href=\"http://developer.android.com/reference/android/app/Activity.html#onResume%28%29\">onResume</a>\nin the Android Developer Reference.</p>"
+          }
+        },
+        "id": "event-resume",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6426
+          }
+        ],
+        "shortDoc": "Fired when the activity is resumed. ...",
+        "html_meta": {
+          "deprecated": "        <div class='signature-box deprecated'>\n        <p>This event has been <strong>deprecated</strong> </p>\n        <p>3.4.0 Use the <a href=\"Titanium.Android.Activity.onResume\">onResume</a> property instead.</p>\n\n<p>@description <p>See also: <a href=\"http://developer.android.com/reference/android/app/Activity.html#onResume%28%29\">onResume</a>\nin the Android Developer Reference.</p></p>\n\n        </div>\n"
+        }
+      },
+      {
+        "tagname": "event",
+        "name": "start",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Fired when the activity is started.</p>\n\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "deprecated": {
+            "text": "3.4.0 Use the [onStart](Titanium.Android.Activity.onStart) property instead.\n\n@description <p>See also: <a href=\"http://developer.android.com/reference/android/app/Activity.html#onStart%28%29\">onStart</a>\nin the Android Developer Reference.</p>"
+          }
+        },
+        "id": "event-start",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6447
+          }
+        ],
+        "shortDoc": "Fired when the activity is started. ...",
+        "html_meta": {
+          "deprecated": "        <div class='signature-box deprecated'>\n        <p>This event has been <strong>deprecated</strong> </p>\n        <p>3.4.0 Use the <a href=\"Titanium.Android.Activity.onStart\">onStart</a> property instead.</p>\n\n<p>@description <p>See also: <a href=\"http://developer.android.com/reference/android/app/Activity.html#onStart%28%29\">onStart</a>\nin the Android Developer Reference.</p></p>\n\n        </div>\n"
+        }
+      },
+      {
+        "tagname": "event",
+        "name": "stop",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Fired when the activity is stopped.</p>\n\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "deprecated": {
+            "text": "3.4.0 Use the [onStop](Titanium.Android.Activity.onStop) property instead.\n\n@description <p>See also: <a href=\"http://developer.android.com/reference/android/app/Activity.html#onStop%28%29\">onStop</a>\nin the Android Developer Reference.</p>"
+          }
+        },
+        "id": "event-stop",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6468
+          }
+        ],
+        "shortDoc": "Fired when the activity is stopped. ...",
+        "html_meta": {
+          "deprecated": "        <div class='signature-box deprecated'>\n        <p>This event has been <strong>deprecated</strong> </p>\n        <p>3.4.0 Use the <a href=\"Titanium.Android.Activity.onStop\">onStop</a> property instead.</p>\n\n<p>@description <p>See also: <a href=\"http://developer.android.com/reference/android/app/Activity.html#onStop%28%29\">onStop</a>\nin the Android Developer Reference.</p></p>\n\n        </div>\n"
+        }
+      },
+      {
+        "tagname": "event",
+        "name": "userleavehint",
+        "owner": "Titanium.Android.Activity",
+        "doc": "<p>Fired when the activity is about to go into the background as a result of user choice.</p>\n\n\n<p>@description <p>See also:\n<a href=\"http://developer.android.com/reference/android/app/Activity.html#onUserLeaveHint%28%29\">onPause</a>\nin the Android Developer Reference.</p></p>\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n\n<p>@platform android 3.2.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "event-userleavehint",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 6489
+          }
+        ],
+        "shortDoc": "Fired when the activity is about to go into the background as a result of user choice. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 6175
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+    "Titanium.Proxy"
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

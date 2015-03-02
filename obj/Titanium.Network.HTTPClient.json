@@ -1,0 +1,3366 @@
+{
+  "tagname": "class",
+  "name": "Titanium.Network.HTTPClient",
+  "doc": "<p>@platform android 0.8\n@platform blackberry 3.1.2\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8 @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/Network/HTTPClient.yml</p>\n\n<p>HTTP client object that (mostly) implements the XMLHttpRequest specification.</p>\n\n\n<p>@description <p>Use <a href=\"#!/api/Titanium.Network-method-createHTTPClient\" rel=\"Titanium.Network-method-createHTTPClient\" class=\"docClass\">Titanium.Network.createHTTPClient</a> to create a new <code>HTTPClient</code> object.</p></p>\n\n<p>An <code>HTTPClient</code> object is intended to be used for a single request. It may be\npossible to re-use an <code>HTTPClient</code> object, but this use case is not tested.</p>\n\n\n\n\n<p>There are three steps in making a typical HTTP request:</p>\n\n\n\n\n<ul>\n<li>Creating an <code>HTTPClient</code> object.</li>\n<li>Opening the <code>HTTPClient</code> object.</li>\n<li>Sending the request.</li>\n</ul>\n\n\n\n\n<p>Before opening the request, you must define one or more callbacks to handle\nthe HTTP response, as well as errors, progress updates, and other conditions.</p>\n\n\n\n\n<p>The <code>HTTPClient</code> callbacks operate somewhat differently from other\nTitanium callbacks, in accordance with the XMLHttpRequest specification.</p>\n\n\n\n\n<p>When the callbacks are invoked, the <code>this</code> value is set to either the\noriginal <code>HTTPClient</code> object itself, or a response object that holds all\nof the response-related properties defined for the <code>HTTPClient</code> object. So the\ncallbacks can use code like this to access the response values:</p>\n\n\n\n\n<pre><code>httpResponse = this.responseText;\nstatus = this.status;\n</code></pre>\n\n\n\n\n<h4>Content-Type Header</h4>\n\n\n\n\n<p>When sending a POST request with the HTTP client, the Content-Type header is set automatically\ndepending on the platform and data type sent.</p>\n\n\n\n\n<p>On the Android and iOS platforms:</p>\n\n\n\n\n<ul>\n<li>If you are sending a JavaScript object, the content type is set to <code>multipart/form-data</code>.</li>\n<li>For all other data types on Android, the content type is set to <code>application/x-www-form-urlencoded</code>.</li>\n<li>For all other data types on iOS, the content type is <strong>NOT</strong> set.</li>\n</ul>\n\n\n\n\n<p>On the BlackBerry and Mobile Web platforms, the content type is always set to\n<code>application/x-www-form-urlencoded</code> as the default.</p>\n\n\n\n\n<p>Use the <a href=\"#!/api/Titanium.Network.HTTPClient-method-setRequestHeader\" rel=\"Titanium.Network.HTTPClient-method-setRequestHeader\" class=\"docClass\">setRequestHeader</a> method to override the\ndefault Content-Type header.</p>\n\n\n\n\n<h4>Asynchronous vs. Synchronous HTTP Requests</h4>\n\n\n\n\n<p>By default, the <code>HTTPClient</code> makes asynchronous requests.  Asynchronous requests do not block\nthe application and use callbacks to process responses when they are received.</p>\n\n\n\n\n<p>Synchronous requests block the execution of the application until it receives a response.\nOn the iOS and Mobile Web platforms,  you can make synchronous requests by setting the optional\n<code>async</code> parameter to <code>false</code> when calling the <a href=\"#!/api/Titanium.Network.HTTPClient-method-open\" rel=\"Titanium.Network.HTTPClient-method-open\" class=\"docClass\">open</a> method.</p>\n\n\n\n\n<p>The Android platform does not support synchronous requests.</p>\n\n\n\n\n<h4>TLS Support</h4>\n\n\n\n\n<p>Transport Layer Security (TLS) is a protocol that ensures privacy between communicating applications\nand their users on the Internet. When a server and client communicate, TLS ensures that no third\nparty may eavesdrop or tamper with any message. TLS is the successor to the Secure Sockets Layer (SSL).</p>\n\n\n\n\n<p>To communicate to servers with the TLS protocol, you need to use the same TLS version between\nthe client and server.</p>\n\n\n\n\n<p><table class=\"doc-table\" summary=\"This table provides information about TLS versions.\">\n<caption><b>TLS versions by platform</b></caption>\n<tr><th>Protocol</th><th>Android<th>iOS</th></tr>\n<tr><th align=\"left\">TLS 1.0</th><td>1.0+</td><td>1.0+</td></tr>\n<tr><th align=\"left\">TLS 1.1</th><td>4.1+</td><td>5.0+</td></tr>\n<tr><th align=\"left\">TLS 1.2</th><td>4.1+</td><td>5.0+</td></tr></p>\n\n\n\n\n<p>In Titanium, if a connection with TLS 1.2 fails, Titanium will re-attempt the connection with\nTLS 1.1 and TLS 1.0. By default, TLS 1.2 is only attempted first for devices running Android 4.1\nand greater, or iOS 5.0 and greater. Prior to these versions, only TLS 1.0 is attempted since\n1.0 is the only supported TLS version.</p>\n\n\n\n\n<p>Use the <a href=\"#!/api/Titanium.Network.HTTPClient-property-tlsVersion\" rel=\"Titanium.Network.HTTPClient-property-tlsVersion\" class=\"docClass\">tlsVersion</a> property to set the version of the TLS protocol\nif you know the version the server is running.  If you do not know, do not set this property.\nTitanium will not fallback with a lower TLS version if the <code>tlsVersion</code> property is set.\nSetting the TLS version saves time from re-attempting connections with lower TLS versions and\nprovides added security by denying attempts to use lower TLS versions.</p>\n\n\n\n\n<p>Starting with Release 3.6.0, you can set the TLS version for the Android and iOS platforms.\nPrior to Release 3.6.0, you can only set the TLS version for iOS.</p>\n\n\n\n\n<h4>Android Platform Implementation Notes</h4>\n\n\n\n\n<p>On Android, the <code>HTTPClient</code> uses its own cookie store which does not share cookies with the\nsystem cookie store used by <a href=\"#!/api/Titanium.UI.WebView\" rel=\"Titanium.UI.WebView\" class=\"docClass\">Titanium.UI.WebView</a>. Developers can manage their cookies for both\ncookie stores using the methods <a href=\"#!/api/Titanium.Network-method-addHTTPCookie\" rel=\"Titanium.Network-method-addHTTPCookie\" class=\"docClass\">Titanium.Network.addHTTPCookie</a>, <a href=\"#!/api/Titanium.Network-method-addSystemCookie\" rel=\"Titanium.Network-method-addSystemCookie\" class=\"docClass\">Titanium.Network.addSystemCookie</a>,\n<a href=\"#!/api/Titanium.Network-method-getHTTPCookies\" rel=\"Titanium.Network-method-getHTTPCookies\" class=\"docClass\">Titanium.Network.getHTTPCookies</a>, <a href=\"#!/api/Titanium.Network-method-getHTTPCookiesForDomain\" rel=\"Titanium.Network-method-getHTTPCookiesForDomain\" class=\"docClass\">Titanium.Network.getHTTPCookiesForDomain</a>, <a href=\"#!/api/Titanium.Network-method-getSystemCookies\" rel=\"Titanium.Network-method-getSystemCookies\" class=\"docClass\">Titanium.Network.getSystemCookies</a>,\n<a href=\"#!/api/Titanium.Network-method-removeHTTPCookie\" rel=\"Titanium.Network-method-removeHTTPCookie\" class=\"docClass\">Titanium.Network.removeHTTPCookie</a>, <a href=\"#!/api/Titanium.Network-method-removeHTTPCookiesForDomain\" rel=\"Titanium.Network-method-removeHTTPCookiesForDomain\" class=\"docClass\">Titanium.Network.removeHTTPCookiesForDomain</a>, <a href=\"#!/api/Titanium.Network-method-removeAllHTTPCookies\" rel=\"Titanium.Network-method-removeAllHTTPCookies\" class=\"docClass\">Titanium.Network.removeAllHTTPCookies</a>,\n<a href=\"#!/api/Titanium.Network-method-removeSystemCookie\" rel=\"Titanium.Network-method-removeSystemCookie\" class=\"docClass\">Titanium.Network.removeSystemCookie</a>, <a href=\"#!/api/Titanium.Network-method-removeAllSystemCookies\" rel=\"Titanium.Network-method-removeAllSystemCookies\" class=\"docClass\">Titanium.Network.removeAllSystemCookies</a>.</p>\n\n\n\n\n<h4>Mobile Web Platform Implementation Notes</h4>\n\n\n\n\n<p>Mobile Web is limited by the same-origin policy. According to W3C: \"User agents\ncommonly apply same-origin restrictions to network requests. These restrictions\nprevent a client-side Web application running from one origin from obtaining\ndata retrieved from another origin, and also limit unsafe HTTP requests that can\nbe automatically launched toward destinations that differ from the running\napplication's origin.\"  This means that browsers cannot request information from\na domain that the app itself does not reside on. If you are hosting the app at\nfoo.example.com, then requests to any domain other than *.example.com will fail.</p>\n\n\n\n\n<p>There are two solutions to get around this problem:</p>\n\n\n\n\n<ul>\n<li>Configure the destination server to support Cross-Origin Resource Sharing.</li>\n<li>Use <a href=\"#!/api/Titanium.Network-property-httpURLFormatter\" rel=\"Titanium.Network-property-httpURLFormatter\" class=\"docClass\">Ti.Network.httpURLFormatter</a> in conjunction\nwith a proxy on the server hosting the application.</li>\n</ul>\n\n\n\n\n<p>If you use a proxy, be sure to properly configure how cookies are passed through. You\nmay not want cookies proxied to third parties that could identify a user.</p>\n\n\n\n\n<p>More information about Cross-Origin Resource Sharing can be found on the\n<a href=\"http://www.w3.org/TR/cors/\">W3C Cross-Origin Resource Sharing</a> specification page.</p>\n\n\n<h3>Examples</h3>\n\n\n<h4>Simple GET Request</h4>\n\n\n<p>The following code excerpt does a simple GET request and logs the response text.</p>\n\n\n\n\n<pre><code> var url = \"http://www.appcelerator.com\";\n var client = Ti.Network.createHTTPClient({\n     // function called when the response data is available\n     onload : function(e) {\n         Ti.API.info(\"Received text: \" + this.responseText);\n         alert('success');\n     },\n     // function called when an error occurs, including a timeout\n     onerror : function(e) {\n         Ti.API.debug(e.error);\n         alert('error');\n     },\n     timeout : 5000  // in milliseconds\n });\n // Prepare the connection.\n client.open(\"GET\", url);\n // Send the request.\n client.send();\n</code></pre>\n\n",
+  "extends": "Titanium.Proxy",
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-Titanium.Network.HTTPClient",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "DONE",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "Number",
+        "doc": "<p>Ready state constant indicating that the request is complete.</p>\n\n\n<p>@description <p>In this ready state, either the data has been transferred, or an error has occured.</p></p>\n\n<p>See also <a href=\"#!/api/Titanium.Network.HTTPClient-property-readyState\" rel=\"Titanium.Network.HTTPClient-property-readyState\" class=\"docClass\">readyState</a>.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-DONE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69174
+          }
+        ],
+        "shortDoc": "Ready state constant indicating that the request is complete. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "HEADERS_RECEIVED",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "Number",
+        "doc": "<p>Ready state constant indicating that response headers have been received.</p>\n\n\n<p>@description <p>See also <a href=\"#!/api/Titanium.Network.HTTPClient-property-readyState\" rel=\"Titanium.Network.HTTPClient-property-readyState\" class=\"docClass\">readyState</a>.</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-HEADERS_RECEIVED",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69197
+          }
+        ],
+        "shortDoc": "Ready state constant indicating that response headers have been received. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "LOADING",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "Number",
+        "doc": "<p>Ready state constant indicating that response data is being received from the remote server.</p>\n\n\n<p>@description <p>See also <a href=\"#!/api/Titanium.Network.HTTPClient-property-readyState\" rel=\"Titanium.Network.HTTPClient-property-readyState\" class=\"docClass\">readyState</a>.</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-LOADING",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69218
+          }
+        ],
+        "shortDoc": "Ready state constant indicating that response data is being received from the remote server. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "OPENED",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "Number",
+        "doc": "<p>Ready state constant indicating that the connection has been opened, but the request has\nnot yet been sent.</p>\n\n\n<p>@description <p>See also <a href=\"#!/api/Titanium.Network.HTTPClient-property-readyState\" rel=\"Titanium.Network.HTTPClient-property-readyState\" class=\"docClass\">readyState</a>.</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-OPENED",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69239
+          }
+        ],
+        "shortDoc": "Ready state constant indicating that the connection has been opened, but the request has\nnot yet been sent. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "UNSENT",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "Number",
+        "doc": "<p>Ready state constant indicating that HTTPClient request has not been opened or sent.</p>\n\n\n<p>@description <p>See also <a href=\"#!/api/Titanium.Network.HTTPClient-property-readyState\" rel=\"Titanium.Network.HTTPClient-property-readyState\" class=\"docClass\">readyState</a>.</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-UNSENT",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69261
+          }
+        ],
+        "shortDoc": "Ready state constant indicating that HTTPClient request has not been opened or sent. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "allResponseHeaders",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "String",
+        "doc": "<p>All of the response headers.</p>\n\n\n<p>@description <p>Contains a single string, or an empty string if no headers are available.</p></p>\n\n<p>See also: <a href=\"#!/api/Titanium.Network.HTTPClient-method-getResponseHeader\" rel=\"Titanium.Network.HTTPClient-method-getResponseHeader\" class=\"docClass\">getResponseHeader</a>.</p>\n\n\n<p>@platform android 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-allResponseHeaders",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69282
+          }
+        ],
+        "shortDoc": "All of the response headers. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "apiName",
+        "owner": "Titanium.Proxy",
+        "type": "String",
+        "doc": "<p>The name of the API that this proxy corresponds to.</p>\n\n\n<p>@description <p>The value of this property is the fully qualified name of the API. For example, <a href=\"#!/api/Titanium.UI.Button\" rel=\"Titanium.UI.Button\" class=\"docClass\">Button</a>\nreturns <code>Ti.UI.Button</code>.</p></p>\n\n<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-apiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 235
+          }
+        ],
+        "shortDoc": "The name of the API that this proxy corresponds to. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "autoEncodeUrl",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "Boolean",
+        "doc": "<p>Determines whether automatic encoding is enabled for the specified URL.</p>\n\n\n<p>@description <p>Set to <code>false</code> to disable automatic URL-encoding.</p></p>\n\n<p>@platform android 0.8</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-autoEncodeUrl",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69306
+          }
+        ],
+        "shortDoc": "Determines whether automatic encoding is enabled for the specified URL. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "autoRedirect",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "Boolean",
+        "doc": "<p>Determines whether automatic automatic handling of HTTP redirects is enabled.</p>\n\n\n<p>@description <p>Set to <code>false</code> to disable automatic HTTP redirects handling.</p></p>\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-autoRedirect",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69328
+          }
+        ],
+        "shortDoc": "Determines whether automatic automatic handling of HTTP redirects is enabled. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "bubbleParent",
+        "owner": "Titanium.Proxy",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the proxy will bubble an event to its parent.</p>\n\n\n<p>@description <p>Some proxies (most commonly views) have a relationship to other proxies, often\nestablished by the add() method. For example, for a button added to a window, a\nclick event on the button would bubble up to the window. Other common parents are\ntable sections to their rows, table views to their sections, and scrollable views\nto their views. Set this property to false to disable the bubbling to the proxy's parent.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-bubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 207
+          }
+        ],
+        "shortDoc": "Indicates if the proxy will bubble an event to its parent. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "cache",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "Boolean",
+        "doc": "<p>Determines whether HTTP responses are cached.</p>\n\n\n<p>@description <p>If <code>cache</code> is set to <code>true</code>, requests using this HTTP client will cache their responses\n(respecting headers such as \"no-cache\", \"no-store\", and cache expiry). In this case, repeated\nrequests to the same URL may retrieve the initial response rather than triggering a new\nrequest. The cache is shared between all instances of <code>HTTPClient</code>.</p></p>\n\n<p>Caching should only be enabled for HTTP requests which you expect the result to remain\nconsistent for.</p>\n\n\n\n\n<p>If <code>cache</code> is <code>false</code>, any request on this HTTP client will result in a new HTTP request.</p>\n\n\n\n\n<p>This propery must be set before <code>open</code> is called.</p>\n\n\n<p>@platform iphone 2.0.0\n@platform ipad 2.0.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-cache",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69955
+          }
+        ],
+        "shortDoc": "Determines whether HTTP responses are cached. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "connected",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "Boolean",
+        "doc": "<p>Indicates whether the response was successful.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-connected",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69352
+          }
+        ],
+        "html_type": "Boolean",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "connectionType",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "String",
+        "doc": "<p>Connection type, normally either <code>GET</code> or <code>POST</code>.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-connectionType",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69373
+          }
+        ],
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "domain",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "String",
+        "doc": "<p>Sets the domain parameter for authentication credentials.</p>\n\n\n<p>@description <p>Set this parameter when authentication against NTLM domains along with the <a href=\"#!/api/Titanium.Network.HTTPClient-property-username\" rel=\"Titanium.Network.HTTPClient-property-username\" class=\"docClass\">username</a>\nand <a href=\"#!/api/Titanium.Network.HTTPClient-property-password\" rel=\"Titanium.Network.HTTPClient-property-password\" class=\"docClass\">password</a> properties.\niOS supports NTLM authentication natively.\nAndroid can be extended using the <a href=\"#!/api/Titanium.Network.HTTPClient-method-addAuthFactory\" rel=\"Titanium.Network.HTTPClient-method-addAuthFactory\" class=\"docClass\">addAuthFactory</a> method.\nMust be set before calling <a href=\"#!/api/Titanium.Network.HTTPClient-method-open\" rel=\"Titanium.Network.HTTPClient-method-open\" class=\"docClass\">open</a>.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+        "default": "Undefined",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-domain",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69394
+          }
+        ],
+        "shortDoc": "Sets the domain parameter for authentication credentials. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "enableKeepAlive",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "Boolean",
+        "doc": "<p>Determines whether the client should attempt to keep a persistent connection.</p>\n\n\n<p>@description <p>Set to <code>true</code> to maintain a persistent connection.</p></p>\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-enableKeepAlive",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69423
+          }
+        ],
+        "shortDoc": "Determines whether the client should attempt to keep a persistent connection. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "file",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "String",
+        "doc": "<p>Target local file to receive data.</p>\n\n\n<p>@description <p>On iOS, can only be set <strong>after</strong> calling <a href=\"#!/api/Titanium.Network.HTTPClient-method-open\" rel=\"Titanium.Network.HTTPClient-method-open\" class=\"docClass\">open</a>.</p></p>\n\n<p>On Android and Mobile Web, can be set anytime prior to calling <a href=\"#!/api/Titanium.Network.HTTPClient-method-send\" rel=\"Titanium.Network.HTTPClient-method-send\" class=\"docClass\">send</a>.\nThe file must be writable such as the application data directory or temp directory.</p>\n\n\n<p>@platform android 3.4.0\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-file",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69446
+          }
+        ],
+        "shortDoc": "Target local file to receive data. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "doc": "<p>The Window or TabGroup whose Activity lifecycle should be triggered on the proxy.</p>\n\n\n<p>@description <p>If this property is set to a Window or TabGroup, then the corresponding Activity lifecycle event callbacks\nwill also be called on the proxy. Proxies that require the activity lifecycle will need this property set\nto the appropriate containing Window or TabGroup.</p></p>\n\n<p>@platform android 3.6.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-lifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 262
+          }
+        ],
+        "shortDoc": "The Window or TabGroup whose Activity lifecycle should be triggered on the proxy. ...",
+        "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "location",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "String",
+        "doc": "<p>Absolute URL of the request.</p>\n\n\n<p>@description <p>If the request redirects, this property returns the URL of the redirected request.</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-location",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69474
+          }
+        ],
+        "shortDoc": "Absolute URL of the request. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ondatastream",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "Callback<Object>",
+        "doc": "<p>Function to be called at regular intervals as the request data is being received.</p>\n\n\n<p>@description <p>Must be set before calling <code>open</code>.</p></p>\n\n<p>The <code>progress</code> property of the event will contain a value from 0.0-1.0 with the progress of\nthe request. On iOS and Android as of 3.5.0, if the progress can not be calculated,\nthe value will be <a href=\"#!/api/Titanium.Network-property-PROGRESS_UNKNOWN\" rel=\"Titanium.Network-property-PROGRESS_UNKNOWN\" class=\"docClass\">PROGRESS_UNKNOWN</a>.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-ondatastream",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69495
+          }
+        ],
+        "shortDoc": "Function to be called at regular intervals as the request data is being received. ...",
+        "html_type": "Callback<Object>",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "onerror",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "Callback<FailureResponse>",
+        "doc": "<p>Function to be called upon a error response.</p>\n\n\n<p>@description <p>Must be set before calling <code>open</code>.</p></p>\n\n<p>The callback's argument is an object with a single property, <code>error</code>, containing the error\nstring.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-onerror",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69520
+          }
+        ],
+        "shortDoc": "Function to be called upon a error response. ...",
+        "html_type": "Callback<FailureResponse>",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "onload",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "Callback<SuccessResponse>",
+        "doc": "<p>Function to be called upon a successful response.</p>\n\n\n<p>@description <p>Must be set before calling <code>open</code>.</p></p>\n\n<p>To access response data and headers, access the <code>HTTPClient</code> object itself (accessible as\n<code>this</code> during the callback, or the <code>source</code> property of the callback event).</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-onload",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69544
+          }
+        ],
+        "shortDoc": "Function to be called upon a successful response. ...",
+        "html_type": "Callback<SuccessResponse>",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "onreadystatechange",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "Callback<Object>",
+        "doc": "<p>Function to be called for each <a href=\"#!/api/Titanium.Network.HTTPClient-property-readyState\" rel=\"Titanium.Network.HTTPClient-property-readyState\" class=\"docClass\">readyState</a> change.</p>\n\n\n<p>@description <p>Must be set before calling <code>open</code>.</p></p>\n\n<p>When the callback is invoked, <code>this.readyState</code> is set to one of the\n<code><a href=\"#!/api/Titanium.Network.HTTPClient\" rel=\"Titanium.Network.HTTPClient\" class=\"docClass\">Titanium.Network.HTTPClient</a></code> ready-state constants,\n<a href=\"#!/api/Titanium.Network.HTTPClient-property-OPENED\" rel=\"Titanium.Network.HTTPClient-property-OPENED\" class=\"docClass\">OPENED</a>,\n<a href=\"#!/api/Titanium.Network.HTTPClient-property-HEADERS_RECEIVED\" rel=\"Titanium.Network.HTTPClient-property-HEADERS_RECEIVED\" class=\"docClass\">HEADERS_RECEIVED</a>,\n<a href=\"#!/api/Titanium.Network.HTTPClient-property-LOADING\" rel=\"Titanium.Network.HTTPClient-property-LOADING\" class=\"docClass\">LOADING</a>,\nor <a href=\"#!/api/Titanium.Network.HTTPClient-property-DONE\" rel=\"Titanium.Network.HTTPClient-property-DONE\" class=\"docClass\">DONE</a>.</p>\n\n\n\n\n<p>Due to the asynchronous nature of the Titanium platform, the internal value of\n<a href=\"#!/api/Titanium.Network.HTTPClient-property-readyState\" rel=\"Titanium.Network.HTTPClient-property-readyState\" class=\"docClass\">readyState</a> might be different from the state change\nfor which the event was fired. To address this discrepancy, the function is now invoked with a\npayload object of type <a href=\"#!/api/ReadyStatePayload\" rel=\"ReadyStatePayload\" class=\"docClass\">ReadyStatePayload</a>. This was introduced in version 3.4.2 of the SDK and is\nsupported on the iOS and android platforms.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-onreadystatechange",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69568
+          }
+        ],
+        "shortDoc": "Function to be called for each readyState change. ...",
+        "html_type": "Callback<Object>",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "onsendstream",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "Callback<Object>",
+        "doc": "<p>Function to be called at regular intervals as the request data is being transmitted.</p>\n\n\n<p>@description <p>Must be set before calling <code>open</code>.</p></p>\n\n<p>The <code>progress</code> property of the event will contain a value from 0.0-1.0 with the progress of\nthe upload.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-onsendstream",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69602
+          }
+        ],
+        "shortDoc": "Function to be called at regular intervals as the request data is being transmitted. ...",
+        "html_type": "Callback<Object>",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "password",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "String",
+        "doc": "<p>Sets the password parameter for authentication credentials.</p>\n\n\n<p>@description <p>Must be set before calling <a href=\"#!/api/Titanium.Network.HTTPClient-method-open\" rel=\"Titanium.Network.HTTPClient-method-open\" class=\"docClass\">open</a>.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+        "default": "Undefined",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-password",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69626
+          }
+        ],
+        "shortDoc": "Sets the password parameter for authentication credentials. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "readyState",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "Number",
+        "doc": "<p>The current ready state of this HTTP request.</p>\n\n\n<p>@description <p>The ready state describes the current state of the request. The ready state is set to one of\nthe five <code><a href=\"#!/api/Titanium.Network.HTTPClient\" rel=\"Titanium.Network.HTTPClient\" class=\"docClass\">Titanium.Network.HTTPClient</a></code> ready state constants. A typical HTTP request goes\nthrough the states in this order:</p></p>\n\n<ul>\n<li><a href=\"#!/api/Titanium.Network.HTTPClient-property-UNSENT\" rel=\"Titanium.Network.HTTPClient-property-UNSENT\" class=\"docClass\">UNSENT</a></li>\n<li><a href=\"#!/api/Titanium.Network.HTTPClient-property-OPENED\" rel=\"Titanium.Network.HTTPClient-property-OPENED\" class=\"docClass\">OPENED</a></li>\n<li><a href=\"#!/api/Titanium.Network.HTTPClient-property-HEADERS_RECEIVED\" rel=\"Titanium.Network.HTTPClient-property-HEADERS_RECEIVED\" class=\"docClass\">HEADERS_RECEIVED</a></li>\n<li><a href=\"#!/api/Titanium.Network.HTTPClient-property-LOADING\" rel=\"Titanium.Network.HTTPClient-property-LOADING\" class=\"docClass\">LOADING</a></li>\n<li><a href=\"#!/api/Titanium.Network.HTTPClient-property-DONE\" rel=\"Titanium.Network.HTTPClient-property-DONE\" class=\"docClass\">DONE</a></li>\n</ul>\n\n\n\n\n<p>The <code>onreadystatechange</code> callback is invoked each time the ready state changes.</p>\n\n\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.Network.HTTPClient-property-UNSENT\" rel=\"Titanium.Network.HTTPClient-property-UNSENT\" class=\"docClass\">UNSENT</a>\n <li> <a href=\"#!/api/Titanium.Network.HTTPClient-property-OPENED\" rel=\"Titanium.Network.HTTPClient-property-OPENED\" class=\"docClass\">OPENED</a>\n <li> <a href=\"#!/api/Titanium.Network.HTTPClient-property-HEADERS_RECEIVED\" rel=\"Titanium.Network.HTTPClient-property-HEADERS_RECEIVED\" class=\"docClass\">HEADERS_RECEIVED</a>\n <li> <a href=\"#!/api/Titanium.Network.HTTPClient-property-LOADING\" rel=\"Titanium.Network.HTTPClient-property-LOADING\" class=\"docClass\">LOADING</a>\n <li> <a href=\"#!/api/Titanium.Network.HTTPClient-property-DONE\" rel=\"Titanium.Network.HTTPClient-property-DONE\" class=\"docClass\">DONE</a>\n</ul></p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-readyState",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69651
+          }
+        ],
+        "shortDoc": "The current ready state of this HTTP request. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "responseData",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "Titanium.Blob",
+        "doc": "<p>Response data as a <code>Blob</code> object.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-responseData",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69692
+          }
+        ],
+        "html_type": "Titanium.Blob",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "responseText",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "String",
+        "doc": "<p>Response as text.</p>\n\n\n<p>@description <p>Set to <code>null</code> if an error was received or no data was returned.</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-responseText",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69713
+          }
+        ],
+        "shortDoc": "Response as text. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "responseXML",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "Titanium.XML.Document",
+        "doc": "<p>Response object as an XML DOM Document object.</p>\n\n\n<p>@description <p>Set to <code>null</code> if the content type returned by the server was not XML or if the content could not be parsed.</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-responseXML",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69734
+          }
+        ],
+        "shortDoc": "Response object as an XML DOM Document object. ...",
+        "html_type": "Titanium.XML.Document",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "securityManager",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "SecurityManagerProtocol",
+        "doc": "<p>The Security Manager for this client.</p>\n\n\n<p>@description <p>This property <strong>must</strong> be specified during creation. Set this property on the HTTPClient to participate in the authentication and resource management of the connection. See <a href=\"#!/api/SecurityManagerProtocol\" rel=\"SecurityManagerProtocol\" class=\"docClass\">SecurityManagerProtocol</a> for further information.</p></p>\n\n<p>@platform android 3.3.0\n@platform iphone 3.3.0\n@platform ipad 3.3.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-securityManager",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69755
+          }
+        ],
+        "shortDoc": "The Security Manager for this client. ...",
+        "html_type": "SecurityManagerProtocol",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "status",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "Number",
+        "doc": "<p>Response HTTP status code.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-status",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69779
+          }
+        ],
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "statusText",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "String",
+        "doc": "<p>Human-readable status message associated with the status code.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-statusText",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69800
+          }
+        ],
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "timeout",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "Number",
+        "doc": "<p>Timeout in milliseconds when the connection should be aborted.</p>\n\n\n<p>@description <p>On Mobile Web, the timeout only works when making asynchronous requests.</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-timeout",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69821
+          }
+        ],
+        "shortDoc": "Timeout in milliseconds when the connection should be aborted. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "tlsVersion",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "Number",
+        "doc": "<p>Sets the TLS version to use for handshakes.</p>\n\n\n<p>@description <p>If you experience handshake failures, set this value to a lower version using the TLS\nconstants in <a href=\"#!/api/Titanium.Network\" rel=\"Titanium.Network\" class=\"docClass\">Titanium.Network</a>. 'undefined', 'null', or unsupported values use the default\nbehavior for that iOS and Android versions.</p></p>\n\n<p>Setting this property disables falling back to lower TLS versions.</p>\n\n\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.Network-property-TLS_VERSION_1_0\" rel=\"Titanium.Network-property-TLS_VERSION_1_0\" class=\"docClass\">Titanium.Network.TLS_VERSION_1_0</a>\n <li> <a href=\"#!/api/Titanium.Network-property-TLS_VERSION_1_1\" rel=\"Titanium.Network-property-TLS_VERSION_1_1\" class=\"docClass\">Titanium.Network.TLS_VERSION_1_1</a>\n <li> <a href=\"#!/api/Titanium.Network-property-TLS_VERSION_1_2\" rel=\"Titanium.Network-property-TLS_VERSION_1_2\" class=\"docClass\">Titanium.Network.TLS_VERSION_1_2</a>\n</ul></p>\n\n\n<p>@platform android 3.6.0\n@platform iphone 1.8.0.1\n@platform ipad 1.8.0.1</p>\n",
+        "default": "undefined. {@link Titanium.Network#property-TLS_VERSION_1_2} for Android 4.1 and later, or iOS 5 and\nlater. {@link Titanium.Network#property-TLS_VERSION_1_0} for Android 4.0 and earlier, or iOS 4 and earlier.\n",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-tlsVersion",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69919
+          }
+        ],
+        "shortDoc": "Sets the TLS version to use for handshakes. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "username",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "String",
+        "doc": "<p>Sets the username parameter for authentication credentials.</p>\n\n\n<p>@description <p>Must be set before calling <a href=\"#!/api/Titanium.Network.HTTPClient-method-open\" rel=\"Titanium.Network.HTTPClient-method-open\" class=\"docClass\">open</a>.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+        "default": "Undefined",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-username",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69842
+          }
+        ],
+        "shortDoc": "Sets the username parameter for authentication credentials. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "validatesSecureCertificate",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "Boolean",
+        "doc": "<p>Determines how SSL certification validation is performed on connection.</p>\n\n\n<p>@description <p>On Android, this property is ignored if the <code>addKeyManager</code> or <code>addTrustManager</code> methods\nare used to create a custom SSL context.</p></p>\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": "False when running in the simulator or on device in testing mode, and true if built for\nrelease in distribution mode.\n",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-validatesSecureCertificate",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69867
+          }
+        ],
+        "shortDoc": "Determines how SSL certification validation is performed on connection. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "withCredentials",
+        "owner": "Titanium.Network.HTTPClient",
+        "type": "Boolean",
+        "doc": "<p>Determines whether the request should include any cookies and HTTP authentication information.</p>\n\n\n<p>@description <p>Set to <code>true</code> to include cookies and HTTP authentication information with the request.</p></p>\n\n<p>This property must be set before open() is called. Setting this to true will force the\nrequest to be asynchronous.</p>\n\n\n<p>@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-withCredentials",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69894
+          }
+        ],
+        "shortDoc": "Determines whether the request should include any cookies and HTTP authentication information. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "abort",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Cancels a pending request.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-abort",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68276
+          }
+        ],
+        "shortDoc": "Cancels a pending request. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "addAuthFactory",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Registers a new AuthSchemeFactory for a given scheme.</p>\n\n\n<p>@description <p>Use this method to add support for authorization schemes not natively supported by Android.</p></p>\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "scheme",
+            "doc": "<p>The authentication scheme.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Object",
+            "name": "factory",
+            "doc": "<p>The authentication factory. This factory must implement the <a href=\"http://developer.android.com/reference/org/apache/http/auth/AuthSchemeFactory.html\">AuthSchemeFactory</a> interface.</p>\n\n\n<p>@platform android 3.0.0\n@platform blackberry 3.1.2</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addAuthFactory",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68289
+          }
+        ],
+        "shortDoc": "Registers a new AuthSchemeFactory for a given scheme. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "addEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Adds the specified callback as an event listener for the named event.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to invoke when the event is fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38
+          }
+        ],
+        "shortDoc": "Adds the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "addKeyManager",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Adds a custom key manager.</p>\n\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "X509KeyManager",
+            "doc": "<p>X.509 key manager. This key manager must implement the <a href=\"http://developer.android.com/reference/javax/net/ssl/X509KeyManager.html\">X509KeyManager</a> inteface.</p>\n\n\n<p>@platform android 3.1.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "removed": {
+            "text": "3.4.0\n\n@description <p>Use this method to add support for X.509 certifcate-base keypairs.</p>\n\n<p>If this method is used to create a custom SSLContext, the <code>validatesSecureCertificate</code>\nproperty is ignored.</p>"
+          }
+        },
+        "id": "method-addKeyManager",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68308
+          }
+        ],
+        "shortDoc": "Adds a custom key manager. ...",
+        "html_meta": {
+          "removed": "        <div class='signature-box removed'>\n        <p>This method has been <strong>removed</strong> </p>\n        <p>3.4.0</p>\n\n<p>@description <p>Use this method to add support for X.509 certifcate-base keypairs.</p></p>\n\n<p>If this method is used to create a custom SSLContext, the <code>validatesSecureCertificate</code>\nproperty is ignored.</p>\n\n\n        </div>\n"
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "addTrustManager",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Adds a custom trust manager.</p>\n\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "X509TrustManager",
+            "doc": "<p>X.509 trust manager. This trust manager must implement the <a href=\"http://developer.android.com/reference/javax/net/ssl/X509TrustManager.html\">X509TrustManager</a> inteface.</p>\n\n\n<p>@platform android 3.1.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "removed": {
+            "text": "3.4.0\n\n@description <p>Use this method to add support for X.509 certifcates.</p>\n\n<p>If this method is used to create a custom SSLContext, the <code>validatesSecureCertificate</code>\nproperty is ignored.</p>"
+          }
+        },
+        "id": "method-addTrustManager",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68327
+          }
+        ],
+        "shortDoc": "Adds a custom trust manager. ...",
+        "html_meta": {
+          "removed": "        <div class='signature-box removed'>\n        <p>This method has been <strong>removed</strong> </p>\n        <p>3.4.0</p>\n\n<p>@description <p>Use this method to add support for X.509 certifcates.</p></p>\n\n<p>If this method is used to create a custom SSLContext, the <code>validatesSecureCertificate</code>\nproperty is ignored.</p>\n\n\n        </div>\n"
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "applyProperties",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Applies the properties to the proxy.</p>\n\n\n<p>@description <p>Properties are supplied as a dictionary. Each key-value pair in the object is applied to the proxy such that\nmyproxy[key] = value.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "props",
+            "doc": "<p>A dictionary of properties to apply.</p>\n\n\n<p>@platform android 3.0.0\n@platform blackberry 3.3.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-applyProperties",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 102
+          }
+        ],
+        "shortDoc": "Applies the properties to the proxy. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "clearCookies",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Clears any cookies stored for the host.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "host",
+            "doc": "<p>The URL of the host/domain to clear cookies for.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-clearCookies",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68346
+          }
+        ],
+        "shortDoc": "Clears any cookies stored for the host. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "fireEvent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Fires a synthesized event to any registered listeners.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Dictionary",
+            "name": "event",
+            "doc": "<p>A dictionary of keys and values to add to the <a href=\"#!/api/Titanium.Event\" rel=\"Titanium.Event\" class=\"docClass\">Titanium.Event</a> object sent to the listeners.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-fireEvent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 85
+          }
+        ],
+        "shortDoc": "Fires a synthesized event to any registered listeners. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getAllResponseHeaders",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-allResponseHeaders\" rel=\"Titanium.Network.HTTPClient-property-allResponseHeaders\" class=\"docClass\">allResponseHeaders</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 0.8</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getAllResponseHeaders",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68469
+          }
+        ],
+        "shortDoc": "Gets the value of the allResponseHeaders property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getApiName",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-apiName\" rel=\"Titanium.Proxy-property-apiName\" class=\"docClass\">apiName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getApiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 157
+          }
+        ],
+        "shortDoc": "Gets the value of the apiName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getAutoEncodeUrl",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-autoEncodeUrl\" rel=\"Titanium.Network.HTTPClient-property-autoEncodeUrl\" class=\"docClass\">autoEncodeUrl</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 0.8</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getAutoEncodeUrl",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68483
+          }
+        ],
+        "shortDoc": "Gets the value of the autoEncodeUrl property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getAutoRedirect",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-autoRedirect\" rel=\"Titanium.Network.HTTPClient-property-autoRedirect\" class=\"docClass\">autoRedirect</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getAutoRedirect",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68513
+          }
+        ],
+        "shortDoc": "Gets the value of the autoRedirect property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 123
+          }
+        ],
+        "shortDoc": "Gets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getCache",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-cache\" rel=\"Titanium.Network.HTTPClient-property-cache\" class=\"docClass\">cache</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform iphone 2.0.0\n@platform ipad 2.0.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getCache",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69140
+          }
+        ],
+        "shortDoc": "Gets the value of the cache property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getConnected",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-connected\" rel=\"Titanium.Network.HTTPClient-property-connected\" class=\"docClass\">connected</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getConnected",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68547
+          }
+        ],
+        "shortDoc": "Gets the value of the connected property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getConnectionType",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-connectionType\" rel=\"Titanium.Network.HTTPClient-property-connectionType\" class=\"docClass\">connectionType</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getConnectionType",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68560
+          }
+        ],
+        "shortDoc": "Gets the value of the connectionType property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getDomain",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-domain\" rel=\"Titanium.Network.HTTPClient-property-domain\" class=\"docClass\">domain</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getDomain",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68573
+          }
+        ],
+        "shortDoc": "Gets the value of the domain property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getEnableKeepAlive",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-enableKeepAlive\" rel=\"Titanium.Network.HTTPClient-property-enableKeepAlive\" class=\"docClass\">enableKeepAlive</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getEnableKeepAlive",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68609
+          }
+        ],
+        "shortDoc": "Gets the value of the enableKeepAlive property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getFile",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-file\" rel=\"Titanium.Network.HTTPClient-property-file\" class=\"docClass\">file</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.4.0\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getFile",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68641
+          }
+        ],
+        "shortDoc": "Gets the value of the file property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+          "name": "return",
+          "doc": "<p>@platform android 3.6.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 175
+          }
+        ],
+        "shortDoc": "Gets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLocation",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-location\" rel=\"Titanium.Network.HTTPClient-property-location\" class=\"docClass\">location</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLocation",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68677
+          }
+        ],
+        "shortDoc": "Gets the value of the location property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getOndatastream",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-ondatastream\" rel=\"Titanium.Network.HTTPClient-property-ondatastream\" class=\"docClass\">ondatastream</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Callback<Object>",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Callback<Object>"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getOndatastream",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68690
+          }
+        ],
+        "shortDoc": "Gets the value of the ondatastream property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getOnerror",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-onerror\" rel=\"Titanium.Network.HTTPClient-property-onerror\" class=\"docClass\">onerror</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Callback<FailureResponse>",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Callback<FailureResponse>"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getOnerror",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68718
+          }
+        ],
+        "shortDoc": "Gets the value of the onerror property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getOnload",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-onload\" rel=\"Titanium.Network.HTTPClient-property-onload\" class=\"docClass\">onload</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Callback<SuccessResponse>",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Callback<SuccessResponse>"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getOnload",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68746
+          }
+        ],
+        "shortDoc": "Gets the value of the onload property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getOnreadystatechange",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-onreadystatechange\" rel=\"Titanium.Network.HTTPClient-property-onreadystatechange\" class=\"docClass\">onreadystatechange</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Callback<Object>",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Callback<Object>"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getOnreadystatechange",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68774
+          }
+        ],
+        "shortDoc": "Gets the value of the onreadystatechange property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getOnsendstream",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-onsendstream\" rel=\"Titanium.Network.HTTPClient-property-onsendstream\" class=\"docClass\">onsendstream</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Callback<Object>",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Callback<Object>"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getOnsendstream",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68802
+          }
+        ],
+        "shortDoc": "Gets the value of the onsendstream property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getPassword",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-password\" rel=\"Titanium.Network.HTTPClient-property-password\" class=\"docClass\">password</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getPassword",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68830
+          }
+        ],
+        "shortDoc": "Gets the value of the password property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getReadyState",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-readyState\" rel=\"Titanium.Network.HTTPClient-property-readyState\" class=\"docClass\">readyState</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getReadyState",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68866
+          }
+        ],
+        "shortDoc": "Gets the value of the readyState property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getResponseData",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-responseData\" rel=\"Titanium.Network.HTTPClient-property-responseData\" class=\"docClass\">responseData</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.Blob",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.Blob"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getResponseData",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68879
+          }
+        ],
+        "shortDoc": "Gets the value of the responseData property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getResponseHeader",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Returns the value of the specified response header.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the header to retrieve.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getResponseHeader",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68364
+          }
+        ],
+        "shortDoc": "Returns the value of the specified response header. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getResponseText",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-responseText\" rel=\"Titanium.Network.HTTPClient-property-responseText\" class=\"docClass\">responseText</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getResponseText",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68892
+          }
+        ],
+        "shortDoc": "Gets the value of the responseText property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getResponseXML",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-responseXML\" rel=\"Titanium.Network.HTTPClient-property-responseXML\" class=\"docClass\">responseXML</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.XML.Document",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.XML.Document"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getResponseXML",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68905
+          }
+        ],
+        "shortDoc": "Gets the value of the responseXML property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getSecurityManager",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-securityManager\" rel=\"Titanium.Network.HTTPClient-property-securityManager\" class=\"docClass\">securityManager</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "SecurityManagerProtocol",
+          "name": "return",
+          "doc": "<p>@platform android 3.3.0\n@platform iphone 3.3.0\n@platform ipad 3.3.0</p>\n",
+          "properties": null,
+          "html_type": "SecurityManagerProtocol"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getSecurityManager",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68918
+          }
+        ],
+        "shortDoc": "Gets the value of the securityManager property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getStatus",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-status\" rel=\"Titanium.Network.HTTPClient-property-status\" class=\"docClass\">status</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getStatus",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68952
+          }
+        ],
+        "shortDoc": "Gets the value of the status property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getStatusText",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-statusText\" rel=\"Titanium.Network.HTTPClient-property-statusText\" class=\"docClass\">statusText</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getStatusText",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68965
+          }
+        ],
+        "shortDoc": "Gets the value of the statusText property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getTimeout",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-timeout\" rel=\"Titanium.Network.HTTPClient-property-timeout\" class=\"docClass\">timeout</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getTimeout",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68978
+          }
+        ],
+        "shortDoc": "Gets the value of the timeout property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getTlsVersion",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-tlsVersion\" rel=\"Titanium.Network.HTTPClient-property-tlsVersion\" class=\"docClass\">tlsVersion</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>@platform android 3.6.0\n@platform iphone 1.8.0.1\n@platform ipad 1.8.0.1</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getTlsVersion",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69106
+          }
+        ],
+        "shortDoc": "Gets the value of the tlsVersion property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getUsername",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-username\" rel=\"Titanium.Network.HTTPClient-property-username\" class=\"docClass\">username</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getUsername",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69006
+          }
+        ],
+        "shortDoc": "Gets the value of the username property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getValidatesSecureCertificate",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-validatesSecureCertificate\" rel=\"Titanium.Network.HTTPClient-property-validatesSecureCertificate\" class=\"docClass\">validatesSecureCertificate</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getValidatesSecureCertificate",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69042
+          }
+        ],
+        "shortDoc": "Gets the value of the validatesSecureCertificate property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getWithCredentials",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-withCredentials\" rel=\"Titanium.Network.HTTPClient-property-withCredentials\" class=\"docClass\">withCredentials</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getWithCredentials",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69076
+          }
+        ],
+        "shortDoc": "Gets the value of the withCredentials property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "open",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Opens the request and prepares the connection.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "method",
+            "doc": "<p>HTTP method for this request, such as 'GET' or 'POST'.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "String",
+            "name": "url",
+            "doc": "<p>URL for the request.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "async",
+            "doc": "<p>Determines whether the request should be made asynchronously. Only used on iOS and Mobile Web.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-open",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68379
+          }
+        ],
+        "shortDoc": "Opens the request and prepares the connection. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Removes the specified callback as an event listener for the named event.</p>\n\n\n<p>@description <p>Multiple listeners can be registered for the same event, so the\n<code>callback</code> parameter is used to determine which listener to remove. </p></p>\n\n<p>When adding a listener, you must save a reference to the callback function\nin order to remove the listener later:</p>\n\n\n\n\n<pre><code>var listener = function() { Ti.API.info(\"Event listener called.\"); }\nwindow.addEventListener('click', listener);\n</code></pre>\n\n\n\n\n<p>To remove the listener, pass in a reference to the callback function:</p>\n\n\n\n\n<pre><code>window.removeEventListener('click', listener);\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to remove. Must be the same function passed to <code>addEventListener</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 55
+          }
+        ],
+        "shortDoc": "Removes the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "send",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Sends the request.</p>\n\n\n<p>@description <p>For POST requests, use the <code>data</code> parameter to send POST data.</p></p>\n\n<p>If you pass a serializable JavaScript object, it is automatically turned into form-encoded\nPOST data. You can also send an arbitrary string or binary data (in the form of a\n<a href=\"#!/api/Titanium.Blob\" rel=\"Titanium.Blob\" class=\"docClass\">Titanium.Blob</a>).</p>\n\n\n\n\n<p>To send array data, specify each array element individually as a property of the object.\nFor example, normally, you specify an array in an object as:</p>\n\n\n\n\n<pre><code>var payload = { myArray: [1, 2, 3] };\n</code></pre>\n\n\n\n\n<p>Instead, for the HTTP client to encode the data correctly, you need to send the data as:</p>\n\n\n\n\n<pre><code>var payload = {\n    \"myArray[0]\" : 1,\n    \"myArray[1]\" : 2,\n    \"myArray[2]\" : 3\n};\n</code></pre>\n\n\n\n\n<p>On iOS, you can specify a synchronous request when you call <code>open</code> by passing <code>false</code> for\nthe <code>async</code> parameter. In the case of a synchronous request, <code>send</code> blocks until the request\nis complete.</p>\n\n",
+        "params": [
+          {
+            "type": "Object/String/Titanium.Filesystem.File/Titanium.Blob",
+            "name": "data",
+            "doc": "<p>Data to send with a POST request.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object/String/Titanium.Filesystem.File/Titanium.Blob"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-send",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68398
+          }
+        ],
+        "shortDoc": "Sends the request. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setAutoEncodeUrl",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-autoEncodeUrl\" rel=\"Titanium.Network.HTTPClient-property-autoEncodeUrl\" class=\"docClass\">autoEncodeUrl</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "autoEncodeUrl",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 0.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setAutoEncodeUrl",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68497
+          }
+        ],
+        "shortDoc": "Sets the value of the autoEncodeUrl property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setAutoRedirect",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-autoRedirect\" rel=\"Titanium.Network.HTTPClient-property-autoRedirect\" class=\"docClass\">autoRedirect</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "autoRedirect",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setAutoRedirect",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68529
+          }
+        ],
+        "shortDoc": "Sets the value of the autoRedirect property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "bubbleParent",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139
+          }
+        ],
+        "shortDoc": "Sets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setCache",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-cache\" rel=\"Titanium.Network.HTTPClient-property-cache\" class=\"docClass\">cache</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "cache",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform iphone 2.0.0\n@platform ipad 2.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setCache",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69155
+          }
+        ],
+        "shortDoc": "Sets the value of the cache property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setDomain",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-domain\" rel=\"Titanium.Network.HTTPClient-property-domain\" class=\"docClass\">domain</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "domain",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setDomain",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68590
+          }
+        ],
+        "shortDoc": "Sets the value of the domain property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setEnableKeepAlive",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-enableKeepAlive\" rel=\"Titanium.Network.HTTPClient-property-enableKeepAlive\" class=\"docClass\">enableKeepAlive</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "enableKeepAlive",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setEnableKeepAlive",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68624
+          }
+        ],
+        "shortDoc": "Sets the value of the enableKeepAlive property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setFile",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-file\" rel=\"Titanium.Network.HTTPClient-property-file\" class=\"docClass\">file</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "file",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.4.0\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setFile",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68658
+          }
+        ],
+        "shortDoc": "Sets the value of the file property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+            "name": "lifecycleContainer",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.6.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 189
+          }
+        ],
+        "shortDoc": "Sets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setOndatastream",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-ondatastream\" rel=\"Titanium.Network.HTTPClient-property-ondatastream\" class=\"docClass\">ondatastream</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Callback<Object>",
+            "name": "ondatastream",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setOndatastream",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68703
+          }
+        ],
+        "shortDoc": "Sets the value of the ondatastream property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setOnerror",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-onerror\" rel=\"Titanium.Network.HTTPClient-property-onerror\" class=\"docClass\">onerror</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Callback<FailureResponse>",
+            "name": "onerror",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<FailureResponse>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setOnerror",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68731
+          }
+        ],
+        "shortDoc": "Sets the value of the onerror property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setOnload",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-onload\" rel=\"Titanium.Network.HTTPClient-property-onload\" class=\"docClass\">onload</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Callback<SuccessResponse>",
+            "name": "onload",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<SuccessResponse>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setOnload",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68759
+          }
+        ],
+        "shortDoc": "Sets the value of the onload property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setOnreadystatechange",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-onreadystatechange\" rel=\"Titanium.Network.HTTPClient-property-onreadystatechange\" class=\"docClass\">onreadystatechange</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Callback<Object>",
+            "name": "onreadystatechange",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setOnreadystatechange",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68787
+          }
+        ],
+        "shortDoc": "Sets the value of the onreadystatechange property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setOnsendstream",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-onsendstream\" rel=\"Titanium.Network.HTTPClient-property-onsendstream\" class=\"docClass\">onsendstream</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Callback<Object>",
+            "name": "onsendstream",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setOnsendstream",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68815
+          }
+        ],
+        "shortDoc": "Sets the value of the onsendstream property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setPassword",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-password\" rel=\"Titanium.Network.HTTPClient-property-password\" class=\"docClass\">password</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "password",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setPassword",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68847
+          }
+        ],
+        "shortDoc": "Sets the value of the password property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setRequestHeader",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Sets the value for the specified request header. Must be called after <code>open</code> but before <code>send</code>.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the header to set.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "String",
+            "name": "value",
+            "doc": "<p>Value to assign to the header. May be <code>null</code> to clear a default header value, such as\nX-Requested-With.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setRequestHeader",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68436
+          }
+        ],
+        "shortDoc": "Sets the value for the specified request header. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setSecurityManager",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-securityManager\" rel=\"Titanium.Network.HTTPClient-property-securityManager\" class=\"docClass\">securityManager</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "SecurityManagerProtocol",
+            "name": "securityManager",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.3.0\n@platform iphone 3.3.0\n@platform ipad 3.3.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "SecurityManagerProtocol"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setSecurityManager",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68934
+          }
+        ],
+        "shortDoc": "Sets the value of the securityManager property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setTimeout",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-timeout\" rel=\"Titanium.Network.HTTPClient-property-timeout\" class=\"docClass\">timeout</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "timeout",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setTimeout",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 68991
+          }
+        ],
+        "shortDoc": "Sets the value of the timeout property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setTlsVersion",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-tlsVersion\" rel=\"Titanium.Network.HTTPClient-property-tlsVersion\" class=\"docClass\">tlsVersion</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "tlsVersion",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.6.0\n@platform iphone 1.8.0.1\n@platform ipad 1.8.0.1</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setTlsVersion",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69122
+          }
+        ],
+        "shortDoc": "Sets the value of the tlsVersion property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setUsername",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-username\" rel=\"Titanium.Network.HTTPClient-property-username\" class=\"docClass\">username</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "username",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setUsername",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69023
+          }
+        ],
+        "shortDoc": "Sets the value of the username property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setValidatesSecureCertificate",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-validatesSecureCertificate\" rel=\"Titanium.Network.HTTPClient-property-validatesSecureCertificate\" class=\"docClass\">validatesSecureCertificate</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "validatesSecureCertificate",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setValidatesSecureCertificate",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69058
+          }
+        ],
+        "shortDoc": "Sets the value of the validatesSecureCertificate property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setWithCredentials",
+        "owner": "Titanium.Network.HTTPClient",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Network.HTTPClient-property-withCredentials\" rel=\"Titanium.Network.HTTPClient-property-withCredentials\" class=\"docClass\">withCredentials</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "withCredentials",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform mobileweb 1.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setWithCredentials",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 69090
+          }
+        ],
+        "shortDoc": "Sets the value of the withCredentials property. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 68113
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+    "Titanium.Proxy"
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

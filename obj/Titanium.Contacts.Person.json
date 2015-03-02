@@ -1,0 +1,3175 @@
+{
+  "tagname": "class",
+  "name": "Titanium.Contacts.Person",
+  "doc": "<p>@platform android 0.8\n@platform blackberry 3.1.2\n@platform iphone 0.8\n@platform ipad 0.8 @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/Contacts/Person.yml</p>\n\n<p>An object that represents a contact record for a person or organization in the system contacts\naddress book.</p>\n\n\n<p>@description <p>A person object is created using <a href=\"#!/api/Titanium.Contacts-method-createPerson\" rel=\"Titanium.Contacts-method-createPerson\" class=\"docClass\">Titanium.Contacts.createPerson</a>.</p></p>\n\n<p>The following two kinds of properties exist for this object:</p>\n\n\n\n\n<ul>\n<li>single value - contains either a <code>string</code> or <code>number</code> type value, an array of <code>string</code> type\nvalues, or <code>null</code> if unset.</li>\n<li>multi-value - contains a dictionary with typical keys of <code>home</code>, <code>work</code> and/or <code>other</code>. Each\nkey contains either a <code>string</code> type value, an array of <code>string</code> type values, or a dictionary\ncontaining key/value pairs with <code>string</code> type values.</li>\n</ul>\n\n\n\n\n<h4>Adding and Modifying Properties</h4>\n\n\n\n\n<p>Support for adding and modifying properties is currently supported on iOS and Android.</p>\n\n\n\n\n<h4>Keys as Address Book UI Labels</h4>\n\n\n\n\n<p>Keys act as labels in the address book user interface.</p>\n\n\n\n\n<p>Although there is limited support for custom, arbitrarily-named, keys when used with multi-value\nproperties, there is no support them with single value properties.</p>\n\n\n\n\n<p>On iOS, creating custom keys is not recommended, and will lead to undefined results.</p>\n\n\n\n\n<p>If a label has been created by the user of the device and used with a multi-value property, it\nwill exist as a key with the same name.</p>\n\n\n\n\n<p>See examples in <a href=\"#!/api/Titanium.Contacts\" rel=\"Titanium.Contacts\" class=\"docClass\">Titanium.Contacts</a> for more information.</p>\n\n",
+  "extends": "Titanium.Proxy",
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-Titanium.Contacts.Person",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "address",
+        "owner": "Titanium.Contacts.Person",
+        "type": "Dictionary",
+        "doc": "<p>Addresses for the person. Multi-value. Read-only on Android.</p>\n\n\n<p>@description <p>The format of the dictionary accepted by this property is as follows:</p></p>\n\n<ul>\n<li>Keys: any of <code>home</code>, <code>work</code>, and/or <code>other</code>.</li>\n<li>Values: arrays of dictionary types with seven keys, <code>CountryCode</code>, <code>Street</code>, <code>City</code>,\n<code>County</code>, <code>State</code>, <code>Country</code> and <code>ZIP</code>, each with a <code>string</code> type value.</li>\n</ul>\n\n\n\n\n<p>On Android:</p>\n\n\n\n\n<p>'CountryCode' and 'County' are currently not supported.</p>\n\n\n\n\n<p>On iOS:</p>\n\n\n\n\n<p>The <code>CountryCode</code> key value may be one of the recognized two-character ISO 3166-1 country\ncodes, and determines the format in which the contact is presented by the address book\nuser interface. See the wikipedia section\n<a href=\"http://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements\">ISO 3166-1 alpha-2</a>\nfor a comprehensive list of codes.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-address",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40483
+          }
+        ],
+        "shortDoc": "Addresses for the person. ...",
+        "html_type": "Dictionary",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "alternateBirthday",
+        "owner": "Titanium.Contacts.Person",
+        "type": "Dictionary",
+        "doc": "<p>Alternate birthday of the person. Single Dictionary.</p>\n\n\n\n\n<p> <b>Requires:</b>\niOS 8.0 and later\n</p>\n\n\n<p>@description <p>The format of the dictionary accepted by this property is as follows:</p></p>\n\n<ul>\n<li>Keys: <code>calendarIdentifier</code>, <code>era</code>, <code>year</code>, <code>month</code>, <code>day</code> and <code>isLeapMonth</code>.</li>\n<li>Values: Use <code>chinese</code>, <code>hebrew</code> and <code>islamic-civil</code> for <code>calendarIdentifier</code>.\nUse <code>number</code> type for <code>era</code>, <code>year</code>, <code>month</code> and <code>day</code>. These must be consistent with\ncorresponding <code>calendarIdentifier</code>.\nUse <code>boolean</code> type for <code>isLeapMonth</code>.</li>\n</ul>\n\n\n<p>@platform iphone 3.6.0\n@platform ipad 3.6.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-alternateBirthday",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40545
+          }
+        ],
+        "shortDoc": "Alternate birthday of the person. ...",
+        "html_type": "Dictionary",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "apiName",
+        "owner": "Titanium.Proxy",
+        "type": "String",
+        "doc": "<p>The name of the API that this proxy corresponds to.</p>\n\n\n<p>@description <p>The value of this property is the fully qualified name of the API. For example, <a href=\"#!/api/Titanium.UI.Button\" rel=\"Titanium.UI.Button\" class=\"docClass\">Button</a>\nreturns <code>Ti.UI.Button</code>.</p></p>\n\n<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-apiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 235
+          }
+        ],
+        "shortDoc": "The name of the API that this proxy corresponds to. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "birthday",
+        "owner": "Titanium.Contacts.Person",
+        "type": "String",
+        "doc": "<p>Date of birth of the person. Single value.</p>\n\n\n<p>@description <p>Date format is \"<em>yyyy</em>-<em>MM</em>-<em>dd</em><strong>T</strong><em>HH</em><strong>:</strong><em>mm</em><strong>:</strong><em>ss</em><strong>.</strong><em>SSS</em><strong>+0000</strong>\"</p></p>\n\n<p>On BlackBerry pass in a JavaScript Date object.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-birthday",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40522
+          }
+        ],
+        "shortDoc": "Date of birth of the person. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "bubbleParent",
+        "owner": "Titanium.Proxy",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the proxy will bubble an event to its parent.</p>\n\n\n<p>@description <p>Some proxies (most commonly views) have a relationship to other proxies, often\nestablished by the add() method. For example, for a button added to a window, a\nclick event on the button would bubble up to the window. Other common parents are\ntable sections to their rows, table views to their sections, and scrollable views\nto their views. Set this property to false to disable the bubbling to the proxy's parent.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-bubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 207
+          }
+        ],
+        "shortDoc": "Indicates if the proxy will bubble an event to its parent. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "created",
+        "owner": "Titanium.Contacts.Person",
+        "type": "String",
+        "doc": "<p>Date and time that the person record was created. Single value.</p>\n\n\n<p>@description <p>Date format is \"<em>yyyy</em>-<em>MM</em>-<em>dd</em><strong>T</strong><em>HH</em><strong>:</strong><em>mm</em><strong>:</strong><em>ss</em><strong>.</strong><em>SSS</em><strong>+0000</strong>\"</p></p>\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-created",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40579
+          }
+        ],
+        "shortDoc": "Date and time that the person record was created. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "date",
+        "owner": "Titanium.Contacts.Person",
+        "type": "Dictionary",
+        "doc": "<p>Dates associated with the person. Multi-value.</p>\n\n\n<p>@description <p>Adding or modifying this property is not currently supported.</p></p>\n\n<p>The format of the dictionary accepted by this property is as follows:</p>\n\n\n\n\n<ul>\n<li>Keys: any of <code>anniversary</code> and/or <code>other</code>.</li>\n<li>Values: array of <code>string</code> type.</li>\n</ul>\n\n\n\n\n<p>Date format is \"<em>yyyy</em>-_MM_-<em>dd</em><strong>T</strong><em>HH</em><strong>:</strong><em>mm</em><strong>:</strong><em>ss</em><strong>.</strong><em>SSS</em><strong>+0000</strong>\"</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-date",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40602
+          }
+        ],
+        "shortDoc": "Dates associated with the person. ...",
+        "html_type": "Dictionary",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "department",
+        "owner": "Titanium.Contacts.Person",
+        "type": "String",
+        "doc": "<p>Department of the person. Single value.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-department",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40635
+          }
+        ],
+        "shortDoc": "Department of the person. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "email",
+        "owner": "Titanium.Contacts.Person",
+        "type": "Dictionary",
+        "doc": "<p>Email addresses for the person. Multi-value. Read-only on Android.</p>\n\n\n<p>@description <p>The format of the dictionary accepted by this property is as follows:</p></p>\n\n<ul>\n<li>Keys: any of <code>home</code>, <code>work</code>, and/or <code>other</code>.</li>\n<li>Values: array of <code>string</code> type.</li>\n</ul>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-email",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40656
+          }
+        ],
+        "shortDoc": "Email addresses for the person. ...",
+        "html_type": "Dictionary",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "firstName",
+        "owner": "Titanium.Contacts.Person",
+        "type": "String",
+        "doc": "<p>First name of the person. Single value.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-firstName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40682
+          }
+        ],
+        "shortDoc": "First name of the person. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "firstPhonetic",
+        "owner": "Titanium.Contacts.Person",
+        "type": "String",
+        "doc": "<p>Phonetic first name of the person.  Single value.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-firstPhonetic",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40703
+          }
+        ],
+        "shortDoc": "Phonetic first name of the person. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "fullName",
+        "owner": "Titanium.Contacts.Person",
+        "type": "String",
+        "doc": "<p>Localized full name of the person. Single value. Read-only on Android.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-fullName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40724
+          }
+        ],
+        "shortDoc": "Localized full name of the person. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "id",
+        "owner": "Titanium.Contacts.Person",
+        "type": "Number",
+        "doc": "<p>Record identifier of the person. Single value.</p>\n\n\n<p>@platform android 0.8\n@platform blackberry 3.1.2</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-id",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40745
+          }
+        ],
+        "shortDoc": "Record identifier of the person. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "image",
+        "owner": "Titanium.Contacts.Person",
+        "type": "Titanium.Blob",
+        "doc": "<p>Image for the person. Single value.</p>\n\n\n<p>@description <p>Set to <code>null</code> to remove the image.</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-image",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40768
+          }
+        ],
+        "shortDoc": "Image for the person. ...",
+        "html_type": "Titanium.Blob",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "instantMessage",
+        "owner": "Titanium.Contacts.Person",
+        "type": "Dictionary",
+        "doc": "<p>Instant messenger information of the person. Multi-value.</p>\n\n\n<p>@description <p>The format of the dictionary accepted by this property is as follows:</p></p>\n\n<ul>\n<li>Keys: any of <code>home</code>, <code>work</code> and/or <code>other</code>.</li>\n<li>Values: arrays of dictionary types with two keys, <code>service</code> and <code>username</code>, each with a\n<code>string</code> type value.</li>\n</ul>\n\n\n\n\n<p>The <code>service</code> key value may be one of <code>AIM</code>, <code>Facebook</code>, <code>GaduGadu</code>, <code>GoogleTalk</code>, <code>ICQ</code>,\n<code>Jabber</code>, <code>MSN</code>, <code>QQ</code>, <code>Skype</code>, or <code>Yahoo</code>. These values are key sensitive.</p>\n\n\n\n\n<p>On BlackBerry, the following apply: <code>aim</code>, <code>aliwangwang</code>, <code>bbmPin</code>, <code>googleTalk</code>, <code>icq</code>,\n<code>irc</code>, <code>jabber</code>, <code>msLcs</code>, <code>msn</code>, <code>qq</code>, <code>sametime</code>, <code>skype</code>, <code>yahooMessenger</code></p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-instantMessage",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40789
+          }
+        ],
+        "shortDoc": "Instant messenger information of the person. ...",
+        "html_type": "Dictionary",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "jobTitle",
+        "owner": "Titanium.Contacts.Person",
+        "type": "String",
+        "doc": "<p>Job title of the person. Single value.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-jobTitle",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40854
+          }
+        ],
+        "shortDoc": "Job title of the person. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "kind",
+        "owner": "Titanium.Contacts.Person",
+        "type": "Number",
+        "doc": "<p>Determines the type of information the person record contains; either person or organization.\nRead-only on Android.</p>\n\n\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.Contacts-property-CONTACTS_KIND_ORGANIZATION\" rel=\"Titanium.Contacts-property-CONTACTS_KIND_ORGANIZATION\" class=\"docClass\">Titanium.Contacts.CONTACTS_KIND_ORGANIZATION</a>\n <li> <a href=\"#!/api/Titanium.Contacts-property-CONTACTS_KIND_PERSON\" rel=\"Titanium.Contacts-property-CONTACTS_KIND_PERSON\" class=\"docClass\">Titanium.Contacts.CONTACTS_KIND_PERSON</a>\n</ul></p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-kind",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40875
+          }
+        ],
+        "shortDoc": "Determines the type of information the person record contains; either person or organization. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lastName",
+        "owner": "Titanium.Contacts.Person",
+        "type": "String",
+        "doc": "<p>Last name of the person. Single value.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-lastName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40905
+          }
+        ],
+        "shortDoc": "Last name of the person. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lastPhonetic",
+        "owner": "Titanium.Contacts.Person",
+        "type": "String",
+        "doc": "<p>Phonetic last name of the person. Single value.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-lastPhonetic",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40926
+          }
+        ],
+        "shortDoc": "Phonetic last name of the person. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "doc": "<p>The Window or TabGroup whose Activity lifecycle should be triggered on the proxy.</p>\n\n\n<p>@description <p>If this property is set to a Window or TabGroup, then the corresponding Activity lifecycle event callbacks\nwill also be called on the proxy. Proxies that require the activity lifecycle will need this property set\nto the appropriate containing Window or TabGroup.</p></p>\n\n<p>@platform android 3.6.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-lifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 262
+          }
+        ],
+        "shortDoc": "The Window or TabGroup whose Activity lifecycle should be triggered on the proxy. ...",
+        "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "middleName",
+        "owner": "Titanium.Contacts.Person",
+        "type": "String",
+        "doc": "<p>Middle name of the person. Single value.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-middleName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40947
+          }
+        ],
+        "shortDoc": "Middle name of the person. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "middlePhonetic",
+        "owner": "Titanium.Contacts.Person",
+        "type": "String",
+        "doc": "<p>Phonetic middle name of the person. Single value.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-middlePhonetic",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40968
+          }
+        ],
+        "shortDoc": "Phonetic middle name of the person. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "modified",
+        "owner": "Titanium.Contacts.Person",
+        "type": "String",
+        "doc": "<p>Date and time that the person record was last modified. Single value.</p>\n\n\n<p>@description <p>Date format is \"<em>yyyy</em>-<em>MM</em>-<em>dd</em><strong>T</strong><em>HH</em><strong>:</strong><em>mm</em><strong>:</strong><em>ss</em><strong>.</strong><em>SSS</em><strong>+0000</strong>\"</p></p>\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-modified",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40992
+          }
+        ],
+        "shortDoc": "Date and time that the person record was last modified. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "nickname",
+        "owner": "Titanium.Contacts.Person",
+        "type": "String",
+        "doc": "<p>Nickname of the person. Single value.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-nickname",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 41015
+          }
+        ],
+        "shortDoc": "Nickname of the person. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "note",
+        "owner": "Titanium.Contacts.Person",
+        "type": "String",
+        "doc": "<p>Notes for the person. Single value.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-note",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 41036
+          }
+        ],
+        "shortDoc": "Notes for the person. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "organization",
+        "owner": "Titanium.Contacts.Person",
+        "type": "String",
+        "doc": "<p>Organization to which the person belongs. Single value.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-organization",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 41057
+          }
+        ],
+        "shortDoc": "Organization to which the person belongs. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "phone",
+        "owner": "Titanium.Contacts.Person",
+        "type": "Dictionary",
+        "doc": "<p>Phone numbers for the person. Multi-value. Read-only on Android.</p>\n\n\n<p>@description <p>The format of the dictionary accepted by this property is as follows:</p></p>\n\n<ul>\n<li>Keys: any of <code>home</code>, <code>work</code>, <code>other</code>, <code>mobile</code>, <code>pager</code>, <code>workFax</code>, <code>homeFax</code>, <code>main</code>,\nand/or <code>iPhone</code>.</li>\n<li>Values: array of <code>string</code> type.</li>\n</ul>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-phone",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 41078
+          }
+        ],
+        "shortDoc": "Phone numbers for the person. ...",
+        "html_type": "Dictionary",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "prefix",
+        "owner": "Titanium.Contacts.Person",
+        "type": "String",
+        "doc": "<p>Prefix for the person. Single value.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-prefix",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 41105
+          }
+        ],
+        "shortDoc": "Prefix for the person. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "recordId",
+        "owner": "Titanium.Contacts.Person",
+        "type": "Number",
+        "doc": "<p>Record identifier of the person. Single value.</p>\n\n\n<p>@platform blackberry 3.1.2\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-recordId",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 41126
+          }
+        ],
+        "shortDoc": "Record identifier of the person. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "relatedNames",
+        "owner": "Titanium.Contacts.Person",
+        "type": "Dictionary",
+        "doc": "<p>Names of people to which the person is related. Multi-value.</p>\n\n\n<p>@description <p>The format of the dictionary accepted by this property is as follows:</p></p>\n\n<ul>\n<li>Keys: any of <code>mother</code>, <code>father</code>, <code>parent</code>, <code>brother</code>, <code>sister</code>, <code>child</code>, <code>friend</code>, <code>spouse</code>,\n<code>partner</code>, <code>assistant</code>, <code>manager</code>, and/or <code>other</code>.</li>\n<li>Values: array of <code>string</code> type.</li>\n</ul>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-relatedNames",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 41150
+          }
+        ],
+        "shortDoc": "Names of people to which the person is related. ...",
+        "html_type": "Dictionary",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "socialProfile",
+        "owner": "Titanium.Contacts.Person",
+        "type": "Dictionary",
+        "doc": "<p>Social profile information of the person. Multi-value.</p>\n\n\n<p>@description <p>The format of the dictionary accepted by this property is as follows:</p></p>\n\n<ul>\n<li>Keys: any of <code>home</code>, <code>work</code> and/or <code>other</code>.</li>\n<li>Values: arrays of dictionary types with two keys, <code>service</code> and <code>username</code> each with a\n<code>string</code> type value.</li>\n</ul>\n\n\n\n\n<p>The <code>service</code> key value may be one of <code>twitter</code>, <code>sinaweibo</code>, <code>gamecenter</code>, <code>facebook</code>,\n<code>myspace</code>, <code>linkedin</code>, or <code>flickr</code>. These values are key sensitive.</p>\n\n\n<p>@platform iphone 3.6.0\n@platform ipad 3.6.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-socialProfile",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40822
+          }
+        ],
+        "shortDoc": "Social profile information of the person. ...",
+        "html_type": "Dictionary",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "suffix",
+        "owner": "Titanium.Contacts.Person",
+        "type": "String",
+        "doc": "<p>Suffix for the person. Single value.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-suffix",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 41180
+          }
+        ],
+        "shortDoc": "Suffix for the person. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "url",
+        "owner": "Titanium.Contacts.Person",
+        "type": "Dictionary",
+        "doc": "<p>URLs of webpages associated with the person. Multi-value.</p>\n\n\n<p>@description <p>The format of the dictionary accepted by this property is as follows:</p></p>\n\n<ul>\n<li>Keys: any of <code>homepage</code>, <code>home</code>, <code>work</code>, and/or <code>other</code>.</li>\n<li>Values: array of <code>string</code> type.</li>\n</ul>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-url",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 41201
+          }
+        ],
+        "shortDoc": "URLs of webpages associated with the person. ...",
+        "html_type": "Dictionary",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "addEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Adds the specified callback as an event listener for the named event.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to invoke when the event is fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38
+          }
+        ],
+        "shortDoc": "Adds the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "applyProperties",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Applies the properties to the proxy.</p>\n\n\n<p>@description <p>Properties are supplied as a dictionary. Each key-value pair in the object is applied to the proxy such that\nmyproxy[key] = value.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "props",
+            "doc": "<p>A dictionary of properties to apply.</p>\n\n\n<p>@platform android 3.0.0\n@platform blackberry 3.3.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-applyProperties",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 102
+          }
+        ],
+        "shortDoc": "Applies the properties to the proxy. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "fireEvent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Fires a synthesized event to any registered listeners.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Dictionary",
+            "name": "event",
+            "doc": "<p>A dictionary of keys and values to add to the <a href=\"#!/api/Titanium.Event\" rel=\"Titanium.Event\" class=\"docClass\">Titanium.Event</a> object sent to the listeners.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-fireEvent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 85
+          }
+        ],
+        "shortDoc": "Fires a synthesized event to any registered listeners. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getAddress",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-address\" rel=\"Titanium.Contacts.Person-property-address\" class=\"docClass\">address</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Dictionary",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Dictionary"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getAddress",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39681
+          }
+        ],
+        "shortDoc": "Gets the value of the address property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getAlternateBirthday",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-alternateBirthday\" rel=\"Titanium.Contacts.Person-property-alternateBirthday\" class=\"docClass\">alternateBirthday</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Dictionary",
+          "name": "return",
+          "doc": "<p>@platform iphone 3.6.0\n@platform ipad 3.6.0</p>\n",
+          "properties": null,
+          "html_type": "Dictionary"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getAlternateBirthday",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39737
+          }
+        ],
+        "shortDoc": "Gets the value of the alternateBirthday property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getApiName",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-apiName\" rel=\"Titanium.Proxy-property-apiName\" class=\"docClass\">apiName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getApiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 157
+          }
+        ],
+        "shortDoc": "Gets the value of the apiName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBirthday",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-birthday\" rel=\"Titanium.Contacts.Person-property-birthday\" class=\"docClass\">birthday</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBirthday",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39709
+          }
+        ],
+        "shortDoc": "Gets the value of the birthday property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 123
+          }
+        ],
+        "shortDoc": "Gets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getCreated",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-created\" rel=\"Titanium.Contacts.Person-property-created\" class=\"docClass\">created</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getCreated",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39769
+          }
+        ],
+        "shortDoc": "Gets the value of the created property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getDate",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-date\" rel=\"Titanium.Contacts.Person-property-date\" class=\"docClass\">date</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Dictionary",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+          "properties": null,
+          "html_type": "Dictionary"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getDate",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39784
+          }
+        ],
+        "shortDoc": "Gets the value of the date property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getDepartment",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-department\" rel=\"Titanium.Contacts.Person-property-department\" class=\"docClass\">department</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getDepartment",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39818
+          }
+        ],
+        "shortDoc": "Gets the value of the department property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getEmail",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-email\" rel=\"Titanium.Contacts.Person-property-email\" class=\"docClass\">email</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Dictionary",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Dictionary"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getEmail",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39846
+          }
+        ],
+        "shortDoc": "Gets the value of the email property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getFirstName",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-firstName\" rel=\"Titanium.Contacts.Person-property-firstName\" class=\"docClass\">firstName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getFirstName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39874
+          }
+        ],
+        "shortDoc": "Gets the value of the firstName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getFirstPhonetic",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-firstPhonetic\" rel=\"Titanium.Contacts.Person-property-firstPhonetic\" class=\"docClass\">firstPhonetic</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getFirstPhonetic",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39902
+          }
+        ],
+        "shortDoc": "Gets the value of the firstPhonetic property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getFullName",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-fullName\" rel=\"Titanium.Contacts.Person-property-fullName\" class=\"docClass\">fullName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getFullName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39930
+          }
+        ],
+        "shortDoc": "Gets the value of the fullName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getId",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-id\" rel=\"Titanium.Contacts.Person-property-id\" class=\"docClass\">id</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform blackberry 3.1.2</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getId",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39943
+          }
+        ],
+        "shortDoc": "Gets the value of the id property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getImage",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-image\" rel=\"Titanium.Contacts.Person-property-image\" class=\"docClass\">image</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.Blob",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.Blob"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getImage",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39958
+          }
+        ],
+        "shortDoc": "Gets the value of the image property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getInstantMessage",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-instantMessage\" rel=\"Titanium.Contacts.Person-property-instantMessage\" class=\"docClass\">instantMessage</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Dictionary",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Dictionary"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getInstantMessage",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39986
+          }
+        ],
+        "shortDoc": "Gets the value of the instantMessage property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getJobTitle",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-jobTitle\" rel=\"Titanium.Contacts.Person-property-jobTitle\" class=\"docClass\">jobTitle</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getJobTitle",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40046
+          }
+        ],
+        "shortDoc": "Gets the value of the jobTitle property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getKind",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-kind\" rel=\"Titanium.Contacts.Person-property-kind\" class=\"docClass\">kind</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getKind",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40074
+          }
+        ],
+        "shortDoc": "Gets the value of the kind property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLastName",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-lastName\" rel=\"Titanium.Contacts.Person-property-lastName\" class=\"docClass\">lastName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLastName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40108
+          }
+        ],
+        "shortDoc": "Gets the value of the lastName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLastPhonetic",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-lastPhonetic\" rel=\"Titanium.Contacts.Person-property-lastPhonetic\" class=\"docClass\">lastPhonetic</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLastPhonetic",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40136
+          }
+        ],
+        "shortDoc": "Gets the value of the lastPhonetic property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+          "name": "return",
+          "doc": "<p>@platform android 3.6.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 175
+          }
+        ],
+        "shortDoc": "Gets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getMiddleName",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-middleName\" rel=\"Titanium.Contacts.Person-property-middleName\" class=\"docClass\">middleName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getMiddleName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40164
+          }
+        ],
+        "shortDoc": "Gets the value of the middleName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getMiddlePhonetic",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-middlePhonetic\" rel=\"Titanium.Contacts.Person-property-middlePhonetic\" class=\"docClass\">middlePhonetic</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getMiddlePhonetic",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40192
+          }
+        ],
+        "shortDoc": "Gets the value of the middlePhonetic property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getModified",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-modified\" rel=\"Titanium.Contacts.Person-property-modified\" class=\"docClass\">modified</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getModified",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40226
+          }
+        ],
+        "shortDoc": "Gets the value of the modified property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getNickname",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-nickname\" rel=\"Titanium.Contacts.Person-property-nickname\" class=\"docClass\">nickname</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getNickname",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40241
+          }
+        ],
+        "shortDoc": "Gets the value of the nickname property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getNote",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-note\" rel=\"Titanium.Contacts.Person-property-note\" class=\"docClass\">note</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getNote",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40269
+          }
+        ],
+        "shortDoc": "Gets the value of the note property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getOrganization",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-organization\" rel=\"Titanium.Contacts.Person-property-organization\" class=\"docClass\">organization</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getOrganization",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40297
+          }
+        ],
+        "shortDoc": "Gets the value of the organization property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getPhone",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-phone\" rel=\"Titanium.Contacts.Person-property-phone\" class=\"docClass\">phone</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Dictionary",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Dictionary"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getPhone",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40325
+          }
+        ],
+        "shortDoc": "Gets the value of the phone property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getPrefix",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-prefix\" rel=\"Titanium.Contacts.Person-property-prefix\" class=\"docClass\">prefix</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getPrefix",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40353
+          }
+        ],
+        "shortDoc": "Gets the value of the prefix property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getRecordId",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-recordId\" rel=\"Titanium.Contacts.Person-property-recordId\" class=\"docClass\">recordId</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>@platform blackberry 3.1.2\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getRecordId",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40366
+          }
+        ],
+        "shortDoc": "Gets the value of the recordId property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getRelatedNames",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-relatedNames\" rel=\"Titanium.Contacts.Person-property-relatedNames\" class=\"docClass\">relatedNames</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Dictionary",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+          "properties": null,
+          "html_type": "Dictionary"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getRelatedNames",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40400
+          }
+        ],
+        "shortDoc": "Gets the value of the relatedNames property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getSocialProfile",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-socialProfile\" rel=\"Titanium.Contacts.Person-property-socialProfile\" class=\"docClass\">socialProfile</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Dictionary",
+          "name": "return",
+          "doc": "<p>@platform iphone 3.6.0\n@platform ipad 3.6.0</p>\n",
+          "properties": null,
+          "html_type": "Dictionary"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getSocialProfile",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40014
+          }
+        ],
+        "shortDoc": "Gets the value of the socialProfile property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getSuffix",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-suffix\" rel=\"Titanium.Contacts.Person-property-suffix\" class=\"docClass\">suffix</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getSuffix",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40434
+          }
+        ],
+        "shortDoc": "Gets the value of the suffix property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getUrl",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-url\" rel=\"Titanium.Contacts.Person-property-url\" class=\"docClass\">url</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Dictionary",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+          "properties": null,
+          "html_type": "Dictionary"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getUrl",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40447
+          }
+        ],
+        "shortDoc": "Gets the value of the url property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Removes the specified callback as an event listener for the named event.</p>\n\n\n<p>@description <p>Multiple listeners can be registered for the same event, so the\n<code>callback</code> parameter is used to determine which listener to remove. </p></p>\n\n<p>When adding a listener, you must save a reference to the callback function\nin order to remove the listener later:</p>\n\n\n\n\n<pre><code>var listener = function() { Ti.API.info(\"Event listener called.\"); }\nwindow.addEventListener('click', listener);\n</code></pre>\n\n\n\n\n<p>To remove the listener, pass in a reference to the callback function:</p>\n\n\n\n\n<pre><code>window.removeEventListener('click', listener);\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to remove. Must be the same function passed to <code>addEventListener</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 55
+          }
+        ],
+        "shortDoc": "Removes the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setAddress",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-address\" rel=\"Titanium.Contacts.Person-property-address\" class=\"docClass\">address</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "address",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setAddress",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39694
+          }
+        ],
+        "shortDoc": "Sets the value of the address property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setAlternateBirthday",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-alternateBirthday\" rel=\"Titanium.Contacts.Person-property-alternateBirthday\" class=\"docClass\">alternateBirthday</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "alternateBirthday",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform iphone 3.6.0\n@platform ipad 3.6.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setAlternateBirthday",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39752
+          }
+        ],
+        "shortDoc": "Sets the value of the alternateBirthday property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setBirthday",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-birthday\" rel=\"Titanium.Contacts.Person-property-birthday\" class=\"docClass\">birthday</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "birthday",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setBirthday",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39722
+          }
+        ],
+        "shortDoc": "Sets the value of the birthday property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "bubbleParent",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139
+          }
+        ],
+        "shortDoc": "Sets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setDate",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-date\" rel=\"Titanium.Contacts.Person-property-date\" class=\"docClass\">date</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "date",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setDate",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39800
+          }
+        ],
+        "shortDoc": "Sets the value of the date property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setDepartment",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-department\" rel=\"Titanium.Contacts.Person-property-department\" class=\"docClass\">department</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "department",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setDepartment",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39831
+          }
+        ],
+        "shortDoc": "Sets the value of the department property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setEmail",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-email\" rel=\"Titanium.Contacts.Person-property-email\" class=\"docClass\">email</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "email",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setEmail",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39859
+          }
+        ],
+        "shortDoc": "Sets the value of the email property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setFirstName",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-firstName\" rel=\"Titanium.Contacts.Person-property-firstName\" class=\"docClass\">firstName</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "firstName",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setFirstName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39887
+          }
+        ],
+        "shortDoc": "Sets the value of the firstName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setFirstPhonetic",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-firstPhonetic\" rel=\"Titanium.Contacts.Person-property-firstPhonetic\" class=\"docClass\">firstPhonetic</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "firstPhonetic",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setFirstPhonetic",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39915
+          }
+        ],
+        "shortDoc": "Sets the value of the firstPhonetic property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setImage",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-image\" rel=\"Titanium.Contacts.Person-property-image\" class=\"docClass\">image</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.Blob",
+            "name": "image",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.Blob"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setImage",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39971
+          }
+        ],
+        "shortDoc": "Sets the value of the image property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setInstantMessage",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-instantMessage\" rel=\"Titanium.Contacts.Person-property-instantMessage\" class=\"docClass\">instantMessage</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "instantMessage",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setInstantMessage",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 39999
+          }
+        ],
+        "shortDoc": "Sets the value of the instantMessage property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setJobTitle",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-jobTitle\" rel=\"Titanium.Contacts.Person-property-jobTitle\" class=\"docClass\">jobTitle</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "jobTitle",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setJobTitle",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40059
+          }
+        ],
+        "shortDoc": "Sets the value of the jobTitle property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setKind",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-kind\" rel=\"Titanium.Contacts.Person-property-kind\" class=\"docClass\">kind</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "kind",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setKind",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40090
+          }
+        ],
+        "shortDoc": "Sets the value of the kind property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLastName",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-lastName\" rel=\"Titanium.Contacts.Person-property-lastName\" class=\"docClass\">lastName</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "lastName",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLastName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40121
+          }
+        ],
+        "shortDoc": "Sets the value of the lastName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLastPhonetic",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-lastPhonetic\" rel=\"Titanium.Contacts.Person-property-lastPhonetic\" class=\"docClass\">lastPhonetic</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "lastPhonetic",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLastPhonetic",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40149
+          }
+        ],
+        "shortDoc": "Sets the value of the lastPhonetic property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+            "name": "lifecycleContainer",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.6.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 189
+          }
+        ],
+        "shortDoc": "Sets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setMiddleName",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-middleName\" rel=\"Titanium.Contacts.Person-property-middleName\" class=\"docClass\">middleName</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "middleName",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setMiddleName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40177
+          }
+        ],
+        "shortDoc": "Sets the value of the middleName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setMiddlePhonetic",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-middlePhonetic\" rel=\"Titanium.Contacts.Person-property-middlePhonetic\" class=\"docClass\">middlePhonetic</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "middlePhonetic",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setMiddlePhonetic",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40208
+          }
+        ],
+        "shortDoc": "Sets the value of the middlePhonetic property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setNickname",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-nickname\" rel=\"Titanium.Contacts.Person-property-nickname\" class=\"docClass\">nickname</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "nickname",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setNickname",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40254
+          }
+        ],
+        "shortDoc": "Sets the value of the nickname property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setNote",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-note\" rel=\"Titanium.Contacts.Person-property-note\" class=\"docClass\">note</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "note",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setNote",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40282
+          }
+        ],
+        "shortDoc": "Sets the value of the note property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setOrganization",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-organization\" rel=\"Titanium.Contacts.Person-property-organization\" class=\"docClass\">organization</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "organization",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setOrganization",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40310
+          }
+        ],
+        "shortDoc": "Sets the value of the organization property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setPhone",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-phone\" rel=\"Titanium.Contacts.Person-property-phone\" class=\"docClass\">phone</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "phone",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setPhone",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40338
+          }
+        ],
+        "shortDoc": "Sets the value of the phone property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setRecordId",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-recordId\" rel=\"Titanium.Contacts.Person-property-recordId\" class=\"docClass\">recordId</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "recordId",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform blackberry 3.1.2\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setRecordId",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40382
+          }
+        ],
+        "shortDoc": "Sets the value of the recordId property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setRelatedNames",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-relatedNames\" rel=\"Titanium.Contacts.Person-property-relatedNames\" class=\"docClass\">relatedNames</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "relatedNames",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setRelatedNames",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40416
+          }
+        ],
+        "shortDoc": "Sets the value of the relatedNames property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setSocialProfile",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-socialProfile\" rel=\"Titanium.Contacts.Person-property-socialProfile\" class=\"docClass\">socialProfile</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "socialProfile",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform iphone 3.6.0\n@platform ipad 3.6.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setSocialProfile",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40029
+          }
+        ],
+        "shortDoc": "Sets the value of the socialProfile property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setUrl",
+        "owner": "Titanium.Contacts.Person",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Contacts.Person-property-url\" rel=\"Titanium.Contacts.Person-property-url\" class=\"docClass\">url</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "url",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setUrl",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 40463
+          }
+        ],
+        "shortDoc": "Sets the value of the url property. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 39632
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+    "Titanium.Proxy"
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

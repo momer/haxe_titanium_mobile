@@ -1,0 +1,1183 @@
+{
+  "tagname": "class",
+  "name": "Titanium.UI.iPhone",
+  "doc": "<p>@platform iphone 0.8\n@platform ipad 0.8 @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/UI/iPhone/iPhone.yml</p>\n\n<p>The iPhone/iPad-specific UI capabilities.  All properties, methods and events in this namespace\nwill only work on Apple iOS systems.</p>\n\n",
+  "extends": "Titanium.Module",
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-Titanium.UI.iPhone",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "MODAL_PRESENTATION_CURRENT_CONTEXT",
+        "owner": "Titanium.UI.iPhone",
+        "type": "Number",
+        "doc": "<p>View presented with the same style as its parent window.</p>\n\n\n\n\n<p> <b>Requires:</b>\niOS 3.2 and later\n</p>\n\n\n<p>@description <p>Used with the <a href=\"#!/api/Titanium.UI.Window-method-open\" rel=\"Titanium.UI.Window-method-open\" class=\"docClass\">Titanium.UI.Window.open</a> and <a href=\"#!/api/Titanium.UI.Window-method-close\" rel=\"Titanium.UI.Window-method-close\" class=\"docClass\">Titanium.UI.Window.close</a> methods.</p></p>\n\n<p>One of the group of modal window presentation style constants\n<a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_PRESENTATION_CURRENT_CONTEXT\" rel=\"Titanium.UI.iPhone-property-MODAL_PRESENTATION_CURRENT_CONTEXT\" class=\"docClass\">MODAL_PRESENTATION_CURRENT_CONTEXT</a>,\n<a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_PRESENTATION_FORMSHEET\" rel=\"Titanium.UI.iPhone-property-MODAL_PRESENTATION_FORMSHEET\" class=\"docClass\">MODAL_PRESENTATION_FORMSHEET</a>,\n<a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_PRESENTATION_FULLSCREEN\" rel=\"Titanium.UI.iPhone-property-MODAL_PRESENTATION_FULLSCREEN\" class=\"docClass\">MODAL_PRESENTATION_FULLSCREEN</a>,\nand <a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_PRESENTATION_PAGESHEET\" rel=\"Titanium.UI.iPhone-property-MODAL_PRESENTATION_PAGESHEET\" class=\"docClass\">MODAL_PRESENTATION_PAGESHEET</a>.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-MODAL_PRESENTATION_CURRENT_CONTEXT",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 148710
+          }
+        ],
+        "shortDoc": "View presented with the same style as its parent window. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "MODAL_PRESENTATION_FORMSHEET",
+        "owner": "Titanium.UI.iPhone",
+        "type": "Number",
+        "doc": "<p>Window width and height are smaller than those of the screen and the view is centered on\nthe screen.</p>\n\n\n\n\n<p> <b>Requires:</b>\niOS 3.2 and later\n</p>\n\n\n<p>@description <p>If the system is in a landscape orientation and the keyboard is visible, the position of the\nview is adjusted upward so that the view remains visible. All uncovered areas are dimmed\nand do not respond to touch to prevent the user from interacting with them.</p></p>\n\n<p>Used with the <a href=\"#!/api/Titanium.UI.Window-method-open\" rel=\"Titanium.UI.Window-method-open\" class=\"docClass\">Titanium.UI.Window.open</a> and <a href=\"#!/api/Titanium.UI.Window-method-close\" rel=\"Titanium.UI.Window-method-close\" class=\"docClass\">Titanium.UI.Window.close</a> methods.</p>\n\n\n\n\n<p>One of the group of modal window presentation style constants\n<a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_PRESENTATION_CURRENT_CONTEXT\" rel=\"Titanium.UI.iPhone-property-MODAL_PRESENTATION_CURRENT_CONTEXT\" class=\"docClass\">MODAL_PRESENTATION_CURRENT_CONTEXT</a>,\n<a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_PRESENTATION_FORMSHEET\" rel=\"Titanium.UI.iPhone-property-MODAL_PRESENTATION_FORMSHEET\" class=\"docClass\">MODAL_PRESENTATION_FORMSHEET</a>,\n<a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_PRESENTATION_FULLSCREEN\" rel=\"Titanium.UI.iPhone-property-MODAL_PRESENTATION_FULLSCREEN\" class=\"docClass\">MODAL_PRESENTATION_FULLSCREEN</a>,\nand <a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_PRESENTATION_PAGESHEET\" rel=\"Titanium.UI.iPhone-property-MODAL_PRESENTATION_PAGESHEET\" class=\"docClass\">MODAL_PRESENTATION_PAGESHEET</a>.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-MODAL_PRESENTATION_FORMSHEET",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 148740
+          }
+        ],
+        "shortDoc": "Window width and height are smaller than those of the screen and the view is centered on\nthe screen. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "MODAL_PRESENTATION_FULLSCREEN",
+        "owner": "Titanium.UI.iPhone",
+        "type": "Number",
+        "doc": "<p>Window covers the screen.</p>\n\n\n\n\n<p> <b>Requires:</b>\niOS 3.2 and later\n</p>\n\n\n<p>@description <p>Used with the <a href=\"#!/api/Titanium.UI.Window-method-open\" rel=\"Titanium.UI.Window-method-open\" class=\"docClass\">Titanium.UI.Window.open</a> and <a href=\"#!/api/Titanium.UI.Window-method-close\" rel=\"Titanium.UI.Window-method-close\" class=\"docClass\">Titanium.UI.Window.close</a> methods.</p></p>\n\n<p>One of the group of modal window presentation style constants\n<a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_PRESENTATION_CURRENT_CONTEXT\" rel=\"Titanium.UI.iPhone-property-MODAL_PRESENTATION_CURRENT_CONTEXT\" class=\"docClass\">MODAL_PRESENTATION_CURRENT_CONTEXT</a>,\n<a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_PRESENTATION_FORMSHEET\" rel=\"Titanium.UI.iPhone-property-MODAL_PRESENTATION_FORMSHEET\" class=\"docClass\">MODAL_PRESENTATION_FORMSHEET</a>,\n<a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_PRESENTATION_FULLSCREEN\" rel=\"Titanium.UI.iPhone-property-MODAL_PRESENTATION_FULLSCREEN\" class=\"docClass\">MODAL_PRESENTATION_FULLSCREEN</a>,\nand <a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_PRESENTATION_PAGESHEET\" rel=\"Titanium.UI.iPhone-property-MODAL_PRESENTATION_PAGESHEET\" class=\"docClass\">MODAL_PRESENTATION_PAGESHEET</a>.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-MODAL_PRESENTATION_FULLSCREEN",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 148775
+          }
+        ],
+        "shortDoc": "Window covers the screen. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "MODAL_PRESENTATION_PAGESHEET",
+        "owner": "Titanium.UI.iPhone",
+        "type": "Number",
+        "doc": "<p>Window height is the height of the screen and width is equal to screen width in a portrait\norientation.</p>\n\n\n\n\n<p> <b>Requires:</b>\niOS 3.2 and later\n</p>\n\n\n<p>@description <p>Any uncovered areas are dimmed and do not respond to touch, to prevent the user from\ninteracting with them. In portrait orientations, this option is essentially the same as\n<a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_PRESENTATION_FULLSCREEN\" rel=\"Titanium.UI.iPhone-property-MODAL_PRESENTATION_FULLSCREEN\" class=\"docClass\">MODAL_PRESENTATION_FULLSCREEN</a>.</p></p>\n\n<p>Used with the <a href=\"#!/api/Titanium.UI.Window-method-open\" rel=\"Titanium.UI.Window-method-open\" class=\"docClass\">Titanium.UI.Window.open</a> and <a href=\"#!/api/Titanium.UI.Window-method-close\" rel=\"Titanium.UI.Window-method-close\" class=\"docClass\">Titanium.UI.Window.close</a> methods.</p>\n\n\n\n\n<p>One of the group of modal window presentation style constants\n<a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_PRESENTATION_CURRENT_CONTEXT\" rel=\"Titanium.UI.iPhone-property-MODAL_PRESENTATION_CURRENT_CONTEXT\" class=\"docClass\">MODAL_PRESENTATION_CURRENT_CONTEXT</a>,\n<a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_PRESENTATION_FORMSHEET\" rel=\"Titanium.UI.iPhone-property-MODAL_PRESENTATION_FORMSHEET\" class=\"docClass\">MODAL_PRESENTATION_FORMSHEET</a>,\n<a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_PRESENTATION_FULLSCREEN\" rel=\"Titanium.UI.iPhone-property-MODAL_PRESENTATION_FULLSCREEN\" class=\"docClass\">MODAL_PRESENTATION_FULLSCREEN</a>,\nand <a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_PRESENTATION_PAGESHEET\" rel=\"Titanium.UI.iPhone-property-MODAL_PRESENTATION_PAGESHEET\" class=\"docClass\">MODAL_PRESENTATION_PAGESHEET</a>.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-MODAL_PRESENTATION_PAGESHEET",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 148805
+          }
+        ],
+        "shortDoc": "Window height is the height of the screen and width is equal to screen width in a portrait\norientation. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "MODAL_TRANSITION_STYLE_COVER_VERTICAL",
+        "owner": "Titanium.UI.iPhone",
+        "type": "Number",
+        "doc": "<p>When the window is presented, its view slides up from the bottom of the screen. On dismissal,\nthe view slides back down (default.)</p>\n\n\n\n\n<p> <b>Requires:</b>\niOS 3.2 and later\n</p>\n\n\n<p>@description <p>Used with the <a href=\"#!/api/Titanium.UI.Window-method-open\" rel=\"Titanium.UI.Window-method-open\" class=\"docClass\">Titanium.UI.Window.open</a> and <a href=\"#!/api/Titanium.UI.Window-method-close\" rel=\"Titanium.UI.Window-method-close\" class=\"docClass\">Titanium.UI.Window.close</a> methods.</p></p>\n\n<p>One of the group of modal window transition style constants\n<a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_COVER_VERTICAL\" rel=\"Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_COVER_VERTICAL\" class=\"docClass\">MODAL_TRANSITION_STYLE_COVER_VERTICAL</a>,\n<a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_CROSS_DISSOLVE\" rel=\"Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_CROSS_DISSOLVE\" class=\"docClass\">MODAL_TRANSITION_STYLE_CROSS_DISSOLVE</a>,\n<a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_FLIP_HORIZONTAL\" rel=\"Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_FLIP_HORIZONTAL\" class=\"docClass\">MODAL_TRANSITION_STYLE_FLIP_HORIZONTAL</a>,\nand <a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_PARTIAL_CURL\" rel=\"Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_PARTIAL_CURL\" class=\"docClass\">MODAL_TRANSITION_STYLE_PARTIAL_CURL</a>.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-MODAL_TRANSITION_STYLE_COVER_VERTICAL",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 148840
+          }
+        ],
+        "shortDoc": "When the window is presented, its view slides up from the bottom of the screen. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "MODAL_TRANSITION_STYLE_CROSS_DISSOLVE",
+        "owner": "Titanium.UI.iPhone",
+        "type": "Number",
+        "doc": "<p>When the window is presented, the current view fades out while the new view fades in at the\nsame time. On dismissal, a similar type of cross-fade is used to return to the original view.</p>\n\n\n\n\n<p> <b>Requires:</b>\niOS 3.2 and later\n</p>\n\n\n<p>@description <p>Used with the <a href=\"#!/api/Titanium.UI.Window-method-open\" rel=\"Titanium.UI.Window-method-open\" class=\"docClass\">Titanium.UI.Window.open</a> and <a href=\"#!/api/Titanium.UI.Window-method-close\" rel=\"Titanium.UI.Window-method-close\" class=\"docClass\">Titanium.UI.Window.close</a> methods.</p></p>\n\n<p>One of the group of modal window transition style constants\n<a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_COVER_VERTICAL\" rel=\"Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_COVER_VERTICAL\" class=\"docClass\">MODAL_TRANSITION_STYLE_COVER_VERTICAL</a>,\n<a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_CROSS_DISSOLVE\" rel=\"Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_CROSS_DISSOLVE\" class=\"docClass\">MODAL_TRANSITION_STYLE_CROSS_DISSOLVE</a>,\n<a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_FLIP_HORIZONTAL\" rel=\"Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_FLIP_HORIZONTAL\" class=\"docClass\">MODAL_TRANSITION_STYLE_FLIP_HORIZONTAL</a>,\nand <a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_PARTIAL_CURL\" rel=\"Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_PARTIAL_CURL\" class=\"docClass\">MODAL_TRANSITION_STYLE_PARTIAL_CURL</a>.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-MODAL_TRANSITION_STYLE_CROSS_DISSOLVE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 148871
+          }
+        ],
+        "shortDoc": "When the window is presented, the current view fades out while the new view fades in at the\nsame time. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "MODAL_TRANSITION_STYLE_FLIP_HORIZONTAL",
+        "owner": "Titanium.UI.iPhone",
+        "type": "Number",
+        "doc": "<p>When the window is presented, the current view initiates a horizontal 3D flip from\nright-to-left, resulting in the revealing of the new view as if it were on the back of the\nprevious view. On dismissal, the flip occurs from left-to-right, returning to the original\nview.</p>\n\n\n\n\n<p> <b>Requires:</b>\niOS 3.2 and later\n</p>\n\n\n<p>@description <p>Used with the <a href=\"#!/api/Titanium.UI.Window-method-open\" rel=\"Titanium.UI.Window-method-open\" class=\"docClass\">Titanium.UI.Window.open</a> and <a href=\"#!/api/Titanium.UI.Window-method-close\" rel=\"Titanium.UI.Window-method-close\" class=\"docClass\">Titanium.UI.Window.close</a> methods.</p></p>\n\n<p>One of the group of modal window transition style constants\n<a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_COVER_VERTICAL\" rel=\"Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_COVER_VERTICAL\" class=\"docClass\">MODAL_TRANSITION_STYLE_COVER_VERTICAL</a>,\n<a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_CROSS_DISSOLVE\" rel=\"Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_CROSS_DISSOLVE\" class=\"docClass\">MODAL_TRANSITION_STYLE_CROSS_DISSOLVE</a>,\n<a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_FLIP_HORIZONTAL\" rel=\"Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_FLIP_HORIZONTAL\" class=\"docClass\">MODAL_TRANSITION_STYLE_FLIP_HORIZONTAL</a>,\nand <a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_PARTIAL_CURL\" rel=\"Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_PARTIAL_CURL\" class=\"docClass\">MODAL_TRANSITION_STYLE_PARTIAL_CURL</a>.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-MODAL_TRANSITION_STYLE_FLIP_HORIZONTAL",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 148902
+          }
+        ],
+        "shortDoc": "When the window is presented, the current view initiates a horizontal 3D flip from\nright-to-left, resulting in the re...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "MODAL_TRANSITION_STYLE_PARTIAL_CURL",
+        "owner": "Titanium.UI.iPhone",
+        "type": "Number",
+        "doc": "<p>When the window is presented, one corner of the current view curls up to reveal the modal\nview underneath. On dismissal, the curled up page unfurls itself back on top of the modal\nview.</p>\n\n\n\n\n<p> <b>Requires:</b>\niOS 3.2 and later\n</p>\n\n\n<p>@description <p>A modal view presented using this transition is itself prevented from presenting any\nadditional modal views. This transition style is supported only if the window is presenting\na <a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_PRESENTATION_FULLSCREEN\" rel=\"Titanium.UI.iPhone-property-MODAL_PRESENTATION_FULLSCREEN\" class=\"docClass\">MODAL_PRESENTATION_FULLSCREEN</a> modal presentation style.</p></p>\n\n<p>Used with the <a href=\"#!/api/Titanium.UI.Window-method-open\" rel=\"Titanium.UI.Window-method-open\" class=\"docClass\">Titanium.UI.Window.open</a> and <a href=\"#!/api/Titanium.UI.Window-method-close\" rel=\"Titanium.UI.Window-method-close\" class=\"docClass\">Titanium.UI.Window.close</a> methods.</p>\n\n\n\n\n<p>One of the group of modal window transition style constants\n<a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_COVER_VERTICAL\" rel=\"Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_COVER_VERTICAL\" class=\"docClass\">MODAL_TRANSITION_STYLE_COVER_VERTICAL</a>,\n<a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_CROSS_DISSOLVE\" rel=\"Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_CROSS_DISSOLVE\" class=\"docClass\">MODAL_TRANSITION_STYLE_CROSS_DISSOLVE</a>,\n<a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_FLIP_HORIZONTAL\" rel=\"Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_FLIP_HORIZONTAL\" class=\"docClass\">MODAL_TRANSITION_STYLE_FLIP_HORIZONTAL</a>,\nand <a href=\"#!/api/Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_PARTIAL_CURL\" rel=\"Titanium.UI.iPhone-property-MODAL_TRANSITION_STYLE_PARTIAL_CURL\" class=\"docClass\">MODAL_TRANSITION_STYLE_PARTIAL_CURL</a>.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-MODAL_TRANSITION_STYLE_PARTIAL_CURL",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 148935
+          }
+        ],
+        "shortDoc": "When the window is presented, one corner of the current view curls up to reveal the modal\nview underneath. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "apiName",
+        "owner": "Titanium.Proxy",
+        "type": "String",
+        "doc": "<p>The name of the API that this proxy corresponds to.</p>\n\n\n<p>@description <p>The value of this property is the fully qualified name of the API. For example, <a href=\"#!/api/Titanium.UI.Button\" rel=\"Titanium.UI.Button\" class=\"docClass\">Button</a>\nreturns <code>Ti.UI.Button</code>.</p></p>\n\n<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-apiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 235
+          }
+        ],
+        "shortDoc": "The name of the API that this proxy corresponds to. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "appBadge",
+        "owner": "Titanium.UI.iPhone",
+        "type": "Number",
+        "doc": "<p>Value of the badge for the application's springboard icon.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-appBadge",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 148971
+          }
+        ],
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "appSupportsShakeToEdit",
+        "owner": "Titanium.UI.iPhone",
+        "type": "Boolean",
+        "doc": "<p>Determines whether the shake to edit system-wide capability is enabled.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-appSupportsShakeToEdit",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 148992
+          }
+        ],
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "bubbleParent",
+        "owner": "Titanium.Proxy",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the proxy will bubble an event to its parent.</p>\n\n\n<p>@description <p>Some proxies (most commonly views) have a relationship to other proxies, often\nestablished by the add() method. For example, for a button added to a window, a\nclick event on the button would bubble up to the window. Other common parents are\ntable sections to their rows, table views to their sections, and scrollable views\nto their views. Set this property to false to disable the bubbling to the proxy's parent.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-bubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 207
+          }
+        ],
+        "shortDoc": "Indicates if the proxy will bubble an event to its parent. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "doc": "<p>The Window or TabGroup whose Activity lifecycle should be triggered on the proxy.</p>\n\n\n<p>@description <p>If this property is set to a Window or TabGroup, then the corresponding Activity lifecycle event callbacks\nwill also be called on the proxy. Proxies that require the activity lifecycle will need this property set\nto the appropriate containing Window or TabGroup.</p></p>\n\n<p>@platform android 3.6.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-lifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 262
+          }
+        ],
+        "shortDoc": "The Window or TabGroup whose Activity lifecycle should be triggered on the proxy. ...",
+        "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "statusBarHidden",
+        "owner": "Titanium.UI.iPhone",
+        "type": "Boolean",
+        "doc": "<p>Determines whether the status bar is hidden.</p>\n\n\n<p>@description <p>The setter for this property does not work on iOS 7 and is deprecated for earlier iOS versions since <strong>Release 3.1.3</strong>.\nUse the <a href=\"#!/api/Titanium.UI.Window-property-fullscreen\" rel=\"Titanium.UI.Window-property-fullscreen\" class=\"docClass\">fullscreen</a> property of the window to control if the staus bar is shown or not.</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-statusBarHidden",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 149013
+          }
+        ],
+        "shortDoc": "Determines whether the status bar is hidden. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "statusBarStyle",
+        "owner": "Titanium.UI.iPhone",
+        "type": "Number",
+        "doc": "<p>Determines the status bar color style.</p>\n\n\n<p>@description <p>The setter for this property does not work on iOS 7 and is deprecated for earlier iOS versions since <strong>Release 3.1.3</strong>.\nUse the <a href=\"#!/api/Titanium.UI.Window-property-statusBarStyle\" rel=\"Titanium.UI.Window-property-statusBarStyle\" class=\"docClass\">statusBarStyle</a> property of the window to control the status bar style.</p></p>\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.UI.iPhone.StatusBar-property-DEFAULT\" rel=\"Titanium.UI.iPhone.StatusBar-property-DEFAULT\" class=\"docClass\">Titanium.UI.iPhone.StatusBar.DEFAULT</a>\n <li> <a href=\"#!/api/Titanium.UI.iPhone.StatusBar-property-GRAY\" rel=\"Titanium.UI.iPhone.StatusBar-property-GRAY\" class=\"docClass\">Titanium.UI.iPhone.StatusBar.GRAY</a>\n <li> <a href=\"#!/api/Titanium.UI.iPhone.StatusBar-property-GREY\" rel=\"Titanium.UI.iPhone.StatusBar-property-GREY\" class=\"docClass\">Titanium.UI.iPhone.StatusBar.GREY</a>\n <li> <a href=\"#!/api/Titanium.UI.iPhone.StatusBar-property-LIGHT_CONTENT\" rel=\"Titanium.UI.iPhone.StatusBar-property-LIGHT_CONTENT\" class=\"docClass\">Titanium.UI.iPhone.StatusBar.LIGHT_CONTENT</a>\n <li> <a href=\"#!/api/Titanium.UI.iPhone.StatusBar-property-OPAQUE_BLACK\" rel=\"Titanium.UI.iPhone.StatusBar-property-OPAQUE_BLACK\" class=\"docClass\">Titanium.UI.iPhone.StatusBar.OPAQUE_BLACK</a>\n <li> <a href=\"#!/api/Titanium.UI.iPhone.StatusBar-property-TRANSLUCENT_BLACK\" rel=\"Titanium.UI.iPhone.StatusBar-property-TRANSLUCENT_BLACK\" class=\"docClass\">Titanium.UI.iPhone.StatusBar.TRANSLUCENT_BLACK</a>\n</ul></p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-statusBarStyle",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 149035
+          }
+        ],
+        "shortDoc": "Determines the status bar color style. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      }
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "addEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Adds the specified callback as an event listener for the named event.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to invoke when the event is fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38
+          }
+        ],
+        "shortDoc": "Adds the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "applyProperties",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Applies the properties to the proxy.</p>\n\n\n<p>@description <p>Properties are supplied as a dictionary. Each key-value pair in the object is applied to the proxy such that\nmyproxy[key] = value.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "props",
+            "doc": "<p>A dictionary of properties to apply.</p>\n\n\n<p>@platform android 3.0.0\n@platform blackberry 3.3.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-applyProperties",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 102
+          }
+        ],
+        "shortDoc": "Applies the properties to the proxy. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "createNavigationGroup",
+        "owner": "Titanium.UI.iPhone",
+        "doc": "<p>Creates and returns an instance of <a href=\"#!/api/Titanium.UI.iPhone.NavigationGroup\" rel=\"Titanium.UI.iPhone.NavigationGroup\" class=\"docClass\">Titanium.UI.iPhone.NavigationGroup</a>.</p>\n\n",
+        "params": [
+          {
+            "type": "Dictionary<Titanium.UI.iPhone.NavigationGroup>",
+            "name": "parameters",
+            "doc": "<p>Properties to set on a new object, including any defined by <a href=\"#!/api/Titanium.UI.iPhone.NavigationGroup\" rel=\"Titanium.UI.iPhone.NavigationGroup\" class=\"docClass\">Titanium.UI.iPhone.NavigationGroup</a> except those marked not-creation or read-only.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary<Titanium.UI.iPhone.NavigationGroup>"
+          }
+        ],
+        "return": {
+          "type": "Titanium.UI.iPhone.NavigationGroup",
+          "name": "return",
+          "doc": "<p>@platform iphone 1.2\n@platform ipad 1.2</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.iPhone.NavigationGroup"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "removed": {
+            "version": "3.2.0",
+            "text": "This class is now deprecated. Please use the <Titanium.UI.iOS.NavigationWindow> class instead."
+          }
+        },
+        "id": "method-createNavigationGroup",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 148608
+          }
+        ],
+        "shortDoc": "Creates and returns an instance of Titanium.UI.iPhone.NavigationGroup. ...",
+        "html_meta": {
+          "removed": "        <div class='signature-box removed'>\n        <p>This method has been <strong>removed</strong> since 3.2.0</p>\n        <p>This class is now deprecated. Please use the &lt;<a href=\"#!/api/Titanium.UI.iOS.NavigationWindow\" rel=\"Titanium.UI.iOS.NavigationWindow\" class=\"docClass\">Titanium.UI.iOS.NavigationWindow</a>> class instead.</p>\n\n        </div>\n"
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "fireEvent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Fires a synthesized event to any registered listeners.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Dictionary",
+            "name": "event",
+            "doc": "<p>A dictionary of keys and values to add to the <a href=\"#!/api/Titanium.Event\" rel=\"Titanium.Event\" class=\"docClass\">Titanium.Event</a> object sent to the listeners.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-fireEvent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 85
+          }
+        ],
+        "shortDoc": "Fires a synthesized event to any registered listeners. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getApiName",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-apiName\" rel=\"Titanium.Proxy-property-apiName\" class=\"docClass\">apiName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getApiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 157
+          }
+        ],
+        "shortDoc": "Gets the value of the apiName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getAppBadge",
+        "owner": "Titanium.UI.iPhone",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.iPhone-property-appBadge\" rel=\"Titanium.UI.iPhone-property-appBadge\" class=\"docClass\">appBadge</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getAppBadge",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 148626
+          }
+        ],
+        "shortDoc": "Gets the value of the appBadge property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getAppSupportsShakeToEdit",
+        "owner": "Titanium.UI.iPhone",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.iPhone-property-appSupportsShakeToEdit\" rel=\"Titanium.UI.iPhone-property-appSupportsShakeToEdit\" class=\"docClass\">appSupportsShakeToEdit</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getAppSupportsShakeToEdit",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 148654
+          }
+        ],
+        "shortDoc": "Gets the value of the appSupportsShakeToEdit property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 123
+          }
+        ],
+        "shortDoc": "Gets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+          "name": "return",
+          "doc": "<p>@platform android 3.6.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 175
+          }
+        ],
+        "shortDoc": "Gets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getStatusBarHidden",
+        "owner": "Titanium.UI.iPhone",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.iPhone-property-statusBarHidden\" rel=\"Titanium.UI.iPhone-property-statusBarHidden\" class=\"docClass\">statusBarHidden</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getStatusBarHidden",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 148682
+          }
+        ],
+        "shortDoc": "Gets the value of the statusBarHidden property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getStatusBarStyle",
+        "owner": "Titanium.UI.iPhone",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.iPhone-property-statusBarStyle\" rel=\"Titanium.UI.iPhone-property-statusBarStyle\" class=\"docClass\">statusBarStyle</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getStatusBarStyle",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 148695
+          }
+        ],
+        "shortDoc": "Gets the value of the statusBarStyle property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "hideStatusBar",
+        "owner": "Titanium.UI.iPhone",
+        "doc": "<p>Hides the status bar.</p>\n\n",
+        "params": [
+          {
+            "type": "hideStatusBarParams",
+            "name": "params",
+            "doc": "<p>Determines whether action is animated.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "hideStatusBarParams"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "removed": {
+            "text": "3.2.0 This method does not work on iOS 7 and is deprecated on earlier versions. Use the [fullscreen](Titanium.UI.Window.fullscreen)\nproperty of the window to control if the staus bar is shown or not."
+          }
+        },
+        "id": "method-hideStatusBar",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 148574
+          }
+        ],
+        "shortDoc": "Hides the status bar. ...",
+        "html_meta": {
+          "removed": "        <div class='signature-box removed'>\n        <p>This method has been <strong>removed</strong> </p>\n        <p>3.2.0 This method does not work on iOS 7 and is deprecated on earlier versions. Use the <a href=\"Titanium.UI.Window.fullscreen\">fullscreen</a>\nproperty of the window to control if the staus bar is shown or not.</p>\n\n        </div>\n"
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Removes the specified callback as an event listener for the named event.</p>\n\n\n<p>@description <p>Multiple listeners can be registered for the same event, so the\n<code>callback</code> parameter is used to determine which listener to remove. </p></p>\n\n<p>When adding a listener, you must save a reference to the callback function\nin order to remove the listener later:</p>\n\n\n\n\n<pre><code>var listener = function() { Ti.API.info(\"Event listener called.\"); }\nwindow.addEventListener('click', listener);\n</code></pre>\n\n\n\n\n<p>To remove the listener, pass in a reference to the callback function:</p>\n\n\n\n\n<pre><code>window.removeEventListener('click', listener);\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to remove. Must be the same function passed to <code>addEventListener</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 55
+          }
+        ],
+        "shortDoc": "Removes the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setAppBadge",
+        "owner": "Titanium.UI.iPhone",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.iPhone-property-appBadge\" rel=\"Titanium.UI.iPhone-property-appBadge\" class=\"docClass\">appBadge</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "appBadge",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setAppBadge",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 148639
+          }
+        ],
+        "shortDoc": "Sets the value of the appBadge property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setAppSupportsShakeToEdit",
+        "owner": "Titanium.UI.iPhone",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.iPhone-property-appSupportsShakeToEdit\" rel=\"Titanium.UI.iPhone-property-appSupportsShakeToEdit\" class=\"docClass\">appSupportsShakeToEdit</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "appSupportsShakeToEdit",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setAppSupportsShakeToEdit",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 148667
+          }
+        ],
+        "shortDoc": "Sets the value of the appSupportsShakeToEdit property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "bubbleParent",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139
+          }
+        ],
+        "shortDoc": "Sets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+            "name": "lifecycleContainer",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.6.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 189
+          }
+        ],
+        "shortDoc": "Sets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "showStatusBar",
+        "owner": "Titanium.UI.iPhone",
+        "doc": "<p>Shows the status bar.</p>\n\n",
+        "params": [
+          {
+            "type": "showStatusBarParams",
+            "name": "params",
+            "doc": "<p>Determines whether action is animated.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "showStatusBarParams"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "removed": {
+            "text": "3.2.0 This method does not work on iOS 7 and is deprecated on earlier versions. Use the [fullscreen](Titanium.UI.Window.fullscreen)\nproperty of the window to control if the staus bar is shown or not."
+          }
+        },
+        "id": "method-showStatusBar",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 148591
+          }
+        ],
+        "shortDoc": "Shows the status bar. ...",
+        "html_meta": {
+          "removed": "        <div class='signature-box removed'>\n        <p>This method has been <strong>removed</strong> </p>\n        <p>3.2.0 This method does not work on iOS 7 and is deprecated on earlier versions. Use the <a href=\"Titanium.UI.Window.fullscreen\">fullscreen</a>\nproperty of the window to control if the staus bar is shown or not.</p>\n\n        </div>\n"
+        }
+      }
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 148555
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+    "Titanium.Proxy",
+    "Titanium.Module"
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

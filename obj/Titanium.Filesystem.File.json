@@ -1,0 +1,1920 @@
+{
+  "tagname": "class",
+  "name": "Titanium.Filesystem.File",
+  "doc": "<p>@platform android 0.8\n@platform blackberry 3.1.2\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8 @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/Filesystem/File.yml</p>\n\n<p>Object representing a path to a file or directory in the device's persistent storage.</p>\n\n\n<p>@description <p>Use the <a href=\"#!/api/Titanium.Filesystem-method-getFile\" rel=\"Titanium.Filesystem-method-getFile\" class=\"docClass\">Titanium.Filesystem.getFile</a> method to get a handle to a <code>File</code> object,\nwhich represents a given path.  There does not need to be an existing file or directory\ndoes not need to exist before <code>getFile</code> is called. If the file doesn't exist, and\nthe file path identifies a file in a writable directory, writing to the file\ncreates the file implicitly. </p></p>\n\n<p>See <a href=\"#!/api/Titanium.Filesystem\" rel=\"Titanium.Filesystem\" class=\"docClass\">Titanium.Filesystem</a> for constants identifying commonly-used device directories.</p>\n\n\n\n\n<p>Use the <a href=\"#!/api/Titanium.Filesystem.File-method-exists\" rel=\"Titanium.Filesystem.File-method-exists\" class=\"docClass\">exists</a> method to test whether the file exists.</p>\n\n\n\n\n<p>A file object can point to an ordinary file, a directory or a symbolic link.\nUse <a href=\"#!/api/Titanium.Filesystem.File-method-createDirectory\" rel=\"Titanium.Filesystem.File-method-createDirectory\" class=\"docClass\">createDirectory</a> to create a directory.\nUse the <a href=\"#!/api/Titanium.Filesystem.File-method-getDirectoryListing\" rel=\"Titanium.Filesystem.File-method-getDirectoryListing\" class=\"docClass\">getDirectoryListing</a> method to\nretrieve a list of the directory's contents.</p>\n\n\n\n\n<p>The <code>File</code> object doesn't provide methods for random access into the file.\nThe <code>read</code> method reads the file's entire contents into a <code>Blob</code> object.\nThe <code>write</code> method can either overwrite the entire file or append to an\nexisting file. </p>\n\n\n\n\n<p>For random access to a file, such as accessing a small portion of a larger file,\nyou can open a file as a <a href=\"#!/api/Titanium.Filesystem.FileStream\" rel=\"Titanium.Filesystem.FileStream\" class=\"docClass\">FileStream</a> object. Use the\n<a href=\"#!/api/Titanium.Filesystem.File-method-open\" rel=\"Titanium.Filesystem.File-method-open\" class=\"docClass\">open</a> method to get a <code>FileStream</code> for an\nexisting <code>File</code> object, or use the <a href=\"#!/api/Titanium.Filesystem-method-openStream\" rel=\"Titanium.Filesystem-method-openStream\" class=\"docClass\">Titanium.Filesystem.openStream</a> method\nto get a <code>FileStream</code> directly without calling <code>getFile</code> first.</p>\n\n\n\n\n<p>The <a href=\"#!/api/Titanium.Filesystem\" rel=\"Titanium.Filesystem\" class=\"docClass\">Titanium.Filesystem</a> module defines a number of properties and methods related to\nfilesystem access, including properties that specify paths for application-specific\ndirectories, and methods for creating temporary files and directories.</p>\n\n\n\n\n<p>On Android, files may be stored on external storage (that is, removable media such as\nSD Cards).</p>\n\n\n\n\n<p>Note that once created with <code>getFile</code>, the path associated with a file object is\nimmutable. If you move the underlying file using <a href=\"#!/api/Titanium.Filesystem.File-method-move\" rel=\"Titanium.Filesystem.File-method-move\" class=\"docClass\">move</a>\nor <a href=\"#!/api/Titanium.Filesystem.File-method-rename\" rel=\"Titanium.Filesystem.File-method-rename\" class=\"docClass\">rename</a>, you can no longer access it with the\noriginal <code>File</code> object. You must use <code>getFile</code> to get a handle to the new path.</p>\n\n\n\n\n<h4>Resource Files</h4>\n\n\n\n\n<p>The <code>Resources</code> directory and all the files in it are read-only. On Android, resource\nfiles are stored in the resource bundle and do not have all of the properties of\nnormal files. In particular, they do not have creation or modification timestamps.</p>\n\n\n<h3>Examples</h3>\n\n\n<h4>Reading a File</h4>\n\n\n<p>Data files shipped with the application are stored in the resources directory.</p>\n\n\n\n\n<p>This example reads string data from a text file.</p>\n\n\n\n\n<pre><code>// resourcesDirectory is actually the default location, so the first\n// argument could be omitted here.\nfile = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory, \"textfile.txt\");\nvar blob = file.read();\nvar readText = blob.text;\n// dispose of file handle &amp; blob.\nfile = null;\nblob = null;\n</code></pre>\n\n\n<h4>Creating a Subdirectory</h4>\n\n\n<p>Files that the application writes to need to be stored outside of the\nresources directory, since that directory is read-only.</p>\n\n\n\n\n<p>This example creates a subdirectory to store downloaded images.\nThe example assumes that two variables are defined elsewhere in the code:\nmyImageID, a string containing some kind of ID for the downloaded image,\nand myImageData, a <code>Blob</code> containing JPEG image data.</p>\n\n\n\n\n<pre><code>var imageDir = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory,\n    'downloaded_images');\nif (! imageDir.exists()) {\n    imageDir.createDirectory();\n}\n\n// .resolve() provides the resolved native path for the directory.\nvar imageFile  = Ti.Filesystem.getFile(imageDir.resolve(), myImageID + '.jpg');\nTi.API.info(\"ImageFile path is: \" + imageFile.resolve());\nif (imageFile.write(myImageData)===false) {\n    // handle write error\n}\n// dispose of file handles\nimageFile = null;\nimageDir = null;\n</code></pre>\n\n",
+  "extends": "Titanium.Proxy",
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-Titanium.Filesystem.File",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "apiName",
+        "owner": "Titanium.Proxy",
+        "type": "String",
+        "doc": "<p>The name of the API that this proxy corresponds to.</p>\n\n\n<p>@description <p>The value of this property is the fully qualified name of the API. For example, <a href=\"#!/api/Titanium.UI.Button\" rel=\"Titanium.UI.Button\" class=\"docClass\">Button</a>\nreturns <code>Ti.UI.Button</code>.</p></p>\n\n<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-apiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 235
+          }
+        ],
+        "shortDoc": "The name of the API that this proxy corresponds to. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "bubbleParent",
+        "owner": "Titanium.Proxy",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the proxy will bubble an event to its parent.</p>\n\n\n<p>@description <p>Some proxies (most commonly views) have a relationship to other proxies, often\nestablished by the add() method. For example, for a button added to a window, a\nclick event on the button would bubble up to the window. Other common parents are\ntable sections to their rows, table views to their sections, and scrollable views\nto their views. Set this property to false to disable the bubbling to the proxy's parent.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-bubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 207
+          }
+        ],
+        "shortDoc": "Indicates if the proxy will bubble an event to its parent. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "executable",
+        "owner": "Titanium.Filesystem.File",
+        "type": "Boolean",
+        "doc": "<p><code>true</code> if the file is executable.</p>\n\n\n<p>@description <p>On iOS, Mobile Web, this property exists but is always <code>false</code>.</p></p>\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-executable",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44675
+          }
+        ],
+        "shortDoc": "true if the file is executable. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "hidden",
+        "owner": "Titanium.Filesystem.File",
+        "type": "Boolean",
+        "doc": "<p>Set to <code>true</code> if the file is hidden.</p>\n\n\n<p>@description <p>On iOS, Mobile Web, this property exists but is always <code>false</code>.</p></p>\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-hidden",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44700
+          }
+        ],
+        "shortDoc": "Set to true if the file is hidden. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "doc": "<p>The Window or TabGroup whose Activity lifecycle should be triggered on the proxy.</p>\n\n\n<p>@description <p>If this property is set to a Window or TabGroup, then the corresponding Activity lifecycle event callbacks\nwill also be called on the proxy. Proxies that require the activity lifecycle will need this property set\nto the appropriate containing Window or TabGroup.</p></p>\n\n<p>@platform android 3.6.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-lifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 262
+          }
+        ],
+        "shortDoc": "The Window or TabGroup whose Activity lifecycle should be triggered on the proxy. ...",
+        "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "name",
+        "owner": "Titanium.Filesystem.File",
+        "type": "String",
+        "doc": "<p>Name of the file.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-name",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44725
+          }
+        ],
+        "shortDoc": "Name of the file. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "nativePath",
+        "owner": "Titanium.Filesystem.File",
+        "type": "String",
+        "doc": "<p>Native path associated with this file object, as a file URL.</p>\n\n\n<p>@description <p>On iOS, use the <a href=\"#!/api/Titanium.Filesystem.File-method-resolve\" rel=\"Titanium.Filesystem.File-method-resolve\" class=\"docClass\">resolve</a>\nmethod to obtain a plain file path for use with native modules.</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-nativePath",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44750
+          }
+        ],
+        "shortDoc": "Native path associated with this file object, as a file URL. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "parent",
+        "owner": "Titanium.Filesystem.File",
+        "type": "Titanium.Filesystem.File",
+        "doc": "<p>A <code>File</code> object representing the parent directory of the file identified by this object.</p>\n\n\n<p>@platform android 0.8\n@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-parent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44772
+          }
+        ],
+        "shortDoc": "A File object representing the parent directory of the file identified by this object. ...",
+        "html_type": "Titanium.Filesystem.File",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "readonly",
+        "owner": "Titanium.Filesystem.File",
+        "type": "Boolean",
+        "doc": "<p><code>true</code> if the file identified by this object is read-only.</p>\n\n\n<p>@description <p>On Mobile Web, this property exists but is always <code>true</code> for files in the resources directory\nand <code>false</code> for application data and temporary files.</p></p>\n\n<p>@platform android 0.8\n@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-readonly",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44795
+          }
+        ],
+        "shortDoc": "true if the file identified by this object is read-only. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "remoteBackup",
+        "owner": "Titanium.Filesystem.File",
+        "type": "Boolean",
+        "doc": "<p>Value indicating whether or not to back up to a cloud service.</p>\n\n\n<p>@description <p>Some apps may be rejected by Apple for backing up specific files; if this\nis the case, ensure that this value is set to <code>false</code> for them. This\nvalue should only need to be set once by your app, but setting it\nmultiple times will not cause problems. For files distributed with your\napp, this will need to be set on boot. This flag will only affect iOS\nversions 5.0.1 and later, but is safe to set on earlier versions.</p></p>\n\n<p>Note that setting this property to <code>false</code> will also prevent the\nfile identified by this object from being backed up to iTunes.</p>\n\n\n<p>@platform iphone 1.8.0\n@platform ipad 1.8.0</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-remoteBackup",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44842
+          }
+        ],
+        "shortDoc": "Value indicating whether or not to back up to a cloud service. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "size",
+        "owner": "Titanium.Filesystem.File",
+        "type": "Number",
+        "doc": "<p>Size, in bytes, of the file identified by this object.</p>\n\n\n<p>@platform android 0.8\n@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-size",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44819
+          }
+        ],
+        "shortDoc": "Size, in bytes, of the file identified by this object. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "symbolicLink",
+        "owner": "Titanium.Filesystem.File",
+        "type": "Boolean",
+        "doc": "<p><code>true</code> if the file identified by this object is a symbolic link.</p>\n\n\n<p>@description <p>On Mobile Web, this property exists but is always <code>false</code>.</p></p>\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-symbolicLink",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44873
+          }
+        ],
+        "shortDoc": "true if the file identified by this object is a symbolic link. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "writable",
+        "owner": "Titanium.Filesystem.File",
+        "type": "Boolean",
+        "doc": "<p><code>true</code> if the file identified by this object is writable.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-writable",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44898
+          }
+        ],
+        "html_type": "Boolean",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "writeable",
+        "owner": "Titanium.Filesystem.File",
+        "type": "Boolean",
+        "doc": "<p><code>true</code> if the file identified by this object is writable.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true,
+          "deprecated": {
+            "text": "1.8.1 Use [writable](Titanium.Filesystem.File.writable) instead.\n\n\n\n\n\n\n@platform iphone 0.8\n@platform ipad 0.8"
+          }
+        },
+        "id": "property-writeable",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44919
+          }
+        ],
+        "shortDoc": "true if the file identified by this object is writable. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+          "readonly": null,
+          "deprecated": "        <div class='signature-box deprecated'>\n        <p>This property has been <strong>deprecated</strong> </p>\n        <p>1.8.1 Use <a href=\"Titanium.Filesystem.File.writable\">writable</a> instead.</p>\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n\n        </div>\n"
+        }
+      }
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "addEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Adds the specified callback as an event listener for the named event.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to invoke when the event is fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38
+          }
+        ],
+        "shortDoc": "Adds the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "append",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Appends data to the file identified by this file object.</p>\n\n\n<p>@description <p>Data to append can be specified as a String, <code>Blob</code>, or <code>File</code>.</p></p>\n\n<p>If the <code>data</code> argument is a <code>File</code> object, the file's contents\nare appended to this file.</p>\n\n\n\n\n<p>Returns <code>true</code> if the operation succeeds.</p>\n\n",
+        "params": [
+          {
+            "type": "String/Titanium.Blob/Titanium.Filesystem.File",
+            "name": "data",
+            "doc": "<p>Data to append.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String/Titanium.Blob/Titanium.Filesystem.File"
+          }
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform blackberry 3.1.2\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-append",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44087
+          }
+        ],
+        "shortDoc": "Appends data to the file identified by this file object. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "applyProperties",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Applies the properties to the proxy.</p>\n\n\n<p>@description <p>Properties are supplied as a dictionary. Each key-value pair in the object is applied to the proxy such that\nmyproxy[key] = value.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "props",
+            "doc": "<p>A dictionary of properties to apply.</p>\n\n\n<p>@platform android 3.0.0\n@platform blackberry 3.3.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-applyProperties",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 102
+          }
+        ],
+        "shortDoc": "Applies the properties to the proxy. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "copy",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Copies the file identified by this file object to a new path.</p>\n\n\n<p>@description <p>Returns <code>true</code> if the copy succeeds.</p></p>\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "destinationPath",
+            "doc": "<p>Destination path to copy to.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-copy",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44111
+          }
+        ],
+        "shortDoc": "Copies the file identified by this file object to a new path. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "createDirectory",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Creates a directory at the path identified by this file object.</p>\n\n\n<p>@description <p>Returns <code>true</code> if the directory was created successfully.</p></p>\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-createDirectory",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44128
+          }
+        ],
+        "shortDoc": "Creates a directory at the path identified by this file object. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "createFile",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Creates a file at the path identified by this file object.</p>\n\n\n<p>@description <p>Note that if you write to a file that doesn't exist, the file is created automatically,\nso it is not necessary to call this method unless you want to explicitly create the file\n(for example, to create an empty file).</p></p>\n\n<p>Returns <code>true</code> if the file was created successfully. Returns <code>false</code> if the\nfile already exists, or if the file couldn't be created for some other reason.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-createFile",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44141
+          }
+        ],
+        "shortDoc": "Creates a file at the path identified by this file object. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "createTimestamp",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Returns the creation timestamp for the file identified by this file object.</p>\n\n\n<p>@description <p>On Android, returns 0 for resource files.</p></p>\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-createTimestamp",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44162
+          }
+        ],
+        "shortDoc": "Returns the creation timestamp for the file identified by this file object. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "deleteDirectory",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Deletes the directory identified by this file object.</p>\n\n\n<p>@description <p>Returns <code>true</code> if the operation was successful. Does nothing if the file\nobject does not identify a directory.</p></p>\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "recursive",
+            "doc": "<p>Pass <code>true</code> to recursively delete any directory contents.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-deleteDirectory",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44179
+          }
+        ],
+        "shortDoc": "Deletes the directory identified by this file object. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "deleteFile",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Deletes the file identified by this file object.</p>\n\n\n<p>@description <p>Returns <code>true</code> if the operation was successful.</p></p>\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-deleteFile",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44195
+          }
+        ],
+        "shortDoc": "Deletes the file identified by this file object. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "exists",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Returns <code>true</code> if the file or directory identified by this file object exists on the device.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-exists",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44208
+          }
+        ],
+        "shortDoc": "Returns true if the file or directory identified by this file object exists on the device. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "extension",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Returns the extension for the file identified by this file object.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-extension",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44221
+          }
+        ],
+        "shortDoc": "Returns the extension for the file identified by this file object. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "fireEvent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Fires a synthesized event to any registered listeners.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Dictionary",
+            "name": "event",
+            "doc": "<p>A dictionary of keys and values to add to the <a href=\"#!/api/Titanium.Event\" rel=\"Titanium.Event\" class=\"docClass\">Titanium.Event</a> object sent to the listeners.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-fireEvent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 85
+          }
+        ],
+        "shortDoc": "Fires a synthesized event to any registered listeners. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getApiName",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-apiName\" rel=\"Titanium.Proxy-property-apiName\" class=\"docClass\">apiName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getApiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 157
+          }
+        ],
+        "shortDoc": "Gets the value of the apiName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 123
+          }
+        ],
+        "shortDoc": "Gets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getDirectoryListing",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Returns a listing of the directory identified by this file object, or <code>null</code>\nif this object doesn't identify a directory.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String[]",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String[]"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getDirectoryListing",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44234
+          }
+        ],
+        "shortDoc": "Returns a listing of the directory identified by this file object, or null\nif this object doesn't identify a directory. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getExecutable",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Filesystem.File-property-executable\" rel=\"Titanium.Filesystem.File-property-executable\" class=\"docClass\">executable</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getExecutable",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44468
+          }
+        ],
+        "shortDoc": "Gets the value of the executable property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getHidden",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Filesystem.File-property-hidden\" rel=\"Titanium.Filesystem.File-property-hidden\" class=\"docClass\">hidden</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getHidden",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44485
+          }
+        ],
+        "shortDoc": "Gets the value of the hidden property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+          "name": "return",
+          "doc": "<p>@platform android 3.6.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 175
+          }
+        ],
+        "shortDoc": "Gets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getName",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Filesystem.File-property-name\" rel=\"Titanium.Filesystem.File-property-name\" class=\"docClass\">name</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44521
+          }
+        ],
+        "shortDoc": "Gets the value of the name property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getNativePath",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Filesystem.File-property-nativePath\" rel=\"Titanium.Filesystem.File-property-nativePath\" class=\"docClass\">nativePath</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getNativePath",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44538
+          }
+        ],
+        "shortDoc": "Gets the value of the nativePath property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getParent",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Filesystem.File-property-parent\" rel=\"Titanium.Filesystem.File-property-parent\" class=\"docClass\">parent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.Filesystem.File",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Titanium.Filesystem.File"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44551
+          }
+        ],
+        "shortDoc": "Gets the value of the parent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getReadonly",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Filesystem.File-property-readonly\" rel=\"Titanium.Filesystem.File-property-readonly\" class=\"docClass\">readonly</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getReadonly",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44566
+          }
+        ],
+        "shortDoc": "Gets the value of the readonly property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getRemoteBackup",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Filesystem.File-property-remoteBackup\" rel=\"Titanium.Filesystem.File-property-remoteBackup\" class=\"docClass\">remoteBackup</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform iphone 1.8.0\n@platform ipad 1.8.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getRemoteBackup",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44596
+          }
+        ],
+        "shortDoc": "Gets the value of the remoteBackup property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getSize",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Filesystem.File-property-size\" rel=\"Titanium.Filesystem.File-property-size\" class=\"docClass\">size</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getSize",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44581
+          }
+        ],
+        "shortDoc": "Gets the value of the size property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getSymbolicLink",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Filesystem.File-property-symbolicLink\" rel=\"Titanium.Filesystem.File-property-symbolicLink\" class=\"docClass\">symbolicLink</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getSymbolicLink",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44628
+          }
+        ],
+        "shortDoc": "Gets the value of the symbolicLink property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getWritable",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Filesystem.File-property-writable\" rel=\"Titanium.Filesystem.File-property-writable\" class=\"docClass\">writable</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getWritable",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44645
+          }
+        ],
+        "shortDoc": "Gets the value of the writable property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getWriteable",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Filesystem.File-property-writeable\" rel=\"Titanium.Filesystem.File-property-writeable\" class=\"docClass\">writeable</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "deprecated": {
+            "version": "1.8.1",
+            "text": "Use [writable](Titanium.Filesystem.File.writable) instead."
+          }
+        },
+        "id": "method-getWriteable",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44658
+          }
+        ],
+        "shortDoc": "Gets the value of the writeable property. ...",
+        "html_meta": {
+          "deprecated": "        <div class='signature-box deprecated'>\n        <p>This method has been <strong>deprecated</strong> since 1.8.1</p>\n        <p>Use <a href=\"Titanium.Filesystem.File.writable\">writable</a> instead.</p>\n\n        </div>\n"
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "isDirectory",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Returns <code>true</code> if this file object represents a directory.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform blackberry 3.1.2\n@platform iphone 3.1.0\n@platform ipad 3.1.0\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-isDirectory",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44270
+          }
+        ],
+        "shortDoc": "Returns true if this file object represents a directory. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "isFile",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Returns <code>true</code> if this file object represents an ordinary file.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform blackberry 3.1.2\n@platform iphone 3.1.0\n@platform ipad 3.1.0\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-isFile",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44288
+          }
+        ],
+        "shortDoc": "Returns true if this file object represents an ordinary file. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "modificationTimestamp",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Returns the last modification time for this file.</p>\n\n\n<p>@description <p>On Android, returns 0 for resource files.</p></p>\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-modificationTimestamp",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44306
+          }
+        ],
+        "shortDoc": "Returns the last modification time for this file. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "move",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Moves the file identified by this file object to another path.</p>\n\n\n<p>@description <p>Note that this method moves the stored file, but doesn't update this\nfile object to point to the new path. To access the file after moving it,\nyou must call <a href=\"#!/api/Titanium.Filesystem-method-getFile\" rel=\"Titanium.Filesystem-method-getFile\" class=\"docClass\">getFile</a> using the destination\npath to obtain a new file handle.</p></p>\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "newpath",
+            "doc": "<p>New location for the file.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-move",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44323
+          }
+        ],
+        "shortDoc": "Moves the file identified by this file object to another path. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "open",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Opens the file identified by this file object for random access.</p>\n\n\n<p>@description <p>You can open the file for reading, writing, or appending by specifying one of the\n<code>MODE</code> constants from <a href=\"#!/api/Titanium.Filesystem\" rel=\"Titanium.Filesystem\" class=\"docClass\">Titanium.Filesystem</a>:\n<a href=\"#!/api/Titanium.Filesystem-property-MODE_READ\" rel=\"Titanium.Filesystem-property-MODE_READ\" class=\"docClass\">MODE_READ</a>, <a href=\"#!/api/Titanium.Filesystem-property-MODE_WRITE\" rel=\"Titanium.Filesystem-property-MODE_WRITE\" class=\"docClass\">MODE_WRITE</a>,\nor <a href=\"#!/api/Titanium.Filesystem-property-MODE_APPEND\" rel=\"Titanium.Filesystem-property-MODE_APPEND\" class=\"docClass\">MODE_APPEND</a>.</p></p>\n\n<p>The <code>FileStream</code> object returned by this call can be used to read from, write to, or\nappend to the file, depending on what mode the file is opened in.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "mode",
+            "doc": "<p>Mode to open the file in: <code>MODE_READ</code>, <code>MODE_WRITE</code>, or <code>MODE_APPEND</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "Titanium.Filesystem.FileStream",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Titanium.Filesystem.FileStream"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-open",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44345
+          }
+        ],
+        "shortDoc": "Opens the file identified by this file object for random access. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "read",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Returns the contents of the file identified by this file object as a <code>Blob</code>.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.Blob",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.Blob"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-read",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44370
+          }
+        ],
+        "shortDoc": "Returns the contents of the file identified by this file object as a Blob. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Removes the specified callback as an event listener for the named event.</p>\n\n\n<p>@description <p>Multiple listeners can be registered for the same event, so the\n<code>callback</code> parameter is used to determine which listener to remove. </p></p>\n\n<p>When adding a listener, you must save a reference to the callback function\nin order to remove the listener later:</p>\n\n\n\n\n<pre><code>var listener = function() { Ti.API.info(\"Event listener called.\"); }\nwindow.addEventListener('click', listener);\n</code></pre>\n\n\n\n\n<p>To remove the listener, pass in a reference to the callback function:</p>\n\n\n\n\n<pre><code>window.removeEventListener('click', listener);\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to remove. Must be the same function passed to <code>addEventListener</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 55
+          }
+        ],
+        "shortDoc": "Removes the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "rename",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Renames the file identified by this file object.</p>\n\n\n<p>@description <p>Returns <code>true</code> if the file was successfully renamed.</p></p>\n\n<p>Fails if the destination is in a different directory than the current file.\nUse <a href=\"#!/api/Titanium.Filesystem.File-method-move\" rel=\"Titanium.Filesystem.File-method-move\" class=\"docClass\">move</a> to move a file to a different directory.</p>\n\n\n\n\n<p>Note that this method renames the stored file, but doesn't update this\nfile object to point to the new path. To access the file after renaming it,\nyou must call <a href=\"#!/api/Titanium.Filesystem-method-getFile\" rel=\"Titanium.Filesystem-method-getFile\" class=\"docClass\">getFile</a> using the destination\npath to obtain a new file handle.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "newname",
+            "doc": "<p>New name for the file.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-rename",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44383
+          }
+        ],
+        "shortDoc": "Renames the file identified by this file object. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "resolve",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Returns the fully-resolved native path associated with this file object.</p>\n\n\n<p>@description <p>On iOS, the path returned by this method is a plain file path, not a URL. It is suitable\nfor use in native modules that need to access the file using native APIs.</p></p>\n\n<p>On Android, the return value of <code>resolve</code> is a <code>file://</code> URL, identical to the\n<a href=\"#!/api/Titanium.Filesystem.File-property-nativePath\" rel=\"Titanium.Filesystem.File-property-nativePath\" class=\"docClass\">nativePath</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-resolve",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44410
+          }
+        ],
+        "shortDoc": "Returns the fully-resolved native path associated with this file object. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "bubbleParent",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139
+          }
+        ],
+        "shortDoc": "Sets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setHidden",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Filesystem.File-property-hidden\" rel=\"Titanium.Filesystem.File-property-hidden\" class=\"docClass\">hidden</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "hidden",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setHidden",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44502
+          }
+        ],
+        "shortDoc": "Sets the value of the hidden property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+            "name": "lifecycleContainer",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.6.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 189
+          }
+        ],
+        "shortDoc": "Sets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setRemoteBackup",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Filesystem.File-property-remoteBackup\" rel=\"Titanium.Filesystem.File-property-remoteBackup\" class=\"docClass\">remoteBackup</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "remoteBackup",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform iphone 1.8.0\n@platform ipad 1.8.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setRemoteBackup",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44611
+          }
+        ],
+        "shortDoc": "Sets the value of the remoteBackup property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "spaceAvailable",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Returns the amount of free space available on the device where the file identified by this file object is stored.</p>\n\n\n<p>@description <p>Free space is returned in bytes.</p></p>\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-spaceAvailable",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44431
+          }
+        ],
+        "shortDoc": "Returns the amount of free space available on the device where the file identified by this file object is stored. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "write",
+        "owner": "Titanium.Filesystem.File",
+        "doc": "<p>Writes the specified data to the file identified by this file object.</p>\n\n\n<p>@description <p>If the <code>append</code> parameter is <code>false</code> or not specified, any existing data in\nthe file is overwritten. </p></p>\n\n<p>If <code>append</code> is <code>true</code>, the specified data is appended to the end of the file.</p>\n\n",
+        "params": [
+          {
+            "type": "String/Titanium.Filesystem.File/Titanium.Blob",
+            "name": "data",
+            "doc": "<p>Data to write, as a String, <code>Blob</code> or <code>File</code> object.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String/Titanium.Filesystem.File/Titanium.Blob"
+          },
+          {
+            "type": "Boolean",
+            "name": "append",
+            "doc": "<p>If <code>true</code>, append the data to the end of the file.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-write",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 44448
+          }
+        ],
+        "shortDoc": "Writes the specified data to the file identified by this file object. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 43986
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+    "Titanium.Proxy"
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

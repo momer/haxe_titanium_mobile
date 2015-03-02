@@ -1,0 +1,159 @@
+{
+  "tagname": "class",
+  "name": "PreviewImageOptions",
+  "doc": "<p>@platform android 0.8\n@pseudo @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/Media/Media.yml</p>\n\n<p>Options passed to <a href=\"#!/api/Titanium.Media-method-previewImage\" rel=\"Titanium.Media-method-previewImage\" class=\"docClass\">Titanium.Media.previewImage</a>.</p>\n\n",
+  "extends": null,
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-PreviewImageOptions",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "error",
+        "owner": "PreviewImageOptions",
+        "type": "Callback<PreviewImageError>",
+        "doc": "<p>Function called back if the preview fails. Check the <code>message</code> property of passed back parameter.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-error",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 62759
+          }
+        ],
+        "shortDoc": "Function called back if the preview fails. ...",
+        "html_type": "Callback<PreviewImageError>",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "image",
+        "owner": "PreviewImageOptions",
+        "type": "Titanium.Blob",
+        "doc": "<p>The image to preview. Must be a blob based on a file, such as from <a href=\"#!/api/Titanium.Filesystem.File-method-read\" rel=\"Titanium.Filesystem.File-method-read\" class=\"docClass\">Titanium.Filesystem.File.read</a>.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-image",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 62717
+          }
+        ],
+        "shortDoc": "The image to preview. ...",
+        "html_type": "Titanium.Blob",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "success",
+        "owner": "PreviewImageOptions",
+        "type": "Callback<Object>",
+        "doc": "<p>Function to be called back if the preview succeeds. No info is passed.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-success",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 62738
+          }
+        ],
+        "shortDoc": "Function to be called back if the preview succeeds. ...",
+        "html_type": "Callback<Object>",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 62698
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

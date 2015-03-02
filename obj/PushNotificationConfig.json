@@ -1,0 +1,180 @@
+{
+  "tagname": "class",
+  "name": "PushNotificationConfig",
+  "doc": "<p>@platform android 0.8\n@platform blackberry 3.1.2\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8\n@pseudo @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/Network/Network.yml</p>\n\n<p>Simple object for specifying push notification options to\n<a href=\"#!/api/Titanium.Network-method-registerForPushNotifications\" rel=\"Titanium.Network-method-registerForPushNotifications\" class=\"docClass\">registerForPushNotifications</a>.</p>\n\n",
+  "extends": null,
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-PushNotificationConfig",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "callback",
+        "owner": "PushNotificationConfig",
+        "type": "Callback<PushNotificationData>",
+        "doc": "<p>Callback function invoked upon receiving a new push notification.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-callback",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 71649
+          }
+        ],
+        "html_type": "Callback<PushNotificationData>",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "error",
+        "owner": "PushNotificationConfig",
+        "type": "Callback<PushNotificationErrorArg>",
+        "doc": "<p>Callback function called when an error occurs during registration.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-error",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 71628
+          }
+        ],
+        "html_type": "Callback<PushNotificationErrorArg>",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "success",
+        "owner": "PushNotificationConfig",
+        "type": "Callback<PushNotificationSuccessArg>",
+        "doc": "<p>Callback function called when the push registration is successfully completed.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-success",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 71607
+          }
+        ],
+        "html_type": "Callback<PushNotificationSuccessArg>",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "types",
+        "owner": "PushNotificationConfig",
+        "type": "Number[]",
+        "doc": "<p>Array of <code>NOTIFICATION_TYPE</code> constants that the application would like to receive.</p>\n\n\n<p>@description <p>For iOS 8 and later, setting the <code>types</code> property with the\n<a href=\"#!/api/Titanium.Network-method-registerForPushNotifications\" rel=\"Titanium.Network-method-registerForPushNotifications\" class=\"docClass\">Titanium.Network.registerForPushNotifications</a> method has no effect.</p></p>\n\n<p>For devices running iOS 8 and later, use the\n<a href=\"#!/api/Titanium.App.iOS-method-registerUserNotificationSettings\" rel=\"Titanium.App.iOS-method-registerUserNotificationSettings\" class=\"docClass\">Titanium.App.iOS.registerUserNotificationSettings</a>\nmethod to register the notification types to receive.</p>\n\n\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.Network-property-NOTIFICATION_TYPE_ALERT\" rel=\"Titanium.Network-property-NOTIFICATION_TYPE_ALERT\" class=\"docClass\">Titanium.Network.NOTIFICATION_TYPE_ALERT</a>\n <li> <a href=\"#!/api/Titanium.Network-property-NOTIFICATION_TYPE_BADGE\" rel=\"Titanium.Network-property-NOTIFICATION_TYPE_BADGE\" class=\"docClass\">Titanium.Network.NOTIFICATION_TYPE_BADGE</a>\n <li> <a href=\"#!/api/Titanium.Network-property-NOTIFICATION_TYPE_SOUND\" rel=\"Titanium.Network-property-NOTIFICATION_TYPE_SOUND\" class=\"docClass\">Titanium.Network.NOTIFICATION_TYPE_SOUND</a>\n <li> <a href=\"#!/api/Titanium.Network-property-NOTIFICATION_TYPE_NEWSSTAND\" rel=\"Titanium.Network-property-NOTIFICATION_TYPE_NEWSSTAND\" class=\"docClass\">Titanium.Network.NOTIFICATION_TYPE_NEWSSTAND</a>\n</ul></p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-types",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 71574
+          }
+        ],
+        "shortDoc": "Array of NOTIFICATION_TYPE constants that the application would like to receive. ...",
+        "html_type": "Number[]",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 71550
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

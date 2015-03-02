@@ -1,0 +1,205 @@
+{
+  "tagname": "class",
+  "name": "ViewTemplate",
+  "doc": "<p>@platform android 3.1.0\n@platform iphone 3.1.0\n@platform ipad 3.1.0\n@pseudo @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/UI/ListItem.yml</p>\n\n<p>Template that represents a view subcomponent of an <a href=\"#!/api/ItemTemplate\" rel=\"ItemTemplate\" class=\"docClass\">ItemTemplate</a>.</p>\n\n\n<p>@description <p>See <a href=\"#!/api/Titanium.UI.ListItem\" rel=\"Titanium.UI.ListItem\" class=\"docClass\">Titanium.UI.ListItem</a> for examples of using an item template.</p></p>\n",
+  "extends": null,
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-ViewTemplate",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "bindId",
+        "owner": "ViewTemplate",
+        "type": "String",
+        "doc": "<p>View's ID (or set of IDs) used for data binding. This value must be unique.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-bindId",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 92179
+          }
+        ],
+        "shortDoc": "View's ID (or set of IDs) used for data binding. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "childTemplates",
+        "owner": "ViewTemplate",
+        "type": "ViewTemplate[]",
+        "doc": "<p>Contains an array of subview templates to be added (in order) as children to this view.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-childTemplates",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 92242
+          }
+        ],
+        "html_type": "ViewTemplate[]",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "events",
+        "owner": "ViewTemplate",
+        "type": "Dictionary",
+        "doc": "<p>Contains key-value pairs of view events and their listeners that are applied to this view component.</p>\n\n\n<p>@description <p>Array values are considered as multiple event listeners for that event.</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-events",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 92221
+          }
+        ],
+        "shortDoc": "Contains key-value pairs of view events and their listeners that are applied to this view component. ...",
+        "html_type": "Dictionary",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "properties",
+        "owner": "ViewTemplate",
+        "type": "Dictionary",
+        "doc": "<p>Contains key-value pairs of view properties and their values that are applied to this view component.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-properties",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 92200
+          }
+        ],
+        "html_type": "Dictionary",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "type",
+        "owner": "ViewTemplate",
+        "type": "String",
+        "doc": "<p>View's class name, for example, <code>Ti.UI.Button</code>.</p>\n\n\n<p>@description <p>Only the following view classes are supported:</p></p>\n\n<ul>\n<li><a href=\"#!/api/Titanium.UI.ActivityIndicator\" rel=\"Titanium.UI.ActivityIndicator\" class=\"docClass\">Titanium.UI.ActivityIndicator</a></li>\n<li><a href=\"#!/api/Titanium.UI.Button\" rel=\"Titanium.UI.Button\" class=\"docClass\">Titanium.UI.Button</a></li>\n<li><a href=\"#!/api/Titanium.UI.ImageView\" rel=\"Titanium.UI.ImageView\" class=\"docClass\">Titanium.UI.ImageView</a></li>\n<li><a href=\"#!/api/Titanium.UI.Label\" rel=\"Titanium.UI.Label\" class=\"docClass\">Titanium.UI.Label</a></li>\n<li><a href=\"#!/api/Titanium.UI.ProgressBar\" rel=\"Titanium.UI.ProgressBar\" class=\"docClass\">Titanium.UI.ProgressBar</a></li>\n<li><a href=\"#!/api/Titanium.UI.Slider\" rel=\"Titanium.UI.Slider\" class=\"docClass\">Titanium.UI.Slider</a></li>\n<li><a href=\"#!/api/Titanium.UI.Switch\" rel=\"Titanium.UI.Switch\" class=\"docClass\">Titanium.UI.Switch</a></li>\n<li><a href=\"#!/api/Titanium.UI.TextArea\" rel=\"Titanium.UI.TextArea\" class=\"docClass\">Titanium.UI.TextArea</a></li>\n<li><a href=\"#!/api/Titanium.UI.TextField\" rel=\"Titanium.UI.TextField\" class=\"docClass\">Titanium.UI.TextField</a></li>\n</ul>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-type",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 92146
+          }
+        ],
+        "shortDoc": "View's class name, for example, Ti.UI.Button. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 92125
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

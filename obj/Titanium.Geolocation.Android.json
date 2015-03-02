@@ -1,0 +1,880 @@
+{
+  "tagname": "class",
+  "name": "Titanium.Geolocation.Android",
+  "doc": "<p>@platform android 2.0.0\n@platform blackberry 3.1.2\n@platform iphone 2.0.0\n@platform ipad 2.0.0\n@platform mobileweb 2.0.0 @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/Geolocation/Android/Android.yml</p>\n\n<p>Module for Android-specific geolocation functionality.</p>\n\n\n<p>@description <p>This module is used for manually configuring geolocation settings on Android. </p></p>\n\n<p>Manual configuration is recommended for applications that have more demanding\ngeolocation needs (for example, driving directions). However, for basic geolocation\ninformation, <em>simple mode</em> geolocation may be sufficient. For information on simple\nmode, see <a href=\"#!/api/Titanium.Geolocation\" rel=\"Titanium.Geolocation\" class=\"docClass\">Titanium.Geolocation</a>.</p>\n\n\n\n\n<p>Manual configuration involves managing <em>providers</em> and <em>rules</em>:</p>\n\n\n\n\n<ul>\n<li><p><em>Location providers</em>, such as GPS, provide location updates.</p></li>\n<li><p><em>Location rules</em> filter the results returned by location providers. </p></li>\n</ul>\n\n\n\n\n<p>Configuring geolocation manually involves three steps:</p>\n\n\n\n\n<ol>\n<li><p>Enabling manual mode.</p></li>\n<li><p>Enabling location providers.</p></li>\n<li><p>Adding location rules (optional).</p></li>\n</ol>\n\n\n\n\n<p>As with the other modes, you register for location updates using the main\n<a href=\"#!/api/Titanium.Geolocation\" rel=\"Titanium.Geolocation\" class=\"docClass\">Titanium.Geolocation</a> module. Location updates are generated as long as\nan event listener is registered for the <code>location</code> event.  When you are not\nusing location updates, you should remove any registered event listeners.</p>\n\n\n\n\n<p>In manual mode, the application is responsible for dynamically updating the settings\nto acheive its required accuracy while limiting battery usage. For example, an\napplication might do any of the following:</p>\n\n\n\n\n<ul>\n<li><p>If the application isn't getting updates frequently enough, it can adjust its\nprovider settings to provide more updates, or relax its location rules to allow\nless accurate updates through. </p></li>\n<li><p>If the application isn't receiving accurate enough updates from one provider, it\ncan add another provider to try to improve results.</p></li>\n<li><p>If the application is getting sufficiently accurate results from the network\nprovider, it can disable the GPS provider to save power.</p></li>\n</ul>\n\n\n\n\n<h4>Enabling Manual Configuration Mode</h4>\n\n\n\n\n<p>To enable manual configuration mode, set the <a href=\"#!/api/Titanium.Geolocation.Android-property-manualMode\" rel=\"Titanium.Geolocation.Android-property-manualMode\" class=\"docClass\">manualMode</a>\nproperty to <code>true</code>. In manual configuration mode, the location providers and location\nrules set through this module control the generation of location updates.</p>\n\n\n\n\n<p>When <code>manualMode</code> is <code>true</code>, the following configuration settings in the\n<a href=\"#!/api/Titanium.Geolocation\" rel=\"Titanium.Geolocation\" class=\"docClass\">Titanium.Geolocation</a> module are ignored:</p>\n\n\n\n\n<ul>\n<li><a href=\"#!/api/Titanium.Geolocation-property-accuracy\" rel=\"Titanium.Geolocation-property-accuracy\" class=\"docClass\">Geolocation.accuracy</a></li>\n<li><a href=\"#!/api/Titanium.Geolocation-property-frequency\" rel=\"Titanium.Geolocation-property-frequency\" class=\"docClass\">Geolocation.frequency</a></li>\n<li><a href=\"#!/api/Titanium.Geolocation-property-preferredProvider\" rel=\"Titanium.Geolocation-property-preferredProvider\" class=\"docClass\">Geolocation.preferredProvider</a></li>\n</ul>\n\n\n\n\n<p>When <code>manualMode</code> is <code>false</code>, the <code>accuracy</code>, <code>frequency</code> and <code>preferredProvider</code>\nsettings from <a href=\"#!/api/Titanium.Geolocation\" rel=\"Titanium.Geolocation\" class=\"docClass\">Titanium.Geolocation</a> are used to configure location updates.\nAny location providers and location rules set in <a href=\"#!/api/Titanium.Geolocation.Android\" rel=\"Titanium.Geolocation.Android\" class=\"docClass\">Titanium.Geolocation.Android</a>\nare retained, but they have no effect.</p>\n\n\n\n\n<h4>Location Providers</h4>\n\n\n\n\n<p>Android supports three kinds of location providers: GPS, network, and the\n\"passive\" location provider, which provides only cached information. </p>\n\n\n\n\n<p>Each location provider represents a different tradeoff between accuracy and\nbattery power. For most accurate results, you can use a combination of location\nproviders. Your application can also dynamically change providers to optimize\nbattery life (for example, if the network provider is providing good enough\nlocation updates, you can disable the GPS provider).</p>\n\n\n\n\n<p>Location providers are represented by the\n<a href=\"#!/api/Titanium.Geolocation.Android.LocationProvider\" rel=\"Titanium.Geolocation.Android.LocationProvider\" class=\"docClass\">LocationProvider</a> object.\nTo specify a location provider, create a new provider object, then register it\nwith <a href=\"#!/api/Titanium.Geolocation.Android-method-createLocationProvider\" rel=\"Titanium.Geolocation.Android-method-createLocationProvider\" class=\"docClass\">addLocationProvider</a>:</p>\n\n\n\n\n<pre><code>gpsProvider = Ti.Geolocation.Android.createLocationProvider({\n    name: Ti.Geolocation.PROVIDER_GPS,\n    minUpdateTime: 60,\n    minUpdateDistance: 100\n});\nTi.Geolocation.Android.addLocationProvider(gpsProvider);\n</code></pre>\n\n\n\n\n<p>As shown above, when you create a location provider, you can specify two\nproperties to limit update frequency:</p>\n\n\n\n\n<ul>\n<li><p><code>minUpdateTime</code>. Limits the frequency of location updates to no more\nthan one per <code>minUpdateTime</code> seconds.</p></li>\n<li><p><code>minUpdateDistance</code>. Don't send location updates until the location changes\nat least <code>minUpdateDistance</code> meters.</p></li>\n</ul>\n\n\n\n\n<p>Only one provider of each type (GPS, network, passive) can be registered at a\ntime. Adding a new location provider with the same <code>name</code> value replaces any\nexisting provider with the same <code>name</code>.</p>\n\n\n\n\n<p>Once a location provider is added, changes made to the location provider object itself\n(such as changing its <code>minUpdateTime</code> value) change the active configuration of the\nlocation system.</p>\n\n\n\n\n<h4>Location Rules</h4>\n\n\n\n\n<p><em>Location Rules</em> filter the results returned by location providers. You use\nlocation rules to reduce the number of location update events, and ensure that\nthe events you do receive are as accurate and recent as your application requires.</p>\n\n\n\n\n<p>You are not required to set any location rules. However, by reducing the number of\nlocation events that are passed from the native code\nto the JavaScript layer, location rules can improve both performance and battery\nlife.</p>\n\n\n\n\n<p>Location rules are represented by the\n<a href=\"#!/api/Titanium.Geolocation.Android.LocationProvider\" rel=\"Titanium.Geolocation.Android.LocationProvider\" class=\"docClass\">LocationRule</a> object. To\nspecify a location rule, create a new rule object, then register it with\n<a href=\"#!/api/Titanium.Geolocation.Android-method-createLocationProvider\" rel=\"Titanium.Geolocation.Android-method-createLocationProvider\" class=\"docClass\">addLocationRule</a>:</p>\n\n\n\n\n<pre><code>var gpsRule = Ti.Geolocation.Android.createLocationRule({\n    provider: Ti.Geolocation.PROVIDER_GPS,\n    // Updates should be accurate to 100m\n    accuracy: 100,\n    // Updates should be no older than 5m\n    maxAge: 300000\n    // But  no more frequent than once per 10 seconds\n    minAge: 10000\n});\nTi.Geolocation.Android.addLocationRule(gpsRule);\n</code></pre>\n\n\n\n\n<p>Each rule can specify any combination of the following criteria:</p>\n\n\n\n\n<ul>\n<li><p><code>provider</code>. If specified, this rule only applies to updates generated\nby the specified provider. If not specified, this rule applies to all updates.</p></li>\n<li><p><code>accuracy</code>. Minimum accuracy required for a location update. Accuracy is\nexpressed as the maximum allowable error, in meters. Updates with reported\naccuracy values greater than this are filtered out. </p></li>\n<li><p><code>minAge</code>. Controls the frequency of location updates. Do not forward an update unless\n at least <code>minAge</code> milliseconds have passed since the last good location\n update.</p></li>\n<li><p><code>maxAge</code>. Controls the freshness of location updates. Do not forward an update\nunless it is newer than <code>maxAge</code> milliseconds.</p></li>\n</ul>\n\n\n\n\n<p>You can specify as many location rules as you like. The order in which location rules\nare added is not significant. For a <code>location</code> event to be generated, the location\nupdate must pass all of the active rules.</p>\n\n\n\n\n<p>Note that some combinations of rules may make it very difficult to get location\nupdates. In particular, very low values for either <code>accuracy</code> or <code>maxAge</code> may prevent\nresults from getting through. </p>\n\n",
+  "extends": "Titanium.Module",
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-Titanium.Geolocation.Android",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "apiName",
+        "owner": "Titanium.Proxy",
+        "type": "String",
+        "doc": "<p>The name of the API that this proxy corresponds to.</p>\n\n\n<p>@description <p>The value of this property is the fully qualified name of the API. For example, <a href=\"#!/api/Titanium.UI.Button\" rel=\"Titanium.UI.Button\" class=\"docClass\">Button</a>\nreturns <code>Ti.UI.Button</code>.</p></p>\n\n<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-apiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 235
+          }
+        ],
+        "shortDoc": "The name of the API that this proxy corresponds to. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "bubbleParent",
+        "owner": "Titanium.Proxy",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the proxy will bubble an event to its parent.</p>\n\n\n<p>@description <p>Some proxies (most commonly views) have a relationship to other proxies, often\nestablished by the add() method. For example, for a button added to a window, a\nclick event on the button would bubble up to the window. Other common parents are\ntable sections to their rows, table views to their sections, and scrollable views\nto their views. Set this property to false to disable the bubbling to the proxy's parent.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-bubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 207
+          }
+        ],
+        "shortDoc": "Indicates if the proxy will bubble an event to its parent. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "doc": "<p>The Window or TabGroup whose Activity lifecycle should be triggered on the proxy.</p>\n\n\n<p>@description <p>If this property is set to a Window or TabGroup, then the corresponding Activity lifecycle event callbacks\nwill also be called on the proxy. Proxies that require the activity lifecycle will need this property set\nto the appropriate containing Window or TabGroup.</p></p>\n\n<p>@platform android 3.6.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-lifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 262
+          }
+        ],
+        "shortDoc": "The Window or TabGroup whose Activity lifecycle should be triggered on the proxy. ...",
+        "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "manualMode",
+        "owner": "Titanium.Geolocation.Android",
+        "type": "Boolean",
+        "doc": "<p>Set to <code>true</code> to enable manual configuration of location updates through this module.</p>\n\n\n<p>@description <p>If <code>true</code>, location updates are controlled by the location providers and location rules\nconfigured in this module.</p></p>\n\n<p>If <code>false</code>, location updates are configured using the  <a href=\"#!/api/Titanium.Geolocation-property-accuracy\" rel=\"Titanium.Geolocation-property-accuracy\" class=\"docClass\">accuracy</a>,\n<a href=\"#!/api/Titanium.Geolocation-property-frequency\" rel=\"Titanium.Geolocation-property-frequency\" class=\"docClass\">frequency</a> and <a href=\"#!/api/Titanium.Geolocation-property-preferredProvider\" rel=\"Titanium.Geolocation-property-preferredProvider\" class=\"docClass\">preferredProvider</a>\nproperties in the <a href=\"#!/api/Titanium.Geolocation\" rel=\"Titanium.Geolocation\" class=\"docClass\">Titanium.Geolocation</a> module.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-manualMode",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 45970
+          }
+        ],
+        "shortDoc": "Set to true to enable manual configuration of location updates through this module. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "addEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Adds the specified callback as an event listener for the named event.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to invoke when the event is fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38
+          }
+        ],
+        "shortDoc": "Adds the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "addLocationProvider",
+        "owner": "Titanium.Geolocation.Android",
+        "doc": "<p>Adds and enables the specified location provider, possibly replacing an existing one.</p>\n\n\n<p>@description <p>If another location provider with the same <code>name</code> value is already active, the\nnew location provider replaces the exiting one.</p></p>\n",
+        "params": [
+          {
+            "type": "Titanium.Geolocation.Android.LocationProvider",
+            "name": "provider",
+            "doc": "<p>The location provider to add.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.Geolocation.Android.LocationProvider"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addLocationProvider",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 45848
+          }
+        ],
+        "shortDoc": "Adds and enables the specified location provider, possibly replacing an existing one. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "addLocationRule",
+        "owner": "Titanium.Geolocation.Android",
+        "doc": "<p>Adds and enables the specified location rule.</p>\n\n\n<p>@description <p>Only location updates that pass all of the active rules are passed on to the\napplication.</p></p>\n",
+        "params": [
+          {
+            "type": "Titanium.Geolocation.Android.LocationRule",
+            "name": "rule",
+            "doc": "<p>The location rule to add.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.Geolocation.Android.LocationRule"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addLocationRule",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 45879
+          }
+        ],
+        "shortDoc": "Adds and enables the specified location rule. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "applyProperties",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Applies the properties to the proxy.</p>\n\n\n<p>@description <p>Properties are supplied as a dictionary. Each key-value pair in the object is applied to the proxy such that\nmyproxy[key] = value.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "props",
+            "doc": "<p>A dictionary of properties to apply.</p>\n\n\n<p>@platform android 3.0.0\n@platform blackberry 3.3.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-applyProperties",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 102
+          }
+        ],
+        "shortDoc": "Applies the properties to the proxy. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "createLocationProvider",
+        "owner": "Titanium.Geolocation.Android",
+        "doc": "<p>Creates and returns an instance of <a href=\"#!/api/Titanium.Geolocation.Android.LocationProvider\" rel=\"Titanium.Geolocation.Android.LocationProvider\" class=\"docClass\">Titanium.Geolocation.Android.LocationProvider</a>.</p>\n\n",
+        "params": [
+          {
+            "type": "Dictionary<Titanium.Geolocation.Android.LocationProvider>",
+            "name": "parameters",
+            "doc": "<p>Properties to set on a new object, including any defined by <a href=\"#!/api/Titanium.Geolocation.Android.LocationProvider\" rel=\"Titanium.Geolocation.Android.LocationProvider\" class=\"docClass\">Titanium.Geolocation.Android.LocationProvider</a> except those marked not-creation or read-only.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary<Titanium.Geolocation.Android.LocationProvider>"
+          }
+        ],
+        "return": {
+          "type": "Titanium.Geolocation.Android.LocationProvider",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.Geolocation.Android.LocationProvider"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-createLocationProvider",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 45938
+          }
+        ],
+        "shortDoc": "Creates and returns an instance of Titanium.Geolocation.Android.LocationProvider. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "createLocationRule",
+        "owner": "Titanium.Geolocation.Android",
+        "doc": "<p>Creates and returns an instance of <a href=\"#!/api/Titanium.Geolocation.Android.LocationRule\" rel=\"Titanium.Geolocation.Android.LocationRule\" class=\"docClass\">Titanium.Geolocation.Android.LocationRule</a>.</p>\n\n",
+        "params": [
+          {
+            "type": "Dictionary<Titanium.Geolocation.Android.LocationRule>",
+            "name": "parameters",
+            "doc": "<p>Properties to set on a new object, including any defined by <a href=\"#!/api/Titanium.Geolocation.Android.LocationRule\" rel=\"Titanium.Geolocation.Android.LocationRule\" class=\"docClass\">Titanium.Geolocation.Android.LocationRule</a> except those marked not-creation or read-only.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary<Titanium.Geolocation.Android.LocationRule>"
+          }
+        ],
+        "return": {
+          "type": "Titanium.Geolocation.Android.LocationRule",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.Geolocation.Android.LocationRule"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-createLocationRule",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 45953
+          }
+        ],
+        "shortDoc": "Creates and returns an instance of Titanium.Geolocation.Android.LocationRule. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "fireEvent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Fires a synthesized event to any registered listeners.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Dictionary",
+            "name": "event",
+            "doc": "<p>A dictionary of keys and values to add to the <a href=\"#!/api/Titanium.Event\" rel=\"Titanium.Event\" class=\"docClass\">Titanium.Event</a> object sent to the listeners.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-fireEvent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 85
+          }
+        ],
+        "shortDoc": "Fires a synthesized event to any registered listeners. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getApiName",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-apiName\" rel=\"Titanium.Proxy-property-apiName\" class=\"docClass\">apiName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getApiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 157
+          }
+        ],
+        "shortDoc": "Gets the value of the apiName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 123
+          }
+        ],
+        "shortDoc": "Gets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+          "name": "return",
+          "doc": "<p>@platform android 3.6.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 175
+          }
+        ],
+        "shortDoc": "Gets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getManualMode",
+        "owner": "Titanium.Geolocation.Android",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Geolocation.Android-property-manualMode\" rel=\"Titanium.Geolocation.Android-property-manualMode\" class=\"docClass\">manualMode</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getManualMode",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 45910
+          }
+        ],
+        "shortDoc": "Gets the value of the manualMode property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Removes the specified callback as an event listener for the named event.</p>\n\n\n<p>@description <p>Multiple listeners can be registered for the same event, so the\n<code>callback</code> parameter is used to determine which listener to remove. </p></p>\n\n<p>When adding a listener, you must save a reference to the callback function\nin order to remove the listener later:</p>\n\n\n\n\n<pre><code>var listener = function() { Ti.API.info(\"Event listener called.\"); }\nwindow.addEventListener('click', listener);\n</code></pre>\n\n\n\n\n<p>To remove the listener, pass in a reference to the callback function:</p>\n\n\n\n\n<pre><code>window.removeEventListener('click', listener);\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to remove. Must be the same function passed to <code>addEventListener</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 55
+          }
+        ],
+        "shortDoc": "Removes the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeLocationProvider",
+        "owner": "Titanium.Geolocation.Android",
+        "doc": "<p>Disables and removes the specified location provider.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.Geolocation.Android.LocationProvider",
+            "name": "provider",
+            "doc": "<p>The location provider to remove.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.Geolocation.Android.LocationProvider"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeLocationProvider",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 45864
+          }
+        ],
+        "shortDoc": "Disables and removes the specified location provider. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeLocationRule",
+        "owner": "Titanium.Geolocation.Android",
+        "doc": "<p>Disables and removes the specified location rule.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.Geolocation.Android.LocationRule",
+            "name": "rule",
+            "doc": "<p>The location rule to remove.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.Geolocation.Android.LocationRule"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeLocationRule",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 45895
+          }
+        ],
+        "shortDoc": "Disables and removes the specified location rule. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "bubbleParent",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139
+          }
+        ],
+        "shortDoc": "Sets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+            "name": "lifecycleContainer",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.6.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 189
+          }
+        ],
+        "shortDoc": "Sets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setManualMode",
+        "owner": "Titanium.Geolocation.Android",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Geolocation.Android-property-manualMode\" rel=\"Titanium.Geolocation.Android-property-manualMode\" class=\"docClass\">manualMode</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "manualMode",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setManualMode",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 45923
+          }
+        ],
+        "shortDoc": "Sets the value of the manualMode property. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 45675
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+    "Titanium.Proxy",
+    "Titanium.Module"
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

@@ -1,0 +1,1755 @@
+{
+  "tagname": "class",
+  "name": "Titanium.Facebook",
+  "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 2.0 @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/Facebook/Facebook.yml</p>\n\n<p>The top level Facebook module.  </p>\n\n",
+  "extends": "Titanium.Module",
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+    "deprecated": {
+      "text": "3.1.0 On Mobile Web, continue to use this module.\n\nOn Android and iOS, use <Modules.Facebook> instead.\n\n\n@description <p><strong>Note:</strong> In Titanium 3.1, the <code>Titianium.Facebook</code> module on Android and iOS is replaced by the\n<Modules.Facebook> add-on module that uses more recent versions of the native Facebook SDKs for\nAndroid and iOS. For Mobile Web, continue to use <code>Titanium.Facebook</code>.</p>\n\n<p>The Facebook module is used for connecting your application with\nFacebook. This module supports the following features:</p>\n\n<ul>\n<li><p>Logging in to Facebook and authorizing your application.</p></li>\n<li><p>Making requests through the Facebook Graph API using\n{@link Titanium.Facebook#method-requestWithGraphPath requestWithGraphPath}.</p></li>\n<li><p>Making requests through the legacy Facebook REST API using\n{@link Titanium.Facebook#method-request request}. </p></li>\n<li><p>Posting Facebook dialogs.</p></li>\n</ul>\n\n<h4>Facebook Login and Authorization</h4>\n\n<p>To use Facebook, a user must log in to Facebook and explicitly authorize the\napplication to perform certain actions, such as accessing profile information or\nposting status messages. </p>\n\n<p>There are two ways to initiate the login process:</p>\n\n<ul>\n<li><p>Call {@link Titanium.Facebook#method-authorize authorize} prompt the user to login and authorize\nthe application.</p></li>\n<li><p>Create a Facebook {@link Titanium.Facebook.LoginButton LoginButton} to allow the user to\nlog in if desired.</p></li>\n</ul>\n\n<p>Which approach you take depends on your UI and how central Facebook is to your\napplication.</p>\n\n<p>Before calling <code>authorize</code> or creating a login button, you must set the\n{@link Titanium.Facebook#property-appid appid} and {@link Titanium.Facebook#property-permissions permissions}\nproperties. </p>\n\n<p>To create a Facebook App ID, go to the Facebook Developer App:</p>\n\n<p><a href=\"https://developers.facebook.com/apps\">developers.facebook.com/apps</a></p>\n\n<p>For a complete list of permissions, see the\n<a href=\"http://developers.facebook.com/docs/reference/api/permissions/\">official Facebook Permissions Reference</a></p>\n\n<h4>Facebook Graph API</h4>\n\n<p>The Facebook Graph API is the preferred method for getting information about a user's friends,\nnews feed, and so on. Each object in the Facebook social graph is represented by a\ngraph API <em>object</em>, such as a user, photo, or status message. </p>\n\n<p>The Graph API allows you to make requests on behalf of the user, such as posting a\npicture or status message. </p>\n\n<p>Use the {@link Titanium.Facebook#method-requestWithGraphPath requestWithGraphPath} method to make a\nrequest to the Graph API.</p>\n\n<p>For details on each of the Graph API objects and the supported operations, see the\n<a href=\"http://developers.facebook.com/docs/reference/api/\">official Facebook Graph API documentation</a>.</p>\n\n<h4>Facebook REST API</h4>\n\n<p>The Facebook REST API is in the process of being deprecated, and should not be used\nunless your application relies on an API that doesn't exist in the Graph API.</p>\n\n<p>Use the {@link Titanium.Facebook#method-request request} method to make a request to the REST API.</p>\n\n<p>For details on the REST API, see the\n<a href=\"http://developers.facebook.com/docs/reference/rest/\">official Facebook REST API documentation</a>.</p>\n\n<h4>Facebook Dialogs</h4>\n\n<p>Facebook dialogs are standard user-interface components for used to prompt users to\ninteract with Facebook in a specific way, such as:</p>\n\n<ul>\n<li><p>Sending an application request</p></li>\n<li><p>Sending a status update</p></li>\n<li><p>Adding a friend</p></li>\n</ul>\n\n<p>Because dialogs require user interaction, they do not require Facebook permissions.</p>\n\n<p>For details on different dialogs see the\n<a href=\"http://developers.facebook.com/docs/reference/dialogs/\">official Facebook Dialogs documentation</a>.  </p>\n\n<h4>iOS Platform Implementation Notes</h4>\n\n<p>Due to how the facebook login process works on iOS, your app will need to have the following\nin your tiapp.xml if you target those platforms:</p>\n\n<pre><code>&lt;property name=\"ti.facebook.appid\"&gt;your_facebook_app_id_here&lt;/property &gt;\n</code></pre>\n\n<p>You must still set Ti.Facebook.appid within your app itself to use the facebook module. <br>\nThis property is used only for configuring your app to interface with the facebook\nlogin process.</p>\n\n<h4>Previous Versions</h4>\n\n<p>Titanium Mobile SDK 1.6.0 marked a significant change for this module.  Older versions of\nthe module were not compatible with the new Graph API.  Applications written for the\npre-1.6.0 version of this module will <strong>not</strong> work with the 1.6.0 and higher versions. <br>\nNor is the code shown in the examples here backwards-compatible with pre-1.6.0 Titanium\nMobile SDK.</p>\n<h3>Examples</h3>\n<h4>Authorize</h4>\n<p>Shows official Facebook dialog for logging in the user and prompting the user to approve your\nrequested permissions.  Listen for the module's {@link Titanium.Facebook#event-login login} event to\ndetermine whether the request succeeded.</p>\n\n<pre><code>Ti.Facebook.appid = '[YOUR APPID]';\nTi.Facebook.permissions = ['publish_stream']; // Permissions your app needs\nTi.Facebook.addEventListener('login', function(e) {\n    if (e.success) {\n        alert('Logged In');\n    } else if (e.error) {\n        alert(e.error);\n    } else if (e.cancelled) {\n        alert(\"Canceled\");\n    }\n});\nTi.Facebook.authorize();\n</code></pre><h4>Logout</h4>\n<p>Logout the user and forget the authorization token.  The\n{@link Titanium.Facebook#method-logout logout} event is fired after the user is logged out.</p>\n\n<pre><code>Ti.Facebook.addEventListener('logout', function(e) {\n    alert('Logged out');\n});\nTi.Facebook.logout();\n</code></pre><h4>Authorize/Logout Using the Facebook LoginButton</h4>\n<p>You can use the the Facebook-themed {@link Titanium.Facebook.LoginButton LoginButton}\nto allow the user to log in as required. The button updates its state automatically depending\non whether the user is logged in or not.  When the user is logged in, then the button\nwill show \"Logout\", and vice-versa.</p>\n\n<p>Note that you don't need to set a click listener or anything else on the button.\nIt \"just works\".  To be notified when the user logs in or out, add event listeners for the\n{@link Titanium.Facebook#event-login login} and {@link Titanium.Facebook#method-logout logout} events\nprovided by the Titanium Facebook module, as in the example below.</p>\n\n<pre><code>// Don't forget to set your appid and requested permissions, else the login button\n// won't be effective.\nTi.Facebook.appid = '[your appid]';\nTi.Facebook.permissions = ['publish_stream'];\nTi.Facebook.addEventListener('login', function(e) {\n    if (e.success) {\n        alert('Logged in');\n    }\n});\nTi.Facebook.addEventListener('logout', function(e) {\n    alert('Logged out');\n});\n\n// Add the button.  Note that it doesn't need a click event listener.\nwin2.add(Ti.Facebook.createLoginButton({\n    top : 50,\n    style : Ti.Facebook.BUTTON_STYLE_WIDE\n}));\n</code></pre>\n\n<p>The specified button style ('wide' or <code>BUTTON_STYLE_WIDE</code>) shows a wide version of the\nbutton that displays \"Connect with Facebook\" instead of just \"Connect\".</p><h4>Simple Graph API Call</h4>\n<p>This example makes a call to the \"me\" graph path, which represents the current\nuser. The JSON results are simply displayed in an alert.  This example assumes\nthe user is already logged in (you can check this with {@link Titanium.Facebook#property-loggedIn}).</p>\n\n<pre><code>Ti.Facebook.requestWithGraphPath('me', {}, 'GET', function(e) {\n    if (e.success) {\n        alert(e.result);\n    } else if (e.error) {\n        alert(e.error);\n    } else {\n        alert('Unknown response');\n    }\n});\n</code></pre><h4>Create an Event Using the Graph API</h4>\n<p>This example uses the Graph API to create an event <br>\nin the logged-on user's Facebook account. This requires the \"create_event\" permission.</p>\n\n<pre><code>// First make sure this permission exists\nTi.Facebook.permissions = ['create_event'];\nTi.Facebook.authorize();\n\n// ...\n// ...\n\n// Now create the event after you've confirmed authorize() was successful.\nvar starttime = new Date(2012, 4, 31, 17, 0);\nvar endtime = new Date(2012, 4, 31, 19, 0);\nvar title = \"Barry's Birthday Celebration\";\nvar description = \"Barry will have a great party\";\nvar data = {\n    start_time: JSON.stringify(starttime), // API expects a JSON stringified date\n    end_time: JSON.stringify(endtime),\n    summary: description,\n    name: title\n};\nTi.Facebook.requestWithGraphPath('me/events', data, 'POST', function(e) {\n    if (e.success) {\n        alert(\"Success! Returned from FB: \" + e.result);\n    } else {\n        if (e.error) {\n            alert(e.error);\n        } else {\n            alert(\"Unknown result\");\n        }\n    }\n});\n</code></pre>\n\n<p>For more information on the Event object, see:</p>\n\n<ul>\n<li><a href=\"http://developers.facebook.com/docs/reference/api/event/\">Event in the Facebook Graph API Reference</a>.</li>\n</ul><h4>Set a User's Facebook Status Using the Graph API</h4>\n<p>This example uses the Graph API to set the user's Facebook status, which requires the\n\"publish_stream\" permission.</p>\n\n<pre><code>// First make sure this permission exists\nTi.Facebook.permissions = ['publish_stream'];\nTi.Facebook.authorize();\n\n// ...\n// ...\n\n// Now create the status message after you've confirmed that authorize() succeeded\nTi.Facebook.requestWithGraphPath('me/feed', {message: \"Trying out FB Graph API and it's fun!\"},\n         \"POST\", function(e) {\n    if (e.success) {\n        alert(\"Success!  From FB: \" + e.result);\n    } else {\n        if (e.error) {\n            alert(e.error);\n        } else {\n            alert(\"Unkown result\");\n        }\n    }\n});\n</code></pre>\n\n<p>For more information on the Staus object, see:</p>\n\n<ul>\n<li><a href=\"http://developers.facebook.com/docs/reference/api/status/\">Status in the Facebook Graph API Reference</a>.  </li>\n</ul><h4>Post a Photo Using the Graph API</h4>\n<p>This example posts a photo to the user's account using the Graph API.\nAnother example below shows how to do this with the REST API, if desired.\nThis requires the \"publish_stream\" permission.</p>\n\n<pre><code>// First make sure this permission exists\nTi.Facebook.permissions = ['publish_stream'];\nTi.Facebook.authorize();\n\n// ...\n// ...\n\n// Now post the photo after you've confirmed that authorize() succeeded\nvar f = Ti.Filesystem.getFile('pumpkin.jpg');\nvar blob = f.read();\nvar data = {\n    message: 'This is a pumpkin',\n    picture: blob\n};\nTi.Facebook.requestWithGraphPath('me/photos', data, 'POST', function(e){\n    if (e.success) {\n        alert(\"Success!  From FB: \" + e.result);\n    } else {\n        if (e.error) {\n            alert(e.error);\n        } else {\n            alert(\"Unkown result\");\n        }\n    }\n});\n</code></pre>\n\n<p>For more information on posting photos, see:</p>\n\n<ul>\n<li><a href=\"http://developers.facebook.com/docs/reference/api/photo/\">Photo in the Facebook Graph API Reference</a> </li>\n</ul><h4>Post a photo using the REST API</h4>\n<p>This example posts a photo to the user's account using the REST API. Another example above shows\nhow to do this with the Graph API.  This requires the \"publish_stream\" permission.</p>\n\n<pre><code>// First make sure this permission exists\nTi.Facebook.permissions = ['publish_stream'];\nTi.Facebook.authorize();\n\n// ...\n// ...\n\n// Now post the photo after you've confirmed that authorize() succeeded\nvar f = Ti.Filesystem.getFile('pumpkin.jpg');\nvar blob = f.read();\nvar data = {\n    caption: 'This is a pumpkin',\n    picture: blob\n};\nTi.Facebook.request('photos.upload', data, function(e){\n    if (e.success) {\n        alert(\"Success!  From FB: \" + e.result);\n    } else {\n        if (e.error) {\n            alert(e.error);\n        } else {\n            alert(\"Unkown result\");\n        }\n    }\n});\n</code></pre>\n\n<p>For more information on posting photos using the REST API, see:</p>\n\n<ul>\n<li><a href=\"http://developers.facebook.com/docs/reference/rest/photos.upload/\">photos.upload in the Facebook REST API Reference</a> </li>\n</ul><h4>Show the Facebook Feed Dialog</h4>\n<p>This example shows how to display the offical Facebook Feed Dialog, for adding a\npost to the user's wall. In this example, we'll prefill some of the feed fields by\npassing a data dictionary to the {@link Titanium.Facebook#method-dialog dialog} method; this is not required.</p>\n\n<pre><code>var data = {\n    link : \"http://www.appcelerator.com\",\n    name : \"Appcelerator Titanium Mobile\",\n    message : \"Checkout this cool open source project for creating mobile apps\",\n    caption : \"Appcelerator Titanium Mobile\",\n    picture : \"http://developer.appcelerator.com/assets/img/DEV_titmobile_image.png\",\n    description : \"You've got the ideas, now you've got the power. Titanium translates \" +\n                  \"your hard won web skills into native applications...\"\n};\nTitanium.Facebook.dialog(\"feed\", data, function(e) {\n    if(e.success &amp;&amp; e.result) {\n        alert(\"Success! New Post ID: \" + e.result);\n    } else {\n        if(e.error) {\n            alert(e.error);\n        } else {\n            alert(\"User canceled dialog.\");\n        }\n    }\n});\n</code></pre>\n\n<p>For more information on Facebook Dialogs, see:</p>\n\n<ul>\n<li><a href=\"http://developers.facebook.com/docs/reference/dialogs/\">Facebook Dialog Reference</a> </li>\n</ul>"
+    }
+  },
+  "id": "class-Titanium.Facebook",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "BUTTON_STYLE_NORMAL",
+        "owner": "Titanium.Facebook",
+        "type": "Number",
+        "doc": "<p>Use with <a href=\"#!/api/Titanium.Facebook.LoginButton-property-style\" rel=\"Titanium.Facebook.LoginButton-property-style\" class=\"docClass\">LoginButton.style</a> to specify\nthe default login button reading \"Connect\" or \"Login\".</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-BUTTON_STYLE_NORMAL",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 43347
+          }
+        ],
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "BUTTON_STYLE_WIDE",
+        "owner": "Titanium.Facebook",
+        "type": "Number",
+        "doc": "<p>Use with <a href=\"#!/api/Titanium.Facebook.LoginButton-property-style\" rel=\"Titanium.Facebook.LoginButton-property-style\" class=\"docClass\">LoginButton.style</a> to specify\na wide login button reading \"Connect with Facebook\" or \"Login with Facebook\".</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-BUTTON_STYLE_WIDE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 43369
+          }
+        ],
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "accessToken",
+        "owner": "Titanium.Facebook",
+        "type": "String",
+        "doc": "<p>OAuth token set after a successful <code>authorize</code>.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-accessToken",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 43391
+          }
+        ],
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "apiName",
+        "owner": "Titanium.Proxy",
+        "type": "String",
+        "doc": "<p>The name of the API that this proxy corresponds to.</p>\n\n\n<p>@description <p>The value of this property is the fully qualified name of the API. For example, <a href=\"#!/api/Titanium.UI.Button\" rel=\"Titanium.UI.Button\" class=\"docClass\">Button</a>\nreturns <code>Ti.UI.Button</code>.</p></p>\n\n<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-apiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 235
+          }
+        ],
+        "shortDoc": "The name of the API that this proxy corresponds to. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "appid",
+        "owner": "Titanium.Facebook",
+        "type": "String",
+        "doc": "<p>Your Facebook application id. You need to set this for anything to work.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-appid",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 43412
+          }
+        ],
+        "shortDoc": "Your Facebook application id. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "bubbleParent",
+        "owner": "Titanium.Proxy",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the proxy will bubble an event to its parent.</p>\n\n\n<p>@description <p>Some proxies (most commonly views) have a relationship to other proxies, often\nestablished by the add() method. For example, for a button added to a window, a\nclick event on the button would bubble up to the window. Other common parents are\ntable sections to their rows, table views to their sections, and scrollable views\nto their views. Set this property to false to disable the bubbling to the proxy's parent.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-bubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 207
+          }
+        ],
+        "shortDoc": "Indicates if the proxy will bubble an event to its parent. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "expirationDate",
+        "owner": "Titanium.Facebook",
+        "type": "Date",
+        "doc": "<p>Time at which the <code>accessToken</code> expires.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-expirationDate",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 43433
+          }
+        ],
+        "html_type": "Date",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "forceDialogAuth",
+        "owner": "Titanium.Facebook",
+        "type": "Boolean",
+        "doc": "<p>Indicates whether the login should use the traditional dialog-based\nauthentication.</p>\n\n\n<p>@description <p>Set to <code>false</code> to enable Single-Sign-On (SSO) in cases where the official Facebook app is on the\ndevice.  Default is <code>true</code>, meaning the traditional, dialog-based\nauthentication is used rather than SSO. See  the\n<a href=\"http://developers.facebook.com/docs/guides/mobile\">Facebook Mobile Guide</a> for\ndetails of their Single-Sign-On scheme.</p></p>\n\n<p>This property is read-only on Mobile Web.</p>\n\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-forceDialogAuth",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 43454
+          }
+        ],
+        "shortDoc": "Indicates whether the login should use the traditional dialog-based\nauthentication. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "doc": "<p>The Window or TabGroup whose Activity lifecycle should be triggered on the proxy.</p>\n\n\n<p>@description <p>If this property is set to a Window or TabGroup, then the corresponding Activity lifecycle event callbacks\nwill also be called on the proxy. Proxies that require the activity lifecycle will need this property set\nto the appropriate containing Window or TabGroup.</p></p>\n\n<p>@platform android 3.6.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-lifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 262
+          }
+        ],
+        "shortDoc": "The Window or TabGroup whose Activity lifecycle should be triggered on the proxy. ...",
+        "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "loggedIn",
+        "owner": "Titanium.Facebook",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the user is logged in.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-loggedIn",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 43482
+          }
+        ],
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "permissions",
+        "owner": "Titanium.Facebook",
+        "type": "String[]",
+        "doc": "<p>Array of permissions to request for your app.</p>\n\n\n<p>@description <p>Be sure the permissions you want are set before calling\n<a href=\"#!/api/Titanium.Facebook-method-authorize\" rel=\"Titanium.Facebook-method-authorize\" class=\"docClass\">authorize</a>..</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-permissions",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 43503
+          }
+        ],
+        "shortDoc": "Array of permissions to request for your app. ...",
+        "html_type": "String[]",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "uid",
+        "owner": "Titanium.Facebook",
+        "type": "String",
+        "doc": "<p>Unique user ID returned from Facebook.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-uid",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 43525
+          }
+        ],
+        "html_type": "String",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "addEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Adds the specified callback as an event listener for the named event.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to invoke when the event is fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38
+          }
+        ],
+        "shortDoc": "Adds the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "applyProperties",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Applies the properties to the proxy.</p>\n\n\n<p>@description <p>Properties are supplied as a dictionary. Each key-value pair in the object is applied to the proxy such that\nmyproxy[key] = value.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "props",
+            "doc": "<p>A dictionary of properties to apply.</p>\n\n\n<p>@platform android 3.0.0\n@platform blackberry 3.3.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-applyProperties",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 102
+          }
+        ],
+        "shortDoc": "Applies the properties to the proxy. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "authorize",
+        "owner": "Titanium.Facebook",
+        "doc": "<p>Prompts the user to log in (if not already logged in) and authorize your application.  </p>\n\n\n<p>@description <p>Be sure to set your <a href=\"#!/api/Titanium.Facebook-property-appid\" rel=\"Titanium.Facebook-property-appid\" class=\"docClass\">appid</a> and your required\n<a href=\"#!/api/Titanium.Facebook-property-permissions\" rel=\"Titanium.Facebook-property-permissions\" class=\"docClass\">permissions</a> before calling <code>authorize</code>.</p></p>\n\n<p>A <a href=\"#!/api/Titanium.Facebook-event-login\" rel=\"Titanium.Facebook-event-login\" class=\"docClass\">login</a> event is generated to indicate successful or\nunsuccessful login attempt.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-authorize",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 43026
+          }
+        ],
+        "shortDoc": "Prompts the user to log in (if not already logged in) and authorize your application. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "createLoginButton",
+        "owner": "Titanium.Facebook",
+        "doc": "<p>Creates and returns an instance of <a href=\"#!/api/Titanium.Facebook.LoginButton\" rel=\"Titanium.Facebook.LoginButton\" class=\"docClass\">Titanium.Facebook.LoginButton</a>.</p>\n\n",
+        "params": [
+          {
+            "type": "Dictionary<Titanium.Facebook.LoginButton>",
+            "name": "parameters",
+            "doc": "<p>Properties to set on a new object, including any defined by <a href=\"#!/api/Titanium.Facebook.LoginButton\" rel=\"Titanium.Facebook.LoginButton\" class=\"docClass\">Titanium.Facebook.LoginButton</a> except those marked not-creation or read-only.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary<Titanium.Facebook.LoginButton>"
+          }
+        ],
+        "return": {
+          "type": "Titanium.Facebook.LoginButton",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.Facebook.LoginButton"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "deprecated": {
+            "text": "3.1.0 On Mobile Web, continue to use this module.\n\nOn Android and iOS, use <Modules.Facebook.LoginButton> instead."
+          }
+        },
+        "id": "method-createLoginButton",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 43327
+          }
+        ],
+        "shortDoc": "Creates and returns an instance of Titanium.Facebook.LoginButton. ...",
+        "html_meta": {
+          "deprecated": "        <div class='signature-box deprecated'>\n        <p>This method has been <strong>deprecated</strong> </p>\n        <p>3.1.0 On Mobile Web, continue to use this module.</p>\n\n<p>On Android and iOS, use &lt;Modules.Facebook.LoginButton> instead.</p>\n\n        </div>\n"
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "dialog",
+        "owner": "Titanium.Facebook",
+        "doc": "<p>Opens a supported Facebook dialog.</p>\n\n\n<p>@description <p>For a list of dialogs, parameters, and response formats, see the\n<a href=\"http://developers.facebook.com/docs/reference/dialogs/\">official documentation for Facebook Dialogs</a>.  </p></p>\n\n<p>The callback is invoked when the dialog is closed, either because the user\napproved the action, or canceled the dialog.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "action",
+            "doc": "<p>Specifies which dialog to show, such as \"feed\".</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Object",
+            "name": "params",
+            "doc": "<p>A dictionary object for pre-filling some of the dialog's fields. <br>\nSee <a href=\"Titanium.Facebook#examples\">Code Examples</a>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "Callback<FacebookDialogResponsev1>",
+            "name": "callback",
+            "doc": "<p>Callback to invoke  when the user completes or cancels the dialog.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<FacebookDialogResponsev1>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-dialog",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 43043
+          }
+        ],
+        "shortDoc": "Opens a supported Facebook dialog. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "fireEvent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Fires a synthesized event to any registered listeners.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Dictionary",
+            "name": "event",
+            "doc": "<p>A dictionary of keys and values to add to the <a href=\"#!/api/Titanium.Event\" rel=\"Titanium.Event\" class=\"docClass\">Titanium.Event</a> object sent to the listeners.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-fireEvent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 85
+          }
+        ],
+        "shortDoc": "Fires a synthesized event to any registered listeners. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getAccessToken",
+        "owner": "Titanium.Facebook",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Facebook-property-accessToken\" rel=\"Titanium.Facebook-property-accessToken\" class=\"docClass\">accessToken</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getAccessToken",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 43131
+          }
+        ],
+        "shortDoc": "Gets the value of the accessToken property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getApiName",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-apiName\" rel=\"Titanium.Proxy-property-apiName\" class=\"docClass\">apiName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getApiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 157
+          }
+        ],
+        "shortDoc": "Gets the value of the apiName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getAppid",
+        "owner": "Titanium.Facebook",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Facebook-property-appid\" rel=\"Titanium.Facebook-property-appid\" class=\"docClass\">appid</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getAppid",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 43159
+          }
+        ],
+        "shortDoc": "Gets the value of the appid property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 123
+          }
+        ],
+        "shortDoc": "Gets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getExpirationDate",
+        "owner": "Titanium.Facebook",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Facebook-property-expirationDate\" rel=\"Titanium.Facebook-property-expirationDate\" class=\"docClass\">expirationDate</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Date",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Date"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getExpirationDate",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 43187
+          }
+        ],
+        "shortDoc": "Gets the value of the expirationDate property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getForceDialogAuth",
+        "owner": "Titanium.Facebook",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Facebook-property-forceDialogAuth\" rel=\"Titanium.Facebook-property-forceDialogAuth\" class=\"docClass\">forceDialogAuth</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getForceDialogAuth",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 43215
+          }
+        ],
+        "shortDoc": "Gets the value of the forceDialogAuth property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+          "name": "return",
+          "doc": "<p>@platform android 3.6.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 175
+          }
+        ],
+        "shortDoc": "Gets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLoggedIn",
+        "owner": "Titanium.Facebook",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Facebook-property-loggedIn\" rel=\"Titanium.Facebook-property-loggedIn\" class=\"docClass\">loggedIn</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLoggedIn",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 43243
+          }
+        ],
+        "shortDoc": "Gets the value of the loggedIn property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getPermissions",
+        "owner": "Titanium.Facebook",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Facebook-property-permissions\" rel=\"Titanium.Facebook-property-permissions\" class=\"docClass\">permissions</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String[]",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String[]"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getPermissions",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 43271
+          }
+        ],
+        "shortDoc": "Gets the value of the permissions property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getUid",
+        "owner": "Titanium.Facebook",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Facebook-property-uid\" rel=\"Titanium.Facebook-property-uid\" class=\"docClass\">uid</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getUid",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 43299
+          }
+        ],
+        "shortDoc": "Gets the value of the uid property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "logout",
+        "owner": "Titanium.Facebook",
+        "doc": "<p>Clears the OAuth <code>accessToken</code> and logs out the user.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-logout",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 43067
+          }
+        ],
+        "shortDoc": "Clears the OAuth accessToken and logs out the user. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Removes the specified callback as an event listener for the named event.</p>\n\n\n<p>@description <p>Multiple listeners can be registered for the same event, so the\n<code>callback</code> parameter is used to determine which listener to remove. </p></p>\n\n<p>When adding a listener, you must save a reference to the callback function\nin order to remove the listener later:</p>\n\n\n\n\n<pre><code>var listener = function() { Ti.API.info(\"Event listener called.\"); }\nwindow.addEventListener('click', listener);\n</code></pre>\n\n\n\n\n<p>To remove the listener, pass in a reference to the callback function:</p>\n\n\n\n\n<pre><code>window.removeEventListener('click', listener);\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to remove. Must be the same function passed to <code>addEventListener</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 55
+          }
+        ],
+        "shortDoc": "Removes the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "request",
+        "owner": "Titanium.Facebook",
+        "doc": "<p>Makes a request to the legacy Facebook REST API.</p>\n\n\n<p>@description <p>For details on API calls and responses, see the\n<a href=\"http://developers.facebook.com/docs/reference/rest/\">offical Facebook REST API documentation</a>.</p></p>\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "method",
+            "doc": "<p>The REST API method to call.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Object",
+            "name": "params",
+            "doc": "<p>A dictionary object for setting parameters required by the call, if any.\nSee <a href=\"Titanium.Facebook#examples\">Code Examples</a>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "Callback<FacebookRESTResponsev1>",
+            "name": "callback",
+            "doc": "<p>Callback to invoke  when the request completes.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<FacebookRESTResponsev1>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-request",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 43080
+          }
+        ],
+        "shortDoc": "Makes a request to the legacy Facebook REST API. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "requestWithGraphPath",
+        "owner": "Titanium.Facebook",
+        "doc": "<p>Makes a Facebook Graph API request.</p>\n\n\n<p>@description <p>If the request requires user authorization, the user must be logged in, and your app\nmust be authorized to make the request. You can check the\n<a href=\"#!/api/Titanium.Facebook-property-loggedIn\" rel=\"Titanium.Facebook-property-loggedIn\" class=\"docClass\">loggedIn</a> property to determine if the user is logged in.</p></p>\n\n<p>Every Facebook object has an associated path. For example, \"me\" requests information about\nthe current user.</p>\n\n\n\n\n<p>For a complete list of Graph API methods, parameters and return types, see the\n<a href=\"http://developers.facebook.com/docs/reference/api/\">official Facebook Graph API documentation</a>.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "path",
+            "doc": "<p>Graph API path to request.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Dictionary",
+            "name": "params",
+            "doc": "<p>A dictionary object for setting parameters required by the call, if any. <br>\nSee <a href=\"Titanium.Facebook#examples\">Code Examples</a>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          },
+          {
+            "type": "String",
+            "name": "httpMethod",
+            "doc": "<p>The HTTP method (GET/POST/DELETE) to use for the call.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<FacebookGraphResponsev1>",
+            "name": "callback",
+            "doc": "<p>Callback to invoke  when the request completes.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<FacebookGraphResponsev1>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-requestWithGraphPath",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 43101
+          }
+        ],
+        "shortDoc": "Makes a Facebook Graph API request. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setAccessToken",
+        "owner": "Titanium.Facebook",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Facebook-property-accessToken\" rel=\"Titanium.Facebook-property-accessToken\" class=\"docClass\">accessToken</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "accessToken",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setAccessToken",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 43144
+          }
+        ],
+        "shortDoc": "Sets the value of the accessToken property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setAppid",
+        "owner": "Titanium.Facebook",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Facebook-property-appid\" rel=\"Titanium.Facebook-property-appid\" class=\"docClass\">appid</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "appid",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setAppid",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 43172
+          }
+        ],
+        "shortDoc": "Sets the value of the appid property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "bubbleParent",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139
+          }
+        ],
+        "shortDoc": "Sets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setExpirationDate",
+        "owner": "Titanium.Facebook",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Facebook-property-expirationDate\" rel=\"Titanium.Facebook-property-expirationDate\" class=\"docClass\">expirationDate</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Date",
+            "name": "expirationDate",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Date"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setExpirationDate",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 43200
+          }
+        ],
+        "shortDoc": "Sets the value of the expirationDate property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setForceDialogAuth",
+        "owner": "Titanium.Facebook",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Facebook-property-forceDialogAuth\" rel=\"Titanium.Facebook-property-forceDialogAuth\" class=\"docClass\">forceDialogAuth</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "forceDialogAuth",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setForceDialogAuth",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 43228
+          }
+        ],
+        "shortDoc": "Sets the value of the forceDialogAuth property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+            "name": "lifecycleContainer",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.6.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 189
+          }
+        ],
+        "shortDoc": "Sets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLoggedIn",
+        "owner": "Titanium.Facebook",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Facebook-property-loggedIn\" rel=\"Titanium.Facebook-property-loggedIn\" class=\"docClass\">loggedIn</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "loggedIn",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLoggedIn",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 43256
+          }
+        ],
+        "shortDoc": "Sets the value of the loggedIn property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setPermissions",
+        "owner": "Titanium.Facebook",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Facebook-property-permissions\" rel=\"Titanium.Facebook-property-permissions\" class=\"docClass\">permissions</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Array<String>",
+            "name": "permissions",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Array<String>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setPermissions",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 43284
+          }
+        ],
+        "shortDoc": "Sets the value of the permissions property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setUid",
+        "owner": "Titanium.Facebook",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Facebook-property-uid\" rel=\"Titanium.Facebook-property-uid\" class=\"docClass\">uid</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "uid",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setUid",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 43312
+          }
+        ],
+        "shortDoc": "Sets the value of the uid property. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "event": [
+      {
+        "tagname": "event",
+        "name": "login",
+        "owner": "Titanium.Facebook",
+        "doc": "<p>Fired at session login.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "uid",
+            "doc": "<p>User ID returned by Facebook if the login was successful.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "success",
+            "doc": "<p>Indicates if the login was successful.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "String",
+            "name": "data",
+            "doc": "<p>Data returned by Facebook when we query for the UID (using graph path \"me\")\nafter a successful login. Data is in JSON format, and includes information\nsuch as user name, locale and gender.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "String",
+            "name": "error",
+            "doc": "<p>Error message, if request failed.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "String",
+            "name": "cancelled",
+            "doc": "<p>Indicates if the user canceled the login request by closing the dialog.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "event-login",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 42972
+          }
+        ],
+        "shortDoc": "Fired at session login. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "event",
+        "name": "logout",
+        "owner": "Titanium.Facebook",
+        "doc": "<p>Fired at session logout.</p>\n\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "event-logout",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 43004
+          }
+        ],
+        "shortDoc": "Fired at session logout. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 42604
+    }
+  ],
+  "html_meta": {
+    "deprecated": "        <div class='signature-box deprecated'>\n        <p>This class has been <strong>deprecated</strong> </p>\n        <p>3.1.0 On Mobile Web, continue to use this module.</p>\n\n<p>On Android and iOS, use &lt;Modules.Facebook> instead.</p>\n\n<p>@description <p><strong>Note:</strong> In Titanium 3.1, the <code>Titianium.Facebook</code> module on Android and iOS is replaced by the\n&lt;Modules.Facebook> add-on module that uses more recent versions of the native Facebook SDKs for\nAndroid and iOS. For Mobile Web, continue to use <code><a href=\"#!/api/Titanium.Facebook\" rel=\"Titanium.Facebook\" class=\"docClass\">Titanium.Facebook</a></code>.</p></p>\n\n<p>The Facebook module is used for connecting your application with\nFacebook. This module supports the following features:</p>\n\n\n\n\n<ul>\n<li><p>Logging in to Facebook and authorizing your application.</p></li>\n<li><p>Making requests through the Facebook Graph API using\n<a href=\"#!/api/Titanium.Facebook-method-requestWithGraphPath\" rel=\"Titanium.Facebook-method-requestWithGraphPath\" class=\"docClass\">requestWithGraphPath</a>.</p></li>\n<li><p>Making requests through the legacy Facebook REST API using\n<a href=\"#!/api/Titanium.Facebook-method-request\" rel=\"Titanium.Facebook-method-request\" class=\"docClass\">request</a>. </p></li>\n<li><p>Posting Facebook dialogs.</p></li>\n</ul>\n\n\n\n\n<h4>Facebook Login and Authorization</h4>\n\n\n\n\n<p>To use Facebook, a user must log in to Facebook and explicitly authorize the\napplication to perform certain actions, such as accessing profile information or\nposting status messages. </p>\n\n\n\n\n<p>There are two ways to initiate the login process:</p>\n\n\n\n\n<ul>\n<li><p>Call <a href=\"#!/api/Titanium.Facebook-method-authorize\" rel=\"Titanium.Facebook-method-authorize\" class=\"docClass\">authorize</a> prompt the user to login and authorize\nthe application.</p></li>\n<li><p>Create a Facebook <a href=\"#!/api/Titanium.Facebook.LoginButton\" rel=\"Titanium.Facebook.LoginButton\" class=\"docClass\">LoginButton</a> to allow the user to\nlog in if desired.</p></li>\n</ul>\n\n\n\n\n<p>Which approach you take depends on your UI and how central Facebook is to your\napplication.</p>\n\n\n\n\n<p>Before calling <code>authorize</code> or creating a login button, you must set the\n<a href=\"#!/api/Titanium.Facebook-property-appid\" rel=\"Titanium.Facebook-property-appid\" class=\"docClass\">appid</a> and <a href=\"#!/api/Titanium.Facebook-property-permissions\" rel=\"Titanium.Facebook-property-permissions\" class=\"docClass\">permissions</a>\nproperties. </p>\n\n\n\n\n<p>To create a Facebook App ID, go to the Facebook Developer App:</p>\n\n\n\n\n<p><a href=\"https://developers.facebook.com/apps\">developers.facebook.com/apps</a></p>\n\n\n\n\n<p>For a complete list of permissions, see the\n<a href=\"http://developers.facebook.com/docs/reference/api/permissions/\">official Facebook Permissions Reference</a></p>\n\n\n\n\n<h4>Facebook Graph API</h4>\n\n\n\n\n<p>The Facebook Graph API is the preferred method for getting information about a user's friends,\nnews feed, and so on. Each object in the Facebook social graph is represented by a\ngraph API <em>object</em>, such as a user, photo, or status message. </p>\n\n\n\n\n<p>The Graph API allows you to make requests on behalf of the user, such as posting a\npicture or status message. </p>\n\n\n\n\n<p>Use the <a href=\"#!/api/Titanium.Facebook-method-requestWithGraphPath\" rel=\"Titanium.Facebook-method-requestWithGraphPath\" class=\"docClass\">requestWithGraphPath</a> method to make a\nrequest to the Graph API.</p>\n\n\n\n\n<p>For details on each of the Graph API objects and the supported operations, see the\n<a href=\"http://developers.facebook.com/docs/reference/api/\">official Facebook Graph API documentation</a>.</p>\n\n\n\n\n<h4>Facebook REST API</h4>\n\n\n\n\n<p>The Facebook REST API is in the process of being deprecated, and should not be used\nunless your application relies on an API that doesn't exist in the Graph API.</p>\n\n\n\n\n<p>Use the <a href=\"#!/api/Titanium.Facebook-method-request\" rel=\"Titanium.Facebook-method-request\" class=\"docClass\">request</a> method to make a request to the REST API.</p>\n\n\n\n\n<p>For details on the REST API, see the\n<a href=\"http://developers.facebook.com/docs/reference/rest/\">official Facebook REST API documentation</a>.</p>\n\n\n\n\n<h4>Facebook Dialogs</h4>\n\n\n\n\n<p>Facebook dialogs are standard user-interface components for used to prompt users to\ninteract with Facebook in a specific way, such as:</p>\n\n\n\n\n<ul>\n<li><p>Sending an application request</p></li>\n<li><p>Sending a status update</p></li>\n<li><p>Adding a friend</p></li>\n</ul>\n\n\n\n\n<p>Because dialogs require user interaction, they do not require Facebook permissions.</p>\n\n\n\n\n<p>For details on different dialogs see the\n<a href=\"http://developers.facebook.com/docs/reference/dialogs/\">official Facebook Dialogs documentation</a>.  </p>\n\n\n\n\n<h4>iOS Platform Implementation Notes</h4>\n\n\n\n\n<p>Due to how the facebook login process works on iOS, your app will need to have the following\nin your tiapp.xml if you target those platforms:</p>\n\n\n\n\n<pre><code>&lt;property name=\"ti.facebook.appid\"&gt;your_facebook_app_id_here&lt;/property &gt;\n</code></pre>\n\n\n\n\n<p>You must still set Ti.Facebook.appid within your app itself to use the facebook module. <br>\nThis property is used only for configuring your app to interface with the facebook\nlogin process.</p>\n\n\n\n\n<h4>Previous Versions</h4>\n\n\n\n\n<p>Titanium Mobile SDK 1.6.0 marked a significant change for this module.  Older versions of\nthe module were not compatible with the new Graph API.  Applications written for the\npre-1.6.0 version of this module will <strong>not</strong> work with the 1.6.0 and higher versions. <br>\nNor is the code shown in the examples here backwards-compatible with pre-1.6.0 Titanium\nMobile SDK.</p>\n\n\n<h3>Examples</h3>\n\n\n<h4>Authorize</h4>\n\n\n<p>Shows official Facebook dialog for logging in the user and prompting the user to approve your\nrequested permissions.  Listen for the module's <a href=\"#!/api/Titanium.Facebook-event-login\" rel=\"Titanium.Facebook-event-login\" class=\"docClass\">login</a> event to\ndetermine whether the request succeeded.</p>\n\n\n\n\n<pre><code>Ti.Facebook.appid = '[YOUR APPID]';\nTi.Facebook.permissions = ['publish_stream']; // Permissions your app needs\nTi.Facebook.addEventListener('login', function(e) {\n    if (e.success) {\n        alert('Logged In');\n    } else if (e.error) {\n        alert(e.error);\n    } else if (e.cancelled) {\n        alert(\"Canceled\");\n    }\n});\nTi.Facebook.authorize();\n</code></pre>\n\n\n<h4>Logout</h4>\n\n\n<p>Logout the user and forget the authorization token.  The\n<a href=\"#!/api/Titanium.Facebook-method-logout\" rel=\"Titanium.Facebook-method-logout\" class=\"docClass\">logout</a> event is fired after the user is logged out.</p>\n\n\n\n\n<pre><code>Ti.Facebook.addEventListener('logout', function(e) {\n    alert('Logged out');\n});\nTi.Facebook.logout();\n</code></pre>\n\n\n<h4>Authorize/Logout Using the Facebook LoginButton</h4>\n\n\n<p>You can use the the Facebook-themed <a href=\"#!/api/Titanium.Facebook.LoginButton\" rel=\"Titanium.Facebook.LoginButton\" class=\"docClass\">LoginButton</a>\nto allow the user to log in as required. The button updates its state automatically depending\non whether the user is logged in or not.  When the user is logged in, then the button\nwill show \"Logout\", and vice-versa.</p>\n\n\n\n\n<p>Note that you don't need to set a click listener or anything else on the button.\nIt \"just works\".  To be notified when the user logs in or out, add event listeners for the\n<a href=\"#!/api/Titanium.Facebook-event-login\" rel=\"Titanium.Facebook-event-login\" class=\"docClass\">login</a> and <a href=\"#!/api/Titanium.Facebook-method-logout\" rel=\"Titanium.Facebook-method-logout\" class=\"docClass\">logout</a> events\nprovided by the Titanium Facebook module, as in the example below.</p>\n\n\n\n\n<pre><code>// Don't forget to set your appid and requested permissions, else the login button\n// won't be effective.\nTi.Facebook.appid = '[your appid]';\nTi.Facebook.permissions = ['publish_stream'];\nTi.Facebook.addEventListener('login', function(e) {\n    if (e.success) {\n        alert('Logged in');\n    }\n});\nTi.Facebook.addEventListener('logout', function(e) {\n    alert('Logged out');\n});\n\n// Add the button.  Note that it doesn't need a click event listener.\nwin2.add(Ti.Facebook.createLoginButton({\n    top : 50,\n    style : Ti.Facebook.BUTTON_STYLE_WIDE\n}));\n</code></pre>\n\n\n\n\n<p>The specified button style ('wide' or <code>BUTTON_STYLE_WIDE</code>) shows a wide version of the\nbutton that displays \"Connect with Facebook\" instead of just \"Connect\".</p>\n\n\n<h4>Simple Graph API Call</h4>\n\n\n<p>This example makes a call to the \"me\" graph path, which represents the current\nuser. The JSON results are simply displayed in an alert.  This example assumes\nthe user is already logged in (you can check this with <a href=\"#!/api/Titanium.Facebook-property-loggedIn\" rel=\"Titanium.Facebook-property-loggedIn\" class=\"docClass\">loggedIn</a>).</p>\n\n\n\n\n<pre><code>Ti.Facebook.requestWithGraphPath('me', {}, 'GET', function(e) {\n    if (e.success) {\n        alert(e.result);\n    } else if (e.error) {\n        alert(e.error);\n    } else {\n        alert('Unknown response');\n    }\n});\n</code></pre>\n\n\n<h4>Create an Event Using the Graph API</h4>\n\n\n<p>This example uses the Graph API to create an event <br>\nin the logged-on user's Facebook account. This requires the \"create_event\" permission.</p>\n\n\n\n\n<pre><code>// First make sure this permission exists\nTi.Facebook.permissions = ['create_event'];\nTi.Facebook.authorize();\n\n// ...\n// ...\n\n// Now create the event after you've confirmed authorize() was successful.\nvar starttime = new Date(2012, 4, 31, 17, 0);\nvar endtime = new Date(2012, 4, 31, 19, 0);\nvar title = \"Barry's Birthday Celebration\";\nvar description = \"Barry will have a great party\";\nvar data = {\n    start_time: JSON.stringify(starttime), // API expects a JSON stringified date\n    end_time: JSON.stringify(endtime),\n    summary: description,\n    name: title\n};\nTi.Facebook.requestWithGraphPath('me/events', data, 'POST', function(e) {\n    if (e.success) {\n        alert(\"Success! Returned from FB: \" + e.result);\n    } else {\n        if (e.error) {\n            alert(e.error);\n        } else {\n            alert(\"Unknown result\");\n        }\n    }\n});\n</code></pre>\n\n\n\n\n<p>For more information on the Event object, see:</p>\n\n\n\n\n<ul>\n<li><a href=\"http://developers.facebook.com/docs/reference/api/event/\">Event in the Facebook Graph API Reference</a>.</li>\n</ul>\n\n\n<h4>Set a User's Facebook Status Using the Graph API</h4>\n\n\n<p>This example uses the Graph API to set the user's Facebook status, which requires the\n\"publish_stream\" permission.</p>\n\n\n\n\n<pre><code>// First make sure this permission exists\nTi.Facebook.permissions = ['publish_stream'];\nTi.Facebook.authorize();\n\n// ...\n// ...\n\n// Now create the status message after you've confirmed that authorize() succeeded\nTi.Facebook.requestWithGraphPath('me/feed', {message: \"Trying out FB Graph API and it's fun!\"},\n         \"POST\", function(e) {\n    if (e.success) {\n        alert(\"Success!  From FB: \" + e.result);\n    } else {\n        if (e.error) {\n            alert(e.error);\n        } else {\n            alert(\"Unkown result\");\n        }\n    }\n});\n</code></pre>\n\n\n\n\n<p>For more information on the Staus object, see:</p>\n\n\n\n\n<ul>\n<li><a href=\"http://developers.facebook.com/docs/reference/api/status/\">Status in the Facebook Graph API Reference</a>.  </li>\n</ul>\n\n\n<h4>Post a Photo Using the Graph API</h4>\n\n\n<p>This example posts a photo to the user's account using the Graph API.\nAnother example below shows how to do this with the REST API, if desired.\nThis requires the \"publish_stream\" permission.</p>\n\n\n\n\n<pre><code>// First make sure this permission exists\nTi.Facebook.permissions = ['publish_stream'];\nTi.Facebook.authorize();\n\n// ...\n// ...\n\n// Now post the photo after you've confirmed that authorize() succeeded\nvar f = Ti.Filesystem.getFile('pumpkin.jpg');\nvar blob = f.read();\nvar data = {\n    message: 'This is a pumpkin',\n    picture: blob\n};\nTi.Facebook.requestWithGraphPath('me/photos', data, 'POST', function(e){\n    if (e.success) {\n        alert(\"Success!  From FB: \" + e.result);\n    } else {\n        if (e.error) {\n            alert(e.error);\n        } else {\n            alert(\"Unkown result\");\n        }\n    }\n});\n</code></pre>\n\n\n\n\n<p>For more information on posting photos, see:</p>\n\n\n\n\n<ul>\n<li><a href=\"http://developers.facebook.com/docs/reference/api/photo/\">Photo in the Facebook Graph API Reference</a> </li>\n</ul>\n\n\n<h4>Post a photo using the REST API</h4>\n\n\n<p>This example posts a photo to the user's account using the REST API. Another example above shows\nhow to do this with the Graph API.  This requires the \"publish_stream\" permission.</p>\n\n\n\n\n<pre><code>// First make sure this permission exists\nTi.Facebook.permissions = ['publish_stream'];\nTi.Facebook.authorize();\n\n// ...\n// ...\n\n// Now post the photo after you've confirmed that authorize() succeeded\nvar f = Ti.Filesystem.getFile('pumpkin.jpg');\nvar blob = f.read();\nvar data = {\n    caption: 'This is a pumpkin',\n    picture: blob\n};\nTi.Facebook.request('photos.upload', data, function(e){\n    if (e.success) {\n        alert(\"Success!  From FB: \" + e.result);\n    } else {\n        if (e.error) {\n            alert(e.error);\n        } else {\n            alert(\"Unkown result\");\n        }\n    }\n});\n</code></pre>\n\n\n\n\n<p>For more information on posting photos using the REST API, see:</p>\n\n\n\n\n<ul>\n<li><a href=\"http://developers.facebook.com/docs/reference/rest/photos.upload/\">photos.upload in the Facebook REST API Reference</a> </li>\n</ul>\n\n\n<h4>Show the Facebook Feed Dialog</h4>\n\n\n<p>This example shows how to display the offical Facebook Feed Dialog, for adding a\npost to the user's wall. In this example, we'll prefill some of the feed fields by\npassing a data dictionary to the <a href=\"#!/api/Titanium.Facebook-method-dialog\" rel=\"Titanium.Facebook-method-dialog\" class=\"docClass\">dialog</a> method; this is not required.</p>\n\n\n\n\n<pre><code>var data = {\n    link : \"http://www.appcelerator.com\",\n    name : \"Appcelerator Titanium Mobile\",\n    message : \"Checkout this cool open source project for creating mobile apps\",\n    caption : \"Appcelerator Titanium Mobile\",\n    picture : \"http://developer.appcelerator.com/assets/img/DEV_titmobile_image.png\",\n    description : \"You've got the ideas, now you've got the power. Titanium translates \" +\n                  \"your hard won web skills into native applications...\"\n};\n<a href=\"#!/api/Titanium.Facebook-method-dialog\" rel=\"Titanium.Facebook-method-dialog\" class=\"docClass\">Titanium.Facebook.dialog</a>(\"feed\", data, function(e) {\n    if(e.success &amp;&amp; e.result) {\n        alert(\"Success! New Post ID: \" + e.result);\n    } else {\n        if(e.error) {\n            alert(e.error);\n        } else {\n            alert(\"User canceled dialog.\");\n        }\n    }\n});\n</code></pre>\n\n\n\n\n<p>For more information on Facebook Dialogs, see:</p>\n\n\n\n\n<ul>\n<li><a href=\"http://developers.facebook.com/docs/reference/dialogs/\">Facebook Dialog Reference</a> </li>\n</ul>\n\n\n        </div>\n"
+  },
+  "component": false,
+  "superclasses": [
+    "Titanium.Proxy",
+    "Titanium.Module"
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

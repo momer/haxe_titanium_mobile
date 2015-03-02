@@ -1,0 +1,207 @@
+{
+  "tagname": "class",
+  "name": "Font",
+  "doc": "<p>@platform android 0.8\n@platform blackberry 3.1.2\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8\n@pseudo @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/UI/Font.yml</p>\n\n<p>An abstract datatype for specifying a text font.</p>\n\n\n<p>@description <p>Available fonts vary by platform and device. On iOS, font support depends on the OS\nversion. On Android, font support depends on the OS version <strong>and</strong> device manufacturer.</p></p>\n\n<p>Note that to update the font used by a UI component, you must set the object's <code>font</code>\nproperty, like this:</p>\n\n\n\n\n<pre><code>myLabel.font = {\n    fontSize: 24,\n    fontFamily: myFontName\n}\n</code></pre>\n\n\n\n\n<p>Changing the <code>font</code> object after assigning it does not reliably affect the underlying UI\ncomponent:</p>\n\n\n\n\n<pre><code>// This may not work as expected\nmyLabel.font.fontSize = 24;\n</code></pre>\n\n\n\n\n<h4>Custom Fonts</h4>\n\n\n\n\n<p>Custom TrueType (.ttf) or OpenType (.otf) fonts may be embedded in an application on iOS and\nAndroid. (Note that you must have redistribution rights on the fonts you ship.)</p>\n\n\n\n\n<p>In Alloy applications, custom fonts must be placed in a \"fonts\" folder in the platform-specific assets folder (<strong>app/assets/android/fonts</strong>, for example).\nIn classic Titanium applications, custom fonts must be placed in the <strong>Resources/fonts</strong> directory.</p>\n\n\n\n\n<p>For an example of using custom fonts, see <a href=\"http://docs.appcelerator.com/titanium/#!/guide/Custom_Fonts\">Custom Fonts</a>.</p>\n\n",
+  "extends": null,
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-Font",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "fontFamily",
+        "owner": "Font",
+        "type": "String",
+        "doc": "<p>Specifies the font family or specific font to use.</p>\n\n\n<p>@description <p>This can be the name of a font family (for example, \"Helvetica\" or \"DroidSans\") the base\nname of the font file (for example, \"Droid_sans.ttf\"), or the font's PostScript name. The\nvalue you specify also depends on the platform you are targeting.</p></p>\n\n<ul>\n<li><p>On Android specify the font file name without its file extension (.otf or .ttf).\nFor example, if you were using the \"Burnstown Dam\" font whose file name is\nnamed <code>burnstown_dam.ttf</code>, then you specify <code>fontFamily: 'burnstown_dam'</code>.</p></li>\n<li><p>On iOS you use the font's <a href=\"http://docs.appcelerator.com/titanium/3.0/#!/guide/Custom_Fonts-section-29004935_CustomFonts-Findingafont%27sPostScriptname\">PostScript name</a>.\nFor example, the PostScript name for Burnstown Dam is \"BurnstownDam-Regular so you'd specify: <code>fontFamily: 'BurnstownDam-Regular'</code>.</p></li>\n</ul>\n\n\n\n\n<p>For an example of using a custom font, see <a href=\"http://docs.appcelerator.com/titanium/#!/guide/Custom_Fonts\">Custom Fonts</a>.</p>\n\n\n\n\n<p>Notes:</p>\n\n\n\n\n<ul>\n<li>Available fonts differ by platform.</li>\n<li>If the requested family name does not match an existing font, the default font family is used.</li>\n<li>On Android, the generic names \"sans-serif,\" \"serif,\" and \"monospace\" (or \"monospaced\")\nare mapped to system fonts. On iOS, only \"monospace\" is supported.</li>\n</ul>\n\n",
+        "default": "Uses the default system font.",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-fontFamily",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 88643
+          }
+        ],
+        "shortDoc": "Specifies the font family or specific font to use. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "fontSize",
+        "owner": "Font",
+        "type": "Number/String",
+        "doc": "<p>Font size, in platform-dependent units.</p>\n\n\n<p>@description <p>On iOS and Mobile Web, font sizes are always specified in typographical points\n(not to be confused with the Apple \"points\" used for other measurements on iOS).</p></p>\n\n<p>On Android the default font sizing is in pixels, but the size can also\ninclude a unit specifier. Supported units and their specifiers are:</p>\n\n\n\n\n<ul>\n<li>pixels (px)</li>\n<li>typographical points (pt)</li>\n<li>density-independent pixels (dp or dip)</li>\n<li>millimeters (mm)</li>\n<li>inches (in)</li>\n</ul>\n\n\n\n\n<p>For example, \"16dp\" specifies a size of 16 density-independent pixels.</p>\n\n\n\n\n<p>iOS ignores any unit specifier after the size value.</p>\n\n",
+        "default": "15px",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-fontSize",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 88685
+          }
+        ],
+        "shortDoc": "Font size, in platform-dependent units. ...",
+        "html_type": "Number/String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "fontStyle",
+        "owner": "Font",
+        "type": "String",
+        "doc": "<p>Font style. Valid values are \"italic\" or \"normal\".</p>\n\n\n<p>@platform blackberry 3.1.2\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": "normal",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-fontStyle",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 88743
+          }
+        ],
+        "shortDoc": "Font style. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "fontWeight",
+        "owner": "Font",
+        "type": "String",
+        "doc": "<p>Font weight. Valid values are \"bold\" or \"normal\".</p>\n\n\n<p>@description <p>The \"semibold\" weight is recognized on iOS only.</p></p>\n",
+        "default": "normal",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-fontWeight",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 88722
+          }
+        ],
+        "shortDoc": "Font weight. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "textStyle",
+        "owner": "Font",
+        "type": "String",
+        "doc": "<p>The text style for the font.</p>\n\n\n\n\n<p> <b>Requires:</b>\niOS 7.0 and later\n</p>\n\n\n<p>@description <p>Use one of the TEXT_STYLE constants from <a href=\"#!/api/Titanium.UI\" rel=\"Titanium.UI\" class=\"docClass\">Titanium.UI</a> to set the font to a predefined system font.\nWhen this property is set to a valid value, all other font properties are ignored. Avaliable on iOS 7 and above.</p></p>\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.UI-property-TEXT_STYLE_HEADLINE\" rel=\"Titanium.UI-property-TEXT_STYLE_HEADLINE\" class=\"docClass\">Titanium.UI.TEXT_STYLE_HEADLINE</a>\n <li> <a href=\"#!/api/Titanium.UI-property-TEXT_STYLE_SUBHEADLINE\" rel=\"Titanium.UI-property-TEXT_STYLE_SUBHEADLINE\" class=\"docClass\">Titanium.UI.TEXT_STYLE_SUBHEADLINE</a>\n <li> <a href=\"#!/api/Titanium.UI-property-TEXT_STYLE_BODY\" rel=\"Titanium.UI-property-TEXT_STYLE_BODY\" class=\"docClass\">Titanium.UI.TEXT_STYLE_BODY</a>\n <li> <a href=\"#!/api/Titanium.UI-property-TEXT_STYLE_FOOTNOTE\" rel=\"Titanium.UI-property-TEXT_STYLE_FOOTNOTE\" class=\"docClass\">Titanium.UI.TEXT_STYLE_FOOTNOTE</a>\n <li> <a href=\"#!/api/Titanium.UI-property-TEXT_STYLE_CAPTION1\" rel=\"Titanium.UI-property-TEXT_STYLE_CAPTION1\" class=\"docClass\">Titanium.UI.TEXT_STYLE_CAPTION1</a>\n <li> <a href=\"#!/api/Titanium.UI-property-TEXT_STYLE_CAPTION2\" rel=\"Titanium.UI-property-TEXT_STYLE_CAPTION2\" class=\"docClass\">Titanium.UI.TEXT_STYLE_CAPTION2</a>\n</ul></p>\n\n\n<p>@platform iphone 3.2.0\n@platform ipad 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-textStyle",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 88767
+          }
+        ],
+        "shortDoc": "The text style for the font. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 88593
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

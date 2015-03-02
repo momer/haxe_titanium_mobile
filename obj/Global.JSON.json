@@ -1,0 +1,200 @@
+{
+  "tagname": "class",
+  "name": "Global.JSON",
+  "doc": "<p>@platform android 0.8\n@platform blackberry 3.1.2\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8 @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Global/JSON/JSON.yml</p>\n\n<p>Global JSON object providing the <a href=\"#!/api/Global.JSON-method-parse\" rel=\"Global.JSON-method-parse\" class=\"docClass\">parse</a> and <a href=\"#!/api/Global.JSON-method-stringify\" rel=\"Global.JSON-method-stringify\" class=\"docClass\">stringify</a> methods.</p>\n\n",
+  "extends": null,
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-Global.JSON",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "parse",
+        "owner": "Global.JSON",
+        "doc": "<p>Parses a JSON text to produce an object or array.</p>\n\n\n<p>@description <p>The <code>parse</code> method throws a SyntaxError exception if the text cannot be parsed.</p></p>\n\n<p>The optional reviver parameter is a function that can filter and\ntransform the results. It receives each of the keys and values,\nand its return value is used instead of the original value.\nIf it returns what it received, then the structure is not modified.\nIf it returns undefined then the member is deleted.</p>\n\n\n<h3>Examples</h3>\n\n\n<h4>Parse with Reviver Function</h4>\n\n\n<pre><code>The following example parses the text, converting  values that look like ISO date strings into Date objects.\nmyData = JSON.parse(text, function (key, value) { var a; if (typeof value === 'string') { a = /^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2}):(\\d{2}(?:\\.\\d*)?)Z$/.exec(value); if (a) { return new Date(Date.UTC(+a[1], +a[2] - 1, +a[3], +a[4], +a[5], +a[6])); } } return value; });</code></pre>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "text",
+            "doc": "<p>JSON text to parse.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback",
+            "name": "reviver",
+            "doc": "<p>Function to filter and transform the results.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback"
+          }
+        ],
+        "return": {
+          "type": "Object",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Object"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-parse",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 4814
+          }
+        ],
+        "shortDoc": "Parses a JSON text to produce an object or array. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "stringify",
+        "owner": "Global.JSON",
+        "doc": "<p>Produces a JSON text from a JavaScript value.</p>\n\n\n<p>@description <p>When an object value is found, if the object contains a toJSON\nmethod, its toJSON method is called and the result is\nstringified. A toJSON method does not serialize: it returns the\nvalue represented by the name/value pair that should be serialized,\nor undefined if nothing should be serialized. The toJSON method\nis passed the key associated with the value, and <code>this</code> is\nbound to the value.</p></p>\n\n<p>For example, this would serialize Dates as ISO strings.</p>\n\n\n\n\n<pre><code>Date.prototype.toJSON = function (key) {\n    function f(n) {\n        // Format integers to have at least two digits.\n        return n &lt; 10 ? '0' + n : n;\n    }\n\n    return this.getUTCFullYear()   + '-' +\n         f(this.getUTCMonth() + 1) + '-' +\n         f(this.getUTCDate())      + 'T' +\n         f(this.getUTCHours())     + ':' +\n         f(this.getUTCMinutes())   + ':' +\n         f(this.getUTCSeconds())   + 'Z';\n};\n</code></pre>\n\n\n\n\n<p>You can provide an optional replacer function. It is passed the\nkey and value of each member, with <code>this</code> bound to the containing\nobject. The value that is returned from your function is\nserialized. If your function returns undefined, then the member will\nbe excluded from the serialization.</p>\n\n\n\n\n<p>If the replacer parameter is an array of strings, then it is\nused to select the members to be serialized. It filters the results\nsuch that only members with keys listed in the replacer array are\nstringified.</p>\n\n\n\n\n<p>Values that do not have JSON representations, such as undefined or\nfunctions, will not be serialized. Such values in objects are\ndropped; in arrays they are replaced with null. You can use\na replacer function to replace those with JSON values.</p>\n\n\n\n\n<p>JSON.stringify(undefined) returns undefined.</p>\n\n\n\n\n<p>The optional space parameter produces a stringification of the\nvalue that is filled with line breaks and indentation to make it\neasier to read.</p>\n\n\n\n\n<p>If the space parameter is a non-empty string, then that string is\nused for indentation. If the space parameter is a number, then\neach level is indented by the specified number of spaces. </p>\n\n\n<h3>Examples</h3>\n\n\n<h4>Formatting with a Replacer Function</h4>\n\n\n<p>The following example produces a readable version of a Titanium event object,\nomitting the <code>source</code> and <code>type</code> properties and adding whitespace for readability:</p>\n\n\n\n\n<pre><code>JSON.stringify(evt, function(key, value) {\n    if(key === 'source' || key === 'type') {\n        return undefined;\n    } else {\n        return value;\n    }\n}, 2));\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "value",
+            "doc": "<p>Any JavaScript value, usually an object or array.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "Callback/Array<String>",
+            "name": "replacer",
+            "doc": "<p>Determines how object values are stringified for objects. See main text for usage.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback/Array<String>"
+          },
+          {
+            "type": "Number/String",
+            "name": "space",
+            "doc": "<p>Specifies how nested structures are indented. If it is a number, it specifies the number of spaces to indent at each level. If it is a string (such as '\\t' or '&amp;nbsp;'), it specifies the characters used to indent at each level.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number/String"
+          }
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-stringify",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 4734
+          }
+        ],
+        "shortDoc": "Produces a JSON text from a JavaScript value. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 4713
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

@@ -1,0 +1,1385 @@
+{
+  "tagname": "class",
+  "name": "Titanium.UI.ListSection",
+  "doc": "<p>@platform android 3.1.0\n@platform iphone 3.1.0\n@platform ipad 3.1.0 @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/UI/ListSection.yml</p>\n\n<p>A list section is a container within a list view used to organize list items.</p>\n\n\n<p>@description <p>Use the <a href=\"#!/api/Titanium.UI-method-createListSection\" rel=\"Titanium.UI-method-createListSection\" class=\"docClass\">Titanium.UI.createListSection</a> method or <strong><code>&lt;ListSection&gt;</code></strong> Alloy element to create a <code>ListSection</code>.</p></p>\n\n<p>List sections are used to manipulate and organize list items contained within it. For examples\nof using list sections, see the examples in <a href=\"#!/api/Titanium.UI.ListView\" rel=\"Titanium.UI.ListView\" class=\"docClass\">Titanium.UI.ListView</a> and <a href=\"#!/api/Titanium.UI.ListItem\" rel=\"Titanium.UI.ListItem\" class=\"docClass\">Titanium.UI.ListItem</a>.</p>\n\n\n<h3>Examples</h3>\n\n\n<h4>Alloy XML Markup</h4>\n\n\n<p>ListSection is supported by Alloy 1.2.0 and later.</p>\n\n\n\n\n<p>HeaderView and FooterView are supported on Alloy 1.3.0 and later.</p>\n\n\n\n\n<pre><code>&lt;Alloy&gt;\n    &lt;Window fullscreen=\"true\"&gt;\n        &lt;ListView&gt;\n            &lt;ListSection&gt;\n\n                &lt;!-- Sets ListSection's headerView property --&gt;\n                &lt;HeaderView&gt;\n                    &lt;View backgroundColor=\"#DDD\" height=\"Ti.UI.SIZE\"&gt;\n                        &lt;Label&gt;Fruits&lt;/Label&gt;\n                    &lt;/View&gt;&gt;\n                &lt;/HeaderView&gt;\n\n                &lt;ListItem title=\"Apple\" /&gt;\n                &lt;ListItem title=\"Orange\" /&gt;\n                &lt;ListItem title=\"Pear\" /&gt;\n\n                &lt;!-- Sets ListSection's footerView property --&gt;\n                &lt;FooterView&gt;\n                    &lt;View backgroundColor=\"#DDD\" height=\"Ti.UI.SIZE\"&gt;\n                        &lt;Label&gt;3 items&lt;/Label&gt;\n                    &lt;/View&gt;\n\n                &lt;/FooterView&gt;\n            &lt;/ListSection&gt;\n        &lt;/ListView&gt;\n    &lt;/Window&gt;\n&lt;/Alloy&gt;\n</code></pre>\n\n",
+  "extends": "Titanium.Proxy",
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-Titanium.UI.ListSection",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "apiName",
+        "owner": "Titanium.Proxy",
+        "type": "String",
+        "doc": "<p>The name of the API that this proxy corresponds to.</p>\n\n\n<p>@description <p>The value of this property is the fully qualified name of the API. For example, <a href=\"#!/api/Titanium.UI.Button\" rel=\"Titanium.UI.Button\" class=\"docClass\">Button</a>\nreturns <code>Ti.UI.Button</code>.</p></p>\n\n<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-apiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 235
+          }
+        ],
+        "shortDoc": "The name of the API that this proxy corresponds to. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "bubbleParent",
+        "owner": "Titanium.Proxy",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the proxy will bubble an event to its parent.</p>\n\n\n<p>@description <p>Some proxies (most commonly views) have a relationship to other proxies, often\nestablished by the add() method. For example, for a button added to a window, a\nclick event on the button would bubble up to the window. Other common parents are\ntable sections to their rows, table views to their sections, and scrollable views\nto their views. Set this property to false to disable the bubbling to the proxy's parent.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-bubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 207
+          }
+        ],
+        "shortDoc": "Indicates if the proxy will bubble an event to its parent. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "footerTitle",
+        "owner": "Titanium.UI.ListSection",
+        "type": "String",
+        "doc": "<p>Title of this section footer.</p>\n\n\n<p>@description <p>Using this property and <code>footerView</code> together is not supported. Use one or the other.</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-footerTitle",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 92664
+          }
+        ],
+        "shortDoc": "Title of this section footer. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "footerView",
+        "owner": "Titanium.UI.ListSection",
+        "type": "Titanium.UI.View",
+        "doc": "<p>View to use for this section footer.</p>\n\n\n<p>@description <p>Using this property and <code>footerTitle</code> together is not supported. Use one or the other.\nIn Alloy you can specify this property with a <code>&lt;FooterView&gt;</code> child element of a <code>&lt;ListSection&gt;</code>\nelement (see Examples).</p></p>\n\n<p>@platform android 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-footerView",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 92685
+          }
+        ],
+        "shortDoc": "View to use for this section footer. ...",
+        "html_type": "Titanium.UI.View",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "headerTitle",
+        "owner": "Titanium.UI.ListSection",
+        "type": "String",
+        "doc": "<p>Title of this section header.</p>\n\n\n<p>@description <p>Using this property and <code>headerView</code> together is not supported. Use one or the other.</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-headerTitle",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 92711
+          }
+        ],
+        "shortDoc": "Title of this section header. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "headerView",
+        "owner": "Titanium.UI.ListSection",
+        "type": "Titanium.UI.View",
+        "doc": "<p>View to use for this section header.</p>\n\n\n<p>@description <p>Using this property and <code>headerTitle</code> together is not supported. Use one or the other.\nIn Alloy you can specify this property with a <code>&lt;HeaderView&gt;</code> child element of a <code>&lt;ListSection&gt;</code>\nelement (see Examples).</p></p>\n\n<p>@platform android 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-headerView",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 92732
+          }
+        ],
+        "shortDoc": "View to use for this section header. ...",
+        "html_type": "Titanium.UI.View",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "items",
+        "owner": "Titanium.UI.ListSection",
+        "type": "ListDataItem[]",
+        "doc": "<p>Items of this list section.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-items",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 92758
+          }
+        ],
+        "html_type": "ListDataItem[]",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "doc": "<p>The Window or TabGroup whose Activity lifecycle should be triggered on the proxy.</p>\n\n\n<p>@description <p>If this property is set to a Window or TabGroup, then the corresponding Activity lifecycle event callbacks\nwill also be called on the proxy. Proxies that require the activity lifecycle will need this property set\nto the appropriate containing Window or TabGroup.</p></p>\n\n<p>@platform android 3.6.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-lifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 262
+          }
+        ],
+        "shortDoc": "The Window or TabGroup whose Activity lifecycle should be triggered on the proxy. ...",
+        "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "addEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Adds the specified callback as an event listener for the named event.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to invoke when the event is fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38
+          }
+        ],
+        "shortDoc": "Adds the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "appendItems",
+        "owner": "Titanium.UI.ListSection",
+        "doc": "<p>Appends the data entries to the end of the list section.</p>\n\n\n<p>@description <p>On iOS, the list item(s) can be inserted with an animation by specifying the <code>animation</code> parameter.</p></p>\n",
+        "params": [
+          {
+            "type": "Array<ListDataItem>",
+            "name": "dataItems",
+            "doc": "<p>List items to add.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Array<ListDataItem>"
+          },
+          {
+            "type": "ListViewAnimationProperties",
+            "name": "animation",
+            "doc": "<p>Animation properties. (iOS only.)</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "ListViewAnimationProperties"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-appendItems",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 92414
+          }
+        ],
+        "shortDoc": "Appends the data entries to the end of the list section. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "applyProperties",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Applies the properties to the proxy.</p>\n\n\n<p>@description <p>Properties are supplied as a dictionary. Each key-value pair in the object is applied to the proxy such that\nmyproxy[key] = value.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "props",
+            "doc": "<p>A dictionary of properties to apply.</p>\n\n\n<p>@platform android 3.0.0\n@platform blackberry 3.3.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-applyProperties",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 102
+          }
+        ],
+        "shortDoc": "Applies the properties to the proxy. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "deleteItemsAt",
+        "owner": "Titanium.UI.ListSection",
+        "doc": "<p>Removes count entries from the list section at the specified index.</p>\n\n\n<p>@description <p>On iOS, the list item(s) can be removed with an animation by specifying the <code>animation</code> parameter.</p></p>\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "itemIndex",
+            "doc": "<p>Index of where to remove items.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Number",
+            "name": "count",
+            "doc": "<p>Number of items to remove.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "ListViewAnimationProperties",
+            "name": "animation",
+            "doc": "<p>Animation properties. (iOS only.)</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "ListViewAnimationProperties"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-deleteItemsAt",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 92472
+          }
+        ],
+        "shortDoc": "Removes count entries from the list section at the specified index. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "fireEvent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Fires a synthesized event to any registered listeners.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Dictionary",
+            "name": "event",
+            "doc": "<p>A dictionary of keys and values to add to the <a href=\"#!/api/Titanium.Event\" rel=\"Titanium.Event\" class=\"docClass\">Titanium.Event</a> object sent to the listeners.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-fireEvent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 85
+          }
+        ],
+        "shortDoc": "Fires a synthesized event to any registered listeners. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getApiName",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-apiName\" rel=\"Titanium.Proxy-property-apiName\" class=\"docClass\">apiName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getApiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 157
+          }
+        ],
+        "shortDoc": "Gets the value of the apiName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 123
+          }
+        ],
+        "shortDoc": "Gets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getFooterTitle",
+        "owner": "Titanium.UI.ListSection",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.ListSection-property-footerTitle\" rel=\"Titanium.UI.ListSection-property-footerTitle\" class=\"docClass\">footerTitle</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getFooterTitle",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 92525
+          }
+        ],
+        "shortDoc": "Gets the value of the footerTitle property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getFooterView",
+        "owner": "Titanium.UI.ListSection",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.ListSection-property-footerView\" rel=\"Titanium.UI.ListSection-property-footerView\" class=\"docClass\">footerView</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.View",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.View"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getFooterView",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 92553
+          }
+        ],
+        "shortDoc": "Gets the value of the footerView property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getHeaderTitle",
+        "owner": "Titanium.UI.ListSection",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.ListSection-property-headerTitle\" rel=\"Titanium.UI.ListSection-property-headerTitle\" class=\"docClass\">headerTitle</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getHeaderTitle",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 92587
+          }
+        ],
+        "shortDoc": "Gets the value of the headerTitle property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getHeaderView",
+        "owner": "Titanium.UI.ListSection",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.ListSection-property-headerView\" rel=\"Titanium.UI.ListSection-property-headerView\" class=\"docClass\">headerView</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.View",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.View"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getHeaderView",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 92615
+          }
+        ],
+        "shortDoc": "Gets the value of the headerView property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getItemAt",
+        "owner": "Titanium.UI.ListSection",
+        "doc": "<p>Returns the item entry from the list view at the specified index.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "itemIndex",
+            "doc": "<p>Index of where to retrieve an item.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "void",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "void"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getItemAt",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 92491
+          }
+        ],
+        "shortDoc": "Returns the item entry from the list view at the specified index. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getItems",
+        "owner": "Titanium.UI.ListSection",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.ListSection-property-items\" rel=\"Titanium.UI.ListSection-property-items\" class=\"docClass\">items</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "ListDataItem[]",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "ListDataItem[]"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getItems",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 92649
+          }
+        ],
+        "shortDoc": "Gets the value of the items property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+          "name": "return",
+          "doc": "<p>@platform android 3.6.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 175
+          }
+        ],
+        "shortDoc": "Gets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "insertItemsAt",
+        "owner": "Titanium.UI.ListSection",
+        "doc": "<p>Inserts data entries to the list section at the specified index.</p>\n\n\n<p>@description <p>On iOS, the list item(s) can be inserted with an animation by specifying the <code>animation</code> parameter.</p></p>\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "itemIndex",
+            "doc": "<p>Index of where to insert the items.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Array<ListDataItem>",
+            "name": "dataItems",
+            "doc": "<p>List items to insert.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Array<ListDataItem>"
+          },
+          {
+            "type": "ListViewAnimationProperties",
+            "name": "animation",
+            "doc": "<p>Animation properties. (iOS only.)</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "ListViewAnimationProperties"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-insertItemsAt",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 92431
+          }
+        ],
+        "shortDoc": "Inserts data entries to the list section at the specified index. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Removes the specified callback as an event listener for the named event.</p>\n\n\n<p>@description <p>Multiple listeners can be registered for the same event, so the\n<code>callback</code> parameter is used to determine which listener to remove. </p></p>\n\n<p>When adding a listener, you must save a reference to the callback function\nin order to remove the listener later:</p>\n\n\n\n\n<pre><code>var listener = function() { Ti.API.info(\"Event listener called.\"); }\nwindow.addEventListener('click', listener);\n</code></pre>\n\n\n\n\n<p>To remove the listener, pass in a reference to the callback function:</p>\n\n\n\n\n<pre><code>window.removeEventListener('click', listener);\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to remove. Must be the same function passed to <code>addEventListener</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 55
+          }
+        ],
+        "shortDoc": "Removes the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "replaceItemsAt",
+        "owner": "Titanium.UI.ListSection",
+        "doc": "<p>Removes count entries from the list section at the specified index,\nthen inserts data entries to the list section at the same index.</p>\n\n\n<p>@description <p>On iOS, the list item(s) can be replaced with an animation by specifying the <code>animation</code> parameter.</p></p>\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "index",
+            "doc": "<p>Index of where to remove then insert items.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Number",
+            "name": "count",
+            "doc": "<p>Number of list items to remove.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Array<ListDataItem>",
+            "name": "dataItems",
+            "doc": "<p>List items to insert.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Array<ListDataItem>"
+          },
+          {
+            "type": "ListViewAnimationProperties",
+            "name": "animation",
+            "doc": "<p>Animation properties. (iOS only.)</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "ListViewAnimationProperties"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-replaceItemsAt",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 92450
+          }
+        ],
+        "shortDoc": "Removes count entries from the list section at the specified index,\nthen inserts data entries to the list section at ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "bubbleParent",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139
+          }
+        ],
+        "shortDoc": "Sets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setFooterTitle",
+        "owner": "Titanium.UI.ListSection",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.ListSection-property-footerTitle\" rel=\"Titanium.UI.ListSection-property-footerTitle\" class=\"docClass\">footerTitle</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "footerTitle",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setFooterTitle",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 92538
+          }
+        ],
+        "shortDoc": "Sets the value of the footerTitle property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setFooterView",
+        "owner": "Titanium.UI.ListSection",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.ListSection-property-footerView\" rel=\"Titanium.UI.ListSection-property-footerView\" class=\"docClass\">footerView</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.View",
+            "name": "footerView",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.View"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setFooterView",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 92569
+          }
+        ],
+        "shortDoc": "Sets the value of the footerView property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setHeaderTitle",
+        "owner": "Titanium.UI.ListSection",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.ListSection-property-headerTitle\" rel=\"Titanium.UI.ListSection-property-headerTitle\" class=\"docClass\">headerTitle</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "headerTitle",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setHeaderTitle",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 92600
+          }
+        ],
+        "shortDoc": "Sets the value of the headerTitle property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setHeaderView",
+        "owner": "Titanium.UI.ListSection",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.ListSection-property-headerView\" rel=\"Titanium.UI.ListSection-property-headerView\" class=\"docClass\">headerView</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.View",
+            "name": "headerView",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.View"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setHeaderView",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 92631
+          }
+        ],
+        "shortDoc": "Sets the value of the headerView property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setItems",
+        "owner": "Titanium.UI.ListSection",
+        "doc": "<p>Sets the data entries in the list section.</p>\n\n\n<p>@description <p>On iOS, the list item(s) can be inserted with an animation by specifying the <code>animation</code> parameter.</p></p>\n",
+        "params": [
+          {
+            "type": "Array<ListDataItem>",
+            "name": "dataItems",
+            "doc": "<p>List items to set.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Array<ListDataItem>"
+          },
+          {
+            "type": "ListViewAnimationProperties",
+            "name": "animation",
+            "doc": "<p>Animation properties. (iOS only.)</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "ListViewAnimationProperties"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setItems",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 92397
+          }
+        ],
+        "shortDoc": "Sets the data entries in the list section. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+            "name": "lifecycleContainer",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.6.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 189
+          }
+        ],
+        "shortDoc": "Sets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "updateItemAt",
+        "owner": "Titanium.UI.ListSection",
+        "doc": "<p>Updates an item at the specified index.</p>\n\n\n<p>@description <p>On iOS, the list item can be updated with an animation by specifying the <code>animation</code> parameter.</p></p>\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "index",
+            "doc": "<p>Index of where to update the item.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "ListDataItem",
+            "name": "dataItem",
+            "doc": "<p>List item to update.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "ListDataItem"
+          },
+          {
+            "type": "ListViewAnimationProperties",
+            "name": "animation",
+            "doc": "<p>Animation properties. (iOS only.)</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "ListViewAnimationProperties"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-updateItemAt",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 92506
+          }
+        ],
+        "shortDoc": "Updates an item at the specified index. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 92342
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+    "Titanium.Proxy"
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

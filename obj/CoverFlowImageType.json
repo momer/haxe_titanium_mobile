@@ -1,0 +1,156 @@
+{
+  "tagname": "class",
+  "name": "CoverFlowImageType",
+  "doc": "<p>@platform android 0.8\n@platform blackberry 3.1.2\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8\n@pseudo @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/UI/iOS/CoverFlowView.yml</p>\n\n<p>Simple object for defining a single image in a cover flow view.</p>\n\n\n<p>@description <p>If supplied, the <code>width</code> and <code>height</code> values must be exact values, not a percentage size.</p></p>\n\n<p>If the size specified is different to the size of the image, the image is cropped and/or scaled\nto fit the specified size.</p>\n\n",
+  "extends": null,
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-CoverFlowImageType",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "height",
+        "owner": "CoverFlowImageType",
+        "type": "Number",
+        "doc": "<p>Display height of the image, in Apple points.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-height",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 137895
+          }
+        ],
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "image",
+        "owner": "CoverFlowImageType",
+        "type": "String/Titanium.Blob/Titanium.Filesystem.File",
+        "doc": "<p>Image to use, as a local file URL, <code>Blob</code>, or <code>File</code>.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-image",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 137853
+          }
+        ],
+        "html_type": "String/Titanium.Blob/Titanium.Filesystem.File",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "width",
+        "owner": "CoverFlowImageType",
+        "type": "Number",
+        "doc": "<p>Display width for the image, in Apple points.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-width",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 137874
+          }
+        ],
+        "html_type": "Number",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 137827
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

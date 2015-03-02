@@ -1,0 +1,110 @@
+{
+  "tagname": "class",
+  "name": "animationOption",
+  "doc": "<p>@platform iphone 0.8\n@platform ipad 0.8\n@pseudo @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/UI/iOS/SplitWindow.yml</p>\n\n<p>Optional parameter for <a href=\"#!/api/Titanium.UI.iOS.SplitWindow-method-setShowMasterInPortrait\" rel=\"Titanium.UI.iOS.SplitWindow-method-setShowMasterInPortrait\" class=\"docClass\">setShowMasterInPortrait</a> and\n<a href=\"#!/api/Titanium.UI.iOS.SplitWindow-method-setMasterIsOverlayed\" rel=\"Titanium.UI.iOS.SplitWindow-method-setMasterIsOverlayed\" class=\"docClass\">setMasterIsOverlayed</a> methods.</p>\n\n\n<p>@description <p>On iOS, use the optional parameter <code>animated</code> to animate changes to masterView display mode in portrait orientation. For example</p></p>\n\n<pre><code>setShowMasterInPortrait(true, {animated:true})\n</code></pre>\n\n",
+  "extends": null,
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-animationOption",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "animated",
+        "owner": "animationOption",
+        "type": "Boolean",
+        "doc": "<p>Determines whether the change is animated.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-animated",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 140338
+          }
+        ],
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 140314
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

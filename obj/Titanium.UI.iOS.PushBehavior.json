@@ -1,0 +1,1154 @@
+{
+  "tagname": "class",
+  "name": "Titanium.UI.iOS.PushBehavior",
+  "doc": "<p>@platform iphone 3.2\n@platform ipad 3.2 @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/UI/iOS/PushBehavior.yml</p>\n\n<p>Continuous or instantaneous force to apply to an item.</p>\n\n\n\n\n<p> <b>Requires:</b>\niOS 7.0 and later\n</p>\n\n\n<p>@description <p>The following APIs are supported on iOS 7 and later.</p></p>\n\n<p>A push behavior configures the continuous or instaneous force to apply to one or more items. To\ndefine a push behavior:</p>\n\n\n\n\n<ol>\n<li>Use the <a href=\"#!/api/Titanium.UI.iOS-method-createPushBehavior\" rel=\"Titanium.UI.iOS-method-createPushBehavior\" class=\"docClass\">Titanium.UI.iOS.createPushBehavior</a> method to create and define the behavior.</li>\n<li>To define a force vector, either set the\n <a href=\"#!/api/Titanium.UI.iOS.PushBehavior-property-angle\" rel=\"Titanium.UI.iOS.PushBehavior-property-angle\" class=\"docClass\">angle</a> and\n <a href=\"#!/api/Titanium.UI.iOS.PushBehavior-property-magnitude\" rel=\"Titanium.UI.iOS.PushBehavior-property-magnitude\" class=\"docClass\">magnitude</a> properties, or set the\n <a href=\"#!/api/Titanium.UI.iOS.PushBehavior-property-pushDirection\" rel=\"Titanium.UI.iOS.PushBehavior-property-pushDirection\" class=\"docClass\">pushDiretion</a> property.</li>\n<li>Use the <a href=\"#!/api/Titanium.UI.iOS.PushBehavior-method-addItem\" rel=\"Titanium.UI.iOS.PushBehavior-method-addItem\" class=\"docClass\">addItem</a> method to add items to the behavior.</li>\n<li>Add the behavior to an <a href=\"#!/api/Titanium.UI.iOS.Animator\" rel=\"Titanium.UI.iOS.Animator\" class=\"docClass\">Animator object</a>.</li>\n</ol>\n\n\n<h3>Examples</h3>\n\n\n<h4>Simple Example</h4>\n\n\n<p>The following example generates a random push force on the block when it stops.</p>\n\n\n\n\n<p><img src=\"images/animator/pushforce.gif\" height=\"455\" style=\"border:1px solid black\"/></p>\n\n\n\n\n<pre><code>var win = Ti.UI.createWindow({backgroundColor: 'white', fullscreen: true});\n\n// Create an Animator object using the window as the coordinate system\nvar animator = Ti.UI.iOS.createAnimator({referenceView: win});\n\nvar block = Ti.UI.createView({\n    width: 100,\n    height: 100,\n    backgroundColor: 'blue',\n    transform: Ti.UI.create2DMatrix({ rotate: 45 })\n});\n\n// Create a default collision behavior, using the window edges as boundaries\nvar collision = Ti.UI.iOS.createCollisionBehavior();\ncollision.addItem(block);\nanimator.addBehavior(collision);\n\n// Push the block down when the application first starts\nvar push = Ti.UI.iOS.createPushBehavior({\n    pushDirection: {x: 0.0, y: 1.0},\n    pushMode: Ti.UI.iOS.PUSH_MODE_INSTANTANEOUS\n});\npush.addItem(block);\nanimator.addBehavior(push);\n\n// Apply a new push behavior when the item stops\nanimator.addEventListener('pause', function(e){\n    push.angle = 2 * Math.PI * Math.random();\n    push.magnitude = Math.random() * 5 + 5;\n    push.active = true;\n});\n\nanimator.addEventListener('resume', function(e){\n    Ti.API.info(JSON.stringify(\n        'push force: ' + push.magnitude * 100 + \" points/s^2 @ \"\n        + (push.angle * 360 / (2 * Math.PI)) + \" degrees\")\n    );\n});\n\n// Start the animation when the window opens\nwin.addEventListener('open', function(e){\n    animator.startAnimator();\n});\n\nwin.add(block);\nwin.open();\n</code></pre>\n\n",
+  "extends": "Titanium.Proxy",
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-Titanium.UI.iOS.PushBehavior",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "active",
+        "owner": "Titanium.UI.iOS.PushBehavior",
+        "type": "Boolean",
+        "doc": "<p>State of the push behavior's force.</p>\n\n\n<p>@description <p>Set to <code>true</code> to activate the force or <code>false</code> to deactivate it.  Use this property rather\nthan removing and re-adding the behavior to the animator.</p></p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-active",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139558
+          }
+        ],
+        "shortDoc": "State of the push behavior's force. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "angle",
+        "owner": "Titanium.UI.iOS.PushBehavior",
+        "type": "Number",
+        "doc": "<p>Specifies the angle of the force vector in radians.</p>\n\n\n<p>@description <p>To configure the force vector, you need to also specify the\n<a href=\"#!/api/Titanium.UI.iOS.PushBehavior-property-magnitude\" rel=\"Titanium.UI.iOS.PushBehavior-property-magnitude\" class=\"docClass\">magnitude</a> property.</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-angle",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139580
+          }
+        ],
+        "shortDoc": "Specifies the angle of the force vector in radians. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "apiName",
+        "owner": "Titanium.Proxy",
+        "type": "String",
+        "doc": "<p>The name of the API that this proxy corresponds to.</p>\n\n\n<p>@description <p>The value of this property is the fully qualified name of the API. For example, <a href=\"#!/api/Titanium.UI.Button\" rel=\"Titanium.UI.Button\" class=\"docClass\">Button</a>\nreturns <code>Ti.UI.Button</code>.</p></p>\n\n<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-apiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 235
+          }
+        ],
+        "shortDoc": "The name of the API that this proxy corresponds to. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "bubbleParent",
+        "owner": "Titanium.Proxy",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the proxy will bubble an event to its parent.</p>\n\n\n<p>@description <p>Some proxies (most commonly views) have a relationship to other proxies, often\nestablished by the add() method. For example, for a button added to a window, a\nclick event on the button would bubble up to the window. Other common parents are\ntable sections to their rows, table views to their sections, and scrollable views\nto their views. Set this property to false to disable the bubbling to the proxy's parent.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-bubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 207
+          }
+        ],
+        "shortDoc": "Indicates if the proxy will bubble an event to its parent. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "items",
+        "owner": "Titanium.UI.iOS.PushBehavior",
+        "type": "Titanium.UI.View[]",
+        "doc": "<p>Items added to this behavior.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-items",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139602
+          }
+        ],
+        "html_type": "Titanium.UI.View[]",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "doc": "<p>The Window or TabGroup whose Activity lifecycle should be triggered on the proxy.</p>\n\n\n<p>@description <p>If this property is set to a Window or TabGroup, then the corresponding Activity lifecycle event callbacks\nwill also be called on the proxy. Proxies that require the activity lifecycle will need this property set\nto the appropriate containing Window or TabGroup.</p></p>\n\n<p>@platform android 3.6.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-lifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 262
+          }
+        ],
+        "shortDoc": "The Window or TabGroup whose Activity lifecycle should be triggered on the proxy. ...",
+        "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "magnitude",
+        "owner": "Titanium.UI.iOS.PushBehavior",
+        "type": "Number",
+        "doc": "<p>Specifies the magnitude of the force vector.</p>\n\n\n<p>@description <p>A value of 1.0 represents an acceleration of 100 points per second squared if the item is\n100 x 100 points with a <code>density</code> of 1.0.</p></p>\n\n<p>To configure the push vector, you need to also specify the\n<a href=\"#!/api/Titanium.UI.iOS.PushBehavior-property-angle\" rel=\"Titanium.UI.iOS.PushBehavior-property-angle\" class=\"docClass\">angle</a> property.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-magnitude",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139623
+          }
+        ],
+        "shortDoc": "Specifies the magnitude of the force vector. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "pushDirection",
+        "owner": "Titanium.UI.iOS.PushBehavior",
+        "type": "Point",
+        "doc": "<p>Specifies the direction of the force vector as an x, y pair.</p>\n\n\n<p>@description <p>For example, specifiying <code>{x: 0.0, y: 1.0}</code> indicates a positive upward force of 100\npoints per second squared if the item is 100 x 100 points with a <code>density</code> of 1.0.</p></p>\n\n<p>Specifiying a negative value reverses the direction of the force.</p>\n\n",
+        "default": "(0,0)",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-pushDirection",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139648
+          }
+        ],
+        "shortDoc": "Specifies the direction of the force vector as an x, y pair. ...",
+        "html_type": "Point",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "pushMode",
+        "owner": "Titanium.UI.iOS.PushBehavior",
+        "type": "Number",
+        "doc": "<p>Specifies the push mode.</p>\n\n\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.UI.iOS-property-PUSH_MODE_CONTINUOUS\" rel=\"Titanium.UI.iOS-property-PUSH_MODE_CONTINUOUS\" class=\"docClass\">Titanium.UI.iOS.PUSH_MODE_CONTINUOUS</a>\n <li> <a href=\"#!/api/Titanium.UI.iOS-property-PUSH_MODE_INSTANTANEOUS\" rel=\"Titanium.UI.iOS-property-PUSH_MODE_INSTANTANEOUS\" class=\"docClass\">Titanium.UI.iOS.PUSH_MODE_INSTANTANEOUS</a>\n</ul></p>\n\n",
+        "default": "{@link Titanium.UI.iOS#property-PUSH_MODE_CONTINUOUS}",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-pushMode",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139672
+          }
+        ],
+        "shortDoc": "Specifies the push mode. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "addEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Adds the specified callback as an event listener for the named event.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to invoke when the event is fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38
+          }
+        ],
+        "shortDoc": "Adds the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "addItem",
+        "owner": "Titanium.UI.iOS.PushBehavior",
+        "doc": "<p>Adds an item to this behavior.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.View",
+            "name": "item",
+            "doc": "<p>View object to add to the behavior.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.View"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addItem",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139373
+          }
+        ],
+        "shortDoc": "Adds an item to this behavior. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "applyProperties",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Applies the properties to the proxy.</p>\n\n\n<p>@description <p>Properties are supplied as a dictionary. Each key-value pair in the object is applied to the proxy such that\nmyproxy[key] = value.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "props",
+            "doc": "<p>A dictionary of properties to apply.</p>\n\n\n<p>@platform android 3.0.0\n@platform blackberry 3.3.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-applyProperties",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 102
+          }
+        ],
+        "shortDoc": "Applies the properties to the proxy. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "fireEvent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Fires a synthesized event to any registered listeners.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Dictionary",
+            "name": "event",
+            "doc": "<p>A dictionary of keys and values to add to the <a href=\"#!/api/Titanium.Event\" rel=\"Titanium.Event\" class=\"docClass\">Titanium.Event</a> object sent to the listeners.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-fireEvent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 85
+          }
+        ],
+        "shortDoc": "Fires a synthesized event to any registered listeners. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getActive",
+        "owner": "Titanium.UI.iOS.PushBehavior",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.iOS.PushBehavior-property-active\" rel=\"Titanium.UI.iOS.PushBehavior-property-active\" class=\"docClass\">active</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getActive",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139403
+          }
+        ],
+        "shortDoc": "Gets the value of the active property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getAngle",
+        "owner": "Titanium.UI.iOS.PushBehavior",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.iOS.PushBehavior-property-angle\" rel=\"Titanium.UI.iOS.PushBehavior-property-angle\" class=\"docClass\">angle</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getAngle",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139431
+          }
+        ],
+        "shortDoc": "Gets the value of the angle property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getApiName",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-apiName\" rel=\"Titanium.Proxy-property-apiName\" class=\"docClass\">apiName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getApiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 157
+          }
+        ],
+        "shortDoc": "Gets the value of the apiName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 123
+          }
+        ],
+        "shortDoc": "Gets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getItems",
+        "owner": "Titanium.UI.iOS.PushBehavior",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.iOS.PushBehavior-property-items\" rel=\"Titanium.UI.iOS.PushBehavior-property-items\" class=\"docClass\">items</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.View[]",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.UI.View[]"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getItems",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139459
+          }
+        ],
+        "shortDoc": "Gets the value of the items property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+          "name": "return",
+          "doc": "<p>@platform android 3.6.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 175
+          }
+        ],
+        "shortDoc": "Gets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getMagnitude",
+        "owner": "Titanium.UI.iOS.PushBehavior",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.iOS.PushBehavior-property-magnitude\" rel=\"Titanium.UI.iOS.PushBehavior-property-magnitude\" class=\"docClass\">magnitude</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getMagnitude",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139472
+          }
+        ],
+        "shortDoc": "Gets the value of the magnitude property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getPushDirection",
+        "owner": "Titanium.UI.iOS.PushBehavior",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.iOS.PushBehavior-property-pushDirection\" rel=\"Titanium.UI.iOS.PushBehavior-property-pushDirection\" class=\"docClass\">pushDirection</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Point",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Point"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getPushDirection",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139500
+          }
+        ],
+        "shortDoc": "Gets the value of the pushDirection property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getPushMode",
+        "owner": "Titanium.UI.iOS.PushBehavior",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.iOS.PushBehavior-property-pushMode\" rel=\"Titanium.UI.iOS.PushBehavior-property-pushMode\" class=\"docClass\">pushMode</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getPushMode",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139528
+          }
+        ],
+        "shortDoc": "Gets the value of the pushMode property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Removes the specified callback as an event listener for the named event.</p>\n\n\n<p>@description <p>Multiple listeners can be registered for the same event, so the\n<code>callback</code> parameter is used to determine which listener to remove. </p></p>\n\n<p>When adding a listener, you must save a reference to the callback function\nin order to remove the listener later:</p>\n\n\n\n\n<pre><code>var listener = function() { Ti.API.info(\"Event listener called.\"); }\nwindow.addEventListener('click', listener);\n</code></pre>\n\n\n\n\n<p>To remove the listener, pass in a reference to the callback function:</p>\n\n\n\n\n<pre><code>window.removeEventListener('click', listener);\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to remove. Must be the same function passed to <code>addEventListener</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 55
+          }
+        ],
+        "shortDoc": "Removes the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeItem",
+        "owner": "Titanium.UI.iOS.PushBehavior",
+        "doc": "<p>Removes the specified item from this behavior.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.View",
+            "name": "item",
+            "doc": "<p>Item to remove.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.View"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeItem",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139388
+          }
+        ],
+        "shortDoc": "Removes the specified item from this behavior. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setActive",
+        "owner": "Titanium.UI.iOS.PushBehavior",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.iOS.PushBehavior-property-active\" rel=\"Titanium.UI.iOS.PushBehavior-property-active\" class=\"docClass\">active</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "active",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setActive",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139416
+          }
+        ],
+        "shortDoc": "Sets the value of the active property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setAngle",
+        "owner": "Titanium.UI.iOS.PushBehavior",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.iOS.PushBehavior-property-angle\" rel=\"Titanium.UI.iOS.PushBehavior-property-angle\" class=\"docClass\">angle</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "angle",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setAngle",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139444
+          }
+        ],
+        "shortDoc": "Sets the value of the angle property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "bubbleParent",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139
+          }
+        ],
+        "shortDoc": "Sets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+            "name": "lifecycleContainer",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.6.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 189
+          }
+        ],
+        "shortDoc": "Sets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setMagnitude",
+        "owner": "Titanium.UI.iOS.PushBehavior",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.iOS.PushBehavior-property-magnitude\" rel=\"Titanium.UI.iOS.PushBehavior-property-magnitude\" class=\"docClass\">magnitude</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "magnitude",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setMagnitude",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139485
+          }
+        ],
+        "shortDoc": "Sets the value of the magnitude property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setPushDirection",
+        "owner": "Titanium.UI.iOS.PushBehavior",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.iOS.PushBehavior-property-pushDirection\" rel=\"Titanium.UI.iOS.PushBehavior-property-pushDirection\" class=\"docClass\">pushDirection</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Point",
+            "name": "pushDirection",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Point"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setPushDirection",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139513
+          }
+        ],
+        "shortDoc": "Sets the value of the pushDirection property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setPushMode",
+        "owner": "Titanium.UI.iOS.PushBehavior",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.iOS.PushBehavior-property-pushMode\" rel=\"Titanium.UI.iOS.PushBehavior-property-pushMode\" class=\"docClass\">pushMode</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "pushMode",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setPushMode",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139541
+          }
+        ],
+        "shortDoc": "Sets the value of the pushMode property. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 139287
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+    "Titanium.Proxy"
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

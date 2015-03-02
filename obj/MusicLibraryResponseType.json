@@ -1,0 +1,157 @@
+{
+  "tagname": "class",
+  "name": "MusicLibraryResponseType",
+  "doc": "<p>@platform android 0.8\n@platform blackberry 3.1.2\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8\n@pseudo @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/Media/Media.yml</p>\n\n<p>Simple object passed to the <a href=\"#!/api/Titanium.Media-method-openMusicLibrary\" rel=\"Titanium.Media-method-openMusicLibrary\" class=\"docClass\">openMusicLibrary</a>\n<code>success</code> callback function.</p>\n\n",
+  "extends": null,
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-MusicLibraryResponseType",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "items",
+        "owner": "MusicLibraryResponseType",
+        "type": "Titanium.Media.Item[]",
+        "doc": "<p>A list of all the items chosen by the user.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-items",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 61417
+          }
+        ],
+        "html_type": "Titanium.Media.Item[]",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "representative",
+        "owner": "MusicLibraryResponseType",
+        "type": "Titanium.Media.Item",
+        "doc": "<p>A single representative of the selected items.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-representative",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 61396
+          }
+        ],
+        "html_type": "Titanium.Media.Item",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "types",
+        "owner": "MusicLibraryResponseType",
+        "type": "Number",
+        "doc": "<p>Media types in this collection, represented as the bitwise OR of the media type\nvalues for all media types represented in <code>items</code>.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-types",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 61438
+          }
+        ],
+        "shortDoc": "Media types in this collection, represented as the bitwise OR of the media type\nvalues for all media types represente...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 61372
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

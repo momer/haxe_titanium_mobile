@@ -1,0 +1,937 @@
+{
+  "tagname": "class",
+  "name": "Titanium.Map",
+  "doc": "<p>@platform android 0.8\n@platform blackberry 3.1.2\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8 @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/Map/Map.yml</p>\n\n<p>The top level Map module.  The Map module is used for creating in-application native maps.</p>\n\n",
+  "extends": "Titanium.Module",
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+    "deprecated": {
+      "text": "3.2.0 For new Android applications or to use Google Maps v2, use the [ti.map add-on module](Modules.Map).\n\nFor the iOS platform, use the [ti.map add-on module](Modules.Map). Support for the `Titanium.Map` module\non iOS was removed in Release 3.2.0.\n\nFor all other platforms, continue to use this module.\n\n\n@description <h4>Android Platform Notes</h4>\n\n<p>This module provides native map support using Google Maps API v1. As of March 3, 2013,\nGoogle is no longer issuing Google Maps API v1 keys and this module can no longer be used to\nsupport native maps on Android unless you have these keys.</p>\n\n<p>For new Android applications, use the <a href=\"Modules.Map\">ti.map add-on module</a>\nto add native maps support for your application. If you have an application that still uses the old keys,\nyou can either transition to the new module or continue using the built-in Titanium.Maps module.</p>\n\n<h4>iOS Platform Notes</h4>\n\n<p>Since Release 3.2.0, support for this module was removed. Use the <a href=\"Modules.Map\">ti.map add-on module</a>.</p>\n<h3>Examples</h3>\n<h4>Map Example</h4>\n<p>This is a basic map example that places a custom annotation on the map, and\nlistens for click events on the annotation. </p>\n\n<p>In this example, a custom property (<code>myid</code>) is added to the annotation object.\nWhile adding custom members to a Titanium object is not generally recommended,\nin this case it provides a mechanism for uniquely identifying an annotation. This\ncan be useful, for example, if the annotations are dynamically generated\nand it is not practical to identify them by title.</p>\n\n<pre><code>var win = Titanium.UI.createWindow();\n\nvar mountainView = Titanium.Map.createAnnotation({\n    latitude:37.390749,\n    longitude:-122.081651,\n    title:\"Appcelerator Headquarters\",\n    subtitle:'Mountain View, CA',\n    pincolor:Titanium.Map.ANNOTATION_RED,\n    animate:true,\n    leftButton: '../images/appcelerator_small.png',\n    myid:1 // Custom property to uniquely identify this annotation.\n});\n\nvar mapview = Titanium.Map.createView({\n    mapType: Titanium.Map.STANDARD_TYPE,\n    region: {latitude:37.390749, longitude:-122.081651,\n             latitudeDelta:0.01, longitudeDelta:0.01},\n    animate:true,\n    regionFit:true,\n    userLocation:true,\n    annotations:[mountainView]\n});\n\nwin.add(mapview);\n// Handle click events on any annotations on this map.\nmapview.addEventListener('click', function(evt) {\n\n    Ti.API.info(\"Annotation \" + evt.title + \" clicked, id: \" + evt.annotation.myid);\n\n    // Check for all of the possible names that clicksouce\n    // can report for the left button/view.\n    if (evt.clicksource == 'leftButton' || evt.clicksource == 'leftPane' ||\n        evt.clicksource == 'leftView') {\n        Ti.API.info(\"Annotation \" + evt.title + \", left button clicked.\");\n    }\n});\nwin.open();\n\n// For the iOS platform, wait for the complete event to ensure the region is set\nif (Ti.Platform.name == 'iPhone OS') {\n    mapview.addEventListener('complete', function(evt){\n        mapview.region = {\n            latitude:37.390749, longitude:-122.081651,\n            latitudeDelta:0.01, longitudeDelta:0.01\n        };\n    });\n}\n</code></pre><h4>Alloy XML Markup</h4>\n<p>Previous example as an Alloy view.</p>\n\n<p>index.xml:</p>\n\n<pre><code>&lt;Alloy&gt;\n    &lt;Window id=\"win\"&gt;\n\n        &lt;!-- Note the ns attribute is used to change the default namespace. --&gt;\n        &lt;View id=\"mapview\" ns=\"Ti.Map\" onClick=\"doClick\" onComplete=\"setRegion\"\n            animate=\"true\" regionFit=\"true\" userLocation=\"true\"\n            mapType=\"Ti.Map.STANDARD_TYPE\" &gt;\n\n            &lt;Annotation id=\"mountainView\"\n              latitude=\"37.390749\" longitude=\"-122.081651\"\n              title=\"Appcelerator Headquarters\" subtitle=\"Mountain View, CA\"\n              pincolor=\"Titanium.Map.ANNOTATION_RED\"\n              leftButton=\"/images/appcelerator_small.png\"\n              myid=\"1\"/&gt;\n\n            &lt;!-- Place other child views here, such as an ImageView to add an overlay. --&gt;\n\n        &lt;/View&gt;\n    &lt;/Window&gt;\n&lt;/Alloy&gt;\n</code></pre>\n\n<p>index.js:</p>\n\n<pre><code>function doClick(evt){\n    Ti.API.info(\"Annotation \" + evt.title + \" clicked, id: \" + evt.annotation.myid);\n\n    // Check for all of the possible names that clicksouce\n    // can report for the left button/view.\n    if (evt.clicksource == 'leftButton' || evt.clicksource == 'leftPane' ||\n        evt.clicksource == 'leftView') {\n        Ti.API.info(\"Annotation \" + evt.title + \", left button clicked.\");\n    }\n};\n\nfunction setRegion(evt) {\n    // For the iOS platform, wait for the complete event to ensure the region is set\n    if (OS_IOS) {\n        $.mapview.region = {\n            latitude:37.390749, longitude:-122.081651,\n            latitudeDelta:0.01, longitudeDelta:0.01\n        };\n    }\n}\n\n// These parameters can also be defined in the TSS file.\n$.mapview.annotations = [$.mountainView];\n$.mapview.region = {latitude:37.390749, longitude:-122.081651, latitudeDelta:0.01, longitudeDelta:0.01};\n\n$.win.open\n</code></pre>"
+    }
+  },
+  "id": "class-Titanium.Map",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "ANNOTATION_DRAG_STATE_CANCEL",
+        "owner": "Titanium.Map",
+        "type": "Number",
+        "doc": "<p>Used in the <a href=\"#!/api/Titanium.Map.View-event-pinchangedragstate\" rel=\"Titanium.Map.View-event-pinchangedragstate\" class=\"docClass\">pinchangedragstate</a> event\nto indicate that the user canceled the drag action.</p>\n\n\n<p>@platform iphone 2.1.0\n@platform ipad 2.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ANNOTATION_DRAG_STATE_CANCEL",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 52562
+          }
+        ],
+        "shortDoc": "Used in the pinchangedragstate event\nto indicate that the user canceled the drag action. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ANNOTATION_DRAG_STATE_DRAG",
+        "owner": "Titanium.Map",
+        "type": "Number",
+        "doc": "<p>Used in the <a href=\"#!/api/Titanium.Map.View-event-pinchangedragstate\" rel=\"Titanium.Map.View-event-pinchangedragstate\" class=\"docClass\">pinchangedragstate</a> event\nto indicate that the user moved the annotation.</p>\n\n\n<p>@platform iphone 2.1.0\n@platform ipad 2.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ANNOTATION_DRAG_STATE_DRAG",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 52538
+          }
+        ],
+        "shortDoc": "Used in the pinchangedragstate event\nto indicate that the user moved the annotation. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ANNOTATION_DRAG_STATE_END",
+        "owner": "Titanium.Map",
+        "type": "Number",
+        "doc": "<p>Used in the <a href=\"#!/api/Titanium.Map.View-event-pinchangedragstate\" rel=\"Titanium.Map.View-event-pinchangedragstate\" class=\"docClass\">pinchangedragstate</a> event\nto indicate that the user finished moving the annotation.</p>\n\n\n<p>@platform iphone 2.1.0\n@platform ipad 2.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ANNOTATION_DRAG_STATE_END",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 52586
+          }
+        ],
+        "shortDoc": "Used in the pinchangedragstate event\nto indicate that the user finished moving the annotation. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ANNOTATION_DRAG_STATE_NONE",
+        "owner": "Titanium.Map",
+        "type": "Number",
+        "doc": "<p>Used in the <a href=\"#!/api/Titanium.Map.View-event-pinchangedragstate\" rel=\"Titanium.Map.View-event-pinchangedragstate\" class=\"docClass\">pinchangedragstate</a> event\nto indicate that the annotation is not being dragged.</p>\n\n\n<p>@platform iphone 2.1.0\n@platform ipad 2.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ANNOTATION_DRAG_STATE_NONE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 52490
+          }
+        ],
+        "shortDoc": "Used in the pinchangedragstate event\nto indicate that the annotation is not being dragged. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ANNOTATION_DRAG_STATE_START",
+        "owner": "Titanium.Map",
+        "type": "Number",
+        "doc": "<p>Used in the <a href=\"#!/api/Titanium.Map.View-event-pinchangedragstate\" rel=\"Titanium.Map.View-event-pinchangedragstate\" class=\"docClass\">pinchangedragstate</a> event\nto indicate that the user started dragging the annotation.</p>\n\n\n<p>@platform iphone 2.1.0\n@platform ipad 2.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ANNOTATION_DRAG_STATE_START",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 52514
+          }
+        ],
+        "shortDoc": "Used in the pinchangedragstate event\nto indicate that the user started dragging the annotation. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ANNOTATION_GREEN",
+        "owner": "Titanium.Map",
+        "type": "Number",
+        "doc": "<p>Color constant used to set a map annotation to green via the\n<a href=\"#!/api/Titanium.Map.Annotation-property-pincolor\" rel=\"Titanium.Map.Annotation-property-pincolor\" class=\"docClass\">Titanium.Map.Annotation.pincolor</a> property.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ANNOTATION_GREEN",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 52610
+          }
+        ],
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ANNOTATION_PURPLE",
+        "owner": "Titanium.Map",
+        "type": "Number",
+        "doc": "<p>Color constant used to set a map annotation to purple via the\n<a href=\"#!/api/Titanium.Map.Annotation-property-pincolor\" rel=\"Titanium.Map.Annotation-property-pincolor\" class=\"docClass\">Titanium.Map.Annotation.pincolor</a> property.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ANNOTATION_PURPLE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 52632
+          }
+        ],
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ANNOTATION_RED",
+        "owner": "Titanium.Map",
+        "type": "Number",
+        "doc": "<p>Color constant used to set a map annotation to red via the\n<a href=\"#!/api/Titanium.Map.Annotation-property-pincolor\" rel=\"Titanium.Map.Annotation-property-pincolor\" class=\"docClass\">Titanium.Map.Annotation.pincolor</a> property.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ANNOTATION_RED",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 52654
+          }
+        ],
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "HYBRID_TYPE",
+        "owner": "Titanium.Map",
+        "type": "Number",
+        "doc": "<p>Used with <a href=\"#!/api/Titanium.Map.View-property-mapType\" rel=\"Titanium.Map.View-property-mapType\" class=\"docClass\">mapType</a> to display a satellite image of the area with road and road name information layered on top.</p>\n\n\n<p>@description <p>On Android, <code>HYBRID_TYPE</code> produces a road map that looks like\n<a href=\"#!/api/Titanium.Map-property-STANDARD_TYPE\" rel=\"Titanium.Map-property-STANDARD_TYPE\" class=\"docClass\">STANDARD_TYPE</a>, and does not include a satellite\nimage. This is a known issue\n(<a href=\"https://jira.appcelerator.org/browse/TIMOB-9673\">TIMOB-9673</a>).</p></p>\n\n<p>Use <a href=\"#!/api/Titanium.Map-property-SATELLITE_TYPE\" rel=\"Titanium.Map-property-SATELLITE_TYPE\" class=\"docClass\">SATELLITE_TYPE</a> to specify a hybrid-type map on\nAndroid.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-HYBRID_TYPE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 52676
+          }
+        ],
+        "shortDoc": "Used with mapType to display a satellite image of the area with road and road name information layered on top. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "SATELLITE_TYPE",
+        "owner": "Titanium.Map",
+        "type": "Number",
+        "doc": "<p>Used with <a href=\"#!/api/Titanium.Map.View-property-mapType\" rel=\"Titanium.Map.View-property-mapType\" class=\"docClass\">mapType</a> to display satellite imagery of the area.</p>\n\n\n<p>@description <p>The Android Google Maps API does not support displaying satellite imagery\n<em>without</em> roads and names, so specifying <code>SATELLITE_TYPE</code> on Android produces\nthe same results as <a href=\"#!/api/Titanium.Map-property-HYBRID_TYPE\" rel=\"Titanium.Map-property-HYBRID_TYPE\" class=\"docClass\">HYBRID_TYPE</a> on other platforms.</p></p>\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-SATELLITE_TYPE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 52707
+          }
+        ],
+        "shortDoc": "Used with mapType to display satellite imagery of the area. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "STANDARD_TYPE",
+        "owner": "Titanium.Map",
+        "type": "Number",
+        "doc": "<p>Used with <a href=\"#!/api/Titanium.Map.View-property-mapType\" rel=\"Titanium.Map.View-property-mapType\" class=\"docClass\">mapType</a> to display a street map that shows the position of all roads and some road names.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-STANDARD_TYPE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 52734
+          }
+        ],
+        "shortDoc": "Used with mapType to display a street map that shows the position of all roads and some road names. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "TERRAIN_TYPE",
+        "owner": "Titanium.Map",
+        "type": "Number",
+        "doc": "<p>Used with <a href=\"#!/api/Titanium.Map.View-property-mapType\" rel=\"Titanium.Map.View-property-mapType\" class=\"docClass\">mapType</a> to display the terrain that shows the position of all roads and some road names.</p>\n\n\n<p>@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-TERRAIN_TYPE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 52759
+          }
+        ],
+        "shortDoc": "Used with mapType to display the terrain that shows the position of all roads and some road names. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "apiName",
+        "owner": "Titanium.Proxy",
+        "type": "String",
+        "doc": "<p>The name of the API that this proxy corresponds to.</p>\n\n\n<p>@description <p>The value of this property is the fully qualified name of the API. For example, <a href=\"#!/api/Titanium.UI.Button\" rel=\"Titanium.UI.Button\" class=\"docClass\">Button</a>\nreturns <code>Ti.UI.Button</code>.</p></p>\n\n<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-apiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 235
+          }
+        ],
+        "shortDoc": "The name of the API that this proxy corresponds to. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "bubbleParent",
+        "owner": "Titanium.Proxy",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the proxy will bubble an event to its parent.</p>\n\n\n<p>@description <p>Some proxies (most commonly views) have a relationship to other proxies, often\nestablished by the add() method. For example, for a button added to a window, a\nclick event on the button would bubble up to the window. Other common parents are\ntable sections to their rows, table views to their sections, and scrollable views\nto their views. Set this property to false to disable the bubbling to the proxy's parent.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-bubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 207
+          }
+        ],
+        "shortDoc": "Indicates if the proxy will bubble an event to its parent. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "doc": "<p>The Window or TabGroup whose Activity lifecycle should be triggered on the proxy.</p>\n\n\n<p>@description <p>If this property is set to a Window or TabGroup, then the corresponding Activity lifecycle event callbacks\nwill also be called on the proxy. Proxies that require the activity lifecycle will need this property set\nto the appropriate containing Window or TabGroup.</p></p>\n\n<p>@platform android 3.6.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-lifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 262
+          }
+        ],
+        "shortDoc": "The Window or TabGroup whose Activity lifecycle should be triggered on the proxy. ...",
+        "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "addEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Adds the specified callback as an event listener for the named event.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to invoke when the event is fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38
+          }
+        ],
+        "shortDoc": "Adds the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "applyProperties",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Applies the properties to the proxy.</p>\n\n\n<p>@description <p>Properties are supplied as a dictionary. Each key-value pair in the object is applied to the proxy such that\nmyproxy[key] = value.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "props",
+            "doc": "<p>A dictionary of properties to apply.</p>\n\n\n<p>@platform android 3.0.0\n@platform blackberry 3.3.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-applyProperties",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 102
+          }
+        ],
+        "shortDoc": "Applies the properties to the proxy. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "createAnnotation",
+        "owner": "Titanium.Map",
+        "doc": "<p>Creates and returns an instance of <a href=\"#!/api/Titanium.Map.Annotation\" rel=\"Titanium.Map.Annotation\" class=\"docClass\">Titanium.Map.Annotation</a>.</p>\n\n",
+        "params": [
+          {
+            "type": "Dictionary<Titanium.Map.Annotation>",
+            "name": "parameters",
+            "doc": "<p>Properties to set on a new object, including any defined by <a href=\"#!/api/Titanium.Map.Annotation\" rel=\"Titanium.Map.Annotation\" class=\"docClass\">Titanium.Map.Annotation</a> except those marked not-creation or read-only.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary<Titanium.Map.Annotation>"
+          }
+        ],
+        "return": {
+          "type": "Titanium.Map.Annotation",
+          "name": "return",
+          "doc": "<p>@platform android 0.9\n@platform blackberry 3.1.2\n@platform iphone 0.9\n@platform ipad 0.9\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Titanium.Map.Annotation"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "deprecated": {
+            "text": "3.2.0 For new Android applications or to use Google Maps v2, use the [ti.map add-on module](Modules.Map).\n\nFor the iOS platform, use the [ti.map add-on module](Modules.Map). Support for the\n`Titanium.Map` module on iOS was removed in Release 3.2.0.\n\nFor all other platforms, continue to use this module."
+          }
+        },
+        "id": "method-createAnnotation",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 52441
+          }
+        ],
+        "shortDoc": "Creates and returns an instance of Titanium.Map.Annotation. ...",
+        "html_meta": {
+          "deprecated": "        <div class='signature-box deprecated'>\n        <p>This method has been <strong>deprecated</strong> </p>\n        <p>3.2.0 For new Android applications or to use Google Maps v2, use the <a href=\"Modules.Map\">ti.map add-on module</a>.</p>\n\n<p>For the iOS platform, use the <a href=\"Modules.Map\">ti.map add-on module</a>. Support for the\n<code><a href=\"#!/api/Titanium.Map\" rel=\"Titanium.Map\" class=\"docClass\">Titanium.Map</a></code> module on iOS was removed in Release 3.2.0.</p>\n\n<p>For all other platforms, continue to use this module.</p>\n\n        </div>\n"
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "createView",
+        "owner": "Titanium.Map",
+        "doc": "<p>Creates and returns an instance of <a href=\"#!/api/Titanium.Map.View\" rel=\"Titanium.Map.View\" class=\"docClass\">Titanium.Map.View</a>.</p>\n\n",
+        "params": [
+          {
+            "type": "Dictionary<Titanium.Map.View>",
+            "name": "parameters",
+            "doc": "<p>Properties to set on a new object, including any defined by <a href=\"#!/api/Titanium.Map.View\" rel=\"Titanium.Map.View\" class=\"docClass\">Titanium.Map.View</a> except those marked not-creation or read-only.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary<Titanium.Map.View>"
+          }
+        ],
+        "return": {
+          "type": "Titanium.Map.View",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.Map.View"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "deprecated": {
+            "text": "3.2.0 For new Android applications or to use Google Maps v2, use the [ti.map add-on module](Modules.Map).\n\nFor the iOS platform, use the [ti.map add-on module](Modules.Map). Support for the\n`Titanium.Map` module on iOS was removed in Release 3.2.0.\n\nFor all other platforms, continue to use this module."
+          }
+        },
+        "id": "method-createView",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 52467
+          }
+        ],
+        "shortDoc": "Creates and returns an instance of Titanium.Map.View. ...",
+        "html_meta": {
+          "deprecated": "        <div class='signature-box deprecated'>\n        <p>This method has been <strong>deprecated</strong> </p>\n        <p>3.2.0 For new Android applications or to use Google Maps v2, use the <a href=\"Modules.Map\">ti.map add-on module</a>.</p>\n\n<p>For the iOS platform, use the <a href=\"Modules.Map\">ti.map add-on module</a>. Support for the\n<code><a href=\"#!/api/Titanium.Map\" rel=\"Titanium.Map\" class=\"docClass\">Titanium.Map</a></code> module on iOS was removed in Release 3.2.0.</p>\n\n<p>For all other platforms, continue to use this module.</p>\n\n        </div>\n"
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "fireEvent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Fires a synthesized event to any registered listeners.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Dictionary",
+            "name": "event",
+            "doc": "<p>A dictionary of keys and values to add to the <a href=\"#!/api/Titanium.Event\" rel=\"Titanium.Event\" class=\"docClass\">Titanium.Event</a> object sent to the listeners.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-fireEvent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 85
+          }
+        ],
+        "shortDoc": "Fires a synthesized event to any registered listeners. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getApiName",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-apiName\" rel=\"Titanium.Proxy-property-apiName\" class=\"docClass\">apiName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getApiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 157
+          }
+        ],
+        "shortDoc": "Gets the value of the apiName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 123
+          }
+        ],
+        "shortDoc": "Gets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+          "name": "return",
+          "doc": "<p>@platform android 3.6.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 175
+          }
+        ],
+        "shortDoc": "Gets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Removes the specified callback as an event listener for the named event.</p>\n\n\n<p>@description <p>Multiple listeners can be registered for the same event, so the\n<code>callback</code> parameter is used to determine which listener to remove. </p></p>\n\n<p>When adding a listener, you must save a reference to the callback function\nin order to remove the listener later:</p>\n\n\n\n\n<pre><code>var listener = function() { Ti.API.info(\"Event listener called.\"); }\nwindow.addEventListener('click', listener);\n</code></pre>\n\n\n\n\n<p>To remove the listener, pass in a reference to the callback function:</p>\n\n\n\n\n<pre><code>window.removeEventListener('click', listener);\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to remove. Must be the same function passed to <code>addEventListener</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 55
+          }
+        ],
+        "shortDoc": "Removes the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "bubbleParent",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139
+          }
+        ],
+        "shortDoc": "Sets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+            "name": "lifecycleContainer",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.6.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 189
+          }
+        ],
+        "shortDoc": "Sets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 52289
+    }
+  ],
+  "html_meta": {
+    "deprecated": "        <div class='signature-box deprecated'>\n        <p>This class has been <strong>deprecated</strong> </p>\n        <p>3.2.0 For new Android applications or to use Google Maps v2, use the <a href=\"Modules.Map\">ti.map add-on module</a>.</p>\n\n<p>For the iOS platform, use the <a href=\"Modules.Map\">ti.map add-on module</a>. Support for the <code><a href=\"#!/api/Titanium.Map\" rel=\"Titanium.Map\" class=\"docClass\">Titanium.Map</a></code> module\non iOS was removed in Release 3.2.0.</p>\n\n<p>For all other platforms, continue to use this module.</p>\n\n<p>@description <h4>Android Platform Notes</h4></p>\n\n<p>This module provides native map support using Google Maps API v1. As of March 3, 2013,\nGoogle is no longer issuing Google Maps API v1 keys and this module can no longer be used to\nsupport native maps on Android unless you have these keys.</p>\n\n\n\n\n<p>For new Android applications, use the <a href=\"Modules.Map\">ti.map add-on module</a>\nto add native maps support for your application. If you have an application that still uses the old keys,\nyou can either transition to the new module or continue using the built-in Titanium.Maps module.</p>\n\n\n\n\n<h4>iOS Platform Notes</h4>\n\n\n\n\n<p>Since Release 3.2.0, support for this module was removed. Use the <a href=\"Modules.Map\">ti.map add-on module</a>.</p>\n\n\n<h3>Examples</h3>\n\n\n<h4>Map Example</h4>\n\n\n<p>This is a basic map example that places a custom annotation on the map, and\nlistens for click events on the annotation. </p>\n\n\n\n\n<p>In this example, a custom property (<code>myid</code>) is added to the annotation object.\nWhile adding custom members to a Titanium object is not generally recommended,\nin this case it provides a mechanism for uniquely identifying an annotation. This\ncan be useful, for example, if the annotations are dynamically generated\nand it is not practical to identify them by title.</p>\n\n\n\n\n<pre><code>var win = <a href=\"#!/api/Titanium.UI-method-createWindow\" rel=\"Titanium.UI-method-createWindow\" class=\"docClass\">Titanium.UI.createWindow</a>();\n\nvar mountainView = <a href=\"#!/api/Titanium.Map-method-createAnnotation\" rel=\"Titanium.Map-method-createAnnotation\" class=\"docClass\">Titanium.Map.createAnnotation</a>({\n    latitude:37.390749,\n    longitude:-122.081651,\n    title:\"Appcelerator Headquarters\",\n    subtitle:'Mountain View, CA',\n    pincolor:<a href=\"#!/api/Titanium.Map\" rel=\"Titanium.Map\" class=\"docClass\">Titanium.Map</a>.ANNOTATION_RED,\n    animate:true,\n    leftButton: '../images/appcelerator_small.png',\n    myid:1 // Custom property to uniquely identify this annotation.\n});\n\nvar mapview = <a href=\"#!/api/Titanium.Map-method-createView\" rel=\"Titanium.Map-method-createView\" class=\"docClass\">Titanium.Map.createView</a>({\n    mapType: <a href=\"#!/api/Titanium.Map\" rel=\"Titanium.Map\" class=\"docClass\">Titanium.Map</a>.STANDARD_TYPE,\n    region: {latitude:37.390749, longitude:-122.081651,\n             latitudeDelta:0.01, longitudeDelta:0.01},\n    animate:true,\n    regionFit:true,\n    userLocation:true,\n    annotations:[mountainView]\n});\n\nwin.add(mapview);\n// Handle click events on any annotations on this map.\nmapview.addEventListener('click', function(evt) {\n\n    Ti.API.info(\"Annotation \" + evt.title + \" clicked, id: \" + evt.annotation.myid);\n\n    // Check for all of the possible names that clicksouce\n    // can report for the left button/view.\n    if (evt.clicksource == 'leftButton' || evt.clicksource == 'leftPane' ||\n        evt.clicksource == 'leftView') {\n        Ti.API.info(\"Annotation \" + evt.title + \", left button clicked.\");\n    }\n});\nwin.open();\n\n// For the iOS platform, wait for the complete event to ensure the region is set\nif (Ti.Platform.name == 'iPhone OS') {\n    mapview.addEventListener('complete', function(evt){\n        mapview.region = {\n            latitude:37.390749, longitude:-122.081651,\n            latitudeDelta:0.01, longitudeDelta:0.01\n        };\n    });\n}\n</code></pre>\n\n\n<h4>Alloy XML Markup</h4>\n\n\n<p>Previous example as an Alloy view.</p>\n\n\n\n\n<p>index.xml:</p>\n\n\n\n\n<pre><code>&lt;Alloy&gt;\n    &lt;Window id=\"win\"&gt;\n\n        &lt;!-- Note the ns attribute is used to change the default namespace. --&gt;\n        &lt;View id=\"mapview\" ns=\"Ti.Map\" onClick=\"doClick\" onComplete=\"setRegion\"\n            animate=\"true\" regionFit=\"true\" userLocation=\"true\"\n            mapType=\"Ti.Map.STANDARD_TYPE\" &gt;\n\n            &lt;Annotation id=\"mountainView\"\n              latitude=\"37.390749\" longitude=\"-122.081651\"\n              title=\"Appcelerator Headquarters\" subtitle=\"Mountain View, CA\"\n              pincolor=\"<a href=\"#!/api/Titanium.Map\" rel=\"Titanium.Map\" class=\"docClass\">Titanium.Map</a>.ANNOTATION_RED\"\n              leftButton=\"/images/appcelerator_small.png\"\n              myid=\"1\"/&gt;\n\n            &lt;!-- Place other child views here, such as an ImageView to add an overlay. --&gt;\n\n        &lt;/View&gt;\n    &lt;/Window&gt;\n&lt;/Alloy&gt;\n</code></pre>\n\n\n\n\n<p>index.js:</p>\n\n\n\n\n<pre><code>function doClick(evt){\n    Ti.API.info(\"Annotation \" + evt.title + \" clicked, id: \" + evt.annotation.myid);\n\n    // Check for all of the possible names that clicksouce\n    // can report for the left button/view.\n    if (evt.clicksource == 'leftButton' || evt.clicksource == 'leftPane' ||\n        evt.clicksource == 'leftView') {\n        Ti.API.info(\"Annotation \" + evt.title + \", left button clicked.\");\n    }\n};\n\nfunction setRegion(evt) {\n    // For the iOS platform, wait for the complete event to ensure the region is set\n    if (OS_IOS) {\n        $.mapview.region = {\n            latitude:37.390749, longitude:-122.081651,\n            latitudeDelta:0.01, longitudeDelta:0.01\n        };\n    }\n}\n\n// These parameters can also be defined in the TSS file.\n$.mapview.annotations = [$.mountainView];\n$.mapview.region = {latitude:37.390749, longitude:-122.081651, latitudeDelta:0.01, longitudeDelta:0.01};\n\n$.win.open\n</code></pre>\n\n\n        </div>\n"
+  },
+  "component": false,
+  "superclasses": [
+    "Titanium.Proxy",
+    "Titanium.Module"
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

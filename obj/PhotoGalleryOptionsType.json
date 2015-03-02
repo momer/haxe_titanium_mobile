@@ -1,0 +1,300 @@
+{
+  "tagname": "class",
+  "name": "PhotoGalleryOptionsType",
+  "doc": "<p>@platform android 0.8\n@platform blackberry 3.1.2\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8\n@pseudo @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/Media/Media.yml</p>\n\n<p>Simple object for specifying options to\n<a href=\"#!/api/Titanium.Media-method-openPhotoGallery\" rel=\"Titanium.Media-method-openPhotoGallery\" class=\"docClass\">openPhotoGallery</a>.</p>\n\n",
+  "extends": null,
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-PhotoGalleryOptionsType",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "allowEditing",
+        "owner": "PhotoGalleryOptionsType",
+        "type": "Boolean",
+        "doc": "<p>Specifies if the media should be editable after capture/selection.</p>\n\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-allowEditing",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 62317
+          }
+        ],
+        "shortDoc": "Specifies if the media should be editable after capture/selection. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "animated",
+        "owner": "PhotoGalleryOptionsType",
+        "type": "Boolean",
+        "doc": "<p>Specifies if the dialog should be animated upon showing and hiding.</p>\n\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-animated",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 62294
+          }
+        ],
+        "shortDoc": "Specifies if the dialog should be animated upon showing and hiding. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "arrowDirection",
+        "owner": "PhotoGalleryOptionsType",
+        "type": "Number",
+        "doc": "<p>Controls the type of arrow and position of the popover.</p>\n\n\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.UI.iPad-property-POPOVER_ARROW_DIRECTION_ANY\" rel=\"Titanium.UI.iPad-property-POPOVER_ARROW_DIRECTION_ANY\" class=\"docClass\">Titanium.UI.iPad.POPOVER_ARROW_DIRECTION_ANY</a>\n <li> <a href=\"#!/api/Titanium.UI.iPad-property-POPOVER_ARROW_DIRECTION_DOWN\" rel=\"Titanium.UI.iPad-property-POPOVER_ARROW_DIRECTION_DOWN\" class=\"docClass\">Titanium.UI.iPad.POPOVER_ARROW_DIRECTION_DOWN</a>\n <li> <a href=\"#!/api/Titanium.UI.iPad-property-POPOVER_ARROW_DIRECTION_LEFT\" rel=\"Titanium.UI.iPad-property-POPOVER_ARROW_DIRECTION_LEFT\" class=\"docClass\">Titanium.UI.iPad.POPOVER_ARROW_DIRECTION_LEFT</a>\n <li> <a href=\"#!/api/Titanium.UI.iPad-property-POPOVER_ARROW_DIRECTION_RIGHT\" rel=\"Titanium.UI.iPad-property-POPOVER_ARROW_DIRECTION_RIGHT\" class=\"docClass\">Titanium.UI.iPad.POPOVER_ARROW_DIRECTION_RIGHT</a>\n <li> <a href=\"#!/api/Titanium.UI.iPad-property-POPOVER_ARROW_DIRECTION_UNKNOWN\" rel=\"Titanium.UI.iPad-property-POPOVER_ARROW_DIRECTION_UNKNOWN\" class=\"docClass\">Titanium.UI.iPad.POPOVER_ARROW_DIRECTION_UNKNOWN</a>\n <li> <a href=\"#!/api/Titanium.UI.iPad-property-POPOVER_ARROW_DIRECTION_UP\" rel=\"Titanium.UI.iPad-property-POPOVER_ARROW_DIRECTION_UP\" class=\"docClass\">Titanium.UI.iPad.POPOVER_ARROW_DIRECTION_UP</a>\n</ul></p>\n\n\n<p>@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-arrowDirection",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 62390
+          }
+        ],
+        "shortDoc": "Controls the type of arrow and position of the popover. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "autohide",
+        "owner": "PhotoGalleryOptionsType",
+        "type": "Boolean",
+        "doc": "<p>Specifies if the photo gallery should be hidden automatically after the media selection is completed.</p>\n\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-autohide",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 62271
+          }
+        ],
+        "shortDoc": "Specifies if the photo gallery should be hidden automatically after the media selection is completed. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "cancel",
+        "owner": "PhotoGalleryOptionsType",
+        "type": "Callback<FailureResponse>",
+        "doc": "<p>Function to call if the user presses the cancel button.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-cancel",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 62250
+          }
+        ],
+        "html_type": "Callback<FailureResponse>",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "error",
+        "owner": "PhotoGalleryOptionsType",
+        "type": "Callback<FailureResponse>",
+        "doc": "<p>Function to call upon receiving an error.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-error",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 62229
+          }
+        ],
+        "html_type": "Callback<FailureResponse>",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "mediaTypes",
+        "owner": "PhotoGalleryOptionsType",
+        "type": "String[]",
+        "doc": "<p>Array of media type constants to allow.</p>\n\n\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.Media-property-MEDIA_TYPE_PHOTO\" rel=\"Titanium.Media-property-MEDIA_TYPE_PHOTO\" class=\"docClass\">Titanium.Media.MEDIA_TYPE_PHOTO</a>\n <li> <a href=\"#!/api/Titanium.Media-property-MEDIA_TYPE_VIDEO\" rel=\"Titanium.Media-property-MEDIA_TYPE_VIDEO\" class=\"docClass\">Titanium.Media.MEDIA_TYPE_VIDEO</a>\n</ul></p>\n\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": "Both photo and video allowed.",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-mediaTypes",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 62340
+          }
+        ],
+        "shortDoc": "Array of media type constants to allow. ...",
+        "html_type": "String[]",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "popoverView",
+        "owner": "PhotoGalleryOptionsType",
+        "type": "Titanium.UI.View",
+        "doc": "<p>View to position the photo gallery popover on top of.</p>\n\n\n<p>@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-popoverView",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 62368
+          }
+        ],
+        "shortDoc": "View to position the photo gallery popover on top of. ...",
+        "html_type": "Titanium.UI.View",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "success",
+        "owner": "PhotoGalleryOptionsType",
+        "type": "Callback<CameraMediaItemType>",
+        "doc": "<p>Function to call when the photogallery is closed after a successful selection.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-success",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 62208
+          }
+        ],
+        "html_type": "Callback<CameraMediaItemType>",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 62184
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

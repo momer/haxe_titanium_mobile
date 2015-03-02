@@ -1,0 +1,205 @@
+{
+  "tagname": "class",
+  "name": "EncodeNumberDict",
+  "doc": "<p>@platform android 0.8\n@platform blackberry 3.1.2\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8\n@pseudo @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/Codec/Codec.yml</p>\n\n<p>Named parameters for <a href=\"#!/api/Titanium.Codec-method-encodeNumber\" rel=\"Titanium.Codec-method-encodeNumber\" class=\"docClass\">Titanium.Codec.encodeNumber</a>.</p>\n\n",
+  "extends": null,
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-EncodeNumberDict",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "byteOrder",
+        "owner": "EncodeNumberDict",
+        "type": "Number",
+        "doc": "<p>Byte order to encode with.</p>\n\n",
+        "default": "Native byte order.",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-byteOrder",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38153
+          }
+        ],
+        "shortDoc": "Byte order to encode with. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "dest",
+        "owner": "EncodeNumberDict",
+        "type": "Titanium.Buffer",
+        "doc": "<p>Destination buffer.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-dest",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38078
+          }
+        ],
+        "html_type": "Titanium.Buffer",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "position",
+        "owner": "EncodeNumberDict",
+        "type": "Number",
+        "doc": "<p>Index in the <code>dest</code> buffer of the first byte of encoded data.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-position",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38129
+          }
+        ],
+        "shortDoc": "Index in the dest buffer of the first byte of encoded data. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "source",
+        "owner": "EncodeNumberDict",
+        "type": "Number",
+        "doc": "<p>Number to encode.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-source",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38057
+          }
+        ],
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "type",
+        "owner": "EncodeNumberDict",
+        "type": "String",
+        "doc": "<p>Encoding type to use.</p>\n\n\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.Codec-property-TYPE_BYTE\" rel=\"Titanium.Codec-property-TYPE_BYTE\" class=\"docClass\">Titanium.Codec.TYPE_BYTE</a>\n <li> <a href=\"#!/api/Titanium.Codec-property-TYPE_SHORT\" rel=\"Titanium.Codec-property-TYPE_SHORT\" class=\"docClass\">Titanium.Codec.TYPE_SHORT</a>\n <li> <a href=\"#!/api/Titanium.Codec-property-TYPE_INT\" rel=\"Titanium.Codec-property-TYPE_INT\" class=\"docClass\">Titanium.Codec.TYPE_INT</a>\n <li> <a href=\"#!/api/Titanium.Codec-property-TYPE_FLOAT\" rel=\"Titanium.Codec-property-TYPE_FLOAT\" class=\"docClass\">Titanium.Codec.TYPE_FLOAT</a>\n <li> <a href=\"#!/api/Titanium.Codec-property-TYPE_LONG\" rel=\"Titanium.Codec-property-TYPE_LONG\" class=\"docClass\">Titanium.Codec.TYPE_LONG</a>\n <li> <a href=\"#!/api/Titanium.Codec-property-TYPE_DOUBLE\" rel=\"Titanium.Codec-property-TYPE_DOUBLE\" class=\"docClass\">Titanium.Codec.TYPE_DOUBLE</a>\n</ul></p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-type",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38099
+          }
+        ],
+        "shortDoc": "Encoding type to use. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 38034
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

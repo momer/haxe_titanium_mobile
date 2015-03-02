@@ -1,0 +1,133 @@
+{
+  "tagname": "class",
+  "name": "ListViewMarkerProps",
+  "doc": "<p>@platform android 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@pseudo @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/UI/ListView.yml</p>\n\n<p>The parameter for <a href=\"#!/api/Titanium.UI.ListView-method-setMarker\" rel=\"Titanium.UI.ListView-method-setMarker\" class=\"docClass\">setMarker</a> method.</p>\n\n\n<p>@description <p>Use this in conjunction with the <a href=\"#!/api/Titanium.UI.ListView-method-setMarker\" rel=\"Titanium.UI.ListView-method-setMarker\" class=\"docClass\">setMarker</a> method. For example:</p></p>\n\n<pre><code>setMarker({sectionIndex:5, itemIndex:10});\n</code></pre>\n\n",
+  "extends": null,
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-ListViewMarkerProps",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "itemIndex",
+        "owner": "ListViewMarkerProps",
+        "type": "Number",
+        "doc": "<p>The itemIndex of the reference item.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-itemIndex",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 95646
+          }
+        ],
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "sectionIndex",
+        "owner": "ListViewMarkerProps",
+        "type": "Number",
+        "doc": "<p>The sectionIndex of the reference item.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-sectionIndex",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 95625
+          }
+        ],
+        "html_type": "Number",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 95601
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

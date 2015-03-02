@@ -1,0 +1,1687 @@
+{
+  "tagname": "class",
+  "name": "Titanium.UI.OptionDialog",
+  "doc": "<p>@platform android 0.8\n@platform blackberry 3.1.2\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8 @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/UI/OptionDialog.yml</p>\n\n<p>An option dialog is a modal view that includes a message and one or more option items positioned\nin the middle of the display on Android and at the bottom edge on iOS. On Android, buttons may\nbe added below the options.</p>\n\n\n<p>@description <table id=\"platformComparison\">\n  <tr>\n    <td><img src=\"images/optiondialog/optiondialog_android.png\" height=\"75\" /></td>\n    <td><img src=\"images/optiondialog/optiondialog_bb.png\" height=\"75\" /></td>\n    <td><img src=\"images/optiondialog/optiondialog_iphone.png\" height=\"75\" /></td>\n    <td><img src=\"images/optiondialog/optiondialog_ipad.png\" height=\"75\" /></td>\n    <td><img src=\"images/optiondialog/optiondialog_mobileweb.png\" height=\"75\" /></td>\n  </tr>\n  <tr><th>Android</th><th>BlackBerry</th><th>iPhone</th><td>iPad</td><th>Mobile Web</th></tr>\n</table></p>\n\n<p>An option dialog is created using <a href=\"#!/api/Titanium.UI-method-createOptionDialog\" rel=\"Titanium.UI-method-createOptionDialog\" class=\"docClass\">Titanium.UI.createOptionDialog</a> or Alloy <code>&lt;OptionDialog&gt;</code>\nelement. See Examples below for usage.</p>\n\n\n\n\n<p>This dialog is presented differently on each platform, as described below.</p>\n\n\n\n\n<h4>Android</h4>\n\n\n\n\n<p>On Android, the dialog is shown in the middle of the display (not touching the edges),\nwith the option items represented in a picker. The previously-selected, or default, item can be\nset on creation.</p>\n\n\n\n\n<p>You can assign a <a href=\"#!/api/Titanium.UI.View\" rel=\"Titanium.UI.View\" class=\"docClass\">View</a> to the <a href=\"#!/api/Titanium.UI.OptionDialog-property-androidView\" rel=\"Titanium.UI.OptionDialog-property-androidView\" class=\"docClass\">androidView</a> property\nto define a custom dialog UI and layout, or you can assign a set of options to the\n<a href=\"#!/api/Titanium.UI.OptionDialog-property-options\" rel=\"Titanium.UI.OptionDialog-property-options\" class=\"docClass\">options</a> property, but not both. If both of these properties are set, the custom view\nwill appear but the options will be hidden.</p>\n\n\n\n\n<p>Buttons below the picker may be optionally defined using the <code>buttonNames</code> property.\nThe <code>click</code> event returns a Boolean value to indicate whether either an option item or a button was clicked.</p>\n\n\n\n\n<h4>iOS</h4>\n\n\n\n\n<p>The <code>destructive</code> property may be set for an item, to give a visual cue that selecting it\nresults in an irreversible action.</p>\n\n\n\n\n<p>On iOS 4, option dialogs are automatically cancelled when the application is paused/suspended.</p>\n\n\n\n\n<h5>iPhone</h5>\n\n\n\n\n<p>On iPhone, this dialog is shown at the bottom edge of the display, with the option items\nrepresented as vertical buttons. </p>\n\n\n\n\n<h5>iPad</h5>\n\n\n\n\n<p>On iPad, this dialog is shown in the middle of the display, or as a popover-like dialog if\nanother view or control is specified via an argument passed to the <code>open()</code> method.</p>\n\n\n\n\n<p>Note that on iPad, the cancel button is not displayed -- users can cancel the dialog\nby clicking outside of the dialog.</p>\n\n\n\n\n<h4>Caveats</h4>\n\n\n\n\n<p>Care should be taken not to define any properties that are not documented, as this may produce\nunexpected results. For example, setting a <code>message</code> property will prevent the picker of option\nitems from being displayed on Android.</p>\n\n\n<h3>Examples</h3>\n\n\n<h4>Dialog with 3 Options</h4>\n\n\n<pre><code>Ti.UI.setBackgroundColor('white');\nvar win = Ti.UI.createWindow({\n  title: 'Click window to test',\n  backgroundColor: 'white',\n  exitOnClose: true,\n  fullscreen: false\n});\n\nvar opts = {\n  cancel: 2,\n  options: ['Confirm', 'Help', 'Cancel'],\n  selectedIndex: 2,\n  destructive: 0,\n  title: 'Delete File?'\n};\n\nwin.addEventListener('click', function(e){\n  var dialog = Ti.UI.createOptionDialog(opts).show();\n});\nwin.open();</code></pre>\n\n\n<h4>Dialog with 2 Options and 1 Button on Android and 3 Options on iOS</h4>\n\n\n<pre><code>Ti.UI.setBackgroundColor('white');\n  var win = Ti.UI.createWindow({\n  title: 'Click window to test',\n  backgroundColor: 'white',\n  exitOnClose: true,\n  fullscreen: false\n});\n\nvar opts = {\n  title: 'Delete File?'\n};\n\nvar isAndroid = Ti.Platform.osname == 'android';\n\nif(isAndroid){\n  opts.options = ['Confirm', 'Cancel'];\n  opts.buttonNames = ['Help'];\n} else {\n  opts.options = ['Confirm', 'Help', 'Cancel'];\n}\n\nwin.addEventListener('click', function(e){\n  var dialog = Ti.UI.createOptionDialog(opts).show();\n});\nwin.open();</code></pre>\n\n\n<h4>Alloy XML Markup</h4>\n\n\n<p>Previous example as an Alloy view.</p>\n\n\n\n\n<p>optiondialog.xml:</p>\n\n\n\n\n<pre><code>&lt;Alloy&gt;\n    &lt;Window id=\"win\" onClick=\"showOptions\" title=\"Click window to test\"\n        fullscreen=\"false\" onExit=\"true\" backgroundColor=\"white\"&gt;\n\n        &lt;!--\n            The OptionDialog tag declares an option dialog,\n            which will need to be opened by the controller.\n        --&gt;\n        &lt;OptionDialog id=\"dialog\" title=\"Delete File?\"&gt;\n\n            &lt;!-- The Options tag sets the options property. --&gt;\n            &lt;Options&gt;\n                &lt;Option&gt;Confirm&lt;/Option&gt;\n                &lt;Option platform=\"ios\"&gt;Help&lt;/Option&gt;\n                &lt;Option&gt;Cancel&lt;/Option&gt;\n            &lt;/Options&gt;\n\n            &lt;!-- The ButtonNames tag sets the Android-only buttonNames property. --&gt;\n            &lt;ButtonNames&gt;\n                &lt;ButtonName&gt;Help&lt;/ButtonName&gt;\n            &lt;/ButtonNames&gt;\n\n            &lt;!-- Add a View for the androidView property here. --&gt;\n\n        &lt;/OptionDialog&gt;\n\n        &lt;!-- Add views here --&gt;\n\n    &lt;/Window&gt;\n&lt;/Alloy&gt;\n</code></pre>\n\n\n\n\n<p>optiondialog.js:</p>\n\n\n\n\n<pre><code>function showOptions(){\n    $.dialog.show();\n}\n</code></pre>\n\n",
+  "extends": "Titanium.Proxy",
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-Titanium.UI.OptionDialog",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "androidView",
+        "owner": "Titanium.UI.OptionDialog",
+        "type": "Titanium.UI.View",
+        "doc": "<p>View to load inside the message area, to create a custom layout.</p>\n\n\n<p>@description <p>On Android you can either define a custom view with this property, or you can assign a set of options to the\n<a href=\"#!/api/Titanium.UI.OptionDialog-property-options\" rel=\"Titanium.UI.OptionDialog-property-options\" class=\"docClass\">options</a> property, but not both. If you do, the custom view will appear\nbut not the options you defined.</p></p>\n\n<p>In an Alloy application you can specify this property with either an <code>&lt;AndroidView/&gt;</code> or\n<code>&lt;View/&gt;</code> element inside the <code>&lt;OptionDialog/&gt;</code> element, for example:</p>\n\n\n\n\n<pre><code>&lt;Alloy&gt;\n    &lt;OptionDialog id=\"dialog\" title=\"Delete File?\" onClick=\"clickCB\"&gt;\n\n        &lt;!-- Add View or AndroidView for the androidView property --&gt;\n        &lt;AndroidView platform=\"android\" layout=\"vertical\"&gt;\n            &lt;Label color=\"red\" text=\"Warning!  This change is permanent and you cannot undo it!\" /&gt;\n        &lt;/AndroidView&gt;\n\n        &lt;ButtonNames&gt;\n            &lt;ButtonName&gt;Confirm&lt;/ButtonName&gt;\n            &lt;ButtonName&gt;Cancel&lt;/ButtonName&gt;\n        &lt;/ButtonNames&gt;\n    &lt;/OptionDialog&gt;\n&lt;/Alloy&gt;\n</code></pre>\n\n\n<p>@platform android 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-androidView",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 97326
+          }
+        ],
+        "shortDoc": "View to load inside the message area, to create a custom layout. ...",
+        "html_type": "Titanium.UI.View",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "apiName",
+        "owner": "Titanium.Proxy",
+        "type": "String",
+        "doc": "<p>The name of the API that this proxy corresponds to.</p>\n\n\n<p>@description <p>The value of this property is the fully qualified name of the API. For example, <a href=\"#!/api/Titanium.UI.Button\" rel=\"Titanium.UI.Button\" class=\"docClass\">Button</a>\nreturns <code>Ti.UI.Button</code>.</p></p>\n\n<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-apiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 235
+          }
+        ],
+        "shortDoc": "The name of the API that this proxy corresponds to. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "bubbleParent",
+        "owner": "Titanium.Proxy",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the proxy will bubble an event to its parent.</p>\n\n\n<p>@description <p>Some proxies (most commonly views) have a relationship to other proxies, often\nestablished by the add() method. For example, for a button added to a window, a\nclick event on the button would bubble up to the window. Other common parents are\ntable sections to their rows, table views to their sections, and scrollable views\nto their views. Set this property to false to disable the bubbling to the proxy's parent.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-bubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 207
+          }
+        ],
+        "shortDoc": "Indicates if the proxy will bubble an event to its parent. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "buttonNames",
+        "owner": "Titanium.UI.OptionDialog",
+        "type": "String[]",
+        "doc": "<p>List of button names.</p>\n\n\n<p>@description <p>This property creates buttons underneath the picker options.\nThe dialog only supports up to three buttons.</p></p>\n\n<p>@platform android 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-buttonNames",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 97369
+          }
+        ],
+        "shortDoc": "List of button names. ...",
+        "html_type": "String[]",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "cancel",
+        "owner": "Titanium.UI.OptionDialog",
+        "type": "Number",
+        "doc": "<p>Index to define the cancel option.</p>\n\n\n<p>@description <p>On iOS, set to <code>-1</code> to disable the cancel option.</p></p>\n\n<p>On iPad, the <code>cancel</code> option must be set to either <code>-1</code> or the index of the last\noption. For example, if there are 3 options and one of them is a cancel button,\nthe cancel button must be the last option (index 2).  If <code>cancel</code> is set to a\ndifferent value, <em>the last entry in the <a href=\"#!/api/Titanium.UI.OptionDialog-property-options\" rel=\"Titanium.UI.OptionDialog-property-options\" class=\"docClass\">options</a>\narray <strong>is not displayed</strong>.</em></p>\n\n\n\n\n<p>Note that the cancel button is never shown on iPad, since the user can cancel the\ndialog by clicking outside of the dialog. </p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+        "default": "undefined (Android), -1 (iOS, Mobile Web)",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-cancel",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 97392
+          }
+        ],
+        "shortDoc": "Index to define the cancel option. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "destructive",
+        "owner": "Titanium.UI.OptionDialog",
+        "type": "Number",
+        "doc": "<p>Index to define the destructive option, indicated by a visual cue when rendered.</p>\n\n\n<p>@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+        "default": "-1",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-destructive",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 97426
+          }
+        ],
+        "shortDoc": "Index to define the destructive option, indicated by a visual cue when rendered. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "doc": "<p>The Window or TabGroup whose Activity lifecycle should be triggered on the proxy.</p>\n\n\n<p>@description <p>If this property is set to a Window or TabGroup, then the corresponding Activity lifecycle event callbacks\nwill also be called on the proxy. Proxies that require the activity lifecycle will need this property set\nto the appropriate containing Window or TabGroup.</p></p>\n\n<p>@platform android 3.6.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-lifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 262
+          }
+        ],
+        "shortDoc": "The Window or TabGroup whose Activity lifecycle should be triggered on the proxy. ...",
+        "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "opaquebackground",
+        "owner": "Titanium.UI.OptionDialog",
+        "type": "Boolean",
+        "doc": "<p>Boolean value indicating if the option dialog should have an opaque background.</p>\n\n\n<p>@description <p>This property is useful to ensure that the option dialog will display contents properly\non the iPAD idiom without ghosting when scrolling. This property is only respected on the\niPAD idiom on iOS7 and above. </p></p>\n\n<p>@platform iphone 3.2.0\n@platform ipad 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-opaquebackground",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 97473
+          }
+        ],
+        "shortDoc": "Boolean value indicating if the option dialog should have an opaque background. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "options",
+        "owner": "Titanium.UI.OptionDialog",
+        "type": "String[]",
+        "doc": "<p>List of option names to display in the dialog.</p>\n\n\n<p>@description <p>On Android you can assign a set of options to the <code>OptionDialog</code> with this property, or\nassign a custom view to the  <a href=\"#!/api/Titanium.UI.OptionDialog-property-androidView\" rel=\"Titanium.UI.OptionDialog-property-androidView\" class=\"docClass\">androidView</a> property, but not both.\nIf you do, the custom view will appear but not the options you defined.</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-options",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 97450
+          }
+        ],
+        "shortDoc": "List of option names to display in the dialog. ...",
+        "html_type": "String[]",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "persistent",
+        "owner": "Titanium.UI.OptionDialog",
+        "type": "Boolean",
+        "doc": "<p>Boolean value indicating if the option dialog should only be cancelled by user gesture or by hide method.</p>\n\n\n<p>@description <p>This property is useful to ensure that the option dialog will not be ignored\nby the user when the application is paused/suspended.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-persistent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 97498
+          }
+        ],
+        "shortDoc": "Boolean value indicating if the option dialog should only be cancelled by user gesture or by hide method. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "selectedIndex",
+        "owner": "Titanium.UI.OptionDialog",
+        "type": "Number",
+        "doc": "<p>Defines the default selected option.</p>\n\n\n<p>@platform android 0.8\n@platform blackberry 3.1.2</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-selectedIndex",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 97523
+          }
+        ],
+        "shortDoc": "Defines the default selected option. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "title",
+        "owner": "Titanium.UI.OptionDialog",
+        "type": "String",
+        "doc": "<p>Title of the dialog.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-title",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 97546
+          }
+        ],
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "titleid",
+        "owner": "Titanium.UI.OptionDialog",
+        "type": "String",
+        "doc": "<p>Key identifying a string in the locale file to use for the title text.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-titleid",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 97567
+          }
+        ],
+        "shortDoc": "Key identifying a string in the locale file to use for the title text. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "addEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Adds the specified callback as an event listener for the named event.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to invoke when the event is fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38
+          }
+        ],
+        "shortDoc": "Adds the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "applyProperties",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Applies the properties to the proxy.</p>\n\n\n<p>@description <p>Properties are supplied as a dictionary. Each key-value pair in the object is applied to the proxy such that\nmyproxy[key] = value.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "props",
+            "doc": "<p>A dictionary of properties to apply.</p>\n\n\n<p>@platform android 3.0.0\n@platform blackberry 3.3.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-applyProperties",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 102
+          }
+        ],
+        "shortDoc": "Applies the properties to the proxy. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "fireEvent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Fires a synthesized event to any registered listeners.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Dictionary",
+            "name": "event",
+            "doc": "<p>A dictionary of keys and values to add to the <a href=\"#!/api/Titanium.Event\" rel=\"Titanium.Event\" class=\"docClass\">Titanium.Event</a> object sent to the listeners.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-fireEvent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 85
+          }
+        ],
+        "shortDoc": "Fires a synthesized event to any registered listeners. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getAndroidView",
+        "owner": "Titanium.UI.OptionDialog",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.OptionDialog-property-androidView\" rel=\"Titanium.UI.OptionDialog-property-androidView\" class=\"docClass\">androidView</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.View",
+          "name": "return",
+          "doc": "<p>@platform android 0.8</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.View"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getAndroidView",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 97004
+          }
+        ],
+        "shortDoc": "Gets the value of the androidView property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getApiName",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-apiName\" rel=\"Titanium.Proxy-property-apiName\" class=\"docClass\">apiName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getApiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 157
+          }
+        ],
+        "shortDoc": "Gets the value of the apiName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 123
+          }
+        ],
+        "shortDoc": "Gets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getButtonNames",
+        "owner": "Titanium.UI.OptionDialog",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.OptionDialog-property-buttonNames\" rel=\"Titanium.UI.OptionDialog-property-buttonNames\" class=\"docClass\">buttonNames</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String[]",
+          "name": "return",
+          "doc": "<p>@platform android 0.8</p>\n",
+          "properties": null,
+          "html_type": "String[]"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getButtonNames",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 97034
+          }
+        ],
+        "shortDoc": "Gets the value of the buttonNames property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getCancel",
+        "owner": "Titanium.UI.OptionDialog",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.OptionDialog-property-cancel\" rel=\"Titanium.UI.OptionDialog-property-cancel\" class=\"docClass\">cancel</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getCancel",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 97064
+          }
+        ],
+        "shortDoc": "Gets the value of the cancel property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getDestructive",
+        "owner": "Titanium.UI.OptionDialog",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.OptionDialog-property-destructive\" rel=\"Titanium.UI.OptionDialog-property-destructive\" class=\"docClass\">destructive</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getDestructive",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 97100
+          }
+        ],
+        "shortDoc": "Gets the value of the destructive property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+          "name": "return",
+          "doc": "<p>@platform android 3.6.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 175
+          }
+        ],
+        "shortDoc": "Gets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getOpaquebackground",
+        "owner": "Titanium.UI.OptionDialog",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.OptionDialog-property-opaquebackground\" rel=\"Titanium.UI.OptionDialog-property-opaquebackground\" class=\"docClass\">opaquebackground</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform iphone 3.2.0\n@platform ipad 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getOpaquebackground",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 97162
+          }
+        ],
+        "shortDoc": "Gets the value of the opaquebackground property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getOptions",
+        "owner": "Titanium.UI.OptionDialog",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.OptionDialog-property-options\" rel=\"Titanium.UI.OptionDialog-property-options\" class=\"docClass\">options</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String[]",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String[]"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getOptions",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 97134
+          }
+        ],
+        "shortDoc": "Gets the value of the options property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getPersistent",
+        "owner": "Titanium.UI.OptionDialog",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.OptionDialog-property-persistent\" rel=\"Titanium.UI.OptionDialog-property-persistent\" class=\"docClass\">persistent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getPersistent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 97194
+          }
+        ],
+        "shortDoc": "Gets the value of the persistent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getSelectedIndex",
+        "owner": "Titanium.UI.OptionDialog",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.OptionDialog-property-selectedIndex\" rel=\"Titanium.UI.OptionDialog-property-selectedIndex\" class=\"docClass\">selectedIndex</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform blackberry 3.1.2</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getSelectedIndex",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 97228
+          }
+        ],
+        "shortDoc": "Gets the value of the selectedIndex property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getTitle",
+        "owner": "Titanium.UI.OptionDialog",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.OptionDialog-property-title\" rel=\"Titanium.UI.OptionDialog-property-title\" class=\"docClass\">title</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getTitle",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 97260
+          }
+        ],
+        "shortDoc": "Gets the value of the title property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getTitleid",
+        "owner": "Titanium.UI.OptionDialog",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.OptionDialog-property-titleid\" rel=\"Titanium.UI.OptionDialog-property-titleid\" class=\"docClass\">titleid</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getTitleid",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 97288
+          }
+        ],
+        "shortDoc": "Gets the value of the titleid property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "hide",
+        "owner": "Titanium.UI.OptionDialog",
+        "doc": "<p>Hides this dialog.</p>\n\n\n<p>@description <p>This triggers a <code>click</code> event as if cancel was invoked.</p></p>\n",
+        "params": [
+          {
+            "type": "hideParams",
+            "name": "params",
+            "doc": "<p>Argument containing parameters for this method. Only used on iOS.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "hideParams"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-hide",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 96989
+          }
+        ],
+        "shortDoc": "Hides this dialog. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Removes the specified callback as an event listener for the named event.</p>\n\n\n<p>@description <p>Multiple listeners can be registered for the same event, so the\n<code>callback</code> parameter is used to determine which listener to remove. </p></p>\n\n<p>When adding a listener, you must save a reference to the callback function\nin order to remove the listener later:</p>\n\n\n\n\n<pre><code>var listener = function() { Ti.API.info(\"Event listener called.\"); }\nwindow.addEventListener('click', listener);\n</code></pre>\n\n\n\n\n<p>To remove the listener, pass in a reference to the callback function:</p>\n\n\n\n\n<pre><code>window.removeEventListener('click', listener);\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to remove. Must be the same function passed to <code>addEventListener</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 55
+          }
+        ],
+        "shortDoc": "Removes the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setAndroidView",
+        "owner": "Titanium.UI.OptionDialog",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.OptionDialog-property-androidView\" rel=\"Titanium.UI.OptionDialog-property-androidView\" class=\"docClass\">androidView</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.View",
+            "name": "androidView",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 0.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.View"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setAndroidView",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 97018
+          }
+        ],
+        "shortDoc": "Sets the value of the androidView property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "bubbleParent",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139
+          }
+        ],
+        "shortDoc": "Sets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setButtonNames",
+        "owner": "Titanium.UI.OptionDialog",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.OptionDialog-property-buttonNames\" rel=\"Titanium.UI.OptionDialog-property-buttonNames\" class=\"docClass\">buttonNames</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Array<String>",
+            "name": "buttonNames",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 0.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Array<String>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setButtonNames",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 97048
+          }
+        ],
+        "shortDoc": "Sets the value of the buttonNames property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setCancel",
+        "owner": "Titanium.UI.OptionDialog",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.OptionDialog-property-cancel\" rel=\"Titanium.UI.OptionDialog-property-cancel\" class=\"docClass\">cancel</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "cancel",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setCancel",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 97081
+          }
+        ],
+        "shortDoc": "Sets the value of the cancel property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setDestructive",
+        "owner": "Titanium.UI.OptionDialog",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.OptionDialog-property-destructive\" rel=\"Titanium.UI.OptionDialog-property-destructive\" class=\"docClass\">destructive</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "destructive",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setDestructive",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 97116
+          }
+        ],
+        "shortDoc": "Sets the value of the destructive property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+            "name": "lifecycleContainer",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.6.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 189
+          }
+        ],
+        "shortDoc": "Sets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setOpaquebackground",
+        "owner": "Titanium.UI.OptionDialog",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.OptionDialog-property-opaquebackground\" rel=\"Titanium.UI.OptionDialog-property-opaquebackground\" class=\"docClass\">opaquebackground</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "opaquebackground",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform iphone 3.2.0\n@platform ipad 3.2.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setOpaquebackground",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 97177
+          }
+        ],
+        "shortDoc": "Sets the value of the opaquebackground property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setOptions",
+        "owner": "Titanium.UI.OptionDialog",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.OptionDialog-property-options\" rel=\"Titanium.UI.OptionDialog-property-options\" class=\"docClass\">options</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Array<String>",
+            "name": "options",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Array<String>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setOptions",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 97147
+          }
+        ],
+        "shortDoc": "Sets the value of the options property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setPersistent",
+        "owner": "Titanium.UI.OptionDialog",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.OptionDialog-property-persistent\" rel=\"Titanium.UI.OptionDialog-property-persistent\" class=\"docClass\">persistent</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "persistent",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setPersistent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 97210
+          }
+        ],
+        "shortDoc": "Sets the value of the persistent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setSelectedIndex",
+        "owner": "Titanium.UI.OptionDialog",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.OptionDialog-property-selectedIndex\" rel=\"Titanium.UI.OptionDialog-property-selectedIndex\" class=\"docClass\">selectedIndex</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "selectedIndex",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 0.8\n@platform blackberry 3.1.2</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setSelectedIndex",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 97243
+          }
+        ],
+        "shortDoc": "Sets the value of the selectedIndex property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setTitle",
+        "owner": "Titanium.UI.OptionDialog",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.OptionDialog-property-title\" rel=\"Titanium.UI.OptionDialog-property-title\" class=\"docClass\">title</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "title",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setTitle",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 97273
+          }
+        ],
+        "shortDoc": "Sets the value of the title property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setTitleid",
+        "owner": "Titanium.UI.OptionDialog",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.OptionDialog-property-titleid\" rel=\"Titanium.UI.OptionDialog-property-titleid\" class=\"docClass\">titleid</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "titleid",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setTitleid",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 97305
+          }
+        ],
+        "shortDoc": "Sets the value of the titleid property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "show",
+        "owner": "Titanium.UI.OptionDialog",
+        "doc": "<p>Shows this dialog.</p>\n\n\n<p>@description <p>On iPad, this dialog is shown in the middle of the display or, when specified via the\n<code>params</code> argument, as a popover-like dialog attached to another view or control.</p></p>\n",
+        "params": [
+          {
+            "type": "showParams",
+            "name": "params",
+            "doc": "<p>Argument containing parameters for this method. Only used on iPad.</p>\n\n",
+            "optional": true,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "showParams"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-show",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 96973
+          }
+        ],
+        "shortDoc": "Shows this dialog. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "event": [
+      {
+        "tagname": "event",
+        "name": "click",
+        "owner": "Titanium.UI.OptionDialog",
+        "doc": "<p>Fired when an option of this dialog is clicked or, under certain circumstances, when this\ndialog is dismissed.</p>\n\n\n<p>@description <p>On iOS as of Release 2.0, when the dialog is dismissed without using an option, for example, using\nthe <a href=\"#!/api/Titanium.UI.OptionDialog-method-hide\" rel=\"Titanium.UI.OptionDialog-method-hide\" class=\"docClass\">hide</a> method (iPhone, iPad) or a tap outside of the\ndialog (iPad), this event is fired as though the cancel option was selected. In these\ncircumstances, the <code>index</code> property will be the cancel option index if defined or <code>-1</code>\notherwise.</p></p>\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "index",
+            "doc": "<p>Index of the option that was pressed. See description for result of the dialog being\ndismissed in some other way.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android) button</p>\n\n<p>Indicates whether the index returned by the <code>index</code> property relates to a button rather\nthan an option item.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean/Number",
+            "name": "cancel",
+            "doc": "<p>Boolean type on Android; Number on iOS and Mobile Web. </p>\n\n\n\n\n<p>On Android, indicates whether the cancel button was clicked, in which\ncase returns <code>true</code>. </p>\n\n\n\n\n<p>On iOS and Mobile Web, the value of the <a href=\"#!/api/Titanium.UI.OptionDialog-property-cancel\" rel=\"Titanium.UI.OptionDialog-property-cancel\" class=\"docClass\">cancel</a>\nproperty is returned, if defined, or <code>-1</code> otherwise. </p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean/Number"
+          },
+          {
+            "type": "Number",
+            "name": "",
+            "doc": "<p>(iphone ipad mobileweb) destructive</p>\n\n<p>Index of the destructive option if defined or <code>-1</code> otherwise.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "event-click",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 96930
+          }
+        ],
+        "shortDoc": "Fired when an option of this dialog is clicked or, under certain circumstances, when this\ndialog is dismissed. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 96767
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+    "Titanium.Proxy"
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

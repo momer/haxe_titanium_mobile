@@ -1,0 +1,1061 @@
+{
+  "tagname": "class",
+  "name": "Titanium.Android.Service",
+  "doc": "<p>@platform android 1.5 @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/Android/Service.yml</p>\n\n<p>Android application component that executes in the background.</p>\n\n\n<p>@description <p>A service is a component started by an application that runs in the background. The service\ndoes not have any application UI associated with it, so the user does not directly interact\nwith it, only your application.</p></p>\n\n<p>The Titanium SDK gives you the ability to write your own Android Services using JavaScript.\nThe service executes your JavaScript code at intervals you specify.  Note that the service\nmay stop running if the application is killed.</p>\n\n\n\n\n<p>To create a service:</p>\n\n\n\n\n<ol>\n<li>Write the JavaScript code you want the service to execute in a separate file.\n The service can execute any Titanium APIs but you should only use non-UI APIs.</li>\n<li>Register the service in your <code>tiapp.xml</code> file. Refer to the example below.</li>\n<li>Create a service intent by passing the JavaScript file to\n the <a href=\"#!/api/Titanium.Android-method-createServiceIntent\" rel=\"Titanium.Android-method-createServiceIntent\" class=\"docClass\">Titanium.Android.createServiceIntent</a> method and set the interval to run the\n code using the intent's <code>putExtra()</code> method.</li>\n<li>Pass the Intent object to either the <a href=\"#!/api/Titanium.Android-method-createService\" rel=\"Titanium.Android-method-createService\" class=\"docClass\">Titanium.Android.createService</a> method\n to create a <code>Service</code> object (<em>bound service</em>), where the application can\n manage the service by invoking methods and binding callbacks on the object,\n or to the <a href=\"#!/api/Titanium.Android-method-startService\" rel=\"Titanium.Android-method-startService\" class=\"docClass\">Titanium.Android.startService</a> method to start the service (<em>started service</em>)\n and the service manages itself.</li>\n</ol>\n\n\n\n\n<p>Use the <code><a href=\"#!/api/Titanium.Android.Service\" rel=\"Titanium.Android.Service\" class=\"docClass\">Titanium.Android.Service</a></code> API to manage the service.</p>\n\n\n\n\n<p>To get a reference to the <code>Service</code> inside the JavaScript service code, use the\n<a href=\"#!/api/Titanium.Android-property-currentService\" rel=\"Titanium.Android-property-currentService\" class=\"docClass\">Titanium.Android.currentService</a> property to retrieve a reference to the service,\nthen invoke the <code><a href=\"#!/api/Titanium.Android.Service\" rel=\"Titanium.Android.Service\" class=\"docClass\">Titanium.Android.Service</a></code> APIs on the <code>Service</code> object.</p>\n\n\n\n\n<p>Further Reading:</p>\n\n\n\n\n<ul>\n<li><a href=\"http://docs.appcelerator.com/titanium/latest/#!/guide/Android_Services\">Android Services guide</a></li>\n<li><a href=\"http://developer.android.com/reference/android/app/Service.html\">Android Developer: Service</a></li>\n</ul>\n\n\n<h3>Examples</h3>\n\n\n<h4>Hello World Service</h4>\n\n\n<p>This example shows how to create a service in JavaScript.\nYour service code is included in its own JavaScript file.</p>\n\n\n\n\n<p>In this example, the service reads data from the <a href=\"#!/api/Titanium.Android.Intent\" rel=\"Titanium.Android.Intent\" class=\"docClass\">Titanium.Android.Intent</a> which created it,\nto see what it should say besides \"Hello World\".</p>\n\n\n\n\n<p>File: myservice.js:</p>\n\n\n\n\n<pre><code>var service = <a href=\"#!/api/Titanium.Android-property-currentService\" rel=\"Titanium.Android-property-currentService\" class=\"docClass\">Titanium.Android.currentService</a>;\nvar intent = service.intent;\nvar message = intent.getStringExtra(\"message_to_echo\");\n<a href=\"#!/api/Titanium.API-method-info\" rel=\"Titanium.API-method-info\" class=\"docClass\">Titanium.API.info</a>(\"Hello World!  I am a Service.  I have this to say: \" + message);\n</code></pre>\n\n\n\n\n<p>Register the service in tiapp.xml:</p>\n\n\n\n\n<pre><code>&lt;ti:app&gt;\n    &lt;android xmlns:android=\"http://schemas.android.com/apk/res/android\"&gt;\n        &lt;services&gt;\n            &lt;service url=\"myservice.js\" type=\"interval\"/&gt;\n        &lt;/services&gt;\n    &lt;/android&gt;\n&lt;/ti:app&gt;\n</code></pre>\n\n\n\n\n<p>Code in \"regular\" Titanium file to launch the service and listen for pause/resume events.\nCode also stops the service after its code runs 3 times.</p>\n\n\n\n\n<pre><code>var intent = <a href=\"#!/api/Titanium.Android-method-createServiceIntent\" rel=\"Titanium.Android-method-createServiceIntent\" class=\"docClass\">Titanium.Android.createServiceIntent</a>( { url: 'myservice.js' } );\n// Service should run its code every 2 seconds.\nintent.putExtra('interval', 2000);\n// A message that the service should 'echo'\nintent.putExtra('message_to_echo', 'Titanium rocks!');\n\nvar service = <a href=\"#!/api/Titanium.Android-method-createService\" rel=\"Titanium.Android-method-createService\" class=\"docClass\">Titanium.Android.createService</a>(intent);\nservice.addEventListener('resume', function(e) {\n    <a href=\"#!/api/Titanium.API-method-info\" rel=\"Titanium.API-method-info\" class=\"docClass\">Titanium.API.info</a>('Service code resumes, iteration ' + e.iteration);\n});\nservice.addEventListener('pause', function(e) {\n    <a href=\"#!/api/Titanium.API-method-info\" rel=\"Titanium.API-method-info\" class=\"docClass\">Titanium.API.info</a>('Service code pauses, iteration ' + e.iteration);\n    if (e.iteration === 3) {\n        <a href=\"#!/api/Titanium.API-method-info\" rel=\"Titanium.API-method-info\" class=\"docClass\">Titanium.API.info</a>('Service code has run 3 times, will now stop it.');\n        service.stop();\n    }\n});\nservice.start();\n</code></pre>\n\n\n\n\n<p>Console Output:</p>\n\n\n\n\n<pre><code>[INFO] [29,1942] Service code resumes, iteration 1\n[INFO] [70,2029] Hello World! I am a Service. I have this to say: Titanium rocks!\n[INFO] [3,2070] Service code pauses, iteration 1\n[INFO] [2,3915] Service code resumes, iteration 2\n[INFO] [31,3961] Hello World! I am a Service. I have this to say: Titanium rocks!\n[INFO] [5,3968] Service code pauses, iteration 2\n[INFO] [2,5917] Service code resumes, iteration 3\n[INFO] [27,5961] Hello World! I am a Service. I have this to say: Titanium rocks!\n[INFO] [16,5980] Service code pauses, iteration 3\n[INFO] [1,5981] Service code has run 3 times, will now stop it.\n</code></pre>\n\n",
+  "extends": "Titanium.Proxy",
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-Titanium.Android.Service",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "apiName",
+        "owner": "Titanium.Proxy",
+        "type": "String",
+        "doc": "<p>The name of the API that this proxy corresponds to.</p>\n\n\n<p>@description <p>The value of this property is the fully qualified name of the API. For example, <a href=\"#!/api/Titanium.UI.Button\" rel=\"Titanium.UI.Button\" class=\"docClass\">Button</a>\nreturns <code>Ti.UI.Button</code>.</p></p>\n\n<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-apiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 235
+          }
+        ],
+        "shortDoc": "The name of the API that this proxy corresponds to. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "bubbleParent",
+        "owner": "Titanium.Proxy",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the proxy will bubble an event to its parent.</p>\n\n\n<p>@description <p>Some proxies (most commonly views) have a relationship to other proxies, often\nestablished by the add() method. For example, for a button added to a window, a\nclick event on the button would bubble up to the window. Other common parents are\ntable sections to their rows, table views to their sections, and scrollable views\nto their views. Set this property to false to disable the bubbling to the proxy's parent.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-bubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 207
+          }
+        ],
+        "shortDoc": "Indicates if the proxy will bubble an event to its parent. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "intent",
+        "owner": "Titanium.Android.Service",
+        "type": "Titanium.Android.Intent",
+        "doc": "<p>The intent used to start or bind to the Service.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-intent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 19687
+          }
+        ],
+        "html_type": "Titanium.Android.Intent",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "doc": "<p>The Window or TabGroup whose Activity lifecycle should be triggered on the proxy.</p>\n\n\n<p>@description <p>If this property is set to a Window or TabGroup, then the corresponding Activity lifecycle event callbacks\nwill also be called on the proxy. Proxies that require the activity lifecycle will need this property set\nto the appropriate containing Window or TabGroup.</p></p>\n\n<p>@platform android 3.6.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-lifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 262
+          }
+        ],
+        "shortDoc": "The Window or TabGroup whose Activity lifecycle should be triggered on the proxy. ...",
+        "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "serviceInstanceId",
+        "owner": "Titanium.Android.Service",
+        "type": "Number",
+        "doc": "<p>A service can be started more than once -- this number (based on an incrementing integer)\nindicates which \"start number\" in the sequence the current service instance is.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-serviceInstanceId",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 19708
+          }
+        ],
+        "shortDoc": "A service can be started more than once -- this number (based on an incrementing integer)\nindicates which \"start numb...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      }
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "addEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Adds the specified callback as an event listener for the named event.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to invoke when the event is fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38
+          }
+        ],
+        "shortDoc": "Adds the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "applyProperties",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Applies the properties to the proxy.</p>\n\n\n<p>@description <p>Properties are supplied as a dictionary. Each key-value pair in the object is applied to the proxy such that\nmyproxy[key] = value.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "props",
+            "doc": "<p>A dictionary of properties to apply.</p>\n\n\n<p>@platform android 3.0.0\n@platform blackberry 3.3.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-applyProperties",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 102
+          }
+        ],
+        "shortDoc": "Applies the properties to the proxy. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "fireEvent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Fires a synthesized event to any registered listeners.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Dictionary",
+            "name": "event",
+            "doc": "<p>A dictionary of keys and values to add to the <a href=\"#!/api/Titanium.Event\" rel=\"Titanium.Event\" class=\"docClass\">Titanium.Event</a> object sent to the listeners.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-fireEvent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 85
+          }
+        ],
+        "shortDoc": "Fires a synthesized event to any registered listeners. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getApiName",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-apiName\" rel=\"Titanium.Proxy-property-apiName\" class=\"docClass\">apiName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getApiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 157
+          }
+        ],
+        "shortDoc": "Gets the value of the apiName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 123
+          }
+        ],
+        "shortDoc": "Gets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getIntent",
+        "owner": "Titanium.Android.Service",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Android.Service-property-intent\" rel=\"Titanium.Android.Service-property-intent\" class=\"docClass\">intent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.Android.Intent",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Titanium.Android.Intent"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getIntent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 19659
+          }
+        ],
+        "shortDoc": "Gets the value of the intent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+          "name": "return",
+          "doc": "<p>@platform android 3.6.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 175
+          }
+        ],
+        "shortDoc": "Gets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getServiceInstanceId",
+        "owner": "Titanium.Android.Service",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Android.Service-property-serviceInstanceId\" rel=\"Titanium.Android.Service-property-serviceInstanceId\" class=\"docClass\">serviceInstanceId</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getServiceInstanceId",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 19672
+          }
+        ],
+        "shortDoc": "Gets the value of the serviceInstanceId property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Removes the specified callback as an event listener for the named event.</p>\n\n\n<p>@description <p>Multiple listeners can be registered for the same event, so the\n<code>callback</code> parameter is used to determine which listener to remove. </p></p>\n\n<p>When adding a listener, you must save a reference to the callback function\nin order to remove the listener later:</p>\n\n\n\n\n<pre><code>var listener = function() { Ti.API.info(\"Event listener called.\"); }\nwindow.addEventListener('click', listener);\n</code></pre>\n\n\n\n\n<p>To remove the listener, pass in a reference to the callback function:</p>\n\n\n\n\n<pre><code>window.removeEventListener('click', listener);\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to remove. Must be the same function passed to <code>addEventListener</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 55
+          }
+        ],
+        "shortDoc": "Removes the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "bubbleParent",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139
+          }
+        ],
+        "shortDoc": "Sets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+            "name": "lifecycleContainer",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.6.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 189
+          }
+        ],
+        "shortDoc": "Sets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "start",
+        "owner": "Titanium.Android.Service",
+        "doc": "<p>Starts the Service.</p>\n\n\n<p>@description <p>Effective only if this instance of <a href=\"#!/api/Titanium.Android.Service\" rel=\"Titanium.Android.Service\" class=\"docClass\">Titanium.Android.Service</a> was created\nwith <a href=\"#!/api/Titanium.Android-method-createService\" rel=\"Titanium.Android-method-createService\" class=\"docClass\">Titanium.Android.createService</a>.</p></p>\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-start",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 19632
+          }
+        ],
+        "shortDoc": "Starts the Service. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "stop",
+        "owner": "Titanium.Android.Service",
+        "doc": "<p>Stops this running instance of the Service.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-stop",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 19646
+          }
+        ],
+        "shortDoc": "Stops this running instance of the Service. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "event": [
+      {
+        "tagname": "event",
+        "name": "pause",
+        "owner": "Titanium.Android.Service",
+        "doc": "<p>For Javascript-based services that you create, <code>pause</code> fires after each time the JavaScript\ncode executes.</p>\n\n\n<p>@description <p>The <code>resume</code> and <code>pause</code> events occur in pairs, with <code>resume</code> firing just before your\nJavaScript service code executes, and <code>pause</code> just after.</p></p>\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "iteration",
+            "doc": "<p>Incrementing integer indicating which iteration of an interval-based Service is pausing.\nFor example, if you have an interval-based Service running every 10 seconds, iteration\n3 would occur at about 30 seconds after you start the instance (assuming your service\ncode runs quickly).</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "event-pause",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 19510
+          }
+        ],
+        "shortDoc": "For Javascript-based services that you create, pause fires after each time the JavaScript\ncode executes. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "event",
+        "name": "resume",
+        "owner": "Titanium.Android.Service",
+        "doc": "<p>For JavaScript-based Services which you create, <code>resume</code> fires each time the JavaScript\ncode executes.</p>\n\n\n<p>@description <p>For example, if your Service runs on an interval of 10000 (10 seconds), you would expect\nto see <code>resume</code> fired every 10 seconds, just as the JavaScript service code you wrote is\nabout to execute.</p></p>\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "iteration",
+            "doc": "<p>Incrementing integer indicating which iteration of an interval-based Service is pausing.\nFor example, if you have an interval-based Service running every 10 seconds, iteration\n3 would occur at about 30 seconds after you start the instance (assuming your service\ncode runs quickly).</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "event-resume",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 19537
+          }
+        ],
+        "shortDoc": "For JavaScript-based Services which you create, resume fires each time the JavaScript\ncode executes. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "event",
+        "name": "start",
+        "owner": "Titanium.Android.Service",
+        "doc": "<p>Fired when the bound service instance starts.</p>\n\n\n<p>@description <p>Bound service instances are created via <a href=\"#!/api/Titanium.Android-method-createService\" rel=\"Titanium.Android-method-createService\" class=\"docClass\">Titanium.Android.createService</a>.</p></p>\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "event-start",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 19565
+          }
+        ],
+        "shortDoc": "Fired when the bound service instance starts. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "event",
+        "name": "stop",
+        "owner": "Titanium.Android.Service",
+        "doc": "<p>Fired when the bound service instance stops.</p>\n\n\n<p>@description <p>The service stops when <a href=\"#!/api/Titanium.Android.Service-method-stop\" rel=\"Titanium.Android.Service-method-stop\" class=\"docClass\">stop</a> or\n<a href=\"#!/api/Titanium.Android-method-stopService\" rel=\"Titanium.Android-method-stopService\" class=\"docClass\">Titanium.Android.stopService</a> is called and there are no more bound,\nun-stopped clients.</p></p>\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "event-stop",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 19585
+          }
+        ],
+        "shortDoc": "Fired when the bound service instance stops. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "event",
+        "name": "taskremoved",
+        "owner": "Titanium.Android.Service",
+        "doc": "<p>Fired when the task that comes from the service's application has been removed.</p>\n\n\n<p>@description <p>This event is fired if the service is currently running and the user has removed a task\nthat comes from the service's application, eg. the user swipes the application away from\nthe recent applications list. It only works for unbound service which is\nstarted using <a href=\"#!/api/Titanium.Android-method-startService\" rel=\"Titanium.Android-method-startService\" class=\"docClass\">Titanium.Android.startService</a>.</p></p>\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "event-taskremoved",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 19607
+          }
+        ],
+        "shortDoc": "Fired when the task that comes from the service's application has been removed. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 19398
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+    "Titanium.Proxy"
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

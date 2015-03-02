@@ -1,0 +1,250 @@
+{
+  "tagname": "class",
+  "name": "CameraMediaItemType",
+  "doc": "<p>@platform android 0.8\n@platform blackberry 3.1.2\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8\n@pseudo @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/Media/Media.yml</p>\n\n<p>A media object from the camera or photo gallery.</p>\n\n",
+  "extends": "SuccessResponse",
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-CameraMediaItemType",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "code",
+        "owner": "CameraMediaItemType",
+        "type": "Number",
+        "doc": "<p>Error code. Returns 0.</p>\n\n\n<p>@description <p>Error code will be 0.</p></p>\n\n<p>@platform android 3.1.0\n@platform blackberry 3.1.2\n@platform iphone 3.1.0\n@platform ipad 3.1.0\n@platform mobileweb 3.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-code",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 62498
+          }
+        ],
+        "shortDoc": "Error code. ...",
+        "html_type": "Number",
+        "html_meta": {
+        },
+        "overrides": [
+          {
+            "name": "code",
+            "owner": "SuccessResponse",
+            "id": "property-code"
+          }
+        ]
+      },
+      {
+        "tagname": "property",
+        "name": "cropRect",
+        "owner": "CameraMediaItemType",
+        "type": "CropRectType",
+        "doc": "<p>Simple object defining the user's selected crop rectangle, or <code>null</code> if the user has not edited the photo.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-cropRect",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 62566
+          }
+        ],
+        "html_type": "CropRectType",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "error",
+        "owner": "CameraMediaItemType",
+        "type": "String",
+        "doc": "<p>Error message, if any returned.</p>\n\n\n<p>@description <p>Will be undefined.</p></p>\n\n<p>@platform android 3.1.0\n@platform blackberry 3.1.2\n@platform iphone 3.1.0\n@platform ipad 3.1.0\n@platform mobileweb 3.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-error",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 62472
+          }
+        ],
+        "shortDoc": "Error message, if any returned. ...",
+        "html_type": "String",
+        "html_meta": {
+        },
+        "overrides": [
+          {
+            "name": "error",
+            "owner": "SuccessResponse",
+            "id": "property-error"
+          }
+        ]
+      },
+      {
+        "tagname": "property",
+        "name": "media",
+        "owner": "CameraMediaItemType",
+        "type": "Titanium.Blob",
+        "doc": "<p>The media object, as a <a href=\"#!/api/Titanium.Blob\" rel=\"Titanium.Blob\" class=\"docClass\">Blob</a>.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-media",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 62524
+          }
+        ],
+        "html_type": "Titanium.Blob",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "mediaType",
+        "owner": "CameraMediaItemType",
+        "type": "String",
+        "doc": "<p>The type of media, either <code>MEDIA_TYPE_PHOTO</code> or <code>MEDIA_TYPE_VIDEO</code> defined in <a href=\"#!/api/Titanium.Media\" rel=\"Titanium.Media\" class=\"docClass\">Titanium.Media</a>.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-mediaType",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 62545
+          }
+        ],
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "success",
+        "owner": "CameraMediaItemType",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the operation succeeded. Returns <code>true</code>.</p>\n\n\n<p>@description <p>Returns <code>true</code>.</p></p>\n\n<p>@platform android 3.1.0\n@platform blackberry 3.1.2\n@platform iphone 3.1.0\n@platform ipad 3.1.0\n@platform mobileweb 3.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-success",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 62446
+          }
+        ],
+        "shortDoc": "Indicates if the operation succeeded. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        },
+        "overrides": [
+          {
+            "name": "success",
+            "owner": "SuccessResponse",
+            "id": "property-success"
+          }
+        ]
+      }
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 62423
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+    "ErrorResponse",
+    "SuccessResponse"
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

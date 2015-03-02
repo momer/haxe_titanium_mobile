@@ -1,0 +1,156 @@
+{
+  "tagname": "class",
+  "name": "BoundaryIdentifier",
+  "doc": "<p>@platform iphone 3.2\n@platform ipad 3.2\n@pseudo @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/UI/iOS/CollisionBehavior.yml</p>\n\n<p>Dictionary to specify a boundary identifier for <a href=\"#!/api/Titanium.UI.iOS.CollisionBehavior-method-addBoundary\" rel=\"Titanium.UI.iOS.CollisionBehavior-method-addBoundary\" class=\"docClass\">Titanium.UI.iOS.CollisionBehavior.addBoundary</a>.</p>\n\n\n\n\n<p> <b>Requires:</b>\niOS 7.0 and later\n</p>\n\n",
+  "extends": null,
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-BoundaryIdentifier",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "identifier",
+        "owner": "BoundaryIdentifier",
+        "type": "String",
+        "doc": "<p>Arbitrary identifier for the boundary</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-identifier",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 137417
+          }
+        ],
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "point1",
+        "owner": "BoundaryIdentifier",
+        "type": "Point",
+        "doc": "<p>Start point for the boundary</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-point1",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 137438
+          }
+        ],
+        "html_type": "Point",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "point2",
+        "owner": "BoundaryIdentifier",
+        "type": "Point",
+        "doc": "<p>End point for the boundary</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-point2",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 137459
+          }
+        ],
+        "html_type": "Point",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 137394
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

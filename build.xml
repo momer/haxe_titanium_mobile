@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<buildhx>
+	<source path="src" language="javascript" parser="jsduck" />
+
+	<class name="AcceptDict" ignore="true" />
+
+	<output path="extern_classes" />
+</buildhx>

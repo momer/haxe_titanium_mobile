@@ -1,0 +1,182 @@
+{
+  "tagname": "class",
+  "name": "windowToolbarParam",
+  "doc": "<p>@platform iphone 3.1.3\n@platform ipad 3.1.3\n@pseudo @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/UI/Window.yml</p>\n\n<p>Dictionary of options for the <a href=\"#!/api/Titanium.UI.Window-method-setToolbar\" rel=\"Titanium.UI.Window-method-setToolbar\" class=\"docClass\">Titanium.UI.Window.setToolbar</a> method.</p>\n\n",
+  "extends": null,
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-windowToolbarParam",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "animated",
+        "owner": "windowToolbarParam",
+        "type": "Boolean",
+        "doc": "<p>Defines if the toolbar appearance is animated.</p>\n\n",
+        "default": "true if the window has toolbar items, false otherwise.",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-animated",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 134242
+          }
+        ],
+        "shortDoc": "Defines if the toolbar appearance is animated. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "barColor",
+        "owner": "windowToolbarParam",
+        "type": "String",
+        "doc": "<p>Background color for the toolbar, as a color name or hex triplet.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-barColor",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 134263
+          }
+        ],
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "tintColor",
+        "owner": "windowToolbarParam",
+        "type": "String",
+        "doc": "<p>The tintColor to apply to the tool bar. Applicable on iOS 7 and above.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-tintColor",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 134284
+          }
+        ],
+        "shortDoc": "The tintColor to apply to the tool bar. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "translucent",
+        "owner": "windowToolbarParam",
+        "type": "Boolean",
+        "doc": "<p>Defines if the toolbar is translucent.</p>\n\n",
+        "default": "true on iOS 7 and above, false otherwise.",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-translucent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 134221
+          }
+        ],
+        "shortDoc": "Defines if the toolbar is translucent. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 134201
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

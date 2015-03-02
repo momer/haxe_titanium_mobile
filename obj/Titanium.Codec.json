@@ -1,0 +1,1090 @@
+{
+  "tagname": "class",
+  "name": "Titanium.Codec",
+  "doc": "<p>@platform android 1.7\n@platform blackberry 3.1.2\n@platform iphone 1.7\n@platform ipad 1.7\n@platform mobileweb 1.8 @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/Codec/Codec.yml</p>\n\n<p>A module for translating between primitive types and raw byte streams.</p>\n\n\n<p>@description <p>The <code>Codec</code> module can be used for encoding strings and numbers into <a href=\"#!/api/Titanium.Buffer\" rel=\"Titanium.Buffer\" class=\"docClass\">Buffer</a>\nobjects, and decoding primitive types from buffers. </p></p>\n\n<h4>Byte Order</h4>\n\n\n\n\n<p>Multi-byte data can be stored in two different byte orders: big-endian or\nlittle-endian. In big-endian byte order, the most significant or highest-value\nbyte is stored first. For example, the 4-byte integer 0xFEDCBA98 is made up of the\nbytes 0xFE, 0xDC, 0xBA and 0x98, from most-significant to least-significant.  </p>\n\n\n\n\n<p>If we represent a buffer as an array of byte values, a big-endian encoding of\n0xFEDCBA98 would look like this:</p>\n\n\n\n\n<pre><code>[ 0xFE, 0xDC, 0xBA, 0x98 ]\n</code></pre>\n\n\n\n\n<p>In little-endian order, the bytes would be stored in this order:</p>\n\n\n\n\n<pre><code>[ 0x98, 0xBA, 0xDC, 0xFE ]\n</code></pre>\n\n\n\n\n<p>For 8-bit character encodings, including ASCII, Latin-1 and UTF-8, byte order is not\nsignificant: the text is a sequence of individual bytes.</p>\n\n\n\n\n<p>For UTF-16, text is represented as a sequence of 16-bit values. For example,\na capital T in UTF-16 is 0x0054, and lowercase i is 0x0069. If we encode the string\n\"Ti\" with UTF-16 in big-endian byte order, we get:</p>\n\n\n\n\n<pre><code>[ 0x00, 0x54, 0x00, 0x69 ]\n</code></pre>\n\n\n\n\n<p>In UTF-16 with little-endian byte order, \"Ti\" is encoded as:</p>\n\n\n\n\n<pre><code>[ 0x54, 0x00, 0x69, 0x00 ]\n</code></pre>\n\n\n\n\n<p>Note that the bytes for each character are stored least-significant byte first, but\nthe order of the characters is unchanged.</p>\n\n",
+  "extends": "Titanium.Module",
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-Titanium.Codec",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "BIG_ENDIAN",
+        "owner": "Titanium.Codec",
+        "type": "Number",
+        "doc": "<p>Big endian (network) byte order -- that is, the most significant byte first.</p>\n\n\n<p>@description <p>See \"Byte Order\" in the main discussion of <a href=\"#!/api/Titanium.Codec\" rel=\"Titanium.Codec\" class=\"docClass\">Titanium.Codec</a> for more information.</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-BIG_ENDIAN",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 37990
+          }
+        ],
+        "shortDoc": "Big endian (network) byte order -- that is, the most significant byte first. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "CHARSET_ASCII",
+        "owner": "Titanium.Codec",
+        "type": "String",
+        "doc": "<p>ASCII character encoding..</p>\n\n\n\n\n<p><b>Constant value:</b>ascii</p>\n\n\n<p>@description <p>See also: <a href=\"http://en.wikipedia.org/wiki/ASCII\">ASCII</a> on Wikipedia.</p></p>\n\n<p>@platform android 1.7\n@platform iphone 1.7\n@platform ipad 1.7\n@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-CHARSET_ASCII",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 37678
+          }
+        ],
+        "shortDoc": "ASCII character encoding.. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "CHARSET_ISO_LATIN_1",
+        "owner": "Titanium.Codec",
+        "type": "String",
+        "doc": "<p>ISO 8859-1 (Latin-1) character encoding.</p>\n\n\n\n\n<p><b>Constant value:</b>iso-latin-1</p>\n\n\n<p>@description <p>See also: <a href=\"http://en.wikipedia.org/wiki/ISO/IEC_8859-1\">ISO/IEC 8859-1</a> on Wikipedia.</p></p>\n\n<p>@platform android 1.7\n@platform iphone 1.7\n@platform ipad 1.7\n@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-CHARSET_ISO_LATIN_1",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 37704
+          }
+        ],
+        "shortDoc": "ISO 8859-1 (Latin-1) character encoding. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "CHARSET_UTF16",
+        "owner": "Titanium.Codec",
+        "type": "String",
+        "doc": "<p>UTF-16 character encoding with default byte order.</p>\n\n\n\n\n<p><b>Constant value:</b>utf16</p>\n\n\n<p>@description <p>See also: <a href=\"http://en.wikipedia.org/wiki/UTF-16/UCS-2\">UTF-16/UCS2</a> on Wikipedia.</p></p>\n\n<p>@platform android 1.7\n@platform iphone 1.7\n@platform ipad 1.7\n@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-CHARSET_UTF16",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 37756
+          }
+        ],
+        "shortDoc": "UTF-16 character encoding with default byte order. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "CHARSET_UTF16BE",
+        "owner": "Titanium.Codec",
+        "type": "String",
+        "doc": "<p>UTF-16 character encoding with big endian byte order.</p>\n\n\n\n\n<p><b>Constant value:</b>utf16be</p>\n\n\n<p>@description <p>See also: <a href=\"http://en.wikipedia.org/wiki/UTF-16/UCS-2\">UTF-16/UCS2</a> on Wikipedia.</p></p>\n\n<p>@platform android 1.7\n@platform iphone 1.7\n@platform ipad 1.7\n@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-CHARSET_UTF16BE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 37782
+          }
+        ],
+        "shortDoc": "UTF-16 character encoding with big endian byte order. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "CHARSET_UTF16LE",
+        "owner": "Titanium.Codec",
+        "type": "String",
+        "doc": "<p>UTF-16 character encoding with little endian byte order.</p>\n\n\n\n\n<p><b>Constant value:</b>utf16le</p>\n\n\n<p>@description <p>See also: <a href=\"http://en.wikipedia.org/wiki/UTF-16/UCS-2\">UTF-16/UCS2</a> on Wikipedia.</p></p>\n\n<p>@platform android 1.7\n@platform iphone 1.7\n@platform ipad 1.7\n@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-CHARSET_UTF16LE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 37808
+          }
+        ],
+        "shortDoc": "UTF-16 character encoding with little endian byte order. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "CHARSET_UTF8",
+        "owner": "Titanium.Codec",
+        "type": "String",
+        "doc": "<p>UTF-8 character encoding.</p>\n\n\n\n\n<p><b>Constant value:</b>utf8</p>\n\n\n<p>@description <p>See also: <a href=\"http://en.wikipedia.org/wiki/UTF-8\">UTF-8</a> on Wikipedia.</p></p>\n\n<p>@platform android 1.7\n@platform iphone 1.7\n@platform ipad 1.7\n@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-CHARSET_UTF8",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 37730
+          }
+        ],
+        "shortDoc": "UTF-8 character encoding. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "LITTLE_ENDIAN",
+        "owner": "Titanium.Codec",
+        "type": "Number",
+        "doc": "<p>Little endian byte order -- that is, the least significant byte first.</p>\n\n\n<p>@description <p>See \"Byte Order\" in the main discussion of <a href=\"#!/api/Titanium.Codec\" rel=\"Titanium.Codec\" class=\"docClass\">Titanium.Codec</a> for more information.</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-LITTLE_ENDIAN",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38011
+          }
+        ],
+        "shortDoc": "Little endian byte order -- that is, the least significant byte first. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "TYPE_BYTE",
+        "owner": "Titanium.Codec",
+        "type": "String",
+        "doc": "<p>8-bit integer encoding type.</p>\n\n\n\n\n<p><b>Constant value:</b>byte</p>\n\n\n<p>@platform android 1.7\n@platform iphone 1.7\n@platform ipad 1.7\n@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-TYPE_BYTE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 37834
+          }
+        ],
+        "shortDoc": "8-bit integer encoding type. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "TYPE_DOUBLE",
+        "owner": "Titanium.Codec",
+        "type": "String",
+        "doc": "<p>64-bit double precision floating-point type.</p>\n\n\n\n\n<p><b>Constant value:</b>double</p>\n\n\n<p>@platform android 1.7\n@platform iphone 1.7\n@platform ipad 1.7\n@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-TYPE_DOUBLE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 37964
+          }
+        ],
+        "shortDoc": "64-bit double precision floating-point type. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "TYPE_FLOAT",
+        "owner": "Titanium.Codec",
+        "type": "String",
+        "doc": "<p>32-bit single precision floating-point type.</p>\n\n\n\n\n<p><b>Constant value:</b>float</p>\n\n\n<p>@platform android 1.7\n@platform iphone 1.7\n@platform ipad 1.7\n@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-TYPE_FLOAT",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 37912
+          }
+        ],
+        "shortDoc": "32-bit single precision floating-point type. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "TYPE_INT",
+        "owner": "Titanium.Codec",
+        "type": "String",
+        "doc": "<p>32-bit integer encoding type.</p>\n\n\n\n\n<p><b>Constant value:</b>int</p>\n\n\n<p>@platform android 1.7\n@platform iphone 1.7\n@platform ipad 1.7\n@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-TYPE_INT",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 37886
+          }
+        ],
+        "shortDoc": "32-bit integer encoding type. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "TYPE_LONG",
+        "owner": "Titanium.Codec",
+        "type": "String",
+        "doc": "<p>64-bit integer encoding type.</p>\n\n\n\n\n<p><b>Constant value:</b>long</p>\n\n\n<p>@platform android 1.7\n@platform iphone 1.7\n@platform ipad 1.7\n@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-TYPE_LONG",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 37938
+          }
+        ],
+        "shortDoc": "64-bit integer encoding type. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "TYPE_SHORT",
+        "owner": "Titanium.Codec",
+        "type": "String",
+        "doc": "<p>16-bit integer encoding type.</p>\n\n\n\n\n<p><b>Constant value:</b>short</p>\n\n\n<p>@platform android 1.7\n@platform iphone 1.7\n@platform ipad 1.7\n@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-TYPE_SHORT",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 37860
+          }
+        ],
+        "shortDoc": "16-bit integer encoding type. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "apiName",
+        "owner": "Titanium.Proxy",
+        "type": "String",
+        "doc": "<p>The name of the API that this proxy corresponds to.</p>\n\n\n<p>@description <p>The value of this property is the fully qualified name of the API. For example, <a href=\"#!/api/Titanium.UI.Button\" rel=\"Titanium.UI.Button\" class=\"docClass\">Button</a>\nreturns <code>Ti.UI.Button</code>.</p></p>\n\n<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-apiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 235
+          }
+        ],
+        "shortDoc": "The name of the API that this proxy corresponds to. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "bubbleParent",
+        "owner": "Titanium.Proxy",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the proxy will bubble an event to its parent.</p>\n\n\n<p>@description <p>Some proxies (most commonly views) have a relationship to other proxies, often\nestablished by the add() method. For example, for a button added to a window, a\nclick event on the button would bubble up to the window. Other common parents are\ntable sections to their rows, table views to their sections, and scrollable views\nto their views. Set this property to false to disable the bubbling to the proxy's parent.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-bubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 207
+          }
+        ],
+        "shortDoc": "Indicates if the proxy will bubble an event to its parent. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "doc": "<p>The Window or TabGroup whose Activity lifecycle should be triggered on the proxy.</p>\n\n\n<p>@description <p>If this property is set to a Window or TabGroup, then the corresponding Activity lifecycle event callbacks\nwill also be called on the proxy. Proxies that require the activity lifecycle will need this property set\nto the appropriate containing Window or TabGroup.</p></p>\n\n<p>@platform android 3.6.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-lifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 262
+          }
+        ],
+        "shortDoc": "The Window or TabGroup whose Activity lifecycle should be triggered on the proxy. ...",
+        "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "addEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Adds the specified callback as an event listener for the named event.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to invoke when the event is fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38
+          }
+        ],
+        "shortDoc": "Adds the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "applyProperties",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Applies the properties to the proxy.</p>\n\n\n<p>@description <p>Properties are supplied as a dictionary. Each key-value pair in the object is applied to the proxy such that\nmyproxy[key] = value.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "props",
+            "doc": "<p>A dictionary of properties to apply.</p>\n\n\n<p>@platform android 3.0.0\n@platform blackberry 3.3.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-applyProperties",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 102
+          }
+        ],
+        "shortDoc": "Applies the properties to the proxy. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "decodeNumber",
+        "owner": "Titanium.Codec",
+        "doc": "<p>Decodes a number from the <code>source</code> buffer using the specified data type.</p>\n\n\n<p>@description <p>Takes a set of named parameters in the <code>options</code> argument.</p></p>\n\n<p>Bytes are read from  the <code>source</code> buffer and decoded as the specified data type, <code>type</code>.</p>\n\n\n\n\n<p>Two optional parameters can also be specified in <code>options</code>:</p>\n\n\n\n\n<ul>\n<li><p>If <code>position</code> is included in the <code>options</code> dictionary, reads data from the\nbuffer starting at <code>position</code>.</p></li>\n<li><p>If <code>byteOrder</code> is included in the <code>options</code> dictionary, the specified byte order\nis used -- otherwise, the native byte order is assumed.</p></li>\n</ul>\n\n\n\n\n<p>Throws an exception if <code>source</code> is null, or <code>position</code> is greater than <code>source.length</code></p>\n\n\n\n\n<p>On Mobile Web, <code>position</code> and <code>byteOrder</code> are not supported.</p>\n\n\n<h3>Examples</h3>\n\n\n<h4>Decode a Double-Precision Floating Point Number</h4>\n\n\n<p>This sample decodes an 8-byte double-precision floating point number using the\nOS byte order.</p>\n\n\n\n\n<pre><code>var buffer = // a buffer containing (at least) one 8-byte floating-point number\nvar value = Ti.Codec.decodeNumber({\n    source: buffer,\n    type: Ti.Codec.TYPE_DOUBLE\n});\n</code></pre>\n\n\n<h4>Decode an Integer Specifying Start Position and Byte Order</h4>\n\n\n<p>This sample decodes a 4-byte integer starting at index position 10 in the\nbuffer, using big endian encoding.</p>\n\n\n\n\n<pre><code>var buffer = // a buffer containing a 4-byte integer at position 10.\nvar value = Ti.Codec.decodeNumber({\n      source: buffer,\n      position: 10,\n      type: Ti.Codec.TYPE_INT,\n      byteOrder: Ti.Codec.BIG_ENDIAN\n});\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "DecodeNumberDict",
+            "name": "options",
+            "doc": "<p>Named parameters.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "DecodeNumberDict"
+          }
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>Number decoded from <code>source</code>.</p>\n\n<p>@platform android 1.7\n@platform iphone 1.7\n@platform ipad 1.7\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-decodeNumber",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 37508
+          }
+        ],
+        "shortDoc": "Decodes a number from the source buffer using the specified data type. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "decodeString",
+        "owner": "Titanium.Codec",
+        "doc": "<p>Decodes the source buffer into a String using the supplied character set.</p>\n\n\n<p>@description <p>Takes a set of named parameters in the <code>options</code> argument.</p></p>\n\n<p>Bytes are read from the <code>source</code> buffer and decoded as a string.</p>\n\n\n\n\n<p>Several optional parameters can also be specified in <code>options</code>:</p>\n\n\n\n\n<ul>\n<li><p>If <code>position</code> is specified, bytes are read from <code>source</code> starting at <code>position</code>.</p></li>\n<li><p>If <code>length</code> is specified, no more than <code>length</code> bytes are read.</p></li>\n<li><p>If <code>charset</code> is specified, it determines the character encoding used to decode the\nstring. Otherwise, UTF-8 is assumed.</p></li>\n</ul>\n\n\n\n\n<p>Throws an exception if <code>charset</code> is not a valid character set, <code>source</code> is null,\nor either <code>position</code>, <code>length</code>, or <code>position</code>+<code>length</code> is greater than <code>source.length</code>.</p>\n\n\n\n\n<p>On Mobile Web, <code>charset</code> is not supported. All strings are treated as UTF-8.</p>\n\n\n<h3>Examples</h3>\n\n\n<h4>Decode a String</h4>\n\n\n<p>This sample decodes a string using the default character encoding.</p>\n\n\n\n\n<pre><code>var buffer = // a buffer containing an encoded string\nvar string = Ti.Codec.decodeString({ source: buffer });\n</code></pre>\n\n\n<h4>Decode a String with a Specified Character Encoding</h4>\n\n\n<p>This sample decodes a string using the UTF-16 character encoding.</p>\n\n\n\n\n<pre><code>var buffer = // a buffer containing a UTF-16 encoded string\nvar string = Ti.Codec.decodeString({\n  source: buffer,\n  charset: Ti.Codec.CHARSET_UTF16\n});\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "DecodeStringDict",
+            "name": "options",
+            "doc": "<p>Named parameters.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "DecodeStringDict"
+          }
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>The decoded string</p>\n\n<p>@platform android 1.7\n@platform iphone 1.7\n@platform ipad 1.7\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-decodeString",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 37627
+          }
+        ],
+        "shortDoc": "Decodes the source buffer into a String using the supplied character set. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "encodeNumber",
+        "owner": "Titanium.Codec",
+        "doc": "<p>Encodes a number and writes it to a buffer.</p>\n\n\n<p>@description <p>Takes a set of named parameters passed in the <code>options</code> argument.</p></p>\n\n<p>Encodes the number <code>source</code> into <code>dest</code> using the passed in data <code>type</code>.</p>\n\n\n\n\n<p>Two optional parameters can also be specified in <code>options</code>:</p>\n\n\n\n\n<ul>\n<li><p>If <code>position</code> is included in the <code>options</code> dictionary, writes the encoded number\nto the buffer starting at <code>position</code>.</p></li>\n<li><p>If <code>byteOrder</code> is included in the <code>options</code> dictionary, the specified byte order\nis used -- otherwise, the native byte order is assumed.</p></li>\n</ul>\n\n\n\n\n<p>On Mobile Web, <code>position</code> is not supported.</p>\n\n\n<h3>Examples</h3>\n\n\n<h4>Encode a Double-Precision Floating Point Value</h4>\n\n\n<p>This example encodes a double-precision floating point value in 8 bytes using the OS byte\norder.</p>\n\n\n\n\n<pre><code>var buffer = Ti.createBuffer({ length: 8 });\nTi.Codec.encodeNumber({\n  source: 1.23456789,\n  dest: buffer,\n  type: Ti.Codec.TYPE_DOUBLE\n});\n</code></pre>\n\n\n<h4>Encode an Integer Specifying Start Position and Byte Order</h4>\n\n\n<p>This example encodes a 4-byte integer using big endian encoding, and\nwrites it to the supplied buffer starting at index position 10.</p>\n\n\n\n\n<pre><code>var buffer = Ti.createBuffer({ length: 100 });\nTi.Codec.encodeNumber({\n    source: 0x3456789a,\n    dest: buffer,\n    position: 10,\n    type: Ti.Codec.TYPE_INT,\n    byteOrder: Ti.Codec.BIG_ENDIAN\n});\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "EncodeNumberDict",
+            "name": "options",
+            "doc": "<p>Named parameters.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "EncodeNumberDict"
+          }
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>Position <em>after</em> the encoded number in <code>dest</code>.</p>\n\n<p>@platform android 1.7\n@platform iphone 1.7\n@platform ipad 1.7\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-encodeNumber",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 37453
+          }
+        ],
+        "shortDoc": "Encodes a number and writes it to a buffer. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "encodeString",
+        "owner": "Titanium.Codec",
+        "doc": "<p>Encodes a string into a series of bytes in a buffer using the specified character set.</p>\n\n\n<p>@description <p>Takes a set of named parameters in the <code>options</code> argument.</p></p>\n\n<p>The string is read from <code>source</code> and written to the buffer <code>dest</code>.</p>\n\n\n\n\n<p>Several optional parameters can also be specified in <code>options</code>:</p>\n\n\n\n\n<ul>\n<li><p>If <code>charset</code> is included, the string is encoded using the specified character\nencoding.</p></li>\n<li><p>If <code>destPosition</code> is included, data is written into the buffer starting at\nthe specified position. </p></li>\n<li><p>If <code>sourcePosition</code> is included, a substring of the source string starting at the\nspecified position is encoded.</p></li>\n<li><p>If <code>sourceLength</code> is included, at most the specified numer of characters\nare encoded.</p></li>\n</ul>\n\n\n\n\n<p>Throws an exception if <code>charset</code> is not a valid character set,\n<code>source</code> is null, or either <code>sourcePosition</code>, <code>sourceLength</code>, or\n<code>sourcePosition</code>+<code>sourceLength</code> is greater than <code>source.length</code>.</p>\n\n\n\n\n<p>On Mobile Web, the <code>charset</code> option is not supported. All strings are treated as UTF-8.</p>\n\n\n<h3>Examples</h3>\n\n\n<h4>Encode String with Default Character Encoding</h4>\n\n\n<p>This sample encodes a string using the default character encoding (UTF-8), then trims the\nbuffer to the length of the encoded string.</p>\n\n\n\n\n<pre><code>var buffer = Ti.createBuffer({ length: 1024 });\nvar length = Ti.Codec.encodeString({\n    source: \"hello world\",\n    dest: buffer\n});\nbuffer.length = length;\n</code></pre>\n\n\n<h4>Encode Substring with Specified Character Encoding</h4>\n\n\n<p>This sample encodes the first 10 characters of a string using UTF-16 character encoding. </p>\n\n\n\n\n<pre><code>// (10 * 2) + BOM = 22\nvar buffer = Ti.createBuffer({ length: 22 });\nTi.Codec.encodeString({\n    source: \"jack jumped over the candle stick\",\n    sourceLength: 10,\n    dest: buffer,\n    charset: Ti.Codec.CHARSET_UTF16\n});\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "Dictionary<EncodeStringDict>",
+            "name": "options",
+            "doc": "<p>Named parameters.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary<EncodeStringDict>"
+          }
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>An index indicating the first byte in the destination buffer <em>after</em> the\nencoded string.</p>\n\n<p>@platform android 1.7\n@platform iphone 1.7\n@platform ipad 1.7\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-encodeString",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 37563
+          }
+        ],
+        "shortDoc": "Encodes a string into a series of bytes in a buffer using the specified character set. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "fireEvent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Fires a synthesized event to any registered listeners.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Dictionary",
+            "name": "event",
+            "doc": "<p>A dictionary of keys and values to add to the <a href=\"#!/api/Titanium.Event\" rel=\"Titanium.Event\" class=\"docClass\">Titanium.Event</a> object sent to the listeners.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-fireEvent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 85
+          }
+        ],
+        "shortDoc": "Fires a synthesized event to any registered listeners. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getApiName",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-apiName\" rel=\"Titanium.Proxy-property-apiName\" class=\"docClass\">apiName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getApiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 157
+          }
+        ],
+        "shortDoc": "Gets the value of the apiName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 123
+          }
+        ],
+        "shortDoc": "Gets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+          "name": "return",
+          "doc": "<p>@platform android 3.6.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 175
+          }
+        ],
+        "shortDoc": "Gets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getNativeByteOrder",
+        "owner": "Titanium.Codec",
+        "doc": "<p>Get the OS native byte order (either <a href=\"#!/api/Titanium.Codec-property-BIG_ENDIAN\" rel=\"Titanium.Codec-property-BIG_ENDIAN\" class=\"docClass\">BIG_ENDIAN</a> or\n<a href=\"#!/api/Titanium.Codec-property-LITTLE_ENDIAN\" rel=\"Titanium.Codec-property-LITTLE_ENDIAN\" class=\"docClass\">LITTLE_ENDIAN</a>).</p>\n\n\n<p>@description <p>See \"Byte Order\" in the main discussion of <a href=\"#!/api/Titanium.Codec\" rel=\"Titanium.Codec\" class=\"docClass\">Titanium.Codec</a> for more information.</p></p>\n\n<p>On Mobile Web, this property always returns <a href=\"#!/api/Titanium.Codec-property-LITTLE_ENDIAN\" rel=\"Titanium.Codec-property-LITTLE_ENDIAN\" class=\"docClass\">LITTLE_ENDIAN</a>.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>OS native byte order.</p>\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.Codec-property-BIG_ENDIAN\" rel=\"Titanium.Codec-property-BIG_ENDIAN\" class=\"docClass\">BIG_ENDIAN</a>\n <li> <a href=\"#!/api/Titanium.Codec-property-LITTLE_ENDIAN\" rel=\"Titanium.Codec-property-LITTLE_ENDIAN\" class=\"docClass\">LITTLE_ENDIAN</a>\n</ul></p>\n\n\n<p>@platform android 1.7\n@platform iphone 1.7\n@platform ipad 1.7\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getNativeByteOrder",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 37428
+          }
+        ],
+        "shortDoc": "Get the OS native byte order (either BIG_ENDIAN or\nLITTLE_ENDIAN). ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Removes the specified callback as an event listener for the named event.</p>\n\n\n<p>@description <p>Multiple listeners can be registered for the same event, so the\n<code>callback</code> parameter is used to determine which listener to remove. </p></p>\n\n<p>When adding a listener, you must save a reference to the callback function\nin order to remove the listener later:</p>\n\n\n\n\n<pre><code>var listener = function() { Ti.API.info(\"Event listener called.\"); }\nwindow.addEventListener('click', listener);\n</code></pre>\n\n\n\n\n<p>To remove the listener, pass in a reference to the callback function:</p>\n\n\n\n\n<pre><code>window.removeEventListener('click', listener);\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to remove. Must be the same function passed to <code>addEventListener</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 55
+          }
+        ],
+        "shortDoc": "Removes the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "bubbleParent",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139
+          }
+        ],
+        "shortDoc": "Sets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+            "name": "lifecycleContainer",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.6.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 189
+          }
+        ],
+        "shortDoc": "Sets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 37370
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+    "Titanium.Proxy",
+    "Titanium.Module"
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

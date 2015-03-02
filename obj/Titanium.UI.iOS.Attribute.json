@@ -1,0 +1,827 @@
+{
+  "tagname": "class",
+  "name": "Titanium.UI.iOS.Attribute",
+  "doc": "<p>@platform iphone 3.2\n@platform ipad 3.2 @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/UI/iOS/Attribute.yml</p>\n\n<p>An abstract datatype for specifying an attributed string attribute.</p>\n\n",
+  "extends": "Titanium.Proxy",
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+    "deprecated": {
+      "text": "3.6.0 use <Titanium.UI.Attribute> instead.\n\n@description <p>Attributes are added to the {@link Titanium.UI.iOS.AttributedString} object to create\nstyled text. The attribute is a JavaScript Object containing three properties:\n<code>type</code>, <code>value</code> and <code>range</code>.</p>\n\n<p>For examples of using Attributed Strings, see the\n<a href=\"http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.iOS.AttributedString\">Attributed Strings guide</a>.</p>"
+    }
+  },
+  "id": "class-Titanium.UI.iOS.Attribute",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "apiName",
+        "owner": "Titanium.Proxy",
+        "type": "String",
+        "doc": "<p>The name of the API that this proxy corresponds to.</p>\n\n\n<p>@description <p>The value of this property is the fully qualified name of the API. For example, <a href=\"#!/api/Titanium.UI.Button\" rel=\"Titanium.UI.Button\" class=\"docClass\">Button</a>\nreturns <code>Ti.UI.Button</code>.</p></p>\n\n<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-apiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 235
+          }
+        ],
+        "shortDoc": "The name of the API that this proxy corresponds to. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "bubbleParent",
+        "owner": "Titanium.Proxy",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the proxy will bubble an event to its parent.</p>\n\n\n<p>@description <p>Some proxies (most commonly views) have a relationship to other proxies, often\nestablished by the add() method. For example, for a button added to a window, a\nclick event on the button would bubble up to the window. Other common parents are\ntable sections to their rows, table views to their sections, and scrollable views\nto their views. Set this property to false to disable the bubbling to the proxy's parent.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-bubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 207
+          }
+        ],
+        "shortDoc": "Indicates if the proxy will bubble an event to its parent. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "doc": "<p>The Window or TabGroup whose Activity lifecycle should be triggered on the proxy.</p>\n\n\n<p>@description <p>If this property is set to a Window or TabGroup, then the corresponding Activity lifecycle event callbacks\nwill also be called on the proxy. Proxies that require the activity lifecycle will need this property set\nto the appropriate containing Window or TabGroup.</p></p>\n\n<p>@platform android 3.6.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-lifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 262
+          }
+        ],
+        "shortDoc": "The Window or TabGroup whose Activity lifecycle should be triggered on the proxy. ...",
+        "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "range",
+        "owner": "Titanium.UI.iOS.Attribute",
+        "type": "Number[]",
+        "doc": "<p>Attribute range.</p>\n\n\n<p>@description <p>This specifies the range of text to apply the property to, as an array of two numbers: <code>[from, length]</code>.</p></p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-range",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 136694
+          }
+        ],
+        "shortDoc": "Attribute range. ...",
+        "html_type": "Number[]",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "type",
+        "owner": "Titanium.UI.iOS.Attribute",
+        "type": "Number",
+        "doc": "<p>Attribute to apply to the text.</p>\n\n\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_FONT\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_FONT\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_FONT</a>\n <li> <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_FOREGROUND_COLOR\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_FOREGROUND_COLOR\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_FOREGROUND_COLOR</a>\n <li> <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_BACKGROUND_COLOR\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_BACKGROUND_COLOR\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_BACKGROUND_COLOR</a>\n <li> <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_LIGATURE\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_LIGATURE\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_LIGATURE</a>\n <li> <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_KERN\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_KERN\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_KERN</a>\n <li> <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_STRIKETHROUGH_STYLE\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_STRIKETHROUGH_STYLE\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_STRIKETHROUGH_STYLE</a>\n <li> <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINES_STYLE\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINES_STYLE\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_UNDERLINES_STYLE</a>\n <li> <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_STROKE_COLOR\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_STROKE_COLOR\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_STROKE_COLOR</a>\n <li> <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_STROKE_WIDTH\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_STROKE_WIDTH\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_STROKE_WIDTH</a>\n <li> <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_SHADOW\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_SHADOW\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_SHADOW</a>\n <li> <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_WRITING_DIRECTION\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_WRITING_DIRECTION\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_WRITING_DIRECTION</a>\n <li> <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_TEXT_EFFECT\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_TEXT_EFFECT\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_TEXT_EFFECT</a>\n <li> <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_LINK\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_LINK\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_LINK</a>\n <li> <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_BASELINE_OFFSET\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_BASELINE_OFFSET\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_BASELINE_OFFSET</a>\n <li> <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINE_COLOR\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINE_COLOR\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_UNDERLINE_COLOR</a>\n <li> <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_STRIKETHROUGH_COLOR\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_STRIKETHROUGH_COLOR\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_STRIKETHROUGH_COLOR</a>\n <li> <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_OBLIQUENESS\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_OBLIQUENESS\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_OBLIQUENESS</a>\n <li> <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_EXPANSION\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_EXPANSION\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_EXPANSION</a>\n</ul></p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-type",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 136555
+          }
+        ],
+        "shortDoc": "Attribute to apply to the text. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "value",
+        "owner": "Titanium.UI.iOS.Attribute",
+        "type": "Number",
+        "doc": "<p>Attribute value.</p>\n\n\n<p>@description <p>The <code>value</code> parameter depends on the <code>type</code> parameter. For example, to\nuse the foreground color on the text you would use <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_FOREGROUND_COLOR\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_FOREGROUND_COLOR\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_FOREGROUND_COLOR</a>\nfor the <code>type</code> and a color value for the <code>value</code>:</p></p>\n\n<pre><code>{\n    type: <a href=\"#!/api/Titanium.UI.iOS\" rel=\"Titanium.UI.iOS\" class=\"docClass\">Titanium.UI.iOS</a>.ATTRIBUTE_FOREGROUND_COLOR,\n    value: '#DDD',\n    range: [0, 100]\n}\n</code></pre>\n\n\n\n\n<p>If you use <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINES_STYLE\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINES_STYLE\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_UNDERLINES_STYLE</a> or <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_STRIKETHROUGH_COLOR\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_STRIKETHROUGH_COLOR\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_STRIKETHROUGH_COLOR</a>,\nyou must use one or more of these constants:</p>\n\n\n\n\n<ul>\n<li><a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINE_STYLE_NONE\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINE_STYLE_NONE\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_UNDERLINE_STYLE_NONE</a></li>\n<li><a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINE_STYLE_SINGLE\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINE_STYLE_SINGLE\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_UNDERLINE_STYLE_SINGLE</a></li>\n<li><a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINE_STYLE_THICK\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINE_STYLE_THICK\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_UNDERLINE_STYLE_THICK</a></li>\n<li><a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINE_STYLE_DOUBLE\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINE_STYLE_DOUBLE\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_UNDERLINE_STYLE_DOUBLE</a></li>\n<li><a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINE_PATTERN_SOLID\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINE_PATTERN_SOLID\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_UNDERLINE_PATTERN_SOLID</a></li>\n<li><a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINE_PATTERN_DOT\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINE_PATTERN_DOT\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_UNDERLINE_PATTERN_DOT</a></li>\n<li><a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINE_PATTERN_DASH\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINE_PATTERN_DASH\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_UNDERLINE_PATTERN_DASH</a></li>\n<li><a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINE_PATTERN_DASH_DOT\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINE_PATTERN_DASH_DOT\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_UNDERLINE_PATTERN_DASH_DOT</a></li>\n<li><a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINE_PATTERN_DASH_DOT_DOT\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINE_PATTERN_DASH_DOT_DOT\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_UNDERLINE_PATTERN_DASH_DOT_DOT</a></li>\n<li><a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINE_BY_WORD\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINE_BY_WORD\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_UNDERLINE_BY_WORD</a></li>\n</ul>\n\n\n\n\n<p>These can be combined:</p>\n\n\n\n\n<pre><code>{\n    type: <a href=\"#!/api/Titanium.UI.iOS\" rel=\"Titanium.UI.iOS\" class=\"docClass\">Titanium.UI.iOS</a>.ATTRIBUTE_UNDERLINES_STYLE,\n    value: <a href=\"#!/api/Titanium.UI.iOS\" rel=\"Titanium.UI.iOS\" class=\"docClass\">Titanium.UI.iOS</a>.ATTRIBUTE_UNDERLINE_STYLE_SINGLE | <a href=\"#!/api/Titanium.UI.iOS\" rel=\"Titanium.UI.iOS\" class=\"docClass\">Titanium.UI.iOS</a>.ATTRIBUTE_UNDERLINE_PATTERN_DASH,\n    range: [0, 100]\n}\n</code></pre>\n\n\n\n\n<p>If you use the <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_WRITING_DIRECTION\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_WRITING_DIRECTION\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_WRITING_DIRECTION</a>, you must use one or more of\nthese constants:</p>\n\n\n\n\n<ul>\n<li><a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_WRITING_DIRECTION_EMBEDDING\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_WRITING_DIRECTION_EMBEDDING\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_WRITING_DIRECTION_EMBEDDING</a></li>\n<li><a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_WRITING_DIRECTION_OVERRIDE\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_WRITING_DIRECTION_OVERRIDE\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_WRITING_DIRECTION_OVERRIDE</a></li>\n<li><a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_WRITING_DIRECTION_NATURAL\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_WRITING_DIRECTION_NATURAL\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_WRITING_DIRECTION_NATURAL</a></li>\n<li><a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_WRITING_DIRECTION_LEFT_TO_RIGHT\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_WRITING_DIRECTION_LEFT_TO_RIGHT\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_WRITING_DIRECTION_LEFT_TO_RIGHT</a></li>\n<li><a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_WRITING_DIRECTION_RIGHT_TO_LEFT\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_WRITING_DIRECTION_RIGHT_TO_LEFT\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_WRITING_DIRECTION_RIGHT_TO_LEFT</a></li>\n</ul>\n\n\n\n\n<p>These can also be combined the same way as the underline styles.</p>\n\n\n\n\n<p>If you use the <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_SHADOW\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_SHADOW\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_SHADOW</a>, the <code>value</code> must be a JavaScript object containing\nany of the <code>offset</code>, <code>blurRadius</code> or <code>color</code> properties:</p>\n\n\n\n\n<pre><code>{\n    offset: {\n        width: 10,\n        height: 10\n    },\n    blurRadius: 10,\n    color: 'red'\n}\n</code></pre>\n\n\n\n\n<p>If you use the <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_TEXT_EFFECT\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_TEXT_EFFECT\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_TEXT_EFFECT</a>, you must use the only supported iOS 7 constant\n<a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_LETTERPRESS_STYLE\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_LETTERPRESS_STYLE\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_LETTERPRESS_STYLE</a>.</p>\n\n\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINE_STYLE_NONE\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINE_STYLE_NONE\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_UNDERLINE_STYLE_NONE</a>\n <li> <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINE_STYLE_SINGLE\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINE_STYLE_SINGLE\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_UNDERLINE_STYLE_SINGLE</a>\n <li> <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINE_STYLE_THICK\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINE_STYLE_THICK\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_UNDERLINE_STYLE_THICK</a>\n <li> <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINE_STYLE_DOUBLE\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_UNDERLINE_STYLE_DOUBLE\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_UNDERLINE_STYLE_DOUBLE</a>\n <li> <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_WRITING_DIRECTION_EMBEDDING\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_WRITING_DIRECTION_EMBEDDING\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_WRITING_DIRECTION_EMBEDDING</a>\n <li> <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_WRITING_DIRECTION_OVERRIDE\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_WRITING_DIRECTION_OVERRIDE\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_WRITING_DIRECTION_OVERRIDE</a>\n <li> <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_WRITING_DIRECTION_NATURAL\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_WRITING_DIRECTION_NATURAL\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_WRITING_DIRECTION_NATURAL</a>\n <li> <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_WRITING_DIRECTION_LEFT_TO_RIGHT\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_WRITING_DIRECTION_LEFT_TO_RIGHT\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_WRITING_DIRECTION_LEFT_TO_RIGHT</a>\n <li> <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_WRITING_DIRECTION_RIGHT_TO_LEFT\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_WRITING_DIRECTION_RIGHT_TO_LEFT\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_WRITING_DIRECTION_RIGHT_TO_LEFT</a>\n <li> <a href=\"#!/api/Titanium.UI.iOS-property-ATTRIBUTE_LETTERPRESS_STYLE\" rel=\"Titanium.UI.iOS-property-ATTRIBUTE_LETTERPRESS_STYLE\" class=\"docClass\">Titanium.UI.iOS.ATTRIBUTE_LETTERPRESS_STYLE</a>\n</ul></p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-value",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 136597
+          }
+        ],
+        "shortDoc": "Attribute value. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "addEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Adds the specified callback as an event listener for the named event.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to invoke when the event is fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38
+          }
+        ],
+        "shortDoc": "Adds the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "applyProperties",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Applies the properties to the proxy.</p>\n\n\n<p>@description <p>Properties are supplied as a dictionary. Each key-value pair in the object is applied to the proxy such that\nmyproxy[key] = value.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "props",
+            "doc": "<p>A dictionary of properties to apply.</p>\n\n\n<p>@platform android 3.0.0\n@platform blackberry 3.3.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-applyProperties",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 102
+          }
+        ],
+        "shortDoc": "Applies the properties to the proxy. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "fireEvent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Fires a synthesized event to any registered listeners.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Dictionary",
+            "name": "event",
+            "doc": "<p>A dictionary of keys and values to add to the <a href=\"#!/api/Titanium.Event\" rel=\"Titanium.Event\" class=\"docClass\">Titanium.Event</a> object sent to the listeners.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-fireEvent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 85
+          }
+        ],
+        "shortDoc": "Fires a synthesized event to any registered listeners. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getApiName",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-apiName\" rel=\"Titanium.Proxy-property-apiName\" class=\"docClass\">apiName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getApiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 157
+          }
+        ],
+        "shortDoc": "Gets the value of the apiName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 123
+          }
+        ],
+        "shortDoc": "Gets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+          "name": "return",
+          "doc": "<p>@platform android 3.6.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 175
+          }
+        ],
+        "shortDoc": "Gets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getRange",
+        "owner": "Titanium.UI.iOS.Attribute",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.iOS.Attribute-property-range\" rel=\"Titanium.UI.iOS.Attribute-property-range\" class=\"docClass\">range</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number[]",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number[]"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getRange",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 136525
+          }
+        ],
+        "shortDoc": "Gets the value of the range property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getType",
+        "owner": "Titanium.UI.iOS.Attribute",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.iOS.Attribute-property-type\" rel=\"Titanium.UI.iOS.Attribute-property-type\" class=\"docClass\">type</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getType",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 136469
+          }
+        ],
+        "shortDoc": "Gets the value of the type property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getValue",
+        "owner": "Titanium.UI.iOS.Attribute",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.UI.iOS.Attribute-property-value\" rel=\"Titanium.UI.iOS.Attribute-property-value\" class=\"docClass\">value</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getValue",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 136497
+          }
+        ],
+        "shortDoc": "Gets the value of the value property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Removes the specified callback as an event listener for the named event.</p>\n\n\n<p>@description <p>Multiple listeners can be registered for the same event, so the\n<code>callback</code> parameter is used to determine which listener to remove. </p></p>\n\n<p>When adding a listener, you must save a reference to the callback function\nin order to remove the listener later:</p>\n\n\n\n\n<pre><code>var listener = function() { Ti.API.info(\"Event listener called.\"); }\nwindow.addEventListener('click', listener);\n</code></pre>\n\n\n\n\n<p>To remove the listener, pass in a reference to the callback function:</p>\n\n\n\n\n<pre><code>window.removeEventListener('click', listener);\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to remove. Must be the same function passed to <code>addEventListener</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 55
+          }
+        ],
+        "shortDoc": "Removes the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "bubbleParent",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139
+          }
+        ],
+        "shortDoc": "Sets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+            "name": "lifecycleContainer",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.6.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 189
+          }
+        ],
+        "shortDoc": "Sets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setRange",
+        "owner": "Titanium.UI.iOS.Attribute",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.iOS.Attribute-property-range\" rel=\"Titanium.UI.iOS.Attribute-property-range\" class=\"docClass\">range</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Array<Number>",
+            "name": "range",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Array<Number>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setRange",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 136538
+          }
+        ],
+        "shortDoc": "Sets the value of the range property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setType",
+        "owner": "Titanium.UI.iOS.Attribute",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.iOS.Attribute-property-type\" rel=\"Titanium.UI.iOS.Attribute-property-type\" class=\"docClass\">type</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "type",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setType",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 136482
+          }
+        ],
+        "shortDoc": "Sets the value of the type property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setValue",
+        "owner": "Titanium.UI.iOS.Attribute",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.UI.iOS.Attribute-property-value\" rel=\"Titanium.UI.iOS.Attribute-property-value\" class=\"docClass\">value</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "value",
+            "doc": "<p>New value for the property.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setValue",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 136510
+          }
+        ],
+        "shortDoc": "Sets the value of the value property. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 136446
+    }
+  ],
+  "html_meta": {
+    "deprecated": "        <div class='signature-box deprecated'>\n        <p>This class has been <strong>deprecated</strong> </p>\n        <p>3.6.0 use &lt;Titanium.UI.Attribute> instead.</p>\n\n<p>@description <p>Attributes are added to the <a href=\"#!/api/Titanium.UI.iOS.AttributedString\" rel=\"Titanium.UI.iOS.AttributedString\" class=\"docClass\">Titanium.UI.iOS.AttributedString</a> object to create\nstyled text. The attribute is a JavaScript Object containing three properties:\n<code>type</code>, <code>value</code> and <code>range</code>.</p></p>\n\n<p>For examples of using Attributed Strings, see the\n<a href=\"http://docs.appcelerator.com/titanium/latest/#!/api/Titanium.UI.iOS.AttributedString\">Attributed Strings guide</a>.</p>\n\n\n        </div>\n"
+  },
+  "component": false,
+  "superclasses": [
+    "Titanium.Proxy"
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

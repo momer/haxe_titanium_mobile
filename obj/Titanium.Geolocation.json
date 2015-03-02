@@ -1,0 +1,3244 @@
+{
+  "tagname": "class",
+  "name": "Titanium.Geolocation",
+  "doc": "<p>@platform android 0.8\n@platform blackberry 3.1.2\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8 @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/Geolocation/Geolocation.yml</p>\n\n<p>The top level Geolocation module. The Geolocation module is used for accessing device location based information.</p>\n\n\n<p>@description <p>This module combines two sets of features:</p></p>\n\n<ul>\n<li><p>Location services. Determining the location of the device.</p></li>\n<li><p>Geocoding and reverse geocoding. Converting geographic  coordinates into\naddresses, and converting addresses into geographic  coordinates.</p></li>\n</ul>\n\n\n\n\n<p>Using location services can have a significant impact on a device's battery life,\nso it's important to use them in the most efficient manner possible. Power consumption\nis strongly influenced by the accuracy and frequency of location updates required by\nyour application. </p>\n\n\n\n\n<p>The location services systems of the underlying platforms are very different, so there\nare significant implementation differences between the platforms.</p>\n\n\n\n\n<p>The basic methods of requesting location information and receiving location updates\nare essentially the same on all platforms. However, the method of configuring the\naccuracy and frequency of location updates is different for each platform.</p>\n\n\n\n\n<h4>Getting Location Information</h4>\n\n\n\n\n<p>There are two ways to get location information:</p>\n\n\n\n\n<ul>\n<li><p>Make a one-time request with <a href=\"#!/api/Titanium.Geolocation-method-getCurrentPosition\" rel=\"Titanium.Geolocation-method-getCurrentPosition\" class=\"docClass\">getCurrentPosition</a>.</p></li>\n<li><p>Register to receive location updates by adding an event listener for the\n<a href=\"#!/api/Titanium.Geolocation-event-location\" rel=\"Titanium.Geolocation-event-location\" class=\"docClass\">location</a> event.</p></li>\n</ul>\n\n\n\n\n<p><strong>NOTE:</strong> Location services stay enabled for as long as a listener is registered for the\n<code>location</code> event, so be sure to remove the event listener when you do not require\nlocation updates.</p>\n\n\n\n\n<h4>Configurating Location Updates on iOS</h4>\n\n\n\n\n<p>In iOS, the accuracy (and power consumption) of location services is primarily\ndetermined by the <a href=\"#!/api/Titanium.Geolocation-property-accuracy\" rel=\"Titanium.Geolocation-property-accuracy\" class=\"docClass\">accuracy</a> setting. This can be set\nto one of the following values:</p>\n\n\n\n\n<ul>\n<li><a href=\"#!/api/Titanium.Geolocation-property-ACCURACY_BEST\" rel=\"Titanium.Geolocation-property-ACCURACY_BEST\" class=\"docClass\">ACCURACY_BEST</a> (highest accuracy and power consumption)</li>\n<li><a href=\"#!/api/Titanium.Geolocation-property-ACCURACY_HIGH\" rel=\"Titanium.Geolocation-property-ACCURACY_HIGH\" class=\"docClass\">ACCURACY_HIGH</a></li>\n<li><a href=\"#!/api/Titanium.Geolocation-property-ACCURACY_NEAREST_TEN_METERS\" rel=\"Titanium.Geolocation-property-ACCURACY_NEAREST_TEN_METERS\" class=\"docClass\">ACCURACY_NEAREST_TEN_METERS</a> </li>\n<li><a href=\"#!/api/Titanium.Geolocation-property-ACCURACY_HUNDRED_METERS\" rel=\"Titanium.Geolocation-property-ACCURACY_HUNDRED_METERS\" class=\"docClass\">ACCURACY_HUNDRED_METERS</a> </li>\n<li><a href=\"#!/api/Titanium.Geolocation-property-ACCURACY_KILOMETER\" rel=\"Titanium.Geolocation-property-ACCURACY_KILOMETER\" class=\"docClass\">ACCURACY_KILOMETER</a> </li>\n<li><a href=\"#!/api/Titanium.Geolocation-property-ACCURACY_LOW\" rel=\"Titanium.Geolocation-property-ACCURACY_LOW\" class=\"docClass\">ACCURACY_LOW</a></li>\n<li><a href=\"#!/api/Titanium.Geolocation-property-ACCURACY_THREE_KILOMETERS\" rel=\"Titanium.Geolocation-property-ACCURACY_THREE_KILOMETERS\" class=\"docClass\">ACCURACY_THREE_KILOMETERS</a> (lowest\naccuracy and power consumption).</li>\n<li><a href=\"#!/api/Titanium.Geolocation-property-ACCURACY_BEST_FOR_NAVIGATION\" rel=\"Titanium.Geolocation-property-ACCURACY_BEST_FOR_NAVIGATION\" class=\"docClass\">ACCURACY_BEST_FOR_NAVIGATION</a>\n(Available in iOS 6.0 and above)</li>\n</ul>\n\n\n\n\n<p>Based on the accuracy you choose, iOS uses its own logic to select location providers\nand filter location updates to provide location updates that meet your accuracy\nrequirements.</p>\n\n\n\n\n<p>You can further limit power consumption on iOS by setting the\n<a href=\"#!/api/Titanium.Geolocation-property-distanceFilter\" rel=\"Titanium.Geolocation-property-distanceFilter\" class=\"docClass\">distanceFilter</a> property to eliminate position\nupdates when the user is not moving.</p>\n\n\n\n\n<p>For iOS 8 and later, add either the\n<a href=\"https://developer.apple.com/library/prerelease/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW26\"><code>NSLocationWhenInUseUsageDescription</code></a>\nor\n<a href=\"https://developer.apple.com/library/prerelease/ios/documentation/General/Reference/InfoPlistKeyReference/Articles/CocoaKeys.html#//apple_ref/doc/uid/TP40009251-SW18\"><code>NSLocationAlwaysUsageDescription</code></a>\nkey to the iOS plist section of the project's <code>tiapp.xml</code> file.</p>\n\n\n\n\n<pre><code>&lt;ti:app&gt;\n    &lt;ios&gt;\n        &lt;plist&gt;\n            &lt;dict&gt;\n                &lt;key&gt;NSLocationAlwaysUsageDescription&lt;/key&gt;\n                &lt;string&gt;\n                    Specify the reason for accessing the user's location information.\n                    This appears in the alert dialog when asking the user for permission to\n                    access their location.\n                &lt;/string&gt;\n            &lt;/dict&gt;\n        &lt;/plist&gt;\n    &lt;/ios&gt;\n&lt;/ti:app&gt;\n</code></pre>\n\n\n\n\n<h4>Configurating Location Updates on Android</h4>\n\n\n\n\n<p>Prior to Titanium Mobile 2.0, Titanium attempted to follow the iOS model on Android,\nbut this didn't fit the native Android model well. In Release 2.0, three different\nlocation service modes are supported on Android: <em>simple</em>, <em>manual</em>, and <em>legacy</em>.</p>\n\n\n\n\n<ul>\n<li><p><em>Simple mode</em> provides a compromise mode that provides adaquate support for\nundemanding location applications without requiring developers to\nwrite a lot of Android-specific code. To use simple mode:</p>\n\n<ol><li><p>Leave the <a href=\"#!/api/Titanium.Geolocation.Android-property-manualMode\" rel=\"Titanium.Geolocation.Android-property-manualMode\" class=\"docClass\">Titanium.Geolocation.Android.manualMode</a> flag set to <code>false</code> (the\n default value).</p></li>\n<li><p>Set the <a href=\"#!/api/Titanium.Geolocation-property-accuracy\" rel=\"Titanium.Geolocation-property-accuracy\" class=\"docClass\">accuracy</a> property to\n either <a href=\"#!/api/Titanium.Geolocation-property-ACCURACY_HIGH\" rel=\"Titanium.Geolocation-property-ACCURACY_HIGH\" class=\"docClass\">ACCURACY_HIGH</a> or\n <a href=\"#!/api/Titanium.Geolocation-property-ACCURACY_LOW\" rel=\"Titanium.Geolocation-property-ACCURACY_LOW\" class=\"docClass\">ACCURACY_LOW</a>.</p></li></ol></li>\n<li><p><em>Manual mode</em> gives developers low-level control of location updates, including\nenabling individual location providers and filtering updates, for the best\ncombination of accuracy and battery life. </p>\n\n<p>Manual mode is used when the <a href=\"#!/api/Titanium.Geolocation.Android-property-manualMode\" rel=\"Titanium.Geolocation.Android-property-manualMode\" class=\"docClass\">Titanium.Geolocation.Android.manualMode</a> flag is set\nto <code>true</code>. In manual mode, the <code>accuracy</code> property is not used, and all\nconfiguration is done through the <a href=\"#!/api/Titanium.Geolocation.Android\" rel=\"Titanium.Geolocation.Android\" class=\"docClass\">Titanium.Geolocation.Android</a> module.</p></li>\n<li><p><em>Legacy mode</em> is the mode that existed prior to 2.0. Legacy mode is\nused when the <code>manualMode</code> flag is <code>false</code> and the <code>accuracy</code> property is\nset to one of the iOS <code>ACCURACY</code> constants:</p>\n\n<ul><li><a href=\"#!/api/Titanium.Geolocation-property-ACCURACY_BEST\" rel=\"Titanium.Geolocation-property-ACCURACY_BEST\" class=\"docClass\">ACCURACY_BEST</a> (highest accuracy and power consumption)</li>\n<li><a href=\"#!/api/Titanium.Geolocation-property-ACCURACY_NEAREST_TEN_METERS\" rel=\"Titanium.Geolocation-property-ACCURACY_NEAREST_TEN_METERS\" class=\"docClass\">ACCURACY_NEAREST_TEN_METERS</a> </li>\n<li><a href=\"#!/api/Titanium.Geolocation-property-ACCURACY_HUNDRED_METERS\" rel=\"Titanium.Geolocation-property-ACCURACY_HUNDRED_METERS\" class=\"docClass\">ACCURACY_HUNDRED_METERS</a> </li>\n<li><a href=\"#!/api/Titanium.Geolocation-property-ACCURACY_KILOMETER\" rel=\"Titanium.Geolocation-property-ACCURACY_KILOMETER\" class=\"docClass\">ACCURACY_KILOMETER</a> </li>\n<li><a href=\"#!/api/Titanium.Geolocation-property-ACCURACY_THREE_KILOMETERS\" rel=\"Titanium.Geolocation-property-ACCURACY_THREE_KILOMETERS\" class=\"docClass\">ACCURACY_THREE_KILOMETERS</a> (lowest\naccuracy and power consumption). </li></ul>\n\n<p>This mode is deprecated and should not be used for new development. </p>\n\n<p>In this mode, the specified <code>accuracy</code> value determines the\n<em>minimum distance between location updates</em>. If <code>accuracy</code> is set to\n<code>ACCURACY_BEST</code>, no distance filter is used on updates.</p>\n\n<p>In legacy mode, only a single location provider (GPS, network, or passive) is\nenabled at a time. You can specify a the location provider using the\n<a href=\"#!/api/Titanium.Geolocation-property-preferredProvider\" rel=\"Titanium.Geolocation-property-preferredProvider\" class=\"docClass\">preferredProvider</a> property.</p>\n\n<p>You can also specifying a desired update frequency using the\n<a href=\"#!/api/Titanium.Geolocation-property-frequency\" rel=\"Titanium.Geolocation-property-frequency\" class=\"docClass\">frequency</a> property. The <code>preferredProvider</code>\nand <code>frequency</code> properties are not used in any other mode.</p></li>\n</ul>\n\n\n\n\n<h4>Configuring Location Updates on Mobile Web</h4>\n\n\n\n\n<p>Location services on Mobile Web operate similarly to the <em>simple mode</em> operations on\nAndroid. Setting <a href=\"#!/api/Titanium.Geolocation-property-accuracy\" rel=\"Titanium.Geolocation-property-accuracy\" class=\"docClass\">accuracy</a> property to\n<a href=\"#!/api/Titanium.Geolocation-property-ACCURACY_HIGH\" rel=\"Titanium.Geolocation-property-ACCURACY_HIGH\" class=\"docClass\">ACCURACY_HIGH</a> yeilds the best available location\nupdates, with the hightest power consumption.\nUsing <a href=\"#!/api/Titanium.Geolocation-property-ACCURACY_LOW\" rel=\"Titanium.Geolocation-property-ACCURACY_LOW\" class=\"docClass\">ACCURACY_LOW</a> provides lower-quality location\nupdates with lower power consumption.</p>\n\n\n\n\n<p>In addition to the accuracy setting, there are several Mobile Web-specific settings.\nSee <a href=\"#!/api/Titanium.Geolocation.MobileWeb\" rel=\"Titanium.Geolocation.MobileWeb\" class=\"docClass\">Titanium.Geolocation.MobileWeb</a> for details.</p>\n\n\n\n\n<h4>Configuring Location Updates on BlackBerry</h4>\n\n\n\n\n<p>On the BlackBerry platform you must add the <code>access_location_services</code> and\n<code>access_internet</code> permissions to the <code>tiapp.xml</code> of your Titanium project.\nIf the <code>blackberry</code> tag does not exist, you can simply create it, then add the <code>permissions</code>\ntag and list the permissions that you need:</p>\n\n\n\n\n<pre><code>&lt;blackberry&gt;\n    &lt;permissions&gt;\n        &lt;permission&gt;access_location_services&lt;/permission&gt;\n        &lt;permission&gt;access_internet&lt;/permission&gt;\n    &lt;/permissions&gt;\n&lt;/blackberry&gt;\n</code></pre>\n\n\n\n\n<p>Prior to BlackBerry 10.2.0, you also needed the <code>read_geolocation</code> permission.</p>\n\n\n\n\n<h4>Using the Compass</h4>\n\n\n\n\n<p>Both iOS and Android support a receiving heading updates from a hardware compass, if available.\nOn Mobile Web, heading updates are supported if the browser supports this feature.\nCurrently, this support is only available on Mobile Safari.</p>\n\n\n\n\n<p>Check the <a href=\"#!/api/Titanium.Geolocation-property-hasCompass\" rel=\"Titanium.Geolocation-property-hasCompass\" class=\"docClass\">hasCompass</a> property to see if the current\ndevice supports a compass.</p>\n\n\n\n\n<p>To retrieve compass readings, you can either use\n<a href=\"#!/api/Titanium.Geolocation-method-getCurrentHeading\" rel=\"Titanium.Geolocation-method-getCurrentHeading\" class=\"docClass\">getCurrentHeading</a> as shown in the\nprevious example, or add a listener for the\n<a href=\"#!/api/Titanium.Geolocation-event-heading\" rel=\"Titanium.Geolocation-event-heading\" class=\"docClass\">heading</a> event, as shown below:</p>\n\n\n\n\n<pre><code>var compassHandler = function(e) {\n  if (e.success === undefined || e.success) {\n    Ti.API.info(\"Heading: \" + e.heading.magneticHeading);\n  }\n}\nTi.Geolocation.addEventListener(\"heading\", compassHandler);\n</code></pre>\n\n\n\n\n<p>Note that Android does not include a <code>success</code> property in the <code>heading</code> event.\nHeading events are only generated on Android when heading data is available. So if\n<code>success</code> is undefined, we assume that the event contains valid compass data.</p>\n\n\n\n\n<p>To obtain true heading data for the compass (as opposed to magnetic heading data),\na current location fix is required. See the notes on\n<a href=\"#!/api/HeadingData-property-trueHeading\" rel=\"HeadingData-property-trueHeading\" class=\"docClass\">trueHeading</a> for more information.</p>\n\n\n\n\n<p>As with location updates, the application should unregister for heading updates\nwhen it is no longer being used, or when it goes into the background. Use\n<code>removeEventListener</code> to stop heading updates:</p>\n\n\n\n\n<pre><code>Ti.Geolocation.removeEventListener('heading', compassHandler);\n</code></pre>\n\n\n\n\n<p>Finally, note that neither the Android emulator nor the iOS simulator provide\ncompass support. Compass code must be tested on physical devices.</p>\n\n\n\n\n<h4>Geocoding Services</h4>\n\n\n\n\n<p>The module provides two methods, <a href=\"#!/api/Titanium.Geolocation-method-forwardGeocoder\" rel=\"Titanium.Geolocation-method-forwardGeocoder\" class=\"docClass\">forwardGeocoder</a> and <a href=\"#!/api/Titanium.Geolocation-method-reverseGeocoder\" rel=\"Titanium.Geolocation-method-reverseGeocoder\" class=\"docClass\">reverseGeocoder</a>\nto convert between geographic coordinates and addresses. These methods map to MapQuest Open Nominatim Search Service.</p>\n\n\n\n\n<p>While this API has the advantage that it has no daily usage limits, please note that the data backing this API is crowd sourced and might not return\nproper values for valid addresses and geographic coordinates.</p>\n\n\n\n\n<p>If geocoding services are essential component of the application, developers are encouraged to use commercial geocoding providers.</p>\n\n",
+  "extends": "Titanium.Module",
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-Titanium.Geolocation",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "ACCURACY_BEST",
+        "owner": "Titanium.Geolocation",
+        "type": "Number",
+        "doc": "<p>Use with <a href=\"#!/api/Titanium.Geolocation-property-accuracy\" rel=\"Titanium.Geolocation-property-accuracy\" class=\"docClass\">accuracy</a> to request the best\naccuracy available.</p>\n\n\n<p>@description <p>Using this value results in the most accurate location updates, and the highest\nbattery usage.</p></p>\n\n<p>Using this value on Android enables <em>legacy mode</em> operation, which is not\nrecommended. </p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ACCURACY_BEST",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47306
+          }
+        ],
+        "shortDoc": "Use with accuracy to request the best\naccuracy available. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ACCURACY_BEST_FOR_NAVIGATION",
+        "owner": "Titanium.Geolocation",
+        "type": "Number",
+        "doc": "<p>Use with <a href=\"#!/api/Titanium.Geolocation-property-accuracy\" rel=\"Titanium.Geolocation-property-accuracy\" class=\"docClass\">accuracy</a> to request highest possible\naccuracy and combine it with additional sensor data.</p>\n\n\n<p>@description <p>Using this value is intended for use in navigation applications that require\nprecise position information at all times and are intended to be used only while\nthe device is plugged in.</p></p>\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ACCURACY_BEST_FOR_NAVIGATION",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47465
+          }
+        ],
+        "shortDoc": "Use with accuracy to request highest possible\naccuracy and combine it with additional sensor data. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ACCURACY_HIGH",
+        "owner": "Titanium.Geolocation",
+        "type": "Number",
+        "doc": "<p>Use with <a href=\"#!/api/Titanium.Geolocation-property-accuracy\" rel=\"Titanium.Geolocation-property-accuracy\" class=\"docClass\">accuracy</a> to request more\naccurate location updates with higher battery usage.</p>\n\n\n<p>@description <p>Using this value on Android enables <em>simple mode</em> operation.</p></p>\n\n<p>@platform android 2.0.0\n@platform iphone 2.0.0\n@platform ipad 2.0.0\n@platform mobileweb 2.0.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ACCURACY_HIGH",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47439
+          }
+        ],
+        "shortDoc": "Use with accuracy to request more\naccurate location updates with higher battery usage. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ACCURACY_HUNDRED_METERS",
+        "owner": "Titanium.Geolocation",
+        "type": "Number",
+        "doc": "<p>Use with <a href=\"#!/api/Titanium.Geolocation-property-accuracy\" rel=\"Titanium.Geolocation-property-accuracy\" class=\"docClass\">accuracy</a> to request location\nupdates accurate to the nearest 100 meters.</p>\n\n\n<p>@description <p>Using this value on Android enables <em>legacy mode</em> operation, which is not\nrecommended. </p></p>\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ACCURACY_HUNDRED_METERS",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47335
+          }
+        ],
+        "shortDoc": "Use with accuracy to request location\nupdates accurate to the nearest 100 meters. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ACCURACY_KILOMETER",
+        "owner": "Titanium.Geolocation",
+        "type": "Number",
+        "doc": "<p>Use with <a href=\"#!/api/Titanium.Geolocation-property-accuracy\" rel=\"Titanium.Geolocation-property-accuracy\" class=\"docClass\">accuracy</a> to request location\nupdates accurate to the nearest kilometer.</p>\n\n\n<p>@description <p>Using this value on Android enables <em>legacy mode</em> operation, which is not\nrecommended. </p></p>\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ACCURACY_KILOMETER",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47361
+          }
+        ],
+        "shortDoc": "Use with accuracy to request location\nupdates accurate to the nearest kilometer. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ACCURACY_LOW",
+        "owner": "Titanium.Geolocation",
+        "type": "Number",
+        "doc": "<p>Use with <a href=\"#!/api/Titanium.Geolocation-property-accuracy\" rel=\"Titanium.Geolocation-property-accuracy\" class=\"docClass\">accuracy</a> to request less\naccurate location updates with lower battery usage.</p>\n\n\n<p>@description <p>Using this value on Android enables <em>simple mode</em> operation.</p></p>\n\n<p>@platform android 2.0.0\n@platform iphone 2.0.0\n@platform ipad 2.0.0\n@platform mobileweb 2.0.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ACCURACY_LOW",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47491
+          }
+        ],
+        "shortDoc": "Use with accuracy to request less\naccurate location updates with lower battery usage. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ACCURACY_NEAREST_TEN_METERS",
+        "owner": "Titanium.Geolocation",
+        "type": "Number",
+        "doc": "<p>Use with <a href=\"#!/api/Titanium.Geolocation-property-accuracy\" rel=\"Titanium.Geolocation-property-accuracy\" class=\"docClass\">accuracy</a> to request location\nupdates accurate to the nearest 10 meters.</p>\n\n\n<p>@description <p>Using this value on Android enables <em>legacy mode</em> operation, which is not\nrecommended. </p></p>\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ACCURACY_NEAREST_TEN_METERS",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47387
+          }
+        ],
+        "shortDoc": "Use with accuracy to request location\nupdates accurate to the nearest 10 meters. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ACCURACY_THREE_KILOMETERS",
+        "owner": "Titanium.Geolocation",
+        "type": "Number",
+        "doc": "<p>Use with <a href=\"#!/api/Titanium.Geolocation-property-accuracy\" rel=\"Titanium.Geolocation-property-accuracy\" class=\"docClass\">accuracy</a> to request location\nupdates accurate to the nearest three kilometers.</p>\n\n\n<p>@description <p>Using this value on Android enables <em>legacy mode</em> operation, which is not\nrecommended. </p></p>\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ACCURACY_THREE_KILOMETERS",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47413
+          }
+        ],
+        "shortDoc": "Use with accuracy to request location\nupdates accurate to the nearest three kilometers. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ACTIVITYTYPE_AUTOMOTIVE_NAVIGATION",
+        "owner": "Titanium.Geolocation",
+        "type": "String",
+        "doc": "<p>The location data is used for tracking location changes to the automobile specifically during vehicular navigation.</p>\n\n\n<p>@description <p>Used with <a href=\"#!/api/Titanium.Geolocation-property-activityType\" rel=\"Titanium.Geolocation-property-activityType\" class=\"docClass\">activityType</a>. This activity might\ncause location updates to be paused only when the vehicle does not move for an\nextended period of time. Available in iOS 6.0 and later.</p></p>\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ACTIVITYTYPE_AUTOMOTIVE_NAVIGATION",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47968
+          }
+        ],
+        "shortDoc": "The location data is used for tracking location changes to the automobile specifically during vehicular navigation. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ACTIVITYTYPE_FITNESS",
+        "owner": "Titanium.Geolocation",
+        "type": "String",
+        "doc": "<p>The location data is used for tracking any pedestrian-related activity.</p>\n\n\n<p>@description <p>Used with <a href=\"#!/api/Titanium.Geolocation-property-activityType\" rel=\"Titanium.Geolocation-property-activityType\" class=\"docClass\">activityType</a>. This activity might\ncause location updates to be paused only when the user does not move a significant\ndistance over a period of time.Available in iOS 6.0 and later.</p></p>\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ACTIVITYTYPE_FITNESS",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47993
+          }
+        ],
+        "shortDoc": "The location data is used for tracking any pedestrian-related activity. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ACTIVITYTYPE_OTHER",
+        "owner": "Titanium.Geolocation",
+        "type": "String",
+        "doc": "<p>The location data is being used for an unknown activity.</p>\n\n\n<p>@description <p>Used with <a href=\"#!/api/Titanium.Geolocation-property-activityType\" rel=\"Titanium.Geolocation-property-activityType\" class=\"docClass\">activityType</a>. Available in iOS 6.0 and later.</p></p>\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ACTIVITYTYPE_OTHER",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47945
+          }
+        ],
+        "shortDoc": "The location data is being used for an unknown activity. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ACTIVITYTYPE_OTHER_NAVIGATION",
+        "owner": "Titanium.Geolocation",
+        "type": "String",
+        "doc": "<p>The location data is used for tracking movements of other types of vehicular\nnavigation that are not automobile related.</p>\n\n\n<p>@description <p>Used with <a href=\"#!/api/Titanium.Geolocation-property-activityType\" rel=\"Titanium.Geolocation-property-activityType\" class=\"docClass\">activityType</a>. You would use this\nto track navigation by boat, train, or plane. Do not use this type for pedestrian\nnavigation tracking. This activity might cause location updates to be paused only\nwhen the vehicle does not move a significant distance over a period of time.\nAvailable in iOS 6.0 and later.</p></p>\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ACTIVITYTYPE_OTHER_NAVIGATION",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 48018
+          }
+        ],
+        "shortDoc": "The location data is used for tracking movements of other types of vehicular\nnavigation that are not automobile related. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "AUTHORIZATION_ALWAYS",
+        "owner": "Titanium.Geolocation",
+        "type": "Number",
+        "doc": "<p>A <a href=\"#!/api/Titanium.Geolocation-property-locationServicesAuthorization\" rel=\"Titanium.Geolocation-property-locationServicesAuthorization\" class=\"docClass\">locationServicesAuthorization</a> value\nindicating that the application is authorized to start location services at any time. This authorization\nincludes the use of all location services, including monitoring regions and significant location changes.</p>\n\n\n\n\n<p> <b>Requires:</b>\niOS 8.0 and later\n</p>\n\n\n<p>@platform iphone 3.4.0\n@platform ipad 3.4.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-AUTHORIZATION_ALWAYS",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47615
+          }
+        ],
+        "shortDoc": "A locationServicesAuthorization value\nindicating that the application is authorized to start location services at any...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "AUTHORIZATION_AUTHORIZED",
+        "owner": "Titanium.Geolocation",
+        "type": "Number",
+        "doc": "<p>A <a href=\"#!/api/Titanium.Geolocation-property-locationServicesAuthorization\" rel=\"Titanium.Geolocation-property-locationServicesAuthorization\" class=\"docClass\">locationServicesAuthorization</a> value\nindicating that the application is authorized to use location services.</p>\n\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-AUTHORIZATION_AUTHORIZED",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47517
+          }
+        ],
+        "shortDoc": "A locationServicesAuthorization value\nindicating that the application is authorized to use location services. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "AUTHORIZATION_DENIED",
+        "owner": "Titanium.Geolocation",
+        "type": "Number",
+        "doc": "<p>A <a href=\"#!/api/Titanium.Geolocation-property-locationServicesAuthorization\" rel=\"Titanium.Geolocation-property-locationServicesAuthorization\" class=\"docClass\">locationServicesAuthorization</a> value\nindicating that the application is not authorized to use location services, <em>or</em>\nlocation services are disabled.</p>\n\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-AUTHORIZATION_DENIED",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47541
+          }
+        ],
+        "shortDoc": "A locationServicesAuthorization value\nindicating that the application is not authorized to use location services, or\n...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "AUTHORIZATION_RESTRICTED",
+        "owner": "Titanium.Geolocation",
+        "type": "Number",
+        "doc": "<p>A <a href=\"#!/api/Titanium.Geolocation-property-locationServicesAuthorization\" rel=\"Titanium.Geolocation-property-locationServicesAuthorization\" class=\"docClass\">locationServicesAuthorization</a> value\nindicating that the application is not authorized to use location servies <em>and</em>\nthe user cannot change this application's status.</p>\n\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-AUTHORIZATION_RESTRICTED",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47566
+          }
+        ],
+        "shortDoc": "A locationServicesAuthorization value\nindicating that the application is not authorized to use location servies and\nt...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "AUTHORIZATION_UNKNOWN",
+        "owner": "Titanium.Geolocation",
+        "type": "Number",
+        "doc": "<p>A <a href=\"#!/api/Titanium.Geolocation-property-locationServicesAuthorization\" rel=\"Titanium.Geolocation-property-locationServicesAuthorization\" class=\"docClass\">locationServicesAuthorization</a> value\nindicating that the authorization state is unknown.</p>\n\n\n<p>@description <p>This value is always returned if the device is running an iOS release prior to 4.2.</p></p>\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-AUTHORIZATION_UNKNOWN",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47591
+          }
+        ],
+        "shortDoc": "A locationServicesAuthorization value\nindicating that the authorization state is unknown. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "AUTHORIZATION_WHEN_IN_USE",
+        "owner": "Titanium.Geolocation",
+        "type": "Number",
+        "doc": "<p>A <a href=\"#!/api/Titanium.Geolocation-property-locationServicesAuthorization\" rel=\"Titanium.Geolocation-property-locationServicesAuthorization\" class=\"docClass\">locationServicesAuthorization</a> value\nindicating that the application is authorized to start most location services only while running in the foreground.</p>\n\n\n\n\n<p> <b>Requires:</b>\niOS 8.0 and later\n</p>\n\n\n<p>@platform iphone 3.4.0\n@platform ipad 3.4.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-AUTHORIZATION_WHEN_IN_USE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47643
+          }
+        ],
+        "shortDoc": "A locationServicesAuthorization value\nindicating that the application is authorized to start most location services o...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ERROR_DENIED",
+        "owner": "Titanium.Geolocation",
+        "type": "Number",
+        "doc": "<p>Error code indicating that the user denied access to the location service.</p>\n\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ERROR_DENIED",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47670
+          }
+        ],
+        "shortDoc": "Error code indicating that the user denied access to the location service. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ERROR_HEADING_FAILURE",
+        "owner": "Titanium.Geolocation",
+        "type": "Number",
+        "doc": "<p>Error code indicating that the heading could not be determined.</p>\n\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ERROR_HEADING_FAILURE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47693
+          }
+        ],
+        "shortDoc": "Error code indicating that the heading could not be determined. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ERROR_LOCATION_UNKNOWN",
+        "owner": "Titanium.Geolocation",
+        "type": "Number",
+        "doc": "<p>Error code indicating that the user's location could not be determined.</p>\n\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ERROR_LOCATION_UNKNOWN",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47716
+          }
+        ],
+        "shortDoc": "Error code indicating that the user's location could not be determined. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ERROR_NETWORK",
+        "owner": "Titanium.Geolocation",
+        "type": "Number",
+        "doc": "<p>Error code indicating that the network was unavailable.</p>\n\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ERROR_NETWORK",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47739
+          }
+        ],
+        "shortDoc": "Error code indicating that the network was unavailable. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ERROR_REGION_MONITORING_DELAYED",
+        "owner": "Titanium.Geolocation",
+        "type": "Number",
+        "doc": "<p>Error code indicating that region monitoring is delayed.</p>\n\n\n\n\n<p> <b>Requires:</b>\niOS 4.0 and later\n</p>\n\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ERROR_REGION_MONITORING_DELAYED",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47762
+          }
+        ],
+        "shortDoc": "Error code indicating that region monitoring is delayed. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ERROR_REGION_MONITORING_DENIED",
+        "owner": "Titanium.Geolocation",
+        "type": "Number",
+        "doc": "<p>Error code indicating that region monitoring is denied.</p>\n\n\n\n\n<p> <b>Requires:</b>\niOS 4.0 and later\n</p>\n\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ERROR_REGION_MONITORING_DENIED",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47788
+          }
+        ],
+        "shortDoc": "Error code indicating that region monitoring is denied. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ERROR_REGION_MONITORING_FAILURE",
+        "owner": "Titanium.Geolocation",
+        "type": "Number",
+        "doc": "<p>Error code indicating a region monitoring failure.</p>\n\n\n\n\n<p> <b>Requires:</b>\niOS 4.0 and later\n</p>\n\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ERROR_REGION_MONITORING_FAILURE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47814
+          }
+        ],
+        "shortDoc": "Error code indicating a region monitoring failure. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "ERROR_TIMEOUT",
+        "owner": "Titanium.Geolocation",
+        "type": "Number",
+        "doc": "<p>Error indicating a timeout.</p>\n\n\n<p>@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-ERROR_TIMEOUT",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47840
+          }
+        ],
+        "shortDoc": "Error indicating a timeout. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "PROVIDER_GPS",
+        "owner": "Titanium.Geolocation",
+        "type": "String",
+        "doc": "<p>Specifies the GPS location provider.</p>\n\n\n<p>@description <p>Used with <a href=\"#!/api/Titanium.Geolocation-property-preferredProvider\" rel=\"Titanium.Geolocation-property-preferredProvider\" class=\"docClass\">preferredProvider</a>,\n<a href=\"#!/api/Titanium.Geolocation.Android.LocationProvider\" rel=\"Titanium.Geolocation.Android.LocationProvider\" class=\"docClass\">LocationProvider.name</a>,\n<a href=\"#!/api/Titanium.Geolocation.Android.LocationRule\" rel=\"Titanium.Geolocation.Android.LocationRule\" class=\"docClass\">LocationRule.provider</a>.</p></p>\n\n<p>In general, the GPS provider has the highest power consumption and the\nhighest accuracy, but this may vary. In some circumstances, the network\nprovider may be more reliable.</p>\n\n\n<p>@platform android 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-PROVIDER_GPS",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47862
+          }
+        ],
+        "shortDoc": "Specifies the GPS location provider. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "PROVIDER_NETWORK",
+        "owner": "Titanium.Geolocation",
+        "type": "String",
+        "doc": "<p>Specifies the network location provider.</p>\n\n\n<p>@description <p>Used with <a href=\"#!/api/Titanium.Geolocation-property-preferredProvider\" rel=\"Titanium.Geolocation-property-preferredProvider\" class=\"docClass\">preferredProvider</a>,\n<a href=\"#!/api/Titanium.Geolocation.Android.LocationProvider\" rel=\"Titanium.Geolocation.Android.LocationProvider\" class=\"docClass\">LocationProvider.name</a>,\n<a href=\"#!/api/Titanium.Geolocation.Android.LocationRule\" rel=\"Titanium.Geolocation.Android.LocationRule\" class=\"docClass\">LocationRule.provider</a>.</p></p>\n\n<p>Generally requires less power than the GPS provider and provides less accurate\nresults, but may produce very accurate results in densely-populated areas\nwith many cell towers and WiFi networks.</p>\n\n\n<p>@platform android 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-PROVIDER_NETWORK",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47890
+          }
+        ],
+        "shortDoc": "Specifies the network location provider. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "PROVIDER_PASSIVE",
+        "owner": "Titanium.Geolocation",
+        "type": "String",
+        "doc": "<p>Specifies the passive location provider.</p>\n\n\n<p>@description <p>Used with <a href=\"#!/api/Titanium.Geolocation-property-preferredProvider\" rel=\"Titanium.Geolocation-property-preferredProvider\" class=\"docClass\">preferredProvider</a>,\n<a href=\"#!/api/Titanium.Geolocation.Android.LocationProvider\" rel=\"Titanium.Geolocation.Android.LocationProvider\" class=\"docClass\">LocationProvider.name</a>,\n<a href=\"#!/api/Titanium.Geolocation.Android.LocationRule\" rel=\"Titanium.Geolocation.Android.LocationRule\" class=\"docClass\">LocationRule.provider</a>.</p></p>\n\n<p>This provider only uses cached location information, so it does not use\nany power, but makes no guarantee that the location results are recent.</p>\n\n\n<p>@platform android 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-PROVIDER_PASSIVE",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47918
+          }
+        ],
+        "shortDoc": "Specifies the passive location provider. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "accuracy",
+        "owner": "Titanium.Geolocation",
+        "type": "Number",
+        "doc": "<p>Specifies the requested accuracy for location updates.</p>\n\n\n<p>@description <p>For basic location updates on all platforms, set <code>accuracy</code> to either:</p></p>\n\n<ul>\n<li><a href=\"#!/api/Titanium.Geolocation-property-ACCURACY_HIGH\" rel=\"Titanium.Geolocation-property-ACCURACY_HIGH\" class=\"docClass\">ACCURACY_HIGH</a> for higher-quality location\nupdates, with the higher power consumption.</li>\n<li><a href=\"#!/api/Titanium.Geolocation-property-ACCURACY_LOW\" rel=\"Titanium.Geolocation-property-ACCURACY_LOW\" class=\"docClass\">ACCURACY_LOW</a> for lower-quality location\nupdates with lower power consumption.</li>\n</ul>\n\n\n\n\n<p>For finer-grained control on iOS, specify one of <code>ACCURACY_BEST</code>,\n<code>ACCURACY_NEAREST_TEN_METERS</code>, <code>ACCURACY_HUNDRED_METERS</code>, <code>ACCURACY_KILOMETER</code>, or\n<code>ACCURACY_THREE_KILOMETERS</code>. </p>\n\n\n\n\n<p>For finer-grained control on Android, use <em>manual mode</em>, instead of specifing an accuracy.\nThis mode requires more active management on the part of the application, but it\nis recommended to maximize accuracy and battery life.\nSee <a href=\"#!/api/Titanium.Geolocation.Android\" rel=\"Titanium.Geolocation.Android\" class=\"docClass\">Titanium.Geolocation.Android</a> for details on using manual mode.</p>\n\n\n\n\n<p>Note that for backwards compatibility, Android supports using the iOS accuracy constants.\nThis usage is deprecated. Applications using one of the iOS constants should\nmigrate to using <code>ACCURACY_HIGH</code>, <code>ACCURACY_LOW</code>, or Android manual mode.</p>\n\n\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.Geolocation-property-ACCURACY_BEST\" rel=\"Titanium.Geolocation-property-ACCURACY_BEST\" class=\"docClass\">ACCURACY_BEST</a>\n <li> <a href=\"#!/api/Titanium.Geolocation-property-ACCURACY_HUNDRED_METERS\" rel=\"Titanium.Geolocation-property-ACCURACY_HUNDRED_METERS\" class=\"docClass\">ACCURACY_HUNDRED_METERS</a>\n <li> <a href=\"#!/api/Titanium.Geolocation-property-ACCURACY_KILOMETER\" rel=\"Titanium.Geolocation-property-ACCURACY_KILOMETER\" class=\"docClass\">ACCURACY_KILOMETER</a>\n <li> <a href=\"#!/api/Titanium.Geolocation-property-ACCURACY_NEAREST_TEN_METERS\" rel=\"Titanium.Geolocation-property-ACCURACY_NEAREST_TEN_METERS\" class=\"docClass\">ACCURACY_NEAREST_TEN_METERS</a>\n <li> <a href=\"#!/api/Titanium.Geolocation-property-ACCURACY_THREE_KILOMETERS\" rel=\"Titanium.Geolocation-property-ACCURACY_THREE_KILOMETERS\" class=\"docClass\">ACCURACY_THREE_KILOMETERS</a>\n <li> <a href=\"#!/api/Titanium.Geolocation-property-ACCURACY_HIGH\" rel=\"Titanium.Geolocation-property-ACCURACY_HIGH\" class=\"docClass\">ACCURACY_HIGH</a>\n <li> <a href=\"#!/api/Titanium.Geolocation-property-ACCURACY_BEST_FOR_NAVIGATION\" rel=\"Titanium.Geolocation-property-ACCURACY_BEST_FOR_NAVIGATION\" class=\"docClass\">ACCURACY_BEST_FOR_NAVIGATION</a>\n <li> <a href=\"#!/api/Titanium.Geolocation-property-ACCURACY_LOW\" rel=\"Titanium.Geolocation-property-ACCURACY_LOW\" class=\"docClass\">ACCURACY_LOW</a>\n</ul></p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-accuracy",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 48046
+          }
+        ],
+        "shortDoc": "Specifies the requested accuracy for location updates. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "activityType",
+        "owner": "Titanium.Geolocation",
+        "type": "Number",
+        "doc": "<p>The type of user activity to be associated with the location updates. Available in iOS 6.0 and later.</p>\n\n\n<p>@description <p>The information in this property is used as a cue to determine when location\nupdates may be automatically paused. Pausing updates gives the system the\nopportunity to save power in situations where the user's location is not likely\nto be changing. For example, if the activity type is\n<a href=\"#!/api/Titanium.Geolocation-property-ACTIVITYTYPE_AUTOMOTIVE_NAVIGATION\" rel=\"Titanium.Geolocation-property-ACTIVITYTYPE_AUTOMOTIVE_NAVIGATION\" class=\"docClass\">ACTIVITYTYPE_AUTOMOTIVE_NAVIGATION</a>\nand no location changes have occurred recently, the radios might be powered down\nuntil movement is detected again. </p></p>\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.Geolocation-property-ACTIVITYTYPE_OTHER\" rel=\"Titanium.Geolocation-property-ACTIVITYTYPE_OTHER\" class=\"docClass\">ACTIVITYTYPE_OTHER</a>\n <li> <a href=\"#!/api/Titanium.Geolocation-property-ACTIVITYTYPE_AUTOMOTIVE_NAVIGATION\" rel=\"Titanium.Geolocation-property-ACTIVITYTYPE_AUTOMOTIVE_NAVIGATION\" class=\"docClass\">ACTIVITYTYPE_AUTOMOTIVE_NAVIGATION</a>\n <li> <a href=\"#!/api/Titanium.Geolocation-property-ACTIVITYTYPE_FITNESS\" rel=\"Titanium.Geolocation-property-ACTIVITYTYPE_FITNESS\" class=\"docClass\">ACTIVITYTYPE_FITNESS</a>\n <li> <a href=\"#!/api/Titanium.Geolocation-property-ACTIVITYTYPE_OTHER_NAVIGATION\" rel=\"Titanium.Geolocation-property-ACTIVITYTYPE_OTHER_NAVIGATION\" class=\"docClass\">ACTIVITYTYPE_OTHER_NAVIGATION</a>\n</ul></p>\n\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+        "default": "{@link Titanium.Geolocation#property-ACTIVITYTYPE_OTHER}",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-activityType",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 48389
+          }
+        ],
+        "shortDoc": "The type of user activity to be associated with the location updates. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "apiName",
+        "owner": "Titanium.Proxy",
+        "type": "String",
+        "doc": "<p>The name of the API that this proxy corresponds to.</p>\n\n\n<p>@description <p>The value of this property is the fully qualified name of the API. For example, <a href=\"#!/api/Titanium.UI.Button\" rel=\"Titanium.UI.Button\" class=\"docClass\">Button</a>\nreturns <code>Ti.UI.Button</code>.</p></p>\n\n<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-apiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 235
+          }
+        ],
+        "shortDoc": "The name of the API that this proxy corresponds to. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "bubbleParent",
+        "owner": "Titanium.Proxy",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the proxy will bubble an event to its parent.</p>\n\n\n<p>@description <p>Some proxies (most commonly views) have a relationship to other proxies, often\nestablished by the add() method. For example, for a button added to a window, a\nclick event on the button would bubble up to the window. Other common parents are\ntable sections to their rows, table views to their sections, and scrollable views\nto their views. Set this property to false to disable the bubbling to the proxy's parent.</p></p>\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-bubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 207
+          }
+        ],
+        "shortDoc": "Indicates if the proxy will bubble an event to its parent. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "distanceFilter",
+        "owner": "Titanium.Geolocation",
+        "type": "Number",
+        "doc": "<p>The minimum change of position (in meters) before a 'location' event is fired.</p>\n\n\n<p>@description <p>If set to 0, distance filtering is disabled, meaning that location events are\ngenerated continuously.</p></p>\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-distanceFilter",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 48102
+          }
+        ],
+        "shortDoc": "The minimum change of position (in meters) before a 'location' event is fired. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "frequency",
+        "owner": "Titanium.Geolocation",
+        "type": "Number",
+        "doc": "<p>Requested frequency for location updates, in milliseconds.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "deprecated": {
+            "text": "2.0.0 Android legacy mode operation is deprecated. For new development, use\neither simple mode or manual mode. See \"Configurating Location Updates on Android\"\nin the main description of this class for more information.\n\n\n\n@description <p>Setting a frequency value enables legacy location mode on Android.\nNote that only a single provider can be active at one time in legacy mode.</p>\n\n<p>Note that the frequency value is used as a guideline: there are no guarantees\nthat the device will provide updates at the specified frequency.</p>\n\n<p>A lower frequency value generally increases power consumption.\nA value of 0 means that updates should be generated as quickly as possible.</p>\n\n\n\n@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8"
+          }
+        },
+        "id": "property-frequency",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 48126
+          }
+        ],
+        "shortDoc": "Requested frequency for location updates, in milliseconds. ...",
+        "html_type": "Number",
+        "html_meta": {
+          "deprecated": "        <div class='signature-box deprecated'>\n        <p>This property has been <strong>deprecated</strong> </p>\n        <p>2.0.0 Android legacy mode operation is deprecated. For new development, use\neither simple mode or manual mode. See \"Configurating Location Updates on Android\"\nin the main description of this class for more information.</p>\n\n<p>@description <p>Setting a frequency value enables legacy location mode on Android.\nNote that only a single provider can be active at one time in legacy mode.</p></p>\n\n<p>Note that the frequency value is used as a guideline: there are no guarantees\nthat the device will provide updates at the specified frequency.</p>\n\n\n\n\n<p>A lower frequency value generally increases power consumption.\nA value of 0 means that updates should be generated as quickly as possible.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n\n        </div>\n"
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "hasCompass",
+        "owner": "Titanium.Geolocation",
+        "type": "Boolean",
+        "doc": "<p>Indicates whether the current device supports a compass.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 2.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-hasCompass",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 48161
+          }
+        ],
+        "shortDoc": "Indicates whether the current device supports a compass. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "headingFilter",
+        "owner": "Titanium.Geolocation",
+        "type": "Number",
+        "doc": "<p>Minimum heading change (in degrees) before a <code>heading</code> event is fired.</p>\n\n\n<p>@description <p>Set to a value greater than zero to reduce the number of heading events generated.</p></p>\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": "0 (No limit on heading updates)",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-headingFilter",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 48186
+          }
+        ],
+        "shortDoc": "Minimum heading change (in degrees) before a heading event is fired. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lastGeolocation",
+        "owner": "Titanium.Geolocation",
+        "type": "String",
+        "doc": "<p>JSON representation of the last geolocation received.</p>\n\n\n<p>@description <p>LastEvent is the JSON version of the last geolocation sent by the OS. This does not\ntrigger a geolocation attempt, nor wait for such. If no geolocation has happened,\nthis value may be null or undefined.</p></p>\n\n<p>@platform android 3.1.2\n@platform iphone 3.1.2\n@platform ipad 3.1.2</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-lastGeolocation",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 48454
+          }
+        ],
+        "shortDoc": "JSON representation of the last geolocation received. ...",
+        "html_type": "String",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "lifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "doc": "<p>The Window or TabGroup whose Activity lifecycle should be triggered on the proxy.</p>\n\n\n<p>@description <p>If this property is set to a Window or TabGroup, then the corresponding Activity lifecycle event callbacks\nwill also be called on the proxy. Proxies that require the activity lifecycle will need this property set\nto the appropriate containing Window or TabGroup.</p></p>\n\n<p>@platform android 3.6.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-lifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 262
+          }
+        ],
+        "shortDoc": "The Window or TabGroup whose Activity lifecycle should be triggered on the proxy. ...",
+        "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "locationServicesAuthorization",
+        "owner": "Titanium.Geolocation",
+        "type": "Number",
+        "doc": "<p>Returns an authorization constant indicating if the application has access to location services.</p>\n\n\n\n\n<p> <b>Requires:</b>\niOS 4.2 and later\n</p>\n\n\n<p>@description <p>Always returns <code>AUTHORIZATION_UNKNOWN</code> on pre-4.2 devices. </p></p>\n\n<p>If <code>locationServicesAuthorization</code> is <code>AUTHORIZATION_RESTRICTED</code>, you should not\nattempt to re-authorize: this will lead to issues.</p>\n\n\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.Geolocation-property-AUTHORIZATION_AUTHORIZED\" rel=\"Titanium.Geolocation-property-AUTHORIZATION_AUTHORIZED\" class=\"docClass\">AUTHORIZATION_AUTHORIZED</a>\n <li> <a href=\"#!/api/Titanium.Geolocation-property-AUTHORIZATION_DENIED\" rel=\"Titanium.Geolocation-property-AUTHORIZATION_DENIED\" class=\"docClass\">AUTHORIZATION_DENIED</a>\n <li> <a href=\"#!/api/Titanium.Geolocation-property-AUTHORIZATION_RESTRICTED\" rel=\"Titanium.Geolocation-property-AUTHORIZATION_RESTRICTED\" class=\"docClass\">AUTHORIZATION_RESTRICTED</a>\n <li> <a href=\"#!/api/Titanium.Geolocation-property-AUTHORIZATION_UNKNOWN\" rel=\"Titanium.Geolocation-property-AUTHORIZATION_UNKNOWN\" class=\"docClass\">AUTHORIZATION_UNKNOWN</a>\n <li> <a href=\"#!/api/Titanium.Geolocation-property-AUTHORIZATION_ALWAYS\" rel=\"Titanium.Geolocation-property-AUTHORIZATION_ALWAYS\" class=\"docClass\">AUTHORIZATION_ALWAYS</a>\n <li> <a href=\"#!/api/Titanium.Geolocation-property-AUTHORIZATION_WHEN_IN_USE\" rel=\"Titanium.Geolocation-property-AUTHORIZATION_WHEN_IN_USE\" class=\"docClass\">AUTHORIZATION_WHEN_IN_USE</a>\n</ul></p>\n\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-locationServicesAuthorization",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 48209
+          }
+        ],
+        "shortDoc": "Returns an authorization constant indicating if the application has access to location services. ...",
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "locationServicesEnabled",
+        "owner": "Titanium.Geolocation",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the user has enabled or disabled location services for the device (not the application).</p>\n\n\n<p>@description <p>This method returns <code>true</code> if <em>any</em> location provider is enabled.</p></p>\n\n<p>On Android OS 2.2 and above, there is a new,  \"passive\" location provider that is enabled\nat all times, even when the user disables both the GPS and Network location providers.\nTherefore, this method always returns <code>true</code> on these devices.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "readonly": true
+        },
+        "id": "property-locationServicesEnabled",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 48247
+          }
+        ],
+        "shortDoc": "Indicates if the user has enabled or disabled location services for the device (not the application). ...",
+        "html_type": "Boolean",
+        "html_meta": {
+          "readonly": null
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "pauseLocationUpdateAutomatically",
+        "owner": "Titanium.Geolocation",
+        "type": "Boolean",
+        "doc": "<p>Indicates whether the location updates may be paused. Available in iOS 6.0 and later.</p>\n\n\n<p>@description <p>Allowing the location updates to be paused can improve battery life on the\ntarget device without sacrificing location data. When this property is set to YES,\nthe location updates are paused (and powers down the appropriate hardware) at\ntimes when the location data is unlikely to change. For example, if the user stops\nfor food while using a navigation app, the location manager might pause updates for\na period of time. You can help the determination of when to pause location updates\nby assigning a value to the <a href=\"#!/api/Titanium.Geolocation-property-activityType\" rel=\"Titanium.Geolocation-property-activityType\" class=\"docClass\">activityType</a> property.</p></p>\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-pauseLocationUpdateAutomatically",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 48425
+          }
+        ],
+        "shortDoc": "Indicates whether the location updates may be paused. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "preferredProvider",
+        "owner": "Titanium.Geolocation",
+        "type": "String",
+        "doc": "<p>Determines the preferred location provider.</p>\n\n",
+        "default": "{@link Titanium.Geolocation#property-PROVIDER_NETWORK}",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "deprecated": {
+            "text": "2.0.0 Android legacy mode operation is deprecated. For new development, use\neither simple mode or manual mode. See \"Configurating Location Updates on Android\"\nin the main description of this class for more information.\n\n\n\n@description <p>Setting a preferred provider enables legacy location mode on Android.\nNote that only a single provider can be active at one time in legacy mode.</p>\n\n<p>The preferred provider affects power consumption. In general, <code>PROVIDER_GPS</code>\nrequires the most power, and <code>PROVIDER_PASSIVE</code> requires the least.</p>\n\n<p>If <code>undefined</code>, the preferred provider is auto-detected.</p>\n\n<p>This API can be assigned the following constants:<ul>\n <li> {@link Titanium.Geolocation#property-PROVIDER_GPS}\n <li> {@link Titanium.Geolocation#property-PROVIDER_NETWORK}\n <li> {@link Titanium.Geolocation#property-PROVIDER_PASSIVE}\n</ul></p>\n\n\n\n@platform android 0.8"
+          }
+        },
+        "id": "property-preferredProvider",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 48272
+          }
+        ],
+        "shortDoc": "Determines the preferred location provider. ...",
+        "html_type": "String",
+        "html_meta": {
+          "deprecated": "        <div class='signature-box deprecated'>\n        <p>This property has been <strong>deprecated</strong> </p>\n        <p>2.0.0 Android legacy mode operation is deprecated. For new development, use\neither simple mode or manual mode. See \"Configurating Location Updates on Android\"\nin the main description of this class for more information.</p>\n\n<p>@description <p>Setting a preferred provider enables legacy location mode on Android.\nNote that only a single provider can be active at one time in legacy mode.</p></p>\n\n<p>The preferred provider affects power consumption. In general, <code>PROVIDER_GPS</code>\nrequires the most power, and <code>PROVIDER_PASSIVE</code> requires the least.</p>\n\n\n\n\n<p>If <code>undefined</code>, the preferred provider is auto-detected.</p>\n\n\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.Geolocation-property-PROVIDER_GPS\" rel=\"Titanium.Geolocation-property-PROVIDER_GPS\" class=\"docClass\">PROVIDER_GPS</a>\n <li> <a href=\"#!/api/Titanium.Geolocation-property-PROVIDER_NETWORK\" rel=\"Titanium.Geolocation-property-PROVIDER_NETWORK\" class=\"docClass\">PROVIDER_NETWORK</a>\n <li> <a href=\"#!/api/Titanium.Geolocation-property-PROVIDER_PASSIVE\" rel=\"Titanium.Geolocation-property-PROVIDER_PASSIVE\" class=\"docClass\">PROVIDER_PASSIVE</a>\n</ul></p>\n\n\n<p>@platform android 0.8</p>\n\n        </div>\n"
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "purpose",
+        "owner": "Titanium.Geolocation",
+        "type": "String",
+        "doc": "<p>Text to display in the permission dialog when requesting location\nservices.</p>\n\n\n<p>@description <p>This property informs the end user why location services are being requested by\nthe application. This property is <strong>required</strong> starting in iOS 4.0.</p></p>\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-purpose",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 48309
+          }
+        ],
+        "shortDoc": "Text to display in the permission dialog when requesting location\nservices. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "showCalibration",
+        "owner": "Titanium.Geolocation",
+        "type": "Boolean",
+        "doc": "<p>Determines whether the compass calibration UI is shown if needed.</p>\n\n\n<p>@description <p>Set to <code>false</code> to disable display of the compass calibration UI. This may result\nin invalid heading data. </p></p>\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+        "default": "true",
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-showCalibration",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 48334
+          }
+        ],
+        "shortDoc": "Determines whether the compass calibration UI is shown if needed. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "trackSignificantLocationChange",
+        "owner": "Titanium.Geolocation",
+        "type": "Boolean",
+        "doc": "<p>Indicates if the location changes should be updated only when a significant change\nin location occurs.</p>\n\n\n<p>@description <p>The trackSignificantLocationChange service offers a low-power location service for\ndevices with cellular radios.This service is available only in iOS 4.0 and later.\nThis service offers a significant power savings and provides accuracy that is good\nenough for most applications. It uses the device's cellular radio to determine the\nuser's location  and report changes in that location, allowing the system to manage\npower usage much more aggressively than it could otherwise. This service is also\ncapable of waking up an application that is currently suspended or not running in\norder to deliver new location data.</p></p>\n\n<p>@platform iphone 2.1.2\n@platform ipad 2.1.2</p>\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-trackSignificantLocationChange",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 48358
+          }
+        ],
+        "shortDoc": "Indicates if the location changes should be updated only when a significant change\nin location occurs. ...",
+        "html_type": "Boolean",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+      {
+        "tagname": "method",
+        "name": "addEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Adds the specified callback as an event listener for the named event.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to invoke when the event is fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-addEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 38
+          }
+        ],
+        "shortDoc": "Adds the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "applyProperties",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Applies the properties to the proxy.</p>\n\n\n<p>@description <p>Properties are supplied as a dictionary. Each key-value pair in the object is applied to the proxy such that\nmyproxy[key] = value.</p></p>\n",
+        "params": [
+          {
+            "type": "Dictionary",
+            "name": "props",
+            "doc": "<p>A dictionary of properties to apply.</p>\n\n\n<p>@platform android 3.0.0\n@platform blackberry 3.3.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0\n@platform mobileweb 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-applyProperties",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 102
+          }
+        ],
+        "shortDoc": "Applies the properties to the proxy. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "fireEvent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Fires a synthesized event to any registered listeners.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Dictionary",
+            "name": "event",
+            "doc": "<p>A dictionary of keys and values to add to the <a href=\"#!/api/Titanium.Event\" rel=\"Titanium.Event\" class=\"docClass\">Titanium.Event</a> object sent to the listeners.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Dictionary"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-fireEvent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 85
+          }
+        ],
+        "shortDoc": "Fires a synthesized event to any registered listeners. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "forwardGeocoder",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Resolves an address to a location.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "address",
+            "doc": "<p>address to resolve.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<ForwardGeocodeResponse>",
+            "name": "callback",
+            "doc": "<p>Function to invoke on success or failure.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<ForwardGeocodeResponse>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-forwardGeocoder",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 46801
+          }
+        ],
+        "shortDoc": "Resolves an address to a location. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getAccuracy",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Geolocation-property-accuracy\" rel=\"Titanium.Geolocation-property-accuracy\" class=\"docClass\">accuracy</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getAccuracy",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 46888
+          }
+        ],
+        "shortDoc": "Gets the value of the accuracy property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getActivityType",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Geolocation-property-activityType\" rel=\"Titanium.Geolocation-property-activityType\" class=\"docClass\">activityType</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getActivityType",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47224
+          }
+        ],
+        "shortDoc": "Gets the value of the activityType property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getApiName",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-apiName\" rel=\"Titanium.Proxy-property-apiName\" class=\"docClass\">apiName</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.2.0\n@platform blackberry 3.2.0\n@platform iphone 3.2.0\n@platform ipad 3.2.0\n@platform mobileweb 3.2.0</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getApiName",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 157
+          }
+        ],
+        "shortDoc": "Gets the value of the apiName property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 123
+          }
+        ],
+        "shortDoc": "Gets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getCurrentHeading",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Retrieves the current compass heading.</p>\n\n",
+        "params": [
+          {
+            "type": "Callback<HeadingResponse>",
+            "name": "callback",
+            "doc": "<p>Function to invoke on success or failure of obtaining the current heading.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<HeadingResponse>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getCurrentHeading",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 46822
+          }
+        ],
+        "shortDoc": "Retrieves the current compass heading. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getCurrentPosition",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Retrieves the last known location from the device.</p>\n\n\n<p>@description <p>On Android, the radios are not turned on to update the location, and a cached\nlocation is used.</p></p>\n\n<p>On iOS the radios <strong>may</strong> be used if the location is too \"old\". </p>\n\n",
+        "params": [
+          {
+            "type": "Callback<LocationResults>",
+            "name": "callback",
+            "doc": "<p>Function to invoke on success or failure of obtaining the current location.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<LocationResults>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getCurrentPosition",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 46841
+          }
+        ],
+        "shortDoc": "Retrieves the last known location from the device. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getDistanceFilter",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Geolocation-property-distanceFilter\" rel=\"Titanium.Geolocation-property-distanceFilter\" class=\"docClass\">distanceFilter</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getDistanceFilter",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 46924
+          }
+        ],
+        "shortDoc": "Gets the value of the distanceFilter property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getFrequency",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Geolocation-property-frequency\" rel=\"Titanium.Geolocation-property-frequency\" class=\"docClass\">frequency</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "deprecated": {
+            "text": "2.0.0 Android legacy mode operation is deprecated. For new development, use\neither simple mode or manual mode. See \"Configurating Location Updates on Android\"\nin the main description of this class for more information."
+          }
+        },
+        "id": "method-getFrequency",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 46956
+          }
+        ],
+        "shortDoc": "Gets the value of the frequency property. ...",
+        "html_meta": {
+          "deprecated": "        <div class='signature-box deprecated'>\n        <p>This method has been <strong>deprecated</strong> </p>\n        <p>2.0.0 Android legacy mode operation is deprecated. For new development, use\neither simple mode or manual mode. See \"Configurating Location Updates on Android\"\nin the main description of this class for more information.</p>\n\n        </div>\n"
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getHasCompass",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Geolocation-property-hasCompass\" rel=\"Titanium.Geolocation-property-hasCompass\" class=\"docClass\">hasCompass</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 2.1.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getHasCompass",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 46998
+          }
+        ],
+        "shortDoc": "Gets the value of the hasCompass property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getHeadingFilter",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Geolocation-property-headingFilter\" rel=\"Titanium.Geolocation-property-headingFilter\" class=\"docClass\">headingFilter</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getHeadingFilter",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47015
+          }
+        ],
+        "shortDoc": "Gets the value of the headingFilter property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLastGeolocation",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Geolocation-property-lastGeolocation\" rel=\"Titanium.Geolocation-property-lastGeolocation\" class=\"docClass\">lastGeolocation</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 3.1.2\n@platform iphone 3.1.2\n@platform ipad 3.1.2</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLastGeolocation",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47288
+          }
+        ],
+        "shortDoc": "Gets the value of the lastGeolocation property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+          "name": "return",
+          "doc": "<p>@platform android 3.6.0</p>\n",
+          "properties": null,
+          "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 175
+          }
+        ],
+        "shortDoc": "Gets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLocationServicesAuthorization",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Geolocation-property-locationServicesAuthorization\" rel=\"Titanium.Geolocation-property-locationServicesAuthorization\" class=\"docClass\">locationServicesAuthorization</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Number",
+          "name": "return",
+          "doc": "<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+          "properties": null,
+          "html_type": "Number"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLocationServicesAuthorization",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47047
+          }
+        ],
+        "shortDoc": "Gets the value of the locationServicesAuthorization property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getLocationServicesEnabled",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Geolocation-property-locationServicesEnabled\" rel=\"Titanium.Geolocation-property-locationServicesEnabled\" class=\"docClass\">locationServicesEnabled</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getLocationServicesEnabled",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47079
+          }
+        ],
+        "shortDoc": "Gets the value of the locationServicesEnabled property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getPauseLocationUpdateAutomatically",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Geolocation-property-pauseLocationUpdateAutomatically\" rel=\"Titanium.Geolocation-property-pauseLocationUpdateAutomatically\" class=\"docClass\">pauseLocationUpdateAutomatically</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getPauseLocationUpdateAutomatically",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47256
+          }
+        ],
+        "shortDoc": "Gets the value of the pauseLocationUpdateAutomatically property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getPreferredProvider",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Geolocation-property-preferredProvider\" rel=\"Titanium.Geolocation-property-preferredProvider\" class=\"docClass\">preferredProvider</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform android 0.8</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "deprecated": {
+            "text": "2.0.0 Android legacy mode operation is deprecated. For new development, use\neither simple mode or manual mode. See \"Configurating Location Updates on Android\"\nin the main description of this class for more information."
+          }
+        },
+        "id": "method-getPreferredProvider",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47092
+          }
+        ],
+        "shortDoc": "Gets the value of the preferredProvider property. ...",
+        "html_meta": {
+          "deprecated": "        <div class='signature-box deprecated'>\n        <p>This method has been <strong>deprecated</strong> </p>\n        <p>2.0.0 Android legacy mode operation is deprecated. For new development, use\neither simple mode or manual mode. See \"Configurating Location Updates on Android\"\nin the main description of this class for more information.</p>\n\n        </div>\n"
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getPurpose",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Geolocation-property-purpose\" rel=\"Titanium.Geolocation-property-purpose\" class=\"docClass\">purpose</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "String",
+          "name": "return",
+          "doc": "<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+          "properties": null,
+          "html_type": "String"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getPurpose",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47128
+          }
+        ],
+        "shortDoc": "Gets the value of the purpose property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getShowCalibration",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Geolocation-property-showCalibration\" rel=\"Titanium.Geolocation-property-showCalibration\" class=\"docClass\">showCalibration</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getShowCalibration",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47160
+          }
+        ],
+        "shortDoc": "Gets the value of the showCalibration property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "getTrackSignificantLocationChange",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Gets the value of the <a href=\"#!/api/Titanium.Geolocation-property-trackSignificantLocationChange\" rel=\"Titanium.Geolocation-property-trackSignificantLocationChange\" class=\"docClass\">trackSignificantLocationChange</a> property.</p>\n\n",
+        "params": [
+
+        ],
+        "return": {
+          "type": "Boolean",
+          "name": "return",
+          "doc": "<p>@platform iphone 2.1.2\n@platform ipad 2.1.2</p>\n",
+          "properties": null,
+          "html_type": "Boolean"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-getTrackSignificantLocationChange",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47192
+          }
+        ],
+        "shortDoc": "Gets the value of the trackSignificantLocationChange property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "removeEventListener",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Removes the specified callback as an event listener for the named event.</p>\n\n\n<p>@description <p>Multiple listeners can be registered for the same event, so the\n<code>callback</code> parameter is used to determine which listener to remove. </p></p>\n\n<p>When adding a listener, you must save a reference to the callback function\nin order to remove the listener later:</p>\n\n\n\n\n<pre><code>var listener = function() { Ti.API.info(\"Event listener called.\"); }\nwindow.addEventListener('click', listener);\n</code></pre>\n\n\n\n\n<p>To remove the listener, pass in a reference to the callback function:</p>\n\n\n\n\n<pre><code>window.removeEventListener('click', listener);\n</code></pre>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "name",
+            "doc": "<p>Name of the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Callback<Object>",
+            "name": "callback",
+            "doc": "<p>Callback function to remove. Must be the same function passed to <code>addEventListener</code>.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<Object>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-removeEventListener",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 55
+          }
+        ],
+        "shortDoc": "Removes the specified callback as an event listener for the named event. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "reverseGeocoder",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Tries to resolve a location to an address.</p>\n\n\n<p>@description <p>The callback receives a <a href=\"#!/api/ReverseGeocodeResponse\" rel=\"ReverseGeocodeResponse\" class=\"docClass\">ReverseGeocodeResponse</a> object. If the request\nis successful, the object includes one or more addresses that are possible matches\nfor the requested coordinates.</p></p>\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "latitude",
+            "doc": "<p>Latitude to search, specified in decimal degrees.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Number",
+            "name": "longitude",
+            "doc": "<p>Longitude to search, specified in decimal degrees.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Callback<ReverseGeocodeResponse>",
+            "name": "callback",
+            "doc": "<p>Function to invoke on success or failure.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Callback<ReverseGeocodeResponse>"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-reverseGeocoder",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 46863
+          }
+        ],
+        "shortDoc": "Tries to resolve a location to an address. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setAccuracy",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Geolocation-property-accuracy\" rel=\"Titanium.Geolocation-property-accuracy\" class=\"docClass\">accuracy</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "accuracy",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setAccuracy",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 46905
+          }
+        ],
+        "shortDoc": "Sets the value of the accuracy property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setActivityType",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Geolocation-property-activityType\" rel=\"Titanium.Geolocation-property-activityType\" class=\"docClass\">activityType</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "activityType",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setActivityType",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47239
+          }
+        ],
+        "shortDoc": "Sets the value of the activityType property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setBubbleParent",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-bubbleParent\" rel=\"Titanium.Proxy-property-bubbleParent\" class=\"docClass\">bubbleParent</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "bubbleParent",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.0.0\n@platform iphone 3.0.0\n@platform ipad 3.0.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setBubbleParent",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 139
+          }
+        ],
+        "shortDoc": "Sets the value of the bubbleParent property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setDistanceFilter",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Geolocation-property-distanceFilter\" rel=\"Titanium.Geolocation-property-distanceFilter\" class=\"docClass\">distanceFilter</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "distanceFilter",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setDistanceFilter",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 46939
+          }
+        ],
+        "shortDoc": "Sets the value of the distanceFilter property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setFrequency",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Geolocation-property-frequency\" rel=\"Titanium.Geolocation-property-frequency\" class=\"docClass\">frequency</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "frequency",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 0.8\n@platform iphone 0.8\n@platform ipad 0.8\n@platform mobileweb 1.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "deprecated": {
+            "text": "2.0.0 Android legacy mode operation is deprecated. For new development, use\neither simple mode or manual mode. See \"Configurating Location Updates on Android\"\nin the main description of this class for more information."
+          }
+        },
+        "id": "method-setFrequency",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 46976
+          }
+        ],
+        "shortDoc": "Sets the value of the frequency property. ...",
+        "html_meta": {
+          "deprecated": "        <div class='signature-box deprecated'>\n        <p>This method has been <strong>deprecated</strong> </p>\n        <p>2.0.0 Android legacy mode operation is deprecated. For new development, use\neither simple mode or manual mode. See \"Configurating Location Updates on Android\"\nin the main description of this class for more information.</p>\n\n        </div>\n"
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setHeadingFilter",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Geolocation-property-headingFilter\" rel=\"Titanium.Geolocation-property-headingFilter\" class=\"docClass\">headingFilter</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "headingFilter",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setHeadingFilter",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47030
+          }
+        ],
+        "shortDoc": "Sets the value of the headingFilter property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLifecycleContainer",
+        "owner": "Titanium.Proxy",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Proxy-property-lifecycleContainer\" rel=\"Titanium.Proxy-property-lifecycleContainer\" class=\"docClass\">lifecycleContainer</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Titanium.UI.Window/Titanium.UI.TabGroup",
+            "name": "lifecycleContainer",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 3.6.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Titanium.UI.Window/Titanium.UI.TabGroup"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLifecycleContainer",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 189
+          }
+        ],
+        "shortDoc": "Sets the value of the lifecycleContainer property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setLocationServicesAuthorization",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Geolocation-property-locationServicesAuthorization\" rel=\"Titanium.Geolocation-property-locationServicesAuthorization\" class=\"docClass\">locationServicesAuthorization</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "locationServicesAuthorization",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setLocationServicesAuthorization",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47062
+          }
+        ],
+        "shortDoc": "Sets the value of the locationServicesAuthorization property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setPauseLocationUpdateAutomatically",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Geolocation-property-pauseLocationUpdateAutomatically\" rel=\"Titanium.Geolocation-property-pauseLocationUpdateAutomatically\" class=\"docClass\">pauseLocationUpdateAutomatically</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "pauseLocationUpdateAutomatically",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setPauseLocationUpdateAutomatically",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47271
+          }
+        ],
+        "shortDoc": "Sets the value of the pauseLocationUpdateAutomatically property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setPreferredProvider",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Geolocation-property-preferredProvider\" rel=\"Titanium.Geolocation-property-preferredProvider\" class=\"docClass\">preferredProvider</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "preferredProvider",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform android 0.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+          "deprecated": {
+            "text": "2.0.0 Android legacy mode operation is deprecated. For new development, use\neither simple mode or manual mode. See \"Configurating Location Updates on Android\"\nin the main description of this class for more information."
+          }
+        },
+        "id": "method-setPreferredProvider",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47109
+          }
+        ],
+        "shortDoc": "Sets the value of the preferredProvider property. ...",
+        "html_meta": {
+          "deprecated": "        <div class='signature-box deprecated'>\n        <p>This method has been <strong>deprecated</strong> </p>\n        <p>2.0.0 Android legacy mode operation is deprecated. For new development, use\neither simple mode or manual mode. See \"Configurating Location Updates on Android\"\nin the main description of this class for more information.</p>\n\n        </div>\n"
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setPurpose",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Geolocation-property-purpose\" rel=\"Titanium.Geolocation-property-purpose\" class=\"docClass\">purpose</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "purpose",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setPurpose",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47143
+          }
+        ],
+        "shortDoc": "Sets the value of the purpose property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setShowCalibration",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Geolocation-property-showCalibration\" rel=\"Titanium.Geolocation-property-showCalibration\" class=\"docClass\">showCalibration</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "showCalibration",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setShowCalibration",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47175
+          }
+        ],
+        "shortDoc": "Sets the value of the showCalibration property. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "method",
+        "name": "setTrackSignificantLocationChange",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Sets the value of the <a href=\"#!/api/Titanium.Geolocation-property-trackSignificantLocationChange\" rel=\"Titanium.Geolocation-property-trackSignificantLocationChange\" class=\"docClass\">trackSignificantLocationChange</a> property.</p>\n\n",
+        "params": [
+          {
+            "type": "Boolean",
+            "name": "trackSignificantLocationChange",
+            "doc": "<p>New value for the property.</p>\n\n\n<p>@platform iphone 2.1.2\n@platform ipad 2.1.2</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "return": {
+          "type": "undefined",
+          "name": "return",
+          "doc": "\n",
+          "properties": [
+
+          ],
+          "html_type": "undefined"
+        },
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "method-setTrackSignificantLocationChange",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 47207
+          }
+        ],
+        "shortDoc": "Sets the value of the trackSignificantLocationChange property. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "event": [
+      {
+        "tagname": "event",
+        "name": "authorization",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Fired when changes are made to the authorization status for location services. Available in iOS 8.0 and later.</p>\n\n\n\n\n<p> <b>Requires:</b>\niOS 8.0 and later\n</p>\n\n\n<p>@description <p>This event is fired whenever the application's ability to use location services changes.\nChanges can occur because the user allowed or denied the use of location services for the app or the system as a whole.</p></p>\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "authorizationStatus",
+            "doc": "<p>New authorization status for the application.</p>\n\n\n<p>This API can be assigned the following constants:<ul>\n <li> <a href=\"#!/api/Titanium.Geolocation-property-AUTHORIZATION_AUTHORIZED\" rel=\"Titanium.Geolocation-property-AUTHORIZATION_AUTHORIZED\" class=\"docClass\">AUTHORIZATION_AUTHORIZED</a>\n <li> <a href=\"#!/api/Titanium.Geolocation-property-AUTHORIZATION_DENIED\" rel=\"Titanium.Geolocation-property-AUTHORIZATION_DENIED\" class=\"docClass\">AUTHORIZATION_DENIED</a>\n <li> <a href=\"#!/api/Titanium.Geolocation-property-AUTHORIZATION_RESTRICTED\" rel=\"Titanium.Geolocation-property-AUTHORIZATION_RESTRICTED\" class=\"docClass\">AUTHORIZATION_RESTRICTED</a>\n <li> <a href=\"#!/api/Titanium.Geolocation-property-AUTHORIZATION_UNKNOWN\" rel=\"Titanium.Geolocation-property-AUTHORIZATION_UNKNOWN\" class=\"docClass\">AUTHORIZATION_UNKNOWN</a>\n <li> <a href=\"#!/api/Titanium.Geolocation-property-AUTHORIZATION_ALWAYS\" rel=\"Titanium.Geolocation-property-AUTHORIZATION_ALWAYS\" class=\"docClass\">AUTHORIZATION_ALWAYS</a>\n <li> <a href=\"#!/api/Titanium.Geolocation-property-AUTHORIZATION_WHEN_IN_USE\" rel=\"Titanium.Geolocation-property-AUTHORIZATION_WHEN_IN_USE\" class=\"docClass\">AUTHORIZATION_WHEN_IN_USE</a>\n</ul></p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n\n<p>@platform iphone 3.4.0\n@platform ipad 3.4.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "event-authorization",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 46762
+          }
+        ],
+        "shortDoc": "Fired when changes are made to the authorization status for location services. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "event",
+        "name": "calibration",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Fired when the device detects interface and requires calibration.</p>\n\n\n<p>@description <p>When this event is fired, the OS calibration UI is being displayed to the end user.</p></p>\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n\n<p>@platform iphone 0.8\n@platform ipad 0.8</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "event-calibration",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 46633
+          }
+        ],
+        "shortDoc": "Fired when the device detects interface and requires calibration. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "event",
+        "name": "heading",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Fired when an heading update is received.</p>\n\n",
+        "params": [
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) code</p>\n\n<p>If <code>success</code> is false, the error code if available.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) success</p>\n\n<p>Indicate if the heading event was successfully received.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) error</p>\n\n<p>If <code>success</code> is false, a string describing the error.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "HeadingData",
+            "name": "heading",
+            "doc": "<p>Dictionary object containing the heading data.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "HeadingData"
+          },
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "event-heading",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 46655
+          }
+        ],
+        "shortDoc": "Fired when an heading update is received. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "event",
+        "name": "location",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Fired when a location update is received.</p>\n\n",
+        "params": [
+          {
+            "type": "Number",
+            "name": "code",
+            "doc": "<p>if <code>success</code> is false, the error code if available.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Number"
+          },
+          {
+            "type": "Boolean",
+            "name": "success",
+            "doc": "<p>Indicates if location data was successfully retrieved.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "LocationProviderDict",
+            "name": "",
+            "doc": "<p>(android) provider</p>\n\n<p>If <code>success</code> is true, object describing the location provider generating this update.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "LocationProviderDict"
+          },
+          {
+            "type": "LocationCoordinates",
+            "name": "coords",
+            "doc": "<p>If <code>success</code> is true, actual location data for this update.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "LocationCoordinates"
+          },
+          {
+            "type": "String",
+            "name": "error",
+            "doc": "<p>If <code>success</code> is false, a string describing the error.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "event-location",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 46683
+          }
+        ],
+        "shortDoc": "Fired when a location update is received. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "event",
+        "name": "locationupdatepaused",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Fired when location updates are paused by the OS. Available in iOS 6.0 and later.</p>\n\n\n<p>@description <p>This event is fired when <a href=\"#!/api/Titanium.Geolocation-property-pauseLocationUpdateAutomatically\" rel=\"Titanium.Geolocation-property-pauseLocationUpdateAutomatically\" class=\"docClass\">pauseLocationUpdateAutomatically</a>\nis set to <code>true</code> and if the OS detects that the device's location is not changing,\ncausing it to pause the delivery of updates in order to shut down the appropriate\nhardware and save power.</p></p>\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "event-locationupdatepaused",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 46713
+          }
+        ],
+        "shortDoc": "Fired when location updates are paused by the OS. ...",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "event",
+        "name": "locationupdateresumed",
+        "owner": "Titanium.Geolocation",
+        "doc": "<p>Fired when location manager is resumed by the OS. Available in iOS 6.0 and later.</p>\n\n\n<p>@description <p>When location updates are paused and need to be resumed (perhaps because the user\nis moving again), this event is fired to let the app know that it is about to\nbegin the delivery of those updates again.</p></p>\n",
+        "params": [
+          {
+            "type": "Object",
+            "name": "",
+            "doc": "<p>(android iphone ipad) source</p>\n\n<p>Source object that fired the event.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Object"
+          },
+          {
+            "type": "String",
+            "name": "",
+            "doc": "<p>(android iphone ipad) type</p>\n\n<p>Name of the event fired.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "String"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) bubbles</p>\n\n<p>True if the event will try to bubble up if possible.</p>\n\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          },
+          {
+            "type": "Boolean",
+            "name": "",
+            "doc": "<p>(android iphone ipad) cancelBubble</p>\n\n<p>Set to true to stop the event from bubbling.</p>\n\n\n<p>@platform iphone 3.1.0\n@platform ipad 3.1.0</p>\n",
+            "optional": false,
+            "default": null,
+            "properties": [
+
+            ],
+            "html_type": "Boolean"
+          }
+        ],
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "event-locationupdateresumed",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 46738
+          }
+        ],
+        "shortDoc": "Fired when location manager is resumed by the OS. ...",
+        "html_meta": {
+        }
+      }
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 46405
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+    "Titanium.Proxy",
+    "Titanium.Module"
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}

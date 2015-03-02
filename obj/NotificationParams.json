@@ -1,0 +1,319 @@
+{
+  "tagname": "class",
+  "name": "NotificationParams",
+  "doc": "<p>@platform iphone 1.7\n@platform ipad 1.7\n@pseudo @editurl https://github.com/appcelerator/titanium_mobile/edit/master/apidoc/Titanium/App/iOS/iOS.yml</p>\n\n<p>Dictionary object of parameters used to create a notification using\n<a href=\"#!/api/Titanium.App.iOS-method-scheduleLocalNotification\" rel=\"Titanium.App.iOS-method-scheduleLocalNotification\" class=\"docClass\">Titanium.App.iOS.scheduleLocalNotification</a>.</p>\n\n",
+  "extends": null,
+  "mixins": [
+
+  ],
+  "alternateClassNames": [
+
+  ],
+  "aliases": {
+  },
+  "singleton": false,
+  "requires": [
+
+  ],
+  "uses": [
+
+  ],
+  "code_type": "nop",
+  "inheritable": false,
+  "inheritdoc": null,
+  "meta": {
+  },
+  "id": "class-NotificationParams",
+  "members": {
+    "cfg": [
+
+    ],
+    "property": [
+      {
+        "tagname": "property",
+        "name": "alertAction",
+        "owner": "NotificationParams",
+        "type": "String",
+        "doc": "<p>Alert button text ('Open', by default) or slider text ('slide to unlock...', by default)\nto display.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-alertAction",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 23446
+          }
+        ],
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "alertBody",
+        "owner": "NotificationParams",
+        "type": "String",
+        "doc": "<p>Alert message to display.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-alertBody",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 23468
+          }
+        ],
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "alertLaunchImage",
+        "owner": "NotificationParams",
+        "type": "String",
+        "doc": "<p>Image to display instead of <code>Default.png</code> when launching the application.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-alertLaunchImage",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 23489
+          }
+        ],
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "badge",
+        "owner": "NotificationParams",
+        "type": "Number",
+        "doc": "<p>Application badge value.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-badge",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 23510
+          }
+        ],
+        "html_type": "Number",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "category",
+        "owner": "NotificationParams",
+        "type": "String",
+        "doc": "<p>String identifier of category of actions to be displayed for an interactive\nnotification (only for iOS 8 and above).</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-category",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 23531
+          }
+        ],
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "date",
+        "owner": "NotificationParams",
+        "type": "Date",
+        "doc": "<p>Date and time for the notification to occur.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-date",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 23553
+          }
+        ],
+        "html_type": "Date",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "repeat",
+        "owner": "NotificationParams",
+        "type": "String",
+        "doc": "<p>Interval to repeat the notification. One of <code>weekly</code>, <code>daily</code>, <code>yearly,</code> <code>monthly</code>.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-repeat",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 23574
+          }
+        ],
+        "shortDoc": "Interval to repeat the notification. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "sound",
+        "owner": "NotificationParams",
+        "type": "String",
+        "doc": "<p>Path to the sound file to play when notification occurs, relative to the <code>Resources</code> folder.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-sound",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 23595
+          }
+        ],
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "timezone",
+        "owner": "NotificationParams",
+        "type": "String",
+        "doc": "<p>Timezone of the date configured for the notification. If not set, the system timezone is used.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-timezone",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 23616
+          }
+        ],
+        "shortDoc": "Timezone of the date configured for the notification. ...",
+        "html_type": "String",
+        "html_meta": {
+        }
+      },
+      {
+        "tagname": "property",
+        "name": "userInfo",
+        "owner": "NotificationParams",
+        "type": "Dictionary",
+        "doc": "<p>Data to pass to the application with the notification event.</p>\n\n",
+        "default": null,
+        "properties": null,
+        "inheritable": false,
+        "inheritdoc": null,
+        "meta": {
+        },
+        "id": "property-userInfo",
+        "files": [
+          {
+            "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+            "linenr": 23637
+          }
+        ],
+        "html_type": "Dictionary",
+        "html_meta": {
+        }
+      }
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "statics": {
+    "cfg": [
+
+    ],
+    "property": [
+
+    ],
+    "method": [
+
+    ],
+    "event": [
+
+    ],
+    "css_var": [
+
+    ],
+    "css_mixin": [
+
+    ]
+  },
+  "files": [
+    {
+      "filename": "/Users/Mo/projects/titanium_haxe_3/src/titanium.js",
+      "linenr": 23425
+    }
+  ],
+  "html_meta": {
+  },
+  "component": false,
+  "superclasses": [
+
+  ],
+  "subclasses": [
+
+  ],
+  "mixedInto": [
+
+  ],
+  "parentMixins": [
+
+  ]
+}
