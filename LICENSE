@@ -1,6 +1,8 @@
 ======================================
 Appcelerator Titanium Mobile
 Copyright 2008-2013 Appcelerator, Inc.
+
+Transpile to Haxe Extern Classes by Mo Omer 2015
 ======================================
 
    Licensed under the Apache License, Version 2.0 (the "License");
