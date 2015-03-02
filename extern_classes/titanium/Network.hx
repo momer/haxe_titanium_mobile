@@ -1,10 +1,5 @@
 package titanium;
 
-import dictionary<titanium.network.BonjourBrowser>;
-import dictionary<titanium.network.BonjourService>;
-import dictionary<titanium.network.Cookie>;
-import dictionary<titanium.network.HTTPClient>;
-import dictionary<titanium.network.TCPSocket>;
 import titanium.Module;
 import titanium.network.BonjourBrowser;
 import titanium.network.BonjourService;
@@ -136,21 +131,21 @@ extern class Network extends Module
 	//
 	public var WRITE_MODE:Float;
 	
-	public function addConnectivityListener(_callback:Callback<Object>):Void;
+	public function addConnectivityListener(_callback:Callback<Dynamic>):Void;
 	
 	public function addHTTPCookie(cookie:Cookie):Void;
 	
 	public function addSystemCookie(cookie:Cookie):Void;
 	
-	public function createBonjourBrowser(serviceType:String, domain:String, ?parameters:BonjourBrowser>):BonjourBrowser;
+	public function createBonjourBrowser(serviceType:String, domain:String, ?parameters:Dictionary<BonjourBrowser>):BonjourBrowser;
 	
-	public function createBonjourService(name:String, type:String, domain:String, ?parameters:BonjourService>):BonjourService;
+	public function createBonjourService(name:String, type:String, domain:String, ?parameters:Dictionary<BonjourService>):BonjourService;
 	
-	public function createCookie(?parameters:Cookie>):Cookie;
+	public function createCookie(?parameters:Dictionary<Cookie>):Cookie;
 	
-	public function createHTTPClient(?parameters:HTTPClient>):HTTPClient;
+	public function createHTTPClient(?parameters:Dictionary<HTTPClient>):HTTPClient;
 	
-	public function createTCPSocket(hostName:String, port:Float, mode:Float, parameters:TCPSocket>):TCPSocket;
+	public function createTCPSocket(hostName:String, port:Float, mode:Float, parameters:Dictionary<TCPSocket>):TCPSocket;
 	
 	public function decodeURIComponent(value:String):String;
 	
@@ -184,7 +179,7 @@ extern class Network extends Module
 	
 	public function removeAllSystemCookies():Void;
 	
-	public function removeConnectivityListener(_callback:Callback<Object>):Void;
+	public function removeConnectivityListener(_callback:Callback<Dynamic>):Void;
 	
 	public function removeHTTPCookie(domain:String, path:String, name:String):Void;
 	

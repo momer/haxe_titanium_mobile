@@ -1,8 +1,5 @@
 package ;
 
-import dictionary<global.Console>;
-import dictionary<global.JSON>;
-import dictionary<global.String>;
 import global.Console;
 import global.JSON;
 import global.String;
@@ -17,11 +14,11 @@ extern class Global
 	
 	public function clearTimeout(timerId:Float):Void;
 	
-	public function createconsole(?parameters:Console>):Console;
+	public function createconsole(?parameters:Dictionary<Console>):Console;
 	
-	public function createJSON(?parameters:JSON>):JSON;
+	public function createJSON(?parameters:Dictionary<JSON>):JSON;
 	
-	public function createString(?parameters:String>):String;
+	public function createString(?parameters:Dictionary<String>):String;
 	
 	public function decodeURIComponent(encodedURI:String):String;
 	

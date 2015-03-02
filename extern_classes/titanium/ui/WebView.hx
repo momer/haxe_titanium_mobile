@@ -28,7 +28,7 @@ extern class WebView extends View
 	
 	public static var loading:Bool;
 	
-	public static var onCreateWindow:Callback<Object>;
+	public static var onCreateWindow:Callback<Dynamic>;
 	
 	public static var overScrollMode:Float;
 	
@@ -68,7 +68,7 @@ extern class WebView extends View
 	//
 	public var loading:Bool;
 	//
-	public var onCreateWindow:Callback<Object>;
+	public var onCreateWindow:Callback<Dynamic>;
 	//
 	public var overScrollMode:Float;
 	//
@@ -114,7 +114,7 @@ extern class WebView extends View
 	
 	public function getLoading():Bool;
 	
-	public function getOnCreateWindow():Callback<Object>;
+	public function getOnCreateWindow():Callback<Dynamic>;
 	
 	public function getOverScrollMode():Float;
 	
@@ -170,7 +170,7 @@ extern class WebView extends View
 	
 	public function setLoading(loading:Bool):Void;
 	
-	public function setOnCreateWindow(onCreateWindow:Callback<Object>):Void;
+	public function setOnCreateWindow(onCreateWindow:Callback<Dynamic>):Void;
 	
 	public function setOverScrollMode(overScrollMode:Float):Void;
 	

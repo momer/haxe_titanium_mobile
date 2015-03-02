@@ -113,7 +113,7 @@ extern class ImageView extends View
 	
 	public function setImage(image:Dynamic):Void;
 	
-	public function setImages(images:Dynamic):Void;
+	public function setImages(images:Array<String>):Void;
 	
 	public function setPreventDefaultImage(preventDefaultImage:Bool):Void;
 	

@@ -6,21 +6,21 @@ extern class ShowContactsParams
 {	
 	public static var animated:Bool;
 	
-	public static var cancel:Callback<Object>;
+	public static var cancel:Callback<Dynamic>;
 	
 	public static var fields:Array<String>;
 	
-	public static var selectedPerson:Callback<Object>;
+	public static var selectedPerson:Callback<Dynamic>;
 	
-	public static var selectedProperty:Callback<Object>;
+	public static var selectedProperty:Callback<Dynamic>;
 	//
 	public var animated:Bool;
 	//
-	public var cancel:Callback<Object>;
+	public var cancel:Callback<Dynamic>;
 	//
 	public var fields:Array<String>;
 	//
-	public var selectedPerson:Callback<Object>;
+	public var selectedPerson:Callback<Dynamic>;
 	//
-	public var selectedProperty:Callback<Object>;
+	public var selectedProperty:Callback<Dynamic>;
 }

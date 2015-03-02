@@ -1,6 +1,5 @@
 package titanium.ui;
 
-import array<titanium.ui.View>;
 import titanium.ui.View;
 
 
@@ -135,5 +134,5 @@ extern class ScrollableView extends View
 	
 	public function setShowPagingControl(showPagingControl:Bool):Void;
 	
-	public function setViews(views:View>):Void;
+	public function setViews(views:Array<View>):Void;
 }

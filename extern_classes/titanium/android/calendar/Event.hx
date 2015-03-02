@@ -1,7 +1,5 @@
 package titanium.android.calendar;
 
-import dictionary<titanium.android.calendar.Alert>;
-import dictionary<titanium.android.calendar.Reminder>;
 import titanium.android.calendar.Alert;
 import titanium.android.calendar.Reminder;
 import titanium.Proxy;
@@ -66,9 +64,9 @@ extern class Event extends Proxy
 	//
 	public var visibility:Float;
 	
-	public function createAlert(data:Alert>):Alert;
+	public function createAlert(data:Dictionary<Alert>):Alert;
 	
-	public function createReminder(data:Reminder>):Reminder;
+	public function createReminder(data:Dictionary<Reminder>):Reminder;
 	
 	public function getAlerts():Array<Alert>;
 	

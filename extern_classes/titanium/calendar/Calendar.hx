@@ -1,6 +1,5 @@
 package titanium.calendar;
 
-import dictionary<titanium.calendar.Event>;
 import titanium.calendar.Event;
 import titanium.Proxy;
 
@@ -24,7 +23,7 @@ extern class Calendar extends Proxy
 	//
 	public var selected:Bool;
 	
-	public function createEvent(properties:Event>):Event;
+	public function createEvent(properties:Dictionary<Event>):Event;
 	
 	public function getEventById(id:Float):Event;
 	

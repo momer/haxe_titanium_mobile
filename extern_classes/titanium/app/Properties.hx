@@ -12,7 +12,7 @@ extern class Properties extends Module
 	
 	public function getInt(property:String, ?default:Float):Float;
 	
-	public function getList(property:String, ?default:Array<Object>):Array<Dynamic>;
+	public function getList(property:String, ?default:Array<Dynamic>):Array<Dynamic>;
 	
 	public function getObject(property:String, ?default:Dynamic):Dynamic;
 	
@@ -30,7 +30,7 @@ extern class Properties extends Module
 	
 	public function setInt(property:String, value:Float):Void;
 	
-	public function setList(property:String, value:Array<Object>):Void;
+	public function setList(property:String, value:Array<Dynamic>):Void;
 	
 	public function setObject(property:String, value:Dynamic):Void;
 	

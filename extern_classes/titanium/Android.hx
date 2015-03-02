@@ -1,10 +1,5 @@
 package titanium;
 
-import dictionary<titanium.android.BroadcastReceiver>;
-import dictionary<titanium.android.Intent>;
-import dictionary<titanium.android.Notification>;
-import dictionary<titanium.android.PendingIntent>;
-import dictionary<titanium.android.RemoteViews>;
 import titanium.android.Activity;
 import titanium.android.BroadcastReceiver;
 import titanium.android.Intent;
@@ -867,19 +862,19 @@ extern class Android extends Module
 	//
 	public var VISIBILITY_SECRET:Float;
 	
-	public function createBroadcastIntent(?parameters:Intent>):Intent;
+	public function createBroadcastIntent(?parameters:Dictionary<Intent>):Intent;
 	
-	public function createBroadcastReceiver(?parameters:BroadcastReceiver>):BroadcastReceiver;
+	public function createBroadcastReceiver(?parameters:Dictionary<BroadcastReceiver>):BroadcastReceiver;
 	
-	public function createIntent(?parameters:Intent>):Intent;
+	public function createIntent(?parameters:Dictionary<Intent>):Intent;
 	
 	public function createIntentChooser(intent:Intent, title:String):Intent;
 	
-	public function createNotification(?parameters:Notification>):Notification;
+	public function createNotification(?parameters:Dictionary<Notification>):Notification;
 	
-	public function createPendingIntent(?parameters:PendingIntent>):PendingIntent;
+	public function createPendingIntent(?parameters:Dictionary<PendingIntent>):PendingIntent;
 	
-	public function createRemoteViews(?parameters:RemoteViews>):RemoteViews;
+	public function createRemoteViews(?parameters:Dictionary<RemoteViews>):RemoteViews;
 	
 	public function createService(intent:Intent):Service;
 	

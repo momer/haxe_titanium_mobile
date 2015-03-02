@@ -1,23 +1,5 @@
 package titanium.ui;
 
-import dictionary<titanium.ui.ios.3DMatrix>;
-import dictionary<titanium.ui.ios.AdView>;
-import dictionary<titanium.ui.ios.AnchorAttachmentBehavior>;
-import dictionary<titanium.ui.ios.Animator>;
-import dictionary<titanium.ui.ios.Attribute>;
-import dictionary<titanium.ui.ios.AttributedString>;
-import dictionary<titanium.ui.ios.CollisionBehavior>;
-import dictionary<titanium.ui.ios.CoverFlowView>;
-import dictionary<titanium.ui.ios.DocumentViewer>;
-import dictionary<titanium.ui.ios.DynamicItemBehavior>;
-import dictionary<titanium.ui.ios.GravityBehavior>;
-import dictionary<titanium.ui.ios.NavigationWindow>;
-import dictionary<titanium.ui.ios.PushBehavior>;
-import dictionary<titanium.ui.ios.SnapBehavior>;
-import dictionary<titanium.ui.ios.SplitWindow>;
-import dictionary<titanium.ui.ios.TabbedBar>;
-import dictionary<titanium.ui.ios.Toolbar>;
-import dictionary<titanium.ui.ios.ViewAttachmentBehavior>;
 import titanium.Module;
 import titanium.ui.ios.3DMatrix;
 import titanium.ui.ios.AdView;
@@ -418,41 +400,41 @@ extern class IOS extends Module
 	//
 	public var WEBVIEW_NAVIGATIONTYPE_RELOAD:Float;
 	
-	public function create3DMatrix(?parameters:3DMatrix>):3DMatrix;
+	public function create3DMatrix(?parameters:Dictionary<3DMatrix>):3DMatrix;
 	
-	public function createAdView(?parameters:AdView>):AdView;
+	public function createAdView(?parameters:Dictionary<AdView>):AdView;
 	
-	public function createAnchorAttachmentBehavior(?parameters:AnchorAttachmentBehavior>):AnchorAttachmentBehavior;
+	public function createAnchorAttachmentBehavior(?parameters:Dictionary<AnchorAttachmentBehavior>):AnchorAttachmentBehavior;
 	
-	public function createAnimator(?parameters:Animator>):Animator;
+	public function createAnimator(?parameters:Dictionary<Animator>):Animator;
 	
-	public function createAttribute(?parameters:Attribute>):Attribute;
+	public function createAttribute(?parameters:Dictionary<Attribute>):Attribute;
 	
-	public function createAttributedString(?parameters:AttributedString>):AttributedString;
+	public function createAttributedString(?parameters:Dictionary<AttributedString>):AttributedString;
 	
-	public function createCollisionBehavior(?parameters:CollisionBehavior>):CollisionBehavior;
+	public function createCollisionBehavior(?parameters:Dictionary<CollisionBehavior>):CollisionBehavior;
 	
-	public function createCoverFlowView(?parameters:CoverFlowView>):CoverFlowView;
+	public function createCoverFlowView(?parameters:Dictionary<CoverFlowView>):CoverFlowView;
 	
-	public function createDocumentViewer(?parameters:DocumentViewer>):DocumentViewer;
+	public function createDocumentViewer(?parameters:Dictionary<DocumentViewer>):DocumentViewer;
 	
-	public function createDynamicItemBehavior(?parameters:DynamicItemBehavior>):DynamicItemBehavior;
+	public function createDynamicItemBehavior(?parameters:Dictionary<DynamicItemBehavior>):DynamicItemBehavior;
 	
-	public function createGravityBehavior(?parameters:GravityBehavior>):GravityBehavior;
+	public function createGravityBehavior(?parameters:Dictionary<GravityBehavior>):GravityBehavior;
 	
-	public function createNavigationWindow(?parameters:NavigationWindow>):NavigationWindow;
+	public function createNavigationWindow(?parameters:Dictionary<NavigationWindow>):NavigationWindow;
 	
-	public function createPushBehavior(?parameters:PushBehavior>):PushBehavior;
+	public function createPushBehavior(?parameters:Dictionary<PushBehavior>):PushBehavior;
 	
-	public function createSnapBehavior(?parameters:SnapBehavior>):SnapBehavior;
+	public function createSnapBehavior(?parameters:Dictionary<SnapBehavior>):SnapBehavior;
 	
-	public function createSplitWindow(?parameters:SplitWindow>):SplitWindow;
+	public function createSplitWindow(?parameters:Dictionary<SplitWindow>):SplitWindow;
 	
-	public function createTabbedBar(?parameters:TabbedBar>):TabbedBar;
+	public function createTabbedBar(?parameters:Dictionary<TabbedBar>):TabbedBar;
 	
-	public function createToolbar(?parameters:Toolbar>):Toolbar;
+	public function createToolbar(?parameters:Dictionary<Toolbar>):Toolbar;
 	
 	public function createTransitionAnimation(transition:TransitionAnimationParam):Void;
 	
-	public function createViewAttachmentBehavior(?parameters:ViewAttachmentBehavior>):ViewAttachmentBehavior;
+	public function createViewAttachmentBehavior(?parameters:Dictionary<ViewAttachmentBehavior>):ViewAttachmentBehavior;
 }

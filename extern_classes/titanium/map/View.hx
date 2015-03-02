@@ -1,6 +1,5 @@
 package titanium.map;
 
-import array<titanium.map.Annotation>;
 import titanium.map.Annotation;
 import titanium.ui.View;
 
@@ -48,9 +47,9 @@ extern class View extends titanium.ui.View
 	//
 	public var userLocation:Bool;
 	
-	public function addAnnotation(annotation:Dynamic):Void;
+	public function addAnnotation(annotation:Dictionary<Annotation>):Void;
 	
-	public function addAnnotations(annotations:Dynamic):Void;
+	public function addAnnotations(annotations:Array<Annotation>):Void;
 	
 	public function addRoute(route:MapRouteType):Void;
 	
@@ -80,7 +79,7 @@ extern class View extends titanium.ui.View
 	
 	public function removeAnnotation(annotation:Dynamic):Void;
 	
-	public function removeAnnotations(annotations:Dynamic):Void;
+	public function removeAnnotations(annotations:Array<String>):Void;
 	
 	public function removeRoute(route:MapRouteType):Void;
 	
@@ -90,7 +89,7 @@ extern class View extends titanium.ui.View
 	
 	public function setAnimated(animated:Bool):Void;
 	
-	public function setAnnotations(annotations:Annotation>):Void;
+	public function setAnnotations(annotations:Array<Annotation>):Void;
 	
 	public function setHideAnnotationWhenTouchMap(hideAnnotationWhenTouchMap:Bool):Void;
 	

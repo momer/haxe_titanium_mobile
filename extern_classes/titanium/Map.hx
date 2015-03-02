@@ -1,7 +1,5 @@
 package titanium;
 
-import dictionary<titanium.map.Annotation>;
-import dictionary<titanium.map.View>;
 import titanium.map.Annotation;
 import titanium.map.View;
 import titanium.Module;
@@ -58,7 +56,7 @@ extern class Map extends Module
 	//
 	public var TERRAIN_TYPE:Float;
 	
-	public function createAnnotation(?parameters:Annotation>):Annotation;
+	public function createAnnotation(?parameters:Dictionary<Annotation>):Annotation;
 	
-	public function createView(?parameters:View>):View;
+	public function createView(?parameters:Dictionary<View>):View;
 }

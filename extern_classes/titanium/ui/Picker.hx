@@ -1,7 +1,7 @@
 package titanium.ui;
 
-import array<titanium.ui.PickerColumn>;
 import titanium.ui.PickerColumn;
+import titanium.ui.PickerRow;
 import titanium.ui.View;
 
 
@@ -68,7 +68,7 @@ extern class Picker extends View
 	//
 	public var visibleItems:Float;
 	
-	//public function add(data:Dynamic):Void;
+	//public function add(data:Array<PickerRow>):Void;
 	
 	//public function getBackgroundColor():String;
 	
@@ -108,7 +108,7 @@ extern class Picker extends View
 	
 	public function setCalendarViewShown(calendarViewShown:Bool):Void;
 	
-	public function setColumns(columns:PickerColumn>):Void;
+	public function setColumns(columns:Array<PickerColumn>):Void;
 	
 	public function setCountDownDuration(countDownDuration:Float):Void;
 	

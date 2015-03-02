@@ -1,8 +1,5 @@
 package titanium.app;
 
-import dictionary<titanium.app.ios.UserDefaults>;
-import dictionary<titanium.app.ios.UserNotificationAction>;
-import dictionary<titanium.app.ios.UserNotificationCategory>;
 import titanium.app.ios.BackgroundService;
 import titanium.app.ios.LocalNotification;
 import titanium.app.ios.UserDefaults;
@@ -66,11 +63,11 @@ extern class IOS extends Module
 	
 	public function cancelLocalNotification(id:Dynamic):Void;
 	
-	public function createUserDefaults(parameters:UserDefaults>):UserDefaults;
+	public function createUserDefaults(parameters:Dictionary<UserDefaults>):UserDefaults;
 	
-	public function createUserNotificationAction(?parameters:UserNotificationAction>):UserNotificationAction;
+	public function createUserNotificationAction(?parameters:Dictionary<UserNotificationAction>):UserNotificationAction;
 	
-	public function createUserNotificationCategory(?parameters:UserNotificationCategory>):UserNotificationCategory;
+	public function createUserNotificationCategory(?parameters:Dictionary<UserNotificationCategory>):UserNotificationCategory;
 	
 	public function endBackgroundHandler(handlerID:String):Void;
 	

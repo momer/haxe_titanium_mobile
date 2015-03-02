@@ -1,7 +1,5 @@
 package titanium.network;
 
-import dictionary<titanium.network.socket.TCP>;
-import dictionary<titanium.network.socket.UDP>;
 import titanium.Module;
 import titanium.network.socket.TCP;
 import titanium.network.socket.UDP;
@@ -30,7 +28,7 @@ extern class Socket extends Module
 	//
 	public var LISTENING:Float;
 	
-	public function createTCP(?params:TCP>):TCP;
+	public function createTCP(?params:Dictionary<TCP>):TCP;
 	
-	public function createUDP(?params:UDP>):UDP;
+	public function createUDP(?params:Dictionary<UDP>):UDP;
 }

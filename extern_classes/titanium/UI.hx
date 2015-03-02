@@ -1,45 +1,5 @@
 package titanium;
 
-import dictionary<titanium.ui.3DMatrix>;
-import dictionary<titanium.ui.ActivityIndicator>;
-import dictionary<titanium.ui.AlertDialog>;
-import dictionary<titanium.ui.Animation>;
-import dictionary<titanium.ui.AttributedString>;
-import dictionary<titanium.ui.Button>;
-import dictionary<titanium.ui.ButtonBar>;
-import dictionary<titanium.ui.CoverFlowView>;
-import dictionary<titanium.ui.DashboardItem>;
-import dictionary<titanium.ui.DashboardView>;
-import dictionary<titanium.ui.EmailDialog>;
-import dictionary<titanium.ui.ImageView>;
-import dictionary<titanium.ui.Label>;
-import dictionary<titanium.ui.ListSection>;
-import dictionary<titanium.ui.ListView>;
-import dictionary<titanium.ui.MaskedImage>;
-import dictionary<titanium.ui.Notification>;
-import dictionary<titanium.ui.OptionDialog>;
-import dictionary<titanium.ui.Picker>;
-import dictionary<titanium.ui.PickerColumn>;
-import dictionary<titanium.ui.PickerRow>;
-import dictionary<titanium.ui.ProgressBar>;
-import dictionary<titanium.ui.RefreshControl>;
-import dictionary<titanium.ui.ScrollableView>;
-import dictionary<titanium.ui.ScrollView>;
-import dictionary<titanium.ui.SearchBar>;
-import dictionary<titanium.ui.Slider>;
-import dictionary<titanium.ui.Switch>;
-import dictionary<titanium.ui.Tab>;
-import dictionary<titanium.ui.TabbedBar>;
-import dictionary<titanium.ui.TabGroup>;
-import dictionary<titanium.ui.TableView>;
-import dictionary<titanium.ui.TableViewRow>;
-import dictionary<titanium.ui.TableViewSection>;
-import dictionary<titanium.ui.TextArea>;
-import dictionary<titanium.ui.TextField>;
-import dictionary<titanium.ui.Toolbar>;
-import dictionary<titanium.ui.View>;
-import dictionary<titanium.ui.WebView>;
-import dictionary<titanium.ui.Window>;
 import titanium.Module;
 import titanium.ui.2DMatrix;
 import titanium.ui.3DMatrix;
@@ -799,85 +759,85 @@ extern class UI extends Module
 	
 	public function create2DMatrix(?parameters:MatrixCreationDict):2DMatrix;
 	
-	public function create3DMatrix(?parameters:3DMatrix>):3DMatrix;
+	public function create3DMatrix(?parameters:Dictionary<3DMatrix>):3DMatrix;
 	
-	public function createActivityIndicator(?parameters:ActivityIndicator>):ActivityIndicator;
+	public function createActivityIndicator(?parameters:Dictionary<ActivityIndicator>):ActivityIndicator;
 	
-	public function createAlertDialog(?parameters:AlertDialog>):AlertDialog;
+	public function createAlertDialog(?parameters:Dictionary<AlertDialog>):AlertDialog;
 	
-	public function createAnimation(?parameters:Animation>):Animation;
+	public function createAnimation(?parameters:Dictionary<Animation>):Animation;
 	
-	public function createAttributedString(?parameters:AttributedString>):AttributedString;
+	public function createAttributedString(?parameters:Dictionary<AttributedString>):AttributedString;
 	
-	public function createButton(?parameters:Button>):Button;
+	public function createButton(?parameters:Dictionary<Button>):Button;
 	
-	public function createButtonBar(?parameters:ButtonBar>):ButtonBar;
+	public function createButtonBar(?parameters:Dictionary<ButtonBar>):ButtonBar;
 	
-	public function createCoverFlowView(?parameters:CoverFlowView>):CoverFlowView;
+	public function createCoverFlowView(?parameters:Dictionary<CoverFlowView>):CoverFlowView;
 	
-	public function createDashboardItem(?parameters:DashboardItem>):DashboardItem;
+	public function createDashboardItem(?parameters:Dictionary<DashboardItem>):DashboardItem;
 	
-	public function createDashboardView(?parameters:DashboardView>):DashboardView;
+	public function createDashboardView(?parameters:Dictionary<DashboardView>):DashboardView;
 	
-	public function createEmailDialog(?parameters:EmailDialog>):EmailDialog;
+	public function createEmailDialog(?parameters:Dictionary<EmailDialog>):EmailDialog;
 	
-	public function createImageView(?parameters:ImageView>):ImageView;
+	public function createImageView(?parameters:Dictionary<ImageView>):ImageView;
 	
-	public function createLabel(?parameters:Label>):Label;
+	public function createLabel(?parameters:Dictionary<Label>):Label;
 	
-	public function createListSection(?parameters:ListSection>):ListSection;
+	public function createListSection(?parameters:Dictionary<ListSection>):ListSection;
 	
-	public function createListView(?parameters:ListView>):ListView;
+	public function createListView(?parameters:Dictionary<ListView>):ListView;
 	
-	public function createMaskedImage(?parameters:MaskedImage>):MaskedImage;
+	public function createMaskedImage(?parameters:Dictionary<MaskedImage>):MaskedImage;
 	
-	public function createNotification(?parameters:Notification>):Notification;
+	public function createNotification(?parameters:Dictionary<Notification>):Notification;
 	
-	public function createOptionDialog(?parameters:OptionDialog>):OptionDialog;
+	public function createOptionDialog(?parameters:Dictionary<OptionDialog>):OptionDialog;
 	
-	public function createPicker(?parameters:Picker>):Picker;
+	public function createPicker(?parameters:Dictionary<Picker>):Picker;
 	
-	public function createPickerColumn(?parameters:PickerColumn>):PickerColumn;
+	public function createPickerColumn(?parameters:Dictionary<PickerColumn>):PickerColumn;
 	
-	public function createPickerRow(?parameters:PickerRow>):PickerRow;
+	public function createPickerRow(?parameters:Dictionary<PickerRow>):PickerRow;
 	
-	public function createProgressBar(?parameters:ProgressBar>):ProgressBar;
+	public function createProgressBar(?parameters:Dictionary<ProgressBar>):ProgressBar;
 	
-	public function createRefreshControl(?parameters:RefreshControl>):RefreshControl;
+	public function createRefreshControl(?parameters:Dictionary<RefreshControl>):RefreshControl;
 	
-	public function createScrollableView(?parameters:ScrollableView>):ScrollableView;
+	public function createScrollableView(?parameters:Dictionary<ScrollableView>):ScrollableView;
 	
-	public function createScrollView(?parameters:ScrollView>):ScrollView;
+	public function createScrollView(?parameters:Dictionary<ScrollView>):ScrollView;
 	
-	public function createSearchBar(?parameters:SearchBar>):SearchBar;
+	public function createSearchBar(?parameters:Dictionary<SearchBar>):SearchBar;
 	
-	public function createSlider(?parameters:Slider>):Slider;
+	public function createSlider(?parameters:Dictionary<Slider>):Slider;
 	
-	public function createSwitch(?parameters:Switch>):Switch;
+	public function createSwitch(?parameters:Dictionary<Switch>):Switch;
 	
-	public function createTab(?parameters:Tab>):Tab;
+	public function createTab(?parameters:Dictionary<Tab>):Tab;
 	
-	public function createTabbedBar(?parameters:TabbedBar>):TabbedBar;
+	public function createTabbedBar(?parameters:Dictionary<TabbedBar>):TabbedBar;
 	
-	public function createTabGroup(?parameters:TabGroup>):TabGroup;
+	public function createTabGroup(?parameters:Dictionary<TabGroup>):TabGroup;
 	
-	public function createTableView(?parameters:TableView>):TableView;
+	public function createTableView(?parameters:Dictionary<TableView>):TableView;
 	
-	public function createTableViewRow(?parameters:TableViewRow>):TableViewRow;
+	public function createTableViewRow(?parameters:Dictionary<TableViewRow>):TableViewRow;
 	
-	public function createTableViewSection(?parameters:TableViewSection>):TableViewSection;
+	public function createTableViewSection(?parameters:Dictionary<TableViewSection>):TableViewSection;
 	
-	public function createTextArea(?parameters:TextArea>):TextArea;
+	public function createTextArea(?parameters:Dictionary<TextArea>):TextArea;
 	
-	public function createTextField(?parameters:TextField>):TextField;
+	public function createTextField(?parameters:Dictionary<TextField>):TextField;
 	
-	public function createToolbar(?parameters:Toolbar>):Toolbar;
+	public function createToolbar(?parameters:Dictionary<Toolbar>):Toolbar;
 	
-	public function createView(?parameters:View>):View;
+	public function createView(?parameters:Dictionary<View>):View;
 	
-	public function createWebView(?parameters:WebView>):WebView;
+	public function createWebView(?parameters:Dictionary<WebView>):WebView;
 	
-	public function createWindow(?parameters:Window>):Window;
+	public function createWindow(?parameters:Dictionary<Window>):Window;
 	
 	public function getBackgroundColor():String;
 	

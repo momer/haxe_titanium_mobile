@@ -53,7 +53,7 @@ extern class MusicPlayer extends Proxy
 	
 	public function setCurrentPlaybackTime(currentPlaybackTime:Float):Void;
 	
-	public function setQueue(queue:Dynamic):Void;
+	public function setQueue(queue:Titanium.Media.Item/Array<Item>):Void;
 	
 	public function setRepeatMode(repeatMode:Float):Void;
 	

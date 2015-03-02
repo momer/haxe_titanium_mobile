@@ -1,8 +1,5 @@
 package titanium;
 
-import array<titanium.contacts.Person>;
-import dictionary<titanium.contacts.Group>;
-import dictionary<titanium.contacts.Person>;
 import titanium.contacts.Group;
 import titanium.contacts.Person;
 import titanium.Module;
@@ -47,9 +44,9 @@ extern class Contacts extends Module
 	//
 	public var contactsAuthorization:Float;
 	
-	public function createGroup(?parameters:Group>):Group;
+	public function createGroup(?parameters:Dictionary<Group>):Group;
 	
-	public function createPerson(?parameters:Person>):Person;
+	public function createPerson(?parameters:Dictionary<Person>):Person;
 	
 	public function getAllGroups():Array<Group>;
 	
@@ -71,7 +68,7 @@ extern class Contacts extends Module
 	
 	public function revert():Void;
 	
-	public function save(contacts:Person>):Void;
+	public function save(contacts:Array<Person>):Void;
 	
 	public function showContacts(params:ShowContactsParams):Void;
 }

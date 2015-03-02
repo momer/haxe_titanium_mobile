@@ -1,9 +1,5 @@
 package titanium;
 
-import dictionary<titanium.media.AudioPlayer>;
-import dictionary<titanium.media.AudioRecorder>;
-import dictionary<titanium.media.Sound>;
-import dictionary<titanium.media.VideoPlayer>;
 import titanium.media.AudioPlayer;
 import titanium.media.AudioRecorder;
 import titanium.media.Item;
@@ -602,13 +598,13 @@ extern class Media extends Module
 	
 	public function beep():Void;
 	
-	public function createAudioPlayer(?parameters:AudioPlayer>):AudioPlayer;
+	public function createAudioPlayer(?parameters:Dictionary<AudioPlayer>):AudioPlayer;
 	
-	public function createAudioRecorder(?parameters:AudioRecorder>):AudioRecorder;
+	public function createAudioRecorder(?parameters:Dictionary<AudioRecorder>):AudioRecorder;
 	
-	public function createSound(?parameters:Sound>):Sound;
+	public function createSound(?parameters:Dictionary<Sound>):Sound;
 	
-	public function createVideoPlayer(?parameters:VideoPlayer>):VideoPlayer;
+	public function createVideoPlayer(?parameters:Dictionary<VideoPlayer>):VideoPlayer;
 	
 	public function getAppMusicPlayer():MusicPlayer;
 	
@@ -666,11 +662,11 @@ extern class Media extends Module
 	
 	public function setAudioSessionMode(audioSessionMode:Float):Void;
 	
-	public function setAvailableCameraMediaTypes(availableCameraMediaTypes:Array<Object>):Void;
+	public function setAvailableCameraMediaTypes(availableCameraMediaTypes:Array<Dynamic>):Void;
 	
-	public function setAvailablePhotoGalleryMediaTypes(availablePhotoGalleryMediaTypes:Array<Object>):Void;
+	public function setAvailablePhotoGalleryMediaTypes(availablePhotoGalleryMediaTypes:Array<Dynamic>):Void;
 	
-	public function setAvailablePhotoMediaTypes(availablePhotoMediaTypes:Array<Object>):Void;
+	public function setAvailablePhotoMediaTypes(availablePhotoMediaTypes:Array<Dynamic>):Void;
 	
 	public function setAverageMicrophonePower(averageMicrophonePower:Float):Void;
 	
@@ -694,5 +690,5 @@ extern class Media extends Module
 	
 	public function takeScreenshot(_callback:Callback<ScreenshotResult>):Void;
 	
-	public function vibrate(?pattern:Array<Number>):Void;
+	public function vibrate(?pattern:Array<Float>):Void;
 }

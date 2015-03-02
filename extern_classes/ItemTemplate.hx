@@ -1,6 +1,6 @@
 package ;
 
-import dictionary<titanium.ui.ListItem>;
+import titanium.ui.ListItem;
 
 
 @:native("ItemTemplate")
@@ -10,11 +10,11 @@ extern class ItemTemplate
 	
 	public static var events:Dictionary;
 	
-	public static var properties:ListItem>;
+	public static var properties:Dictionary<ListItem>;
 	//
 	public var childTemplates:Array<ViewTemplate>;
 	//
 	public var events:Dictionary;
 	//
-	public var properties:ListItem>;
+	public var properties:Dictionary<ListItem>;
 }

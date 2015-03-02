@@ -12,7 +12,7 @@ extern class UDP extends IOStream
 	
 	public static var port:Float;
 	
-	public static var started:Callback<void>;
+	public static var started:Callback<Void>;
 	//
 	public var data:Callback<DataCallbackArgs>;
 	//
@@ -20,7 +20,7 @@ extern class UDP extends IOStream
 	//
 	public var port:Float;
 	//
-	public var started:Callback<void>;
+	public var started:Callback<Void>;
 	
 	public function getData():Callback<DataCallbackArgs>;
 	
@@ -28,9 +28,9 @@ extern class UDP extends IOStream
 	
 	public function getPort():Float;
 	
-	public function getStarted():Callback<void>;
+	public function getStarted():Callback<Void>;
 	
-	public function sendBytes(port:Float, host:String, data:Array<Number>):Void;
+	public function sendBytes(port:Float, host:String, data:Array<Float>):Void;
 	
 	public function sendString(port:Float, host:String, data:String):Void;
 	
@@ -40,7 +40,7 @@ extern class UDP extends IOStream
 	
 	public function setPort(port:Float):Void;
 	
-	public function setStarted(started:Callback<void>):Void;
+	public function setStarted(started:Callback<Void>):Void;
 	
 	public function start(port:Float):Void;
 	

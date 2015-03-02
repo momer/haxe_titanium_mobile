@@ -1,6 +1,5 @@
 package titanium.ui.ios;
 
-import array<titanium.Proxy>;
 import titanium.Proxy;
 import titanium.ui.View;
 
@@ -32,7 +31,7 @@ extern class Animator extends Proxy
 	
 	public function removeBehavior(behavior:Proxy):Void;
 	
-	public function setBehaviors(behaviors:Proxy>):Void;
+	public function setBehaviors(behaviors:Array<Proxy>):Void;
 	
 	public function setReferenceView(referenceView:View):Void;
 	

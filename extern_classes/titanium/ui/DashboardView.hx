@@ -1,6 +1,5 @@
 package titanium.ui;
 
-import array<titanium.ui.DashboardItem>;
 import titanium.ui.DashboardItem;
 import titanium.ui.View;
 
@@ -40,7 +39,7 @@ extern class DashboardView extends View
 	
 	public function setColumnCount(columnCount:Float):Void;
 	
-	public function setData(data:DashboardItem>):Void;
+	public function setData(data:Array<DashboardItem>):Void;
 	
 	public function setEditable(editable:Bool):Void;
 	

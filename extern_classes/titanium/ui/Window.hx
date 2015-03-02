@@ -1,8 +1,8 @@
 package titanium.ui;
 
-import array<titanium.ui.View>;
 import titanium.android.Activity;
 import titanium.Proxy;
+import titanium.ui.Animation;
 import titanium.ui.View;
 
 
@@ -217,7 +217,7 @@ extern class Window extends View
 	
 	//public function setTop(top:Dynamic):Void;
 	
-	public function close(?params:Dynamic):Void;
+	public function close(?params:Dictionary<Animation>):Void;
 	
 	public function getActivity():Activity;
 	
@@ -317,7 +317,7 @@ extern class Window extends View
 	
 	public function setExitOnClose(exitOnClose:Bool):Void;
 	
-	public function setExtendEdges(extendEdges:Array<Number>):Void;
+	public function setExtendEdges(extendEdges:Array<Float>):Void;
 	
 	public function setFlagSecure(flagSecure:Bool):Void;
 	
@@ -329,7 +329,7 @@ extern class Window extends View
 	
 	public function setLeftNavButton(leftNavButton:View):Void;
 	
-	public function setLeftNavButtons(leftNavButtons:View>):Void;
+	public function setLeftNavButtons(leftNavButtons:Array<View>):Void;
 	
 	public function setModal(modal:Bool):Void;
 	
@@ -337,11 +337,11 @@ extern class Window extends View
 	
 	public function setNavTintColor(navTintColor:String):Void;
 	
-	public function setOrientationModes(orientationModes:Array<Number>):Void;
+	public function setOrientationModes(orientationModes:Array<Float>):Void;
 	
 	public function setRightNavButton(rightNavButton:View):Void;
 	
-	public function setRightNavButtons(rightNavButtons:View>):Void;
+	public function setRightNavButtons(rightNavButtons:Array<View>):Void;
 	
 	public function setShadowImage(shadowImage:String):Void;
 	
@@ -367,7 +367,7 @@ extern class Window extends View
 	
 	public function setTitlepromptid(titlepromptid:String):Void;
 	
-	public function setToolbar(toolbar:Array<Object>):Void;
+	public function setToolbar(toolbar:Array<Dynamic>):Void;
 	
 	public function setTransitionAnimation(transitionAnimation:Proxy):Void;
 	

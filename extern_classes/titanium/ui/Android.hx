@@ -1,7 +1,5 @@
 package titanium.ui;
 
-import dictionary<titanium.ui.android.ProgressIndicator>;
-import dictionary<titanium.ui.android.SearchView>;
 import titanium.Module;
 import titanium.ui.android.ProgressIndicator;
 import titanium.ui.android.SearchView;
@@ -198,9 +196,9 @@ extern class Android extends Module
 	//
 	public var WEBVIEW_PLUGINS_ON_DEMAND:Float;
 	
-	public function createProgressIndicator(?parameters:ProgressIndicator>):ProgressIndicator;
+	public function createProgressIndicator(?parameters:Dictionary<ProgressIndicator>):ProgressIndicator;
 	
-	public function createSearchView(?parameters:SearchView>):SearchView;
+	public function createSearchView(?parameters:Dictionary<SearchView>):SearchView;
 	
 	public function hideSoftKeyboard():Void;
 	

@@ -1,6 +1,5 @@
 package titanium.ui.ipad;
 
-import array<titanium.ui.View>;
 import titanium.Proxy;
 import titanium.ui.View;
 
@@ -70,7 +69,7 @@ extern class Popover extends Proxy
 	
 	public function setLeftNavButton(leftNavButton:Dynamic):Void;
 	
-	public function setPassthroughViews(passthroughViews:View>):Void;
+	public function setPassthroughViews(passthroughViews:Array<View>):Void;
 	
 	public function setRightNavButton(rightNavButton:Dynamic):Void;
 	

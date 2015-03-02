@@ -1,6 +1,5 @@
 package titanium.ui.ios;
 
-import array<titanium.ui.View>;
 import titanium.ui.View;
 
 
@@ -51,7 +50,7 @@ extern class Toolbar extends View
 	
 	public function setExtendBackground(extendBackground:Bool):Void;
 	
-	public function setItems(items:View>):Void;
+	public function setItems(items:Array<View>):Void;
 	
 	public function setTranslucent(translucent:Bool):Void;
 }

@@ -1,6 +1,5 @@
 package titanium.ui;
 
-import dictionary<titanium.ui.iphone.NavigationGroup>;
 import titanium.Module;
 import titanium.ui.iphone.NavigationGroup;
 
@@ -56,7 +55,7 @@ extern class IPhone extends Module
 	//
 	public var statusBarStyle:Float;
 	
-	public function createNavigationGroup(?parameters:NavigationGroup>):NavigationGroup;
+	public function createNavigationGroup(?parameters:Dictionary<NavigationGroup>):NavigationGroup;
 	
 	public function getAppBadge():Float;
 	

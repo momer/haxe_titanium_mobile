@@ -1,10 +1,5 @@
 package titanium.calendar;
 
-import array<titanium.calendar.Alert>;
-import array<titanium.calendar.RecurrenceRule>;
-import dictionary<titanium.calendar.Alert>;
-import dictionary<titanium.calendar.RecurrenceRule>;
-import dictionary<titanium.calendar.Reminder>;
 import titanium.calendar.Alert;
 import titanium.calendar.RecurrenceRule;
 import titanium.calendar.Reminder;
@@ -88,11 +83,11 @@ extern class Event extends Proxy
 	
 	public function addRecurrenceRule(rule:RecurrenceRule):Void;
 	
-	public function createAlert(data:Alert>):Alert;
+	public function createAlert(data:Dictionary<Alert>):Alert;
 	
-	public function createRecurenceRule(data:RecurrenceRule>):RecurrenceRule;
+	public function createRecurenceRule(data:Dictionary<RecurrenceRule>):RecurrenceRule;
 	
-	public function createReminder(data:Reminder>):Reminder;
+	public function createReminder(data:Dictionary<Reminder>):Reminder;
 	
 	public function getAlerts():Array<Alert>;
 	
@@ -140,7 +135,7 @@ extern class Event extends Proxy
 	
 	public function save(span:Float):Bool;
 	
-	public function setAlerts(alerts:Alert>):Void;
+	public function setAlerts(alerts:Array<Alert>):Void;
 	
 	public function setAllDay(allDay:Bool):Void;
 	
@@ -156,7 +151,7 @@ extern class Event extends Proxy
 	
 	public function setRecurenceRule(recurenceRule:RecurrenceRule):Void;
 	
-	public function setRecurenceRules(recurenceRules:RecurrenceRule>):Void;
+	public function setRecurenceRules(recurenceRules:Array<RecurrenceRule>):Void;
 	
 	public function setTitle(title:String):Void;
 }

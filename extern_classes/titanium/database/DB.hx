@@ -26,7 +26,7 @@ extern class DB extends Proxy
 	
 	public function close():Void;
 	
-	public function execute(sql:String, ?vararg:Dynamic):ResultSet;
+	public function execute(sql:String, ?vararg:String/Array<String>):ResultSet;
 	
 	public function getFile():File;
 	

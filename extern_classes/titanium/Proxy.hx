@@ -16,7 +16,7 @@ extern class Proxy
 	//
 	public var lifecycleContainer:Dynamic;
 	
-	public function addEventListener(name:String, _callback:Callback<Object>):Void;
+	public function addEventListener(name:String, _callback:Callback<Dynamic>):Void;
 	
 	public function applyProperties(props:Dictionary):Void;
 	
@@ -28,7 +28,7 @@ extern class Proxy
 	
 	public function getLifecycleContainer():Dynamic;
 	
-	public function removeEventListener(name:String, _callback:Callback<Object>):Void;
+	public function removeEventListener(name:String, _callback:Callback<Dynamic>):Void;
 	
 	public function setBubbleParent(bubbleParent:Bool):Void;
 	

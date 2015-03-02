@@ -1,8 +1,5 @@
 package titanium.ui;
 
-import dictionary<titanium.ui.ipad.DocumentViewer>;
-import dictionary<titanium.ui.ipad.Popover>;
-import dictionary<titanium.ui.ipad.SplitWindow>;
 import titanium.Module;
 import titanium.ui.ipad.DocumentViewer;
 import titanium.ui.ipad.Popover;
@@ -36,9 +33,9 @@ extern class IPad extends Module
 	//
 	public var POPOVER_ARROW_DIRECTION_UP:Float;
 	
-	public function createDocumentViewer(?parameters:DocumentViewer>):DocumentViewer;
+	public function createDocumentViewer(?parameters:Dictionary<DocumentViewer>):DocumentViewer;
 	
-	public function createPopover(?parameters:Popover>):Popover;
+	public function createPopover(?parameters:Dictionary<Popover>):Popover;
 	
-	public function createSplitWindow(?parameters:SplitWindow>):SplitWindow;
+	public function createSplitWindow(?parameters:Dictionary<SplitWindow>):SplitWindow;
 }

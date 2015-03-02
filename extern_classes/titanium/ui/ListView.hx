@@ -1,6 +1,5 @@
 package titanium.ui;
 
-import array<titanium.ui.ListSection>;
 import titanium.ui.ListSection;
 import titanium.ui.RefreshControl;
 import titanium.ui.View;
@@ -121,7 +120,7 @@ extern class ListView extends View
 	//
 	public var willScrollOnStatusTap:Bool;
 	
-	public function appendSection(section:Dynamic, ?animation:ListViewAnimationProperties):Void;
+	public function appendSection(section:Titanium.UI.ListSection/Array<ListSection>, ?animation:ListViewAnimationProperties):Void;
 	
 	public function deleteSectionAt(sectionIndex:Float, ?animation:ListViewAnimationProperties):Void;
 	
@@ -183,7 +182,7 @@ extern class ListView extends View
 	
 	public function getWillScrollOnStatusTap():Bool;
 	
-	public function insertSectionAt(sectionIndex:Float, section:Dynamic, ?animation:ListViewAnimationProperties):Void;
+	public function insertSectionAt(sectionIndex:Float, section:Titanium.UI.ListSection/Array<ListSection>, ?animation:ListViewAnimationProperties):Void;
 	
 	public function replaceSectionAt(sectionIndex:Float, section:ListSection, animation:ListViewAnimationProperties):Void;
 	
@@ -233,7 +232,7 @@ extern class ListView extends View
 	
 	public function setSectionIndexTitles(sectionIndexTitles:Array<ListViewIndexEntry>):Void;
 	
-	public function setSections(sections:ListSection>):Void;
+	public function setSections(sections:Array<ListSection>):Void;
 	
 	public function setSeparatorColor(separatorColor:String):Void;
 	

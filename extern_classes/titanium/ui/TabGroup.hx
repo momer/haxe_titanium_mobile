@@ -1,6 +1,5 @@
 package titanium.ui;
 
-import array<titanium.ui.Tab>;
 import titanium.android.Activity;
 import titanium.ui.Tab;
 import titanium.ui.View;
@@ -291,7 +290,7 @@ extern class TabGroup extends View
 	
 	public function setTabHeight(tabHeight:Dynamic):Void;
 	
-	public function setTabs(tabs:Tab>):Void;
+	public function setTabs(tabs:Array<Tab>):Void;
 	
 	public function setTabsAtBottom(tabsAtBottom:Bool):Void;
 	

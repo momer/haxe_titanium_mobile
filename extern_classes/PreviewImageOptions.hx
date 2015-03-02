@@ -10,11 +10,11 @@ extern class PreviewImageOptions
 	
 	public static var image:Blob;
 	
-	public static var success:Callback<Object>;
+	public static var success:Callback<Dynamic>;
 	//
 	public var error:Callback<PreviewImageError>;
 	//
 	public var image:Blob;
 	//
-	public var success:Callback<Object>;
+	public var success:Callback<Dynamic>;
 }

@@ -1,6 +1,5 @@
 package titanium;
 
-import dictionary<titanium.facebook.LoginButton>;
 import titanium.facebook.LoginButton;
 import titanium.Module;
 
@@ -46,7 +45,7 @@ extern class Facebook extends Module
 	
 	public function authorize():Void;
 	
-	public function createLoginButton(?parameters:LoginButton>):LoginButton;
+	public function createLoginButton(?parameters:Dictionary<LoginButton>):LoginButton;
 	
 	public function dialog(action:String, params:Dynamic, _callback:Callback<FacebookDialogResponsev1>):Void;
 	
