@@ -2,9 +2,10 @@
 <buildhx>
 	<source path="src" language="javascript" parser="jsduck" />
 
-	<!-- Need to figure out a way to add this in with this type of definition: http://try.haxe.org/#03fa7
-	     <class name="Callback"
-	-->
+	<!-- Need to figure out a way to add this in with this type of definition: http://try.haxe.org/#03fa7 -->
+	<typedef name="Callback" typeParams="<T>">
+		<return type="T->Void" />
+	</typedef>
 
 
 	<output path="extern_classes" />

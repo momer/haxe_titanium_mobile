@@ -1,6 +1,7 @@
 package ;
 
 import titanium.API;
+import titanium.Proxy;
 import titanium.*;
 
 class QuickTest {
