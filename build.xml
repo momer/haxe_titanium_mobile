@@ -2,7 +2,10 @@
 <buildhx>
 	<source path="src" language="javascript" parser="jsduck" />
 
-	<class name="AcceptDict" ignore="true" />
+	<!-- Need to figure out a way to add this in with this type of definition: http://try.haxe.org/#03fa7
+	     <class name="Callback"
+	-->
+
 
 	<output path="extern_classes" />
 </buildhx>
