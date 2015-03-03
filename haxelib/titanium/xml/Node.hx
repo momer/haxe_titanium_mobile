@@ -9,63 +9,7 @@ import titanium.xml.NodeList;
 
 @:native("Titanium.XML.Node")
 extern class Node extends Proxy
-{	
-	public static var ATTRIBUTE_NODE:Float;
-	
-	public static var attributes:NamedNodeMap;
-	
-	public static var CDATA_SECTION_NODE:Float;
-	
-	public static var childNodes:NodeList;
-	
-	public static var COMMENT_NODE:Float;
-	
-	public static var DOCUMENT_FRAGMENT_NODE:Float;
-	
-	public static var DOCUMENT_NODE:Float;
-	
-	public static var DOCUMENT_TYPE_NODE:Float;
-	
-	public static var ELEMENT_NODE:Float;
-	
-	public static var ENTITY_NODE:Float;
-	
-	public static var ENTITY_REFERENCE_NODE:Float;
-	
-	public static var firstChild:Node;
-	
-	public static var lastChild:Node;
-	
-	public static var localName:String;
-	
-	public static var namespaceURI:String;
-	
-	public static var nextSibling:Node;
-	
-	public static var nodeName:String;
-	
-	public static var nodeType:Float;
-	
-	public static var nodeValue:String;
-	
-	public static var NOTATION_NODE:Float;
-	
-	public static var ownerDocument:Document;
-	
-	public static var parentNode:Node;
-	
-	public static var prefix:String;
-	
-	public static var previousSibling:Node;
-	
-	public static var PROCESSING_INSTRUCTION_NODE:Float;
-	
-	public static var text:String;
-	
-	public static var TEXT_NODE:Float;
-	
-	public static var textContent:String;
-	//
+{	//
 	public var ATTRIBUTE_NODE:Float;
 	//
 	public var attributes:NamedNodeMap;

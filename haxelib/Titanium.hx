@@ -7,15 +7,7 @@ import titanium.Proxy;
 
 @:native("Titanium")
 extern class Titanium extends Module
-{	
-	public static var buildDate:String;
-	
-	public static var buildHash:String;
-	
-	public static var userAgent:String;
-	
-	public static var version:String;
-	//
+{	//
 	public var buildDate:String;
 	//
 	public var buildHash:String;

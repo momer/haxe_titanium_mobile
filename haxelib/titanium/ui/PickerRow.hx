@@ -5,13 +5,7 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.PickerRow")
 extern class PickerRow extends View
-{	
-	public static var color:String;
-	
-	public static var font:Font;
-	
-	public static var title:String;
-	//
+{	//
 	public var color:String;
 	//
 	public var font:Font;

@@ -5,13 +5,7 @@ import titanium.Proxy;
 
 @:native("Titanium.Geolocation.Android.LocationProvider")
 extern class LocationProvider extends Proxy
-{	
-	public static var minUpdateDistance:Float;
-	
-	public static var minUpdateTime:Float;
-	
-	public static var name:String;
-	//
+{	//
 	public var minUpdateDistance:Float;
 	//
 	public var minUpdateTime:Float;

@@ -5,29 +5,7 @@ import titanium.Module;
 
 @:native("Titanium.CloudPush")
 extern class CloudPush extends Module
-{	
-	public static var enabled:Bool;
-	
-	public static var focusAppOnPush:Bool;
-	
-	public static var SERVICE_DISABLED:Float;
-	
-	public static var SERVICE_INVALID:Float;
-	
-	public static var SERVICE_MISSING:Float;
-	
-	public static var SERVICE_VERSION_UPDATE_REQUIRED:Float;
-	
-	public static var showAppOnTrayClick:Bool;
-	
-	public static var showTrayNotification:Bool;
-	
-	public static var showTrayNotificationsWhenFocused:Bool;
-	
-	public static var singleCallback:Bool;
-	
-	public static var SUCCESS:Float;
-	//
+{	//
 	public var enabled:Bool;
 	//
 	public var focusAppOnPush:Bool;

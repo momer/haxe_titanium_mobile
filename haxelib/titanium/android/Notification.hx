@@ -7,45 +7,7 @@ import titanium.Proxy;
 
 @:native("Titanium.Android.Notification")
 extern class Notification extends Proxy
-{	
-	public static var audioStreamType:Float;
-	
-	public static var category:String;
-	
-	public static var contentIntent:PendingIntent;
-	
-	public static var contentText:String;
-	
-	public static var contentTitle:String;
-	
-	public static var contentView:RemoteViews;
-	
-	public static var defaults:Float;
-	
-	public static var deleteIntent:PendingIntent;
-	
-	public static var flags:Float;
-	
-	public static var icon:Dynamic;
-	
-	public static var ledARGB:Float;
-	
-	public static var ledOffMS:Float;
-	
-	public static var ledOnMS:Float;
-	
-	public static var number:Float;
-	
-	public static var priority:Float;
-	
-	public static var sound:String;
-	
-	public static var tickerText:String;
-	
-	public static var visibility:Float;
-	
-	public static var when:Dynamic;
-	//
+{	//
 	public var audioStreamType:Float;
 	//
 	public var category:String;

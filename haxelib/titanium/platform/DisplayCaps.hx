@@ -5,21 +5,7 @@ import titanium.Proxy;
 
 @:native("Titanium.Platform.DisplayCaps")
 extern class DisplayCaps extends Proxy
-{	
-	public static var density:String;
-	
-	public static var dpi:Float;
-	
-	public static var logicalDensityFactor:Float;
-	
-	public static var platformHeight:Float;
-	
-	public static var platformWidth:Float;
-	
-	public static var xdpi:Float;
-	
-	public static var ydpi:Float;
-	//
+{	//
 	public var density:String;
 	//
 	public var dpi:Float;

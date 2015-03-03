@@ -6,17 +6,7 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.DashboardView")
 extern class DashboardView extends View
-{	
-	public static var columnCount:Float;
-	
-	public static var data:Array<DashboardItem>;
-	
-	public static var editable:Bool;
-	
-	public static var rowCount:Float;
-	
-	public static var wobble:Bool;
-	//
+{	//
 	public var columnCount:Float;
 	//
 	public var data:Array<DashboardItem>;

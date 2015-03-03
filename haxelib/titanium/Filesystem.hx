@@ -7,33 +7,7 @@ import titanium.Module;
 
 @:native("Titanium.Filesystem")
 extern class Filesystem extends Module
-{	
-	public static var applicationCacheDirectory:String;
-	
-	public static var applicationDataDirectory:String;
-	
-	public static var applicationDirectory:String;
-	
-	public static var applicationSupportDirectory:String;
-	
-	public static var externalStorageDirectory:String;
-	
-	public static var lineEnding:String;
-	
-	public static var MODE_APPEND:Float;
-	
-	public static var MODE_READ:Float;
-	
-	public static var MODE_WRITE:Float;
-	
-	public static var resourcesDirectory:String;
-	
-	public static var resRawDirectory:String;
-	
-	public static var separator:String;
-	
-	public static var tempDirectory:String;
-	//
+{	//
 	public var applicationCacheDirectory:String;
 	//
 	public var applicationDataDirectory:String;

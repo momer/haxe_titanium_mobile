@@ -5,41 +5,7 @@ import titanium.Proxy;
 
 @:native("Titanium.Media.Sound")
 extern class Sound extends Proxy
-{	
-	public static var allowBackground:Bool;
-	
-	public static var duration:Float;
-	
-	public static var looping:Bool;
-	
-	public static var paused:Bool;
-	
-	public static var playing:Bool;
-	
-	public static var STATE_BUFFERING:Float;
-	
-	public static var STATE_INITIALIZED:Float;
-	
-	public static var STATE_PAUSED:Float;
-	
-	public static var STATE_PLAYING:Float;
-	
-	public static var STATE_STARTING:Float;
-	
-	public static var STATE_STOPPED:Float;
-	
-	public static var STATE_STOPPING:Float;
-	
-	public static var STATE_WAITING_FOR_DATA:Float;
-	
-	public static var STATE_WAITING_FOR_QUEUE:Float;
-	
-	public static var time:Float;
-	
-	public static var url:String;
-	
-	public static var volume:Float;
-	//
+{	//
 	public var allowBackground:Bool;
 	//
 	public var duration:Float;

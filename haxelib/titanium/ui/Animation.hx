@@ -6,51 +6,7 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.Animation")
 extern class Animation extends Proxy
-{	
-	public static var anchorPoint:Point;
-	
-	public static var autoreverse:Bool;
-	
-	public static var backgroundColor:String;
-	
-	public static var bottom:Float;
-	
-	public static var center:Dynamic;
-	
-	public static var color:String;
-	
-	public static var curve:Float;
-	
-	public static var delay:Float;
-	
-	public static var duration:Float;
-	
-	public static var height:Float;
-	
-	public static var left:Float;
-	
-	public static var opacity:Float;
-	
-	public static var opaque:Bool;
-	
-	public static var repeat:Float;
-	
-	public static var right:Float;
-	
-	public static var top:Float;
-	
-	public static var transform:Dynamic;
-	
-	public static var transition:Float;
-	
-	public static var view:View;
-	
-	public static var visible:Bool;
-	
-	public static var width:Float;
-	
-	public static var zIndex:Float;
-	//
+{	//
 	public var anchorPoint:Point;
 	//
 	public var autoreverse:Bool;

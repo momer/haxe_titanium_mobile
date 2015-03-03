@@ -5,45 +5,7 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.Button")
 extern class Button extends View
-{	
-	public static var backgroundDisabledImage:String;
-	
-	public static var backgroundFocusedImage:String;
-	
-	public static var backgroundImage:String;
-	
-	public static var backgroundSelectedImage:String;
-	
-	public static var color:String;
-	
-	public static var disabledColor:String;
-	
-	public static var enabled:Bool;
-	
-	public static var font:Font;
-	
-	public static var image:Dynamic;
-	
-	public static var selectedColor:String;
-	
-	public static var shadowColor:String;
-	
-	public static var shadowOffset:Dictionary;
-	
-	public static var shadowRadius:Float;
-	
-	public static var style:Float;
-	
-	public static var systemButton:Float;
-	
-	public static var textAlign:Dynamic;
-	
-	public static var title:String;
-	
-	public static var titleid:String;
-	
-	public static var verticalAlign:Dynamic;
-	//
+{	//
 	public var backgroundDisabledImage:String;
 	//
 	public var backgroundFocusedImage:String;

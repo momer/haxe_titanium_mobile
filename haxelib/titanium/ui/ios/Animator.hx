@@ -6,13 +6,7 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.iOS.Animator")
 extern class Animator extends Proxy
-{	
-	public static var behaviors:Array<Proxy>;
-	
-	public static var referenceView:View;
-	
-	public static var running:Bool;
-	//
+{	//
 	public var behaviors:Array<Proxy>;
 	//
 	public var referenceView:View;

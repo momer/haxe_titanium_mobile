@@ -3,13 +3,7 @@ package titanium;
 
 @:native("Titanium.Proxy")
 extern class Proxy
-{	
-	public static var apiName:String;
-	
-	public static var bubbleParent:Bool;
-	
-	public static var lifecycleContainer:Dynamic;
-	//
+{	//
 	public var apiName:String;
 	//
 	public var bubbleParent:Bool;

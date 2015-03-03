@@ -5,13 +5,7 @@ import titanium.Module;
 
 @:native("Titanium.Locale")
 extern class Locale extends Module
-{	
-	public static var currentCountry:String;
-	
-	public static var currentLanguage:String;
-	
-	public static var currentLocale:String;
-	//
+{	//
 	public var currentCountry:String;
 	//
 	public var currentLanguage:String;

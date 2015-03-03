@@ -5,15 +5,7 @@ import titanium.Proxy;
 
 @:native("Titanium.Geolocation.Android.LocationRule")
 extern class LocationRule extends Proxy
-{	
-	public static var accuracy:Float;
-	
-	public static var maxAge:Float;
-	
-	public static var minAge:Float;
-	
-	public static var name:String;
-	//
+{	//
 	public var accuracy:Float;
 	//
 	public var maxAge:Float;

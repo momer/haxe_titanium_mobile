@@ -16,13 +16,7 @@ import titanium.xml.Text;
 
 @:native("Titanium.XML.Document")
 extern class Document extends Node
-{	
-	public static var doctype:DocumentType;
-	
-	public static var documentElement:Element;
-	
-	public static var implementation:DOMImplementation;
-	//
+{	//
 	public var doctype:DocumentType;
 	//
 	public var documentElement:Element;

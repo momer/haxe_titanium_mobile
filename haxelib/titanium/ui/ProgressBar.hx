@@ -5,21 +5,7 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.ProgressBar")
 extern class ProgressBar extends View
-{	
-	public static var color:String;
-	
-	public static var font:Font;
-	
-	public static var max:Float;
-	
-	public static var message:String;
-	
-	public static var min:Float;
-	
-	public static var style:Float;
-	
-	public static var value:Float;
-	//
+{	//
 	public var color:String;
 	//
 	public var font:Font;

@@ -6,11 +6,7 @@ import titanium.ui.Window;
 
 @:native("Titanium.UI.MobileWeb.NavigationGroup")
 extern class NavigationGroup extends View
-{	
-	public static var navBarAtTop:Bool;
-	
-	public static var window:Window;
-	//
+{	//
 	public var navBarAtTop:Bool;
 	//
 	public var window:Window;

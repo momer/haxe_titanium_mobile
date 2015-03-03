@@ -5,27 +5,7 @@ import titanium.Proxy;
 
 @:native("Titanium.Calendar.RecurrenceRule")
 extern class RecurrenceRule extends Proxy
-{	
-	public static var calendarID:String;
-	
-	public static var daysOfTheMonth:Array<Float>;
-	
-	public static var daysOfTheWeek:DaysOfTheWeekDictionary;
-	
-	public static var daysOfTheYear:Array<Float>;
-	
-	public static var end:RecurrenceEndDictionary;
-	
-	public static var frequency:Float;
-	
-	public static var interval:Float;
-	
-	public static var monthsOfTheYear:Array<Float>;
-	
-	public static var setPositions:Array<Float>;
-	
-	public static var weeksOfTheYear:Array<Float>;
-	//
+{	//
 	public var calendarID:String;
 	//
 	public var daysOfTheMonth:Array<Float>;

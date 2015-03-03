@@ -6,9 +6,7 @@ import titanium.Proxy;
 
 @:native("Titanium.Android.Menu")
 extern class Menu extends Proxy
-{	
-	public static var items:Array<MenuItem>;
-	//
+{	//
 	public var items:Array<MenuItem>;
 	
 	public function add(options:Dynamic):MenuItem;

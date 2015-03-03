@@ -6,11 +6,7 @@ import titanium.Proxy;
 
 @:native("Titanium.Android.RemoteViews")
 extern class RemoteViews extends Proxy
-{	
-	public static var layoutId:Float;
-	
-	public static var packageName:String;
-	//
+{	//
 	public var layoutId:Float;
 	//
 	public var packageName:String;

@@ -5,49 +5,7 @@ import titanium.Module;
 
 @:native("Titanium.App")
 extern class App extends Module
-{	
-	public static var accessibilityEnabled:Bool;
-	
-	public static var analytics:Bool;
-	
-	public static var copyright:String;
-	
-	public static var deployType:String;
-	
-	public static var description:String;
-	
-	public static var disableNetworkActivityIndicator:Bool;
-	
-	public static var EVENT_ACCESSIBILITY_ANNOUNCEMENT:String;
-	
-	public static var EVENT_ACCESSIBILITY_CHANGED:String;
-	
-	public static var forceSplashAsSnapshot:Bool;
-	
-	public static var guid:String;
-	
-	public static var id:String;
-	
-	public static var idleTimerDisabled:Bool;
-	
-	public static var installId:String;
-	
-	public static var keyboardVisible:Bool;
-	
-	public static var name:String;
-	
-	public static var proximityDetection:Bool;
-	
-	public static var proximityState:Bool;
-	
-	public static var publisher:String;
-	
-	public static var sessionId:String;
-	
-	public static var url:String;
-	
-	public static var version:String;
-	//
+{	//
 	public var accessibilityEnabled:Bool;
 	//
 	public var analytics:Bool;

@@ -6,43 +6,7 @@ import titanium.ui.View;
 
 @:native("Titanium.Map.Annotation")
 extern class Annotation extends Proxy
-{	
-	public static var animate:Bool;
-	
-	public static var canShowCallout:Bool;
-	
-	public static var centerOffset:Point;
-	
-	public static var customView:View;
-	
-	public static var draggable:Bool;
-	
-	public static var image:Dynamic;
-	
-	public static var latitude:Float;
-	
-	public static var leftButton:Dynamic;
-	
-	public static var leftView:View;
-	
-	public static var longitude:Float;
-	
-	public static var pincolor:Float;
-	
-	public static var pinImage:String;
-	
-	public static var rightButton:Dynamic;
-	
-	public static var rightView:View;
-	
-	public static var subtitle:String;
-	
-	public static var subtitleid:String;
-	
-	public static var title:String;
-	
-	public static var titleid:String;
-	//
+{	//
 	public var animate:Bool;
 	//
 	public var canShowCallout:Bool;

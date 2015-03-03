@@ -6,19 +6,7 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.iOS.AnchorAttachmentBehavior")
 extern class AnchorAttachmentBehavior extends Proxy
-{	
-	public static var anchor:Point;
-	
-	public static var damping:Float;
-	
-	public static var distance:Float;
-	
-	public static var frequency:Float;
-	
-	public static var item:View;
-	
-	public static var offset:Point;
-	//
+{	//
 	public var anchor:Point;
 	//
 	public var damping:Float;

@@ -8,43 +8,7 @@ import titanium.Proxy;
 
 @:native("Titanium.Calendar.Event")
 extern class Event extends Proxy
-{	
-	public static var alerts:Array<Alert>;
-	
-	public static var allDay:Bool;
-	
-	public static var availability:Float;
-	
-	public static var begin:Date;
-	
-	public static var description:String;
-	
-	public static var end:Date;
-	
-	public static var extendedProperties:Dictionary;
-	
-	public static var hasAlarm:Bool;
-	
-	public static var id:String;
-	
-	public static var isDetached:Bool;
-	
-	public static var location:String;
-	
-	public static var notes:String;
-	
-	public static var recurenceRule:RecurrenceRule;
-	
-	public static var recurenceRules:Array<RecurrenceRule>;
-	
-	public static var reminders:Array<Reminder>;
-	
-	public static var status:Float;
-	
-	public static var title:String;
-	
-	public static var visibility:Float;
-	//
+{	//
 	public var alerts:Array<Alert>;
 	//
 	public var allDay:Bool;

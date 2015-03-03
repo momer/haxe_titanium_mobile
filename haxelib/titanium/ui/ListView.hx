@@ -7,63 +7,7 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.ListView")
 extern class ListView extends View
-{	
-	public static var allowsSelection:Bool;
-	
-	public static var canScroll:Bool;
-	
-	public static var caseInsensitiveSearch:Bool;
-	
-	public static var defaultItemTemplate:Dynamic;
-	
-	public static var editing:Bool;
-	
-	public static var footerDividersEnabled:Bool;
-	
-	public static var footerTitle:String;
-	
-	public static var footerView:View;
-	
-	public static var headerDividersEnabled:Bool;
-	
-	public static var headerTitle:String;
-	
-	public static var headerView:View;
-	
-	public static var keepSectionsInSearch:Bool;
-	
-	public static var pruneSectionsOnEdit:Bool;
-	
-	public static var pullView:View;
-	
-	public static var refreshControl:RefreshControl;
-	
-	public static var scrollIndicatorStyle:Float;
-	
-	public static var searchText:String;
-	
-	public static var searchView:Dynamic;
-	
-	public static var sectionCount:Float;
-	
-	public static var sectionIndexTitles:Array<ListViewIndexEntry>;
-	
-	public static var sections:Array<ListSection>;
-	
-	public static var separatorColor:String;
-	
-	public static var separatorInsets:Dictionary;
-	
-	public static var separatorStyle:Float;
-	
-	public static var showVerticalScrollIndicator:Bool;
-	
-	public static var style:Float;
-	
-	public static var templates:Dictionary;
-	
-	public static var willScrollOnStatusTap:Bool;
-	//
+{	//
 	public var allowsSelection:Bool;
 	//
 	public var canScroll:Bool;

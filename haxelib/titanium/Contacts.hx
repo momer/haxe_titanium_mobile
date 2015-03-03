@@ -7,25 +7,7 @@ import titanium.Module;
 
 @:native("Titanium.Contacts")
 extern class Contacts extends Module
-{	
-	public static var AUTHORIZATION_AUTHORIZED:Float;
-	
-	public static var AUTHORIZATION_DENIED:Float;
-	
-	public static var AUTHORIZATION_RESTRICTED:Float;
-	
-	public static var AUTHORIZATION_UNKNOWN:Float;
-	
-	public static var CONTACTS_KIND_ORGANIZATION:Float;
-	
-	public static var CONTACTS_KIND_PERSON:Float;
-	
-	public static var CONTACTS_SORT_FIRST_NAME:Float;
-	
-	public static var CONTACTS_SORT_LAST_NAME:Float;
-	
-	public static var contactsAuthorization:Float;
-	//
+{	//
 	public var AUTHORIZATION_AUTHORIZED:Float;
 	//
 	public var AUTHORIZATION_DENIED:Float;

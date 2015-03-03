@@ -5,33 +5,7 @@ import titanium.Proxy;
 
 @:native("Titanium.UI.ActivityIndicator")
 extern class ActivityIndicator extends Proxy
-{	
-	public static var bottom:Dynamic;
-	
-	public static var color:String;
-	
-	public static var font:Font;
-	
-	public static var height:String;
-	
-	public static var indicatorColor:String;
-	
-	public static var indicatorDiameter:String;
-	
-	public static var left:Dynamic;
-	
-	public static var message:String;
-	
-	public static var messageid:String;
-	
-	public static var right:Dynamic;
-	
-	public static var style:Float;
-	
-	public static var top:Dynamic;
-	
-	public static var width:String;
-	//
+{	//
 	public var bottom:Dynamic;
 	//
 	public var color:String;

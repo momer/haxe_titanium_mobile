@@ -6,19 +6,7 @@ import titanium.ui.Window;
 
 @:native("Titanium.UI.iOS.SplitWindow")
 extern class SplitWindow extends Window
-{	
-	public static var detailView:View;
-	
-	public static var landscapeSplit:Float;
-	
-	public static var masterIsOverlayed:Bool;
-	
-	public static var masterView:View;
-	
-	public static var portraitSplit:Float;
-	
-	public static var showMasterInPortrait:Bool;
-	//
+{	//
 	public var detailView:View;
 	//
 	public var landscapeSplit:Float;

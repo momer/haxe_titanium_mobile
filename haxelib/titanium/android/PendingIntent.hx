@@ -6,13 +6,7 @@ import titanium.Proxy;
 
 @:native("Titanium.Android.PendingIntent")
 extern class PendingIntent extends Proxy
-{	
-	public static var flags:Float;
-	
-	public static var intent:Intent;
-	
-	public static var updateCurrentIntent:Bool;
-	//
+{	//
 	public var flags:Float;
 	//
 	public var intent:Intent;

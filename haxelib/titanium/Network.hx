@@ -10,67 +10,7 @@ import titanium.network.TCPSocket;
 
 @:native("Titanium.Network")
 extern class Network extends Module
-{	
-	public static var allHTTPCookies:Array<Cookie>;
-	
-	public static var httpURLFormatter:Callback<String>;
-	
-	public static var INADDR_ANY:String;
-	
-	public static var NETWORK_LAN:Float;
-	
-	public static var NETWORK_MOBILE:Float;
-	
-	public static var NETWORK_NONE:Float;
-	
-	public static var NETWORK_UNKNOWN:Float;
-	
-	public static var NETWORK_WIFI:Float;
-	
-	public static var networkType:Float;
-	
-	public static var networkTypeName:String;
-	
-	public static var NOTIFICATION_TYPE_ALERT:Float;
-	
-	public static var NOTIFICATION_TYPE_BADGE:Float;
-	
-	public static var NOTIFICATION_TYPE_NEWSSTAND:Float;
-	
-	public static var NOTIFICATION_TYPE_SOUND:Float;
-	
-	public static var online:Bool;
-	
-	public static var PROGRESS_UNKNOWN:Float;
-	
-	public static var READ_MODE:Float;
-	
-	public static var READ_WRITE_MODE:Float;
-	
-	public static var remoteDeviceUUID:String;
-	
-	public static var remoteNotificationsEnabled:Bool;
-	
-	public static var remoteNotificationTypes:Array<Float>;
-	
-	public static var SOCKET_CLOSED:Float;
-	
-	public static var SOCKET_CONNECTED:Float;
-	
-	public static var SOCKET_ERROR:Float;
-	
-	public static var SOCKET_INITIALIZED:Float;
-	
-	public static var SOCKET_LISTENING:Float;
-	
-	public static var TLS_VERSION_1_0:Float;
-	
-	public static var TLS_VERSION_1_1:Float;
-	
-	public static var TLS_VERSION_1_2:Float;
-	
-	public static var WRITE_MODE:Float;
-	//
+{	//
 	public var allHTTPCookies:Array<Cookie>;
 	//
 	public var httpURLFormatter:Callback<String>;

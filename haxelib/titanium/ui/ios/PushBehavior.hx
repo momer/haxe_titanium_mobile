@@ -6,19 +6,7 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.iOS.PushBehavior")
 extern class PushBehavior extends Proxy
-{	
-	public static var active:Bool;
-	
-	public static var angle:Float;
-	
-	public static var items:Array<View>;
-	
-	public static var magnitude:Float;
-	
-	public static var pushDirection:Point;
-	
-	public static var pushMode:Float;
-	//
+{	//
 	public var active:Bool;
 	//
 	public var angle:Float;

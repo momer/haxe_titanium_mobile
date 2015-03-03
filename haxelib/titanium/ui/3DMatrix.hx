@@ -6,39 +6,7 @@ import titanium.ui.3DMatrix;
 
 @:native("Titanium.UI.3DMatrix")
 extern class 3DMatrix extends Proxy
-{	
-	public static var m11:Float;
-	
-	public static var m12:Float;
-	
-	public static var m13:Float;
-	
-	public static var m14:Float;
-	
-	public static var m21:Float;
-	
-	public static var m22:Float;
-	
-	public static var m23:Float;
-	
-	public static var m24:Float;
-	
-	public static var m31:Float;
-	
-	public static var m32:Float;
-	
-	public static var m33:Float;
-	
-	public static var m34:Float;
-	
-	public static var m41:Float;
-	
-	public static var m42:Float;
-	
-	public static var m43:Float;
-	
-	public static var m44:Float;
-	//
+{	//
 	public var m11:Float;
 	//
 	public var m12:Float;

@@ -6,53 +6,7 @@ import titanium.ui.View;
 
 @:native("Titanium.Media.VideoPlayer")
 extern class VideoPlayer extends View
-{	
-	public static var allowsAirPlay:Bool;
-	
-	public static var autoplay:Bool;
-	
-	public static var contentURL:String;
-	
-	public static var currentPlaybackTime:Float;
-	
-	public static var duration:Float;
-	
-	public static var endPlaybackTime:Float;
-	
-	public static var fullscreen:Bool;
-	
-	public static var initialPlaybackTime:Float;
-	
-	public static var loadState:Float;
-	
-	public static var media:Dynamic;
-	
-	public static var mediaControlStyle:Float;
-	
-	public static var mediaTypes:Float;
-	
-	public static var movieControlMode:Float;
-	
-	public static var naturalSize:MovieSize;
-	
-	public static var playableDuration:Float;
-	
-	public static var playbackState:Float;
-	
-	public static var playing:Bool;
-	
-	public static var repeatMode:Float;
-	
-	public static var scalingMode:Float;
-	
-	public static var sourceType:Float;
-	
-	public static var url:Array<Dynamic>;
-	
-	public static var useApplicationAudioSession:Bool;
-	
-	public static var volume:Float;
-	//
+{	//
 	public var allowsAirPlay:Bool;
 	//
 	public var autoplay:Bool;

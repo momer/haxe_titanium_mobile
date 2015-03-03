@@ -5,23 +5,7 @@ import titanium.IOStream;
 
 @:native("Titanium.Network.Socket.TCP")
 extern class TCP extends IOStream
-{	
-	public static var accepted:Callback<AcceptedCallbackArgs>;
-	
-	public static var connected:Callback<ConnectedCallbackArgs>;
-	
-	public static var error:Callback<ErrorCallbackArgs>;
-	
-	public static var host:String;
-	
-	public static var listenQueueSize:Float;
-	
-	public static var port:Float;
-	
-	public static var state:Float;
-	
-	public static var timeout:Float;
-	//
+{	//
 	public var accepted:Callback<AcceptedCallbackArgs>;
 	//
 	public var connected:Callback<ConnectedCallbackArgs>;

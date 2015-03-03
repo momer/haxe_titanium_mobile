@@ -6,19 +6,7 @@ import titanium.ui.2DMatrix;
 
 @:native("Titanium.UI.2DMatrix")
 extern class 2DMatrix extends Proxy
-{	
-	public static var a:Float;
-	
-	public static var b:Float;
-	
-	public static var c:Float;
-	
-	public static var d:Float;
-	
-	public static var tx:Float;
-	
-	public static var ty:Float;
-	//
+{	//
 	public var a:Float;
 	//
 	public var b:Float;

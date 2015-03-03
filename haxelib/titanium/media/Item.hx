@@ -6,45 +6,7 @@ import titanium.Proxy;
 
 @:native("Titanium.Media.Item")
 extern class Item extends Proxy
-{	
-	public static var albumArtist:String;
-	
-	public static var albumTitle:String;
-	
-	public static var albumTrackCount:Float;
-	
-	public static var albumTrackNumber:Float;
-	
-	public static var artist:String;
-	
-	public static var artwork:Blob;
-	
-	public static var composer:String;
-	
-	public static var discCount:Float;
-	
-	public static var discNumber:Float;
-	
-	public static var genre:String;
-	
-	public static var isCompilation:Bool;
-	
-	public static var lyrics:String;
-	
-	public static var mediaType:Float;
-	
-	public static var playbackDuration:Float;
-	
-	public static var playCount:Float;
-	
-	public static var podcastTitle:String;
-	
-	public static var rating:Float;
-	
-	public static var skipCount:Float;
-	
-	public static var title:String;
-	//
+{	//
 	public var albumArtist:String;
 	//
 	public var albumTitle:String;

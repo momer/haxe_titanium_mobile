@@ -5,43 +5,7 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.ScrollView")
 extern class ScrollView extends View
-{	
-	public static var canCancelEvents:Bool;
-	
-	public static var contentHeight:Dynamic;
-	
-	public static var contentOffset:Dictionary;
-	
-	public static var contentWidth:Dynamic;
-	
-	public static var decelerationRate:Float;
-	
-	public static var disableBounce:Bool;
-	
-	public static var horizontalBounce:Bool;
-	
-	public static var maxZoomScale:Float;
-	
-	public static var minZoomScale:Float;
-	
-	public static var overScrollMode:Float;
-	
-	public static var scrollIndicatorStyle:Float;
-	
-	public static var scrollingEnabled:Bool;
-	
-	public static var scrollsToTop:Bool;
-	
-	public static var scrollType:String;
-	
-	public static var showHorizontalScrollIndicator:Bool;
-	
-	public static var showVerticalScrollIndicator:Bool;
-	
-	public static var verticalBounce:Bool;
-	
-	public static var zoomScale:Float;
-	//
+{	//
 	public var canCancelEvents:Bool;
 	//
 	public var contentHeight:Dynamic;

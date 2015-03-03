@@ -5,33 +5,7 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.Switch")
 extern class Switch extends View
-{	
-	public static var color:String;
-	
-	public static var enabled:Bool;
-	
-	public static var font:Font;
-	
-	public static var onTintColor:String;
-	
-	public static var style:Float;
-	
-	public static var textAlign:Dynamic;
-	
-	public static var thumbTintColor:String;
-	
-	public static var tintColor:String;
-	
-	public static var title:String;
-	
-	public static var titleOff:String;
-	
-	public static var titleOn:String;
-	
-	public static var value:Bool;
-	
-	public static var verticalAlign:Dynamic;
-	//
+{	//
 	public var color:String;
 	//
 	public var enabled:Bool;

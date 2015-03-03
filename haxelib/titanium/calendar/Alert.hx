@@ -5,25 +5,7 @@ import titanium.Proxy;
 
 @:native("Titanium.Calendar.Alert")
 extern class Alert extends Proxy
-{	
-	public static var absoluteDate:Date;
-	
-	public static var alarmTime:Date;
-	
-	public static var begin:Date;
-	
-	public static var end:Date;
-	
-	public static var eventId:Float;
-	
-	public static var id:String;
-	
-	public static var minutes:Float;
-	
-	public static var relativeOffset:Float;
-	
-	public static var state:Float;
-	//
+{	//
 	public var absoluteDate:Date;
 	//
 	public var alarmTime:Date;

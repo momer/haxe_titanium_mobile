@@ -6,35 +6,7 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.ImageView")
 extern class ImageView extends View
-{	
-	public static var animating:Bool;
-	
-	public static var autorotate:Bool;
-	
-	public static var decodeRetries:Float;
-	
-	public static var defaultImage:String;
-	
-	public static var duration:Float;
-	
-	public static var enableZoomControls:Bool;
-	
-	public static var hires:Bool;
-	
-	public static var image:Dynamic;
-	
-	public static var images:Array<Dynamic>;
-	
-	public static var paused:Bool;
-	
-	public static var preventDefaultImage:Bool;
-	
-	public static var repeatCount:Float;
-	
-	public static var reverse:Bool;
-	
-	public static var url:String;
-	//
+{	//
 	public var animating:Bool;
 	//
 	public var autorotate:Bool;

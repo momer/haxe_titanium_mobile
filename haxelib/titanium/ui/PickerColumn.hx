@@ -6,15 +6,7 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.PickerColumn")
 extern class PickerColumn extends View
-{	
-	public static var font:Font;
-	
-	public static var rowCount:Float;
-	
-	public static var rows:Array<PickerRow>;
-	
-	public static var selectedRow:PickerRow;
-	//
+{	//
 	public var font:Font;
 	//
 	public var rowCount:Float;

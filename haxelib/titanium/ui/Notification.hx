@@ -5,19 +5,7 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.Notification")
 extern class Notification extends View
-{	
-	public static var duration:Float;
-	
-	public static var horizontalMargin:Float;
-	
-	public static var message:String;
-	
-	public static var verticalMargin:Float;
-	
-	public static var xOffset:Float;
-	
-	public static var yOffset:Float;
-	//
+{	//
 	public var duration:Float;
 	//
 	public var horizontalMargin:Float;

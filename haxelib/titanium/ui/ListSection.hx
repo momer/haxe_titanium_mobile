@@ -6,17 +6,7 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.ListSection")
 extern class ListSection extends Proxy
-{	
-	public static var footerTitle:String;
-	
-	public static var footerView:View;
-	
-	public static var headerTitle:String;
-	
-	public static var headerView:View;
-	
-	public static var items:Array<ListDataItem>;
-	//
+{	//
 	public var footerTitle:String;
 	//
 	public var footerView:View;

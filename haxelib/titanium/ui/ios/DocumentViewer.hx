@@ -5,11 +5,7 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.iOS.DocumentViewer")
 extern class DocumentViewer extends View
-{	
-	public static var name:String;
-	
-	public static var url:String;
-	//
+{	//
 	public var name:String;
 	//
 	public var url:String;

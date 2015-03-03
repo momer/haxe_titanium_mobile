@@ -5,13 +5,7 @@ import titanium.Proxy;
 
 @:native("Titanium.Network.BonjourBrowser")
 extern class BonjourBrowser extends Proxy
-{	
-	public static var domain:String;
-	
-	public static var isSearching:Bool;
-	
-	public static var serviceType:String;
-	//
+{	//
 	public var domain:String;
 	//
 	public var isSearching:Bool;

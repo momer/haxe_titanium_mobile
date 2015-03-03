@@ -5,43 +5,7 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.TableViewRow")
 extern class TableViewRow extends View
-{	
-	public static var accessibilityLabel:String;
-	
-	public static var className:String;
-	
-	public static var color:String;
-	
-	public static var editable:Bool;
-	
-	public static var font:Font;
-	
-	public static var hasCheck:Bool;
-	
-	public static var hasChild:Bool;
-	
-	public static var hasDetail:Bool;
-	
-	public static var indentionLevel:Float;
-	
-	public static var leftImage:String;
-	
-	public static var moveable:Bool;
-	
-	public static var opacity:Float;
-	
-	public static var rightImage:String;
-	
-	public static var selectedBackgroundColor:String;
-	
-	public static var selectedBackgroundImage:String;
-	
-	public static var selectedColor:String;
-	
-	public static var selectionStyle:Float;
-	
-	public static var title:String;
-	//
+{	//
 	public var accessibilityLabel:String;
 	//
 	public var className:String;

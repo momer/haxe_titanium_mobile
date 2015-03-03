@@ -7,23 +7,7 @@ import titanium.Proxy;
 
 @:native("Titanium.Blob")
 extern class Blob extends Proxy
-{	
-	public static var file:File;
-	
-	public static var height:Float;
-	
-	public static var length:Float;
-	
-	public static var mimeType:String;
-	
-	public static var nativePath:String;
-	
-	public static var size:Float;
-	
-	public static var text:String;
-	
-	public static var width:Float;
-	//
+{	//
 	public var file:File;
 	//
 	public var height:Float;

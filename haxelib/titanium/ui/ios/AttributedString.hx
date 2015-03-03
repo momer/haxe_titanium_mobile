@@ -5,11 +5,7 @@ import titanium.Proxy;
 
 @:native("Titanium.UI.iOS.AttributedString")
 extern class AttributedString extends Proxy
-{	
-	public static var attributes:Array<Attribute>;
-	
-	public static var text:String;
-	//
+{	//
 	public var attributes:Array<Attribute>;
 	//
 	public var text:String;

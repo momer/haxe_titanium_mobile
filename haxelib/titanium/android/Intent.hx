@@ -6,21 +6,7 @@ import titanium.Proxy;
 
 @:native("Titanium.Android.Intent")
 extern class Intent extends Proxy
-{	
-	public static var action:String;
-	
-	public static var className:String;
-	
-	public static var data:String;
-	
-	public static var flags:Float;
-	
-	public static var packageName:String;
-	
-	public static var type:String;
-	
-	public static var url:String;
-	//
+{	//
 	public var action:String;
 	//
 	public var className:String;

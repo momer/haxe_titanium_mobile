@@ -7,35 +7,7 @@ import titanium.Proxy;
 
 @:native("Titanium.Android.Calendar.Event")
 extern class Event extends Proxy
-{	
-	public static var alerts:Array<Alert>;
-	
-	public static var allDay:Bool;
-	
-	public static var begin:Date;
-	
-	public static var description:String;
-	
-	public static var end:Date;
-	
-	public static var extendedProperties:Dictionary;
-	
-	public static var hasAlarm:Bool;
-	
-	public static var hasExtendedProperties:Bool;
-	
-	public static var id:String;
-	
-	public static var location:String;
-	
-	public static var reminders:Array<Reminder>;
-	
-	public static var status:Float;
-	
-	public static var title:String;
-	
-	public static var visibility:Float;
-	//
+{	//
 	public var alerts:Array<Alert>;
 	//
 	public var allDay:Bool;

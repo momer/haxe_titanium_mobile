@@ -5,47 +5,7 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.WebView")
 extern class WebView extends View
-{	
-	public static var cacheMode:Float;
-	
-	public static var data:Dynamic;
-	
-	public static var disableBounce:Bool;
-	
-	public static var enableJavascriptInterface:Bool;
-	
-	public static var enableZoomControls:Bool;
-	
-	public static var handlePlatformUrl:Bool;
-	
-	public static var hideLoadIndicator:Bool;
-	
-	public static var html:String;
-	
-	public static var ignoreSslError:Bool;
-	
-	public static var lightTouchEnabled:Bool;
-	
-	public static var loading:Bool;
-	
-	public static var onCreateWindow:Callback<Dynamic>;
-	
-	public static var overScrollMode:Float;
-	
-	public static var pluginState:Float;
-	
-	public static var scalesPageToFit:Bool;
-	
-	public static var scrollsToTop:Bool;
-	
-	public static var showScrollbars:Bool;
-	
-	public static var url:String;
-	
-	public static var userAgent:String;
-	
-	public static var willHandleTouches:Bool;
-	//
+{	//
 	public var cacheMode:Float;
 	//
 	public var data:Dynamic;

@@ -6,15 +6,7 @@ import titanium.Proxy;
 
 @:native("Titanium.Calendar.Calendar")
 extern class Calendar extends Proxy
-{	
-	public static var hidden:Bool;
-	
-	public static var id:String;
-	
-	public static var name:String;
-	
-	public static var selected:Bool;
-	//
+{	//
 	public var hidden:Bool;
 	//
 	public var id:String;

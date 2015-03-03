@@ -7,37 +7,7 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.Picker")
 extern class Picker extends View
-{	
-	public static var backgroundColor:String;
-	
-	public static var calendarViewShown:Bool;
-	
-	public static var columns:Array<PickerColumn>;
-	
-	public static var countDownDuration:Float;
-	
-	public static var font:Font;
-	
-	public static var format24:Bool;
-	
-	public static var locale:String;
-	
-	public static var maxDate:Date;
-	
-	public static var minDate:Date;
-	
-	public static var minuteInterval:Float;
-	
-	public static var selectionIndicator:Bool;
-	
-	public static var type:Float;
-	
-	public static var useSpinner:Bool;
-	
-	public static var value:Date;
-	
-	public static var visibleItems:Float;
-	//
+{	//
 	public var backgroundColor:String;
 	//
 	public var calendarViewShown:Bool;

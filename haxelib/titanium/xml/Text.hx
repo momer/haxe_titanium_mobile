@@ -6,9 +6,7 @@ import titanium.xml.Text;
 
 @:native("Titanium.XML.Text")
 extern class Text extends CharacterData
-{	
-	public static var textContent:String;
-	//
+{	//
 	public var textContent:String;
 	
 	//public function getTextContent():String;

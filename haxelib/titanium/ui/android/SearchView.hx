@@ -5,19 +5,7 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.Android.SearchView")
 extern class SearchView extends View
-{	
-	public static var color:String;
-	
-	public static var hintText:String;
-	
-	public static var iconified:Bool;
-	
-	public static var iconifiedByDefault:Bool;
-	
-	public static var submitEnabled:Bool;
-	
-	public static var value:String;
-	//
+{	//
 	public var color:String;
 	//
 	public var hintText:String;

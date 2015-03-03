@@ -6,19 +6,7 @@ import titanium.Proxy;
 
 @:native("Titanium.Media.MusicPlayer")
 extern class MusicPlayer extends Proxy
-{	
-	public static var currentPlaybackTime:Float;
-	
-	public static var nowPlaying:Item;
-	
-	public static var playbackState:Float;
-	
-	public static var repeatMode:Float;
-	
-	public static var shuffleMode:Float;
-	
-	public static var volume:Float;
-	//
+{	//
 	public var currentPlaybackTime:Float;
 	//
 	public var nowPlaying:Item;

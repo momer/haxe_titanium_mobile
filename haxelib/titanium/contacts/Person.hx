@@ -6,67 +6,7 @@ import titanium.Proxy;
 
 @:native("Titanium.Contacts.Person")
 extern class Person extends Proxy
-{	
-	public static var address:Dictionary;
-	
-	public static var alternateBirthday:Dictionary;
-	
-	public static var birthday:String;
-	
-	public static var created:String;
-	
-	public static var date:Dictionary;
-	
-	public static var department:String;
-	
-	public static var email:Dictionary;
-	
-	public static var firstName:String;
-	
-	public static var firstPhonetic:String;
-	
-	public static var fullName:String;
-	
-	public static var id:Float;
-	
-	public static var image:Blob;
-	
-	public static var instantMessage:Dictionary;
-	
-	public static var jobTitle:String;
-	
-	public static var kind:Float;
-	
-	public static var lastName:String;
-	
-	public static var lastPhonetic:String;
-	
-	public static var middleName:String;
-	
-	public static var middlePhonetic:String;
-	
-	public static var modified:String;
-	
-	public static var nickname:String;
-	
-	public static var note:String;
-	
-	public static var organization:String;
-	
-	public static var phone:Dictionary;
-	
-	public static var prefix:String;
-	
-	public static var recordId:Float;
-	
-	public static var relatedNames:Dictionary;
-	
-	public static var socialProfile:Dictionary;
-	
-	public static var suffix:String;
-	
-	public static var url:Dictionary;
-	//
+{	//
 	public var address:Dictionary;
 	//
 	public var alternateBirthday:Dictionary;

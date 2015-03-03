@@ -6,21 +6,7 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.iOS.DynamicItemBehavior")
 extern class DynamicItemBehavior extends Proxy
-{	
-	public static var allowsRotation:Bool;
-	
-	public static var angularResistance:Float;
-	
-	public static var density:Float;
-	
-	public static var elasticity:Float;
-	
-	public static var friction:Float;
-	
-	public static var items:Array<View>;
-	
-	public static var resistance:Float;
-	//
+{	//
 	public var allowsRotation:Bool;
 	//
 	public var angularResistance:Float;

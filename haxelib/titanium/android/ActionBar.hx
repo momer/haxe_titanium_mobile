@@ -5,25 +5,7 @@ import titanium.Proxy;
 
 @:native("Titanium.Android.ActionBar")
 extern class ActionBar extends Proxy
-{	
-	public static var backgroundImage:String;
-	
-	public static var displayHomeAsUp:Bool;
-	
-	public static var homeButtonEnabled:Bool;
-	
-	public static var icon:String;
-	
-	public static var logo:String;
-	
-	public static var navigationMode:Float;
-	
-	public static var onHomeIconItemSelected:Callback;
-	
-	public static var subtitle:String;
-	
-	public static var title:String;
-	//
+{	//
 	public var backgroundImage:String;
 	//
 	public var displayHomeAsUp:Bool;

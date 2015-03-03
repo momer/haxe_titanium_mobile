@@ -6,49 +6,7 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.Label")
 extern class Label extends View
-{	
-	public static var attributedString:AttributedString;
-	
-	public static var autoLink:Float;
-	
-	public static var backgroundPaddingBottom:Float;
-	
-	public static var backgroundPaddingLeft:Float;
-	
-	public static var backgroundPaddingRight:Float;
-	
-	public static var backgroundPaddingTop:Float;
-	
-	public static var color:String;
-	
-	public static var ellipsize:Bool;
-	
-	public static var font:Font;
-	
-	public static var highlightedColor:String;
-	
-	public static var html:String;
-	
-	public static var includeFontPadding:Bool;
-	
-	public static var minimumFontSize:Float;
-	
-	public static var shadowColor:String;
-	
-	public static var shadowOffset:Dictionary;
-	
-	public static var shadowRadius:Float;
-	
-	public static var text:String;
-	
-	public static var textAlign:Dynamic;
-	
-	public static var textid:String;
-	
-	public static var verticalAlign:Dynamic;
-	
-	public static var wordWrap:Bool;
-	//
+{	//
 	public var attributedString:AttributedString;
 	//
 	public var autoLink:Float;

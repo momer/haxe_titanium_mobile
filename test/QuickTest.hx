@@ -1,5 +1,6 @@
 package ;
 
+import titanium.API;
 import titanium.*;
 
 class QuickTest {

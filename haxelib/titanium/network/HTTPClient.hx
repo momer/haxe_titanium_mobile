@@ -7,73 +7,7 @@ import titanium.xml.Document;
 
 @:native("Titanium.Network.HTTPClient")
 extern class HTTPClient extends Proxy
-{	
-	public static var allResponseHeaders:String;
-	
-	public static var autoEncodeUrl:Bool;
-	
-	public static var autoRedirect:Bool;
-	
-	public static var cache:Bool;
-	
-	public static var connected:Bool;
-	
-	public static var connectionType:String;
-	
-	public static var domain:String;
-	
-	public static var DONE:Float;
-	
-	public static var enableKeepAlive:Bool;
-	
-	public static var file:String;
-	
-	public static var HEADERS_RECEIVED:Float;
-	
-	public static var LOADING:Float;
-	
-	public static var location:String;
-	
-	public static var ondatastream:Callback<Dynamic>;
-	
-	public static var onerror:Callback<FailureResponse>;
-	
-	public static var onload:Callback<SuccessResponse>;
-	
-	public static var onreadystatechange:Callback<Dynamic>;
-	
-	public static var onsendstream:Callback<Dynamic>;
-	
-	public static var OPENED:Float;
-	
-	public static var password:String;
-	
-	public static var readyState:Float;
-	
-	public static var responseData:Blob;
-	
-	public static var responseText:String;
-	
-	public static var responseXML:Document;
-	
-	public static var securityManager:SecurityManagerProtocol;
-	
-	public static var status:Float;
-	
-	public static var statusText:String;
-	
-	public static var timeout:Float;
-	
-	public static var tlsVersion:Float;
-	
-	public static var UNSENT:Float;
-	
-	public static var username:String;
-	
-	public static var validatesSecureCertificate:Bool;
-	
-	public static var withCredentials:Bool;
-	//
+{	//
 	public var allResponseHeaders:String;
 	//
 	public var autoEncodeUrl:Bool;

@@ -5,13 +5,7 @@ import titanium.Proxy;
 
 @:native("Titanium.Database.ResultSet")
 extern class ResultSet extends Proxy
-{	
-	public static var fieldCount:Float;
-	
-	public static var rowCount:Float;
-	
-	public static var validRow:Bool;
-	//
+{	//
 	public var fieldCount:Float;
 	//
 	public var rowCount:Float;

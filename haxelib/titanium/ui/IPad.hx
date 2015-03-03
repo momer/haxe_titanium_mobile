@@ -8,19 +8,7 @@ import titanium.ui.ipad.SplitWindow;
 
 @:native("Titanium.UI.iPad")
 extern class IPad extends Module
-{	
-	public static var POPOVER_ARROW_DIRECTION_ANY:Float;
-	
-	public static var POPOVER_ARROW_DIRECTION_DOWN:Float;
-	
-	public static var POPOVER_ARROW_DIRECTION_LEFT:Float;
-	
-	public static var POPOVER_ARROW_DIRECTION_RIGHT:Float;
-	
-	public static var POPOVER_ARROW_DIRECTION_UNKNOWN:Float;
-	
-	public static var POPOVER_ARROW_DIRECTION_UP:Float;
-	//
+{	//
 	public var POPOVER_ARROW_DIRECTION_ANY:Float;
 	//
 	public var POPOVER_ARROW_DIRECTION_DOWN:Float;

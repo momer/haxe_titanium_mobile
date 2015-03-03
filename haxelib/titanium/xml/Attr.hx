@@ -6,15 +6,7 @@ import titanium.xml.Node;
 
 @:native("Titanium.XML.Attr")
 extern class Attr extends Node
-{	
-	public static var name:String;
-	
-	public static var ownerElement:Element;
-	
-	public static var specified:Bool;
-	
-	public static var value:String;
-	//
+{	//
 	public var name:String;
 	//
 	public var ownerElement:Element;
