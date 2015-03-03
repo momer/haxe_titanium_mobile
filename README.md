@@ -9,6 +9,15 @@ My biggest issue in getting this to work was the realization that newer versions
 ## Supported Titanium Versions
 - [3.5.0](https://github.com/momer/haxe_titanium_mobile/releases/tag/t3.5.0v0.1)
 
+## Usage
+To install into haxelib, run `haxelib git titanium_mobile_externs https://github.com/momer/haxe_titanium_mobile.git <version> haxelib`
+
+as of this update, the latest version is 3.5.0-alpha2; and is not yet complete.
+
+## TODO
+- Create stubs for classes which are undefined in the Titanium APIDOC in the build.xml
+  - e.g. Callback
+
 ## Important Note:
 I haven't tested this yet, and am pretty unfamiliar with testing Haxe extern classes; please take a look and open an issue for feedback!
 
