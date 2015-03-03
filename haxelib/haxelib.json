@@ -4,9 +4,10 @@
   "license": "Apache 2.0",
   "tags": ["js", "mobile", "html", "html5", "app", "css", "titanium", "appcelerator", "crossplatform", "extern", "externs"],
   "description": "Haxe extern classes for http://www.appcelerator.com Titanium Mobile. Report issues at https://github.com/momer/haxe_titanium_mobile",
-  "version": "3.5.0-alpha",
-  "releasenote": "Titanium Mobile Version: 3.5.0; Release: Alpha",
+  "version": "3.5.0-alpha4",
+  "releasenote": "Titanium Mobile Version: 3.5.0; Release: Alpha 4",
   "contributors": ["Juraj","Jason","Nicolas"],
   "dependencies": {
   }
 }
+
