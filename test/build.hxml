@@ -1,0 +1,3 @@
+-main QuickTest
+-js ./QuickTest.js
+-lib titanium_mobile_externs
