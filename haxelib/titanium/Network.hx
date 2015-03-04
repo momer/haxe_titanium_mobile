@@ -71,7 +71,7 @@ extern class Network extends Module
 	//
 	public var WRITE_MODE:Float;
 	
-	public function addConnectivityListener(_callback:Callback<Object>):Void;
+	public function addConnectivityListener(_callback:Callback<Dynamic>):Void;
 	
 	public function addHTTPCookie(cookie:Cookie):Void;
 	
@@ -119,7 +119,7 @@ extern class Network extends Module
 	
 	public function removeAllSystemCookies():Void;
 	
-	public function removeConnectivityListener(_callback:Callback<Object>):Void;
+	public function removeConnectivityListener(_callback:Callback<Dynamic>):Void;
 	
 	public function removeHTTPCookie(domain:String, path:String, name:String):Void;
 	

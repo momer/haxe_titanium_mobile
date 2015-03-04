@@ -12,23 +12,23 @@ extern class Activity extends Proxy
 	//
 	public var intent:Intent;
 	//
-	public var onCreate:Callback<Object>;
+	public var onCreate:Callback<Dynamic>;
 	//
-	public var onCreateOptionsMenu:Callback<Object>;
+	public var onCreateOptionsMenu:Callback<Dynamic>;
 	//
-	public var onDestroy:Callback<Object>;
+	public var onDestroy:Callback<Dynamic>;
 	//
-	public var onPause:Callback<Object>;
+	public var onPause:Callback<Dynamic>;
 	//
-	public var onPrepareOptionsMenu:Callback<Object>;
+	public var onPrepareOptionsMenu:Callback<Dynamic>;
 	//
-	public var onRestart:Callback<Object>;
+	public var onRestart:Callback<Dynamic>;
 	//
-	public var onResume:Callback<Object>;
+	public var onResume:Callback<Dynamic>;
 	//
-	public var onStart:Callback<Object>;
+	public var onStart:Callback<Dynamic>;
 	//
-	public var onStop:Callback<Object>;
+	public var onStop:Callback<Dynamic>;
 	//
 	public var requestedOrientation:Float;
 	
@@ -38,23 +38,23 @@ extern class Activity extends Proxy
 	
 	public function getIntent():Intent;
 	
-	public function getOnCreate():Callback<Object>;
+	public function getOnCreate():Callback<Dynamic>;
 	
-	public function getOnCreateOptionsMenu():Callback<Object>;
+	public function getOnCreateOptionsMenu():Callback<Dynamic>;
 	
-	public function getOnDestroy():Callback<Object>;
+	public function getOnDestroy():Callback<Dynamic>;
 	
-	public function getOnPause():Callback<Object>;
+	public function getOnPause():Callback<Dynamic>;
 	
-	public function getOnPrepareOptionsMenu():Callback<Object>;
+	public function getOnPrepareOptionsMenu():Callback<Dynamic>;
 	
-	public function getOnRestart():Callback<Object>;
+	public function getOnRestart():Callback<Dynamic>;
 	
-	public function getOnResume():Callback<Object>;
+	public function getOnResume():Callback<Dynamic>;
 	
-	public function getOnStart():Callback<Object>;
+	public function getOnStart():Callback<Dynamic>;
 	
-	public function getOnStop():Callback<Object>;
+	public function getOnStop():Callback<Dynamic>;
 	
 	public function getString(resourceId:Float, format:Dynamic):String;
 	
@@ -66,23 +66,23 @@ extern class Activity extends Proxy
 	
 	public function sendBroadcastWithPermission(intent:Intent, ?receiverPermission:String):Void;
 	
-	public function setOnCreate(onCreate:Callback<Object>):Void;
+	public function setOnCreate(onCreate:Callback<Dynamic>):Void;
 	
-	public function setOnCreateOptionsMenu(onCreateOptionsMenu:Callback<Object>):Void;
+	public function setOnCreateOptionsMenu(onCreateOptionsMenu:Callback<Dynamic>):Void;
 	
-	public function setOnDestroy(onDestroy:Callback<Object>):Void;
+	public function setOnDestroy(onDestroy:Callback<Dynamic>):Void;
 	
-	public function setOnPause(onPause:Callback<Object>):Void;
+	public function setOnPause(onPause:Callback<Dynamic>):Void;
 	
-	public function setOnPrepareOptionsMenu(onPrepareOptionsMenu:Callback<Object>):Void;
+	public function setOnPrepareOptionsMenu(onPrepareOptionsMenu:Callback<Dynamic>):Void;
 	
-	public function setOnRestart(onRestart:Callback<Object>):Void;
+	public function setOnRestart(onRestart:Callback<Dynamic>):Void;
 	
-	public function setOnResume(onResume:Callback<Object>):Void;
+	public function setOnResume(onResume:Callback<Dynamic>):Void;
 	
-	public function setOnStart(onStart:Callback<Object>):Void;
+	public function setOnStart(onStart:Callback<Dynamic>):Void;
 	
-	public function setOnStop(onStop:Callback<Object>):Void;
+	public function setOnStop(onStop:Callback<Dynamic>):Void;
 	
 	public function setRequestedOrientation(orientation:Float):Void;
 	

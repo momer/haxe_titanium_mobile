@@ -11,6 +11,8 @@
 	<type name="Titanium.UI.Animation/Dictionary<Animation>" remap="Dynamic" />
 	<type name="String/Array<String>" remap="Dynamic" />
 	<type name="Titanium.Media.Item/Array<Item>" remap="Dynamic" />
+	<type name="Object" remap="Dynamic" />
+	<type name="Callback<Object>" remap="Callback<Dynamic>" />
 
 
 	<output path="extern_classes" />

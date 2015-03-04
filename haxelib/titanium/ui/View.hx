@@ -108,7 +108,7 @@ extern class View extends Proxy
 	
 	public function add(view:View):Void;
 	
-	public function animate(animation:Dynamic, _callback:Callback<Object>):Void;
+	public function animate(animation:Dynamic, _callback:Callback<Dynamic>):Void;
 	
 	public function convertPointToView(point:Point, destinationView:View):Point;
 	
