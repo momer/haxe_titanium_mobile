@@ -6,6 +6,9 @@
 	<typedef name="Callback" typeParams="<T>" generic="true">
 		<return type="T->Void" />
 	</typedef>
+	<typedef name="Dictionary" typeParams="<T>" generic="true">
+		<return type="Map<String, T>" />
+	</typedef>
 
 	<type name="Callback/Array<String>" remap="Dynamic" />
 	<type name="Titanium.UI.Animation/Dictionary<Animation>" remap="Dynamic" />

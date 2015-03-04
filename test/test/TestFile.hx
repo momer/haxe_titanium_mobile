@@ -1,4 +1,4 @@
-package Test;
+package test;
 
 import global.Console;
 import global.JSON;

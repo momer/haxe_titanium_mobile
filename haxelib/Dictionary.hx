@@ -2,5 +2,5 @@ package ;
 
 
 @:native("Dictionary")
-extern class Dictionary
-{}
+@:generic
+typedef Dictionary<T> = Map<String, T>;
