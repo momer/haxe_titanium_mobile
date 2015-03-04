@@ -22,7 +22,7 @@ extern class UDP extends IOStream
 	
 	public function getStarted():Callback<Void>;
 	
-	public function sendBytes(port:Float, host:String, data:Array<Number>):Void;
+	public function sendBytes(port:Float, host:String, data:Array<Float>):Void;
 	
 	public function sendString(port:Float, host:String, data:String):Void;
 	

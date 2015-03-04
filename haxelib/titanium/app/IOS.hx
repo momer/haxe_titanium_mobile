@@ -39,11 +39,11 @@ extern class IOS extends Module
 	
 	public function cancelLocalNotification(id:Dynamic):Void;
 	
-	public function createUserDefaults(parameters:Dictionary<UserDefaults>):UserDefaults;
+	public function createUserDefaults(parameters:Dynamic):UserDefaults;
 	
-	public function createUserNotificationAction(?parameters:Dictionary<UserNotificationAction>):UserNotificationAction;
+	public function createUserNotificationAction(?parameters:Dynamic):UserNotificationAction;
 	
-	public function createUserNotificationCategory(?parameters:Dictionary<UserNotificationCategory>):UserNotificationCategory;
+	public function createUserNotificationCategory(?parameters:Dynamic):UserNotificationCategory;
 	
 	public function endBackgroundHandler(handlerID:String):Void;
 	
@@ -51,7 +51,7 @@ extern class IOS extends Module
 	
 	public function getCurrentUserNotificationSettings():UserNotificationSettings;
 	
-	public function registerBackgroundService(params:Dictionary):BackgroundService;
+	public function registerBackgroundService(params:Dynamic):BackgroundService;
 	
 	public function registerUserNotificationSettings(params:UserNotificationSettings):Void;
 	

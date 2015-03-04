@@ -14,9 +14,9 @@ extern class Android extends Module
 	
 	public function addLocationRule(rule:LocationRule):Void;
 	
-	public function createLocationProvider(?parameters:Dictionary<LocationProvider>):LocationProvider;
+	public function createLocationProvider(?parameters:Dynamic):LocationProvider;
 	
-	public function createLocationRule(?parameters:Dictionary<LocationRule>):LocationRule;
+	public function createLocationRule(?parameters:Dynamic):LocationRule;
 	
 	public function getManualMode():Bool;
 	

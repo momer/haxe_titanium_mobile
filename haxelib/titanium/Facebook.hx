@@ -27,7 +27,7 @@ extern class Facebook extends Module
 	
 	public function authorize():Void;
 	
-	public function createLoginButton(?parameters:Dictionary<LoginButton>):LoginButton;
+	public function createLoginButton(?parameters:Dynamic):LoginButton;
 	
 	public function dialog(action:String, params:Dynamic, _callback:Callback<FacebookDialogResponsev1>):Void;
 	
@@ -49,7 +49,7 @@ extern class Facebook extends Module
 	
 	public function request(method:String, params:Dynamic, _callback:Callback<FacebookRESTResponsev1>):Void;
 	
-	public function requestWithGraphPath(path:String, params:Dictionary, httpMethod:String, _callback:Callback<FacebookGraphResponsev1>):Void;
+	public function requestWithGraphPath(path:String, params:Dynamic, httpMethod:String, _callback:Callback<FacebookGraphResponsev1>):Void;
 	
 	public function setAccessToken(accessToken:String):Void;
 	

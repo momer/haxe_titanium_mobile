@@ -102,9 +102,9 @@ extern class Android extends Module
 	//
 	public var WEBVIEW_PLUGINS_ON_DEMAND:Float;
 	
-	public function createProgressIndicator(?parameters:Dictionary<ProgressIndicator>):ProgressIndicator;
+	public function createProgressIndicator(?parameters:Dynamic):ProgressIndicator;
 	
-	public function createSearchView(?parameters:Dictionary<SearchView>):SearchView;
+	public function createSearchView(?parameters:Dynamic):SearchView;
 	
 	public function hideSoftKeyboard():Void;
 	

@@ -42,7 +42,7 @@ extern class Blob extends Proxy
 	
 	public function getWidth():Float;
 	
-	public function imageAsCropped(options:Dictionary<ImageAsCroppedDict>):Blob;
+	public function imageAsCropped(options:Dynamic):Blob;
 	
 	public function imageAsResized(width:Float, height:Float):Blob;
 	

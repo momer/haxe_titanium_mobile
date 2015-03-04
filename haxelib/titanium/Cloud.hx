@@ -38,7 +38,7 @@ extern class Cloud extends Module
 	
 	public function retrieveStoredSession():String;
 	
-	public function sendRequest(parameters:Dictionary, _callback:Callback<CloudResponse>):Void;
+	public function sendRequest(parameters:Dynamic, _callback:Callback<CloudResponse>):Void;
 	
 	public function setAccessToken(accessToken:String):Void;
 	

@@ -77,7 +77,7 @@ extern class TableView extends View
 	//
 	public var separatorColor:String;
 	//
-	public var separatorInsets:Dictionary;
+	public var separatorInsets:Dynamic;
 	//
 	public var separatorStyle:Float;
 	//
@@ -165,7 +165,7 @@ extern class TableView extends View
 	
 	public function getSeparatorColor():String;
 	
-	public function getSeparatorInsets():Dictionary;
+	public function getSeparatorInsets():Dynamic;
 	
 	public function getSeparatorStyle():Float;
 	
@@ -253,7 +253,7 @@ extern class TableView extends View
 	
 	public function setSeparatorColor(separatorColor:String):Void;
 	
-	public function setSeparatorInsets(separatorInsets:Dictionary):Void;
+	public function setSeparatorInsets(separatorInsets:Dynamic):Void;
 	
 	public function setSeparatorStyle(separatorStyle:Float):Void;
 	

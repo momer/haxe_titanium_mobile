@@ -26,9 +26,9 @@ extern class Contacts extends Module
 	//
 	public var contactsAuthorization:Float;
 	
-	public function createGroup(?parameters:Dictionary<Group>):Group;
+	public function createGroup(?parameters:Dynamic):Group;
 	
-	public function createPerson(?parameters:Dictionary<Person>):Person;
+	public function createPerson(?parameters:Dynamic):Person;
 	
 	public function getAllGroups():Array<Group>;
 	

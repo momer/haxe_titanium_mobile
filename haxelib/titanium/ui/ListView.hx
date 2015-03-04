@@ -52,7 +52,7 @@ extern class ListView extends View
 	//
 	public var separatorColor:String;
 	//
-	public var separatorInsets:Dictionary;
+	public var separatorInsets:Dynamic;
 	//
 	public var separatorStyle:Float;
 	//
@@ -60,7 +60,7 @@ extern class ListView extends View
 	//
 	public var style:Float;
 	//
-	public var templates:Dictionary;
+	public var templates:Dynamic;
 	//
 	public var willScrollOnStatusTap:Bool;
 	
@@ -114,7 +114,7 @@ extern class ListView extends View
 	
 	public function getSeparatorColor():String;
 	
-	public function getSeparatorInsets():Dictionary;
+	public function getSeparatorInsets():Dynamic;
 	
 	public function getSeparatorStyle():Float;
 	
@@ -122,7 +122,7 @@ extern class ListView extends View
 	
 	public function getStyle():Float;
 	
-	public function getTemplates():Dictionary;
+	public function getTemplates():Dynamic;
 	
 	public function getWillScrollOnStatusTap():Bool;
 	
@@ -180,7 +180,7 @@ extern class ListView extends View
 	
 	public function setSeparatorColor(separatorColor:String):Void;
 	
-	public function setSeparatorInsets(separatorInsets:Dictionary):Void;
+	public function setSeparatorInsets(separatorInsets:Dynamic):Void;
 	
 	public function setSeparatorStyle(separatorStyle:Float):Void;
 	
@@ -188,7 +188,7 @@ extern class ListView extends View
 	
 	public function setStyle(style:Float):Void;
 	
-	public function setTemplates(templates:Dictionary):Void;
+	public function setTemplates(templates:Dynamic):Void;
 	
 	public function setWillScrollOnStatusTap(willScrollOnStatusTap:Bool):Void;
 }

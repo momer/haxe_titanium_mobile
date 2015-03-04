@@ -4,5 +4,5 @@ package ;
 @:native("CloudACLsResponse")
 extern class CloudACLsResponse extends CloudResponse
 {	//
-	public var acls:Array<Dictionary>;
+	public var acls:Array<Dynamic>;
 }

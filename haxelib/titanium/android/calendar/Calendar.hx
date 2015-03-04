@@ -15,7 +15,7 @@ extern class Calendar extends Proxy
 	//
 	public var selected:Bool;
 	
-	public function createEvent(properties:Dictionary<Event>):Event;
+	public function createEvent(properties:Dynamic):Event;
 	
 	public function getEventById(id:Float):Event;
 	

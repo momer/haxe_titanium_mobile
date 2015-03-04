@@ -6,9 +6,12 @@
 	<typedef name="Callback" typeParams="<T>" generic="true">
 		<return type="T->Void" />
 	</typedef>
-	<typedef name="Dictionary" typeParams="<T>" generic="true">
+
+	<!-- <typedef name="Dictionary" typeParams="<T>" generic="true" remap="Dictionary<Dynamic>">
 		<return type="Map<String, T>" />
-	</typedef>
+	</typedef> -->
+
+	<type name="Dictionary" generic="true" remap="Dynamic" />
 
 	<type name="Callback/Array<String>" remap="Dynamic" />
 	<type name="Titanium.UI.Animation/Dictionary<Animation>" remap="Dynamic" />
@@ -16,7 +19,9 @@
 	<type name="Titanium.Media.Item/Array<Item>" remap="Dynamic" />
 	<type name="Object" remap="Dynamic" />
 	<type name="Callback<Object>" remap="Callback<Dynamic>" />
-
+	<type name="Array<Number>" remap="Array<Float>" />
+	<type name="Array<Object>" remap="Array<Dynamic>" />
+	<type name="Callback" remap="Callback<Dynamic>" />
 
 	<output path="extern_classes" />
 </buildhx>

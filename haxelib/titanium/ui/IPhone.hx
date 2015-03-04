@@ -31,7 +31,7 @@ extern class IPhone extends Module
 	//
 	public var statusBarStyle:Float;
 	
-	public function createNavigationGroup(?parameters:Dictionary<NavigationGroup>):NavigationGroup;
+	public function createNavigationGroup(?parameters:Dynamic):NavigationGroup;
 	
 	public function getAppBadge():Float;
 	

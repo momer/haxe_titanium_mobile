@@ -105,7 +105,7 @@ extern class VideoPlayer extends View
 	
 	public function release():Void;
 	
-	public function requestThumbnailImagesAtTimes(times:Array<Number>, option:Float, _callback:Callback<ThumbnailResponse>):Void;
+	public function requestThumbnailImagesAtTimes(times:Array<Float>, option:Float, _callback:Callback<ThumbnailResponse>):Void;
 	
 	public function setAllowsAirPlay(allowsAirPlay:Bool):Void;
 	

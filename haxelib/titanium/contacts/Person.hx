@@ -7,19 +7,19 @@ import titanium.Proxy;
 @:native("Titanium.Contacts.Person")
 extern class Person extends Proxy
 {	//
-	public var address:Dictionary;
+	public var address:Dynamic;
 	//
-	public var alternateBirthday:Dictionary;
+	public var alternateBirthday:Dynamic;
 	//
 	public var birthday:String;
 	//
 	public var created:String;
 	//
-	public var date:Dictionary;
+	public var date:Dynamic;
 	//
 	public var department:String;
 	//
-	public var email:Dictionary;
+	public var email:Dynamic;
 	//
 	public var firstName:String;
 	//
@@ -31,7 +31,7 @@ extern class Person extends Proxy
 	//
 	public var image:Blob;
 	//
-	public var instantMessage:Dictionary;
+	public var instantMessage:Dynamic;
 	//
 	public var jobTitle:String;
 	//
@@ -53,33 +53,33 @@ extern class Person extends Proxy
 	//
 	public var organization:String;
 	//
-	public var phone:Dictionary;
+	public var phone:Dynamic;
 	//
 	public var prefix:String;
 	//
 	public var recordId:Float;
 	//
-	public var relatedNames:Dictionary;
+	public var relatedNames:Dynamic;
 	//
-	public var socialProfile:Dictionary;
+	public var socialProfile:Dynamic;
 	//
 	public var suffix:String;
 	//
-	public var url:Dictionary;
+	public var url:Dynamic;
 	
-	public function getAddress():Dictionary;
+	public function getAddress():Dynamic;
 	
-	public function getAlternateBirthday():Dictionary;
+	public function getAlternateBirthday():Dynamic;
 	
 	public function getBirthday():String;
 	
 	public function getCreated():String;
 	
-	public function getDate():Dictionary;
+	public function getDate():Dynamic;
 	
 	public function getDepartment():String;
 	
-	public function getEmail():Dictionary;
+	public function getEmail():Dynamic;
 	
 	public function getFirstName():String;
 	
@@ -91,7 +91,7 @@ extern class Person extends Proxy
 	
 	public function getImage():Blob;
 	
-	public function getInstantMessage():Dictionary;
+	public function getInstantMessage():Dynamic;
 	
 	public function getJobTitle():String;
 	
@@ -113,31 +113,31 @@ extern class Person extends Proxy
 	
 	public function getOrganization():String;
 	
-	public function getPhone():Dictionary;
+	public function getPhone():Dynamic;
 	
 	public function getPrefix():String;
 	
 	public function getRecordId():Float;
 	
-	public function getRelatedNames():Dictionary;
+	public function getRelatedNames():Dynamic;
 	
-	public function getSocialProfile():Dictionary;
+	public function getSocialProfile():Dynamic;
 	
 	public function getSuffix():String;
 	
-	public function getUrl():Dictionary;
+	public function getUrl():Dynamic;
 	
-	public function setAddress(address:Dictionary):Void;
+	public function setAddress(address:Dynamic):Void;
 	
-	public function setAlternateBirthday(alternateBirthday:Dictionary):Void;
+	public function setAlternateBirthday(alternateBirthday:Dynamic):Void;
 	
 	public function setBirthday(birthday:String):Void;
 	
-	public function setDate(date:Dictionary):Void;
+	public function setDate(date:Dynamic):Void;
 	
 	public function setDepartment(department:String):Void;
 	
-	public function setEmail(email:Dictionary):Void;
+	public function setEmail(email:Dynamic):Void;
 	
 	public function setFirstName(firstName:String):Void;
 	
@@ -145,7 +145,7 @@ extern class Person extends Proxy
 	
 	public function setImage(image:Blob):Void;
 	
-	public function setInstantMessage(instantMessage:Dictionary):Void;
+	public function setInstantMessage(instantMessage:Dynamic):Void;
 	
 	public function setJobTitle(jobTitle:String):Void;
 	
@@ -165,13 +165,13 @@ extern class Person extends Proxy
 	
 	public function setOrganization(organization:String):Void;
 	
-	public function setPhone(phone:Dictionary):Void;
+	public function setPhone(phone:Dynamic):Void;
 	
 	public function setRecordId(recordId:Float):Void;
 	
-	public function setRelatedNames(relatedNames:Dictionary):Void;
+	public function setRelatedNames(relatedNames:Dynamic):Void;
 	
-	public function setSocialProfile(socialProfile:Dictionary):Void;
+	public function setSocialProfile(socialProfile:Dynamic):Void;
 	
-	public function setUrl(url:Dictionary):Void;
+	public function setUrl(url:Dynamic):Void;
 }

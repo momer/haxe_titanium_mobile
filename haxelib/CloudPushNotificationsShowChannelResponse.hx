@@ -4,5 +4,5 @@ package ;
 @:native("CloudPushNotificationsShowChannelResponse")
 extern class CloudPushNotificationsShowChannelResponse extends CloudResponse
 {	//
-	public var devices:Dictionary;
+	public var devices:Dynamic;
 }

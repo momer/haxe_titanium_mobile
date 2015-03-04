@@ -405,85 +405,85 @@ extern class UI extends Module
 	
 	public function create2DMatrix(?parameters:MatrixCreationDict):DMatrix2;
 	
-	public function create3DMatrix(?parameters:Dictionary<DMatrix3>):DMatrix3;
+	public function create3DMatrix(?parameters:Dynamic):DMatrix3;
 	
-	public function createActivityIndicator(?parameters:Dictionary<ActivityIndicator>):ActivityIndicator;
+	public function createActivityIndicator(?parameters:Dynamic):ActivityIndicator;
 	
-	public function createAlertDialog(?parameters:Dictionary<AlertDialog>):AlertDialog;
+	public function createAlertDialog(?parameters:Dynamic):AlertDialog;
 	
-	public function createAnimation(?parameters:Dictionary<Animation>):Animation;
+	public function createAnimation(?parameters:Dynamic):Animation;
 	
-	public function createAttributedString(?parameters:Dictionary<AttributedString>):AttributedString;
+	public function createAttributedString(?parameters:Dynamic):AttributedString;
 	
-	public function createButton(?parameters:Dictionary<Button>):Button;
+	public function createButton(?parameters:Dynamic):Button;
 	
-	public function createButtonBar(?parameters:Dictionary<ButtonBar>):ButtonBar;
+	public function createButtonBar(?parameters:Dynamic):ButtonBar;
 	
-	public function createCoverFlowView(?parameters:Dictionary<CoverFlowView>):CoverFlowView;
+	public function createCoverFlowView(?parameters:Dynamic):CoverFlowView;
 	
-	public function createDashboardItem(?parameters:Dictionary<DashboardItem>):DashboardItem;
+	public function createDashboardItem(?parameters:Dynamic):DashboardItem;
 	
-	public function createDashboardView(?parameters:Dictionary<DashboardView>):DashboardView;
+	public function createDashboardView(?parameters:Dynamic):DashboardView;
 	
-	public function createEmailDialog(?parameters:Dictionary<EmailDialog>):EmailDialog;
+	public function createEmailDialog(?parameters:Dynamic):EmailDialog;
 	
-	public function createImageView(?parameters:Dictionary<ImageView>):ImageView;
+	public function createImageView(?parameters:Dynamic):ImageView;
 	
-	public function createLabel(?parameters:Dictionary<Label>):Label;
+	public function createLabel(?parameters:Dynamic):Label;
 	
-	public function createListSection(?parameters:Dictionary<ListSection>):ListSection;
+	public function createListSection(?parameters:Dynamic):ListSection;
 	
-	public function createListView(?parameters:Dictionary<ListView>):ListView;
+	public function createListView(?parameters:Dynamic):ListView;
 	
-	public function createMaskedImage(?parameters:Dictionary<MaskedImage>):MaskedImage;
+	public function createMaskedImage(?parameters:Dynamic):MaskedImage;
 	
-	public function createNotification(?parameters:Dictionary<Notification>):Notification;
+	public function createNotification(?parameters:Dynamic):Notification;
 	
-	public function createOptionDialog(?parameters:Dictionary<OptionDialog>):OptionDialog;
+	public function createOptionDialog(?parameters:Dynamic):OptionDialog;
 	
-	public function createPicker(?parameters:Dictionary<Picker>):Picker;
+	public function createPicker(?parameters:Dynamic):Picker;
 	
-	public function createPickerColumn(?parameters:Dictionary<PickerColumn>):PickerColumn;
+	public function createPickerColumn(?parameters:Dynamic):PickerColumn;
 	
-	public function createPickerRow(?parameters:Dictionary<PickerRow>):PickerRow;
+	public function createPickerRow(?parameters:Dynamic):PickerRow;
 	
-	public function createProgressBar(?parameters:Dictionary<ProgressBar>):ProgressBar;
+	public function createProgressBar(?parameters:Dynamic):ProgressBar;
 	
-	public function createRefreshControl(?parameters:Dictionary<RefreshControl>):RefreshControl;
+	public function createRefreshControl(?parameters:Dynamic):RefreshControl;
 	
-	public function createScrollableView(?parameters:Dictionary<ScrollableView>):ScrollableView;
+	public function createScrollableView(?parameters:Dynamic):ScrollableView;
 	
-	public function createScrollView(?parameters:Dictionary<ScrollView>):ScrollView;
+	public function createScrollView(?parameters:Dynamic):ScrollView;
 	
-	public function createSearchBar(?parameters:Dictionary<SearchBar>):SearchBar;
+	public function createSearchBar(?parameters:Dynamic):SearchBar;
 	
-	public function createSlider(?parameters:Dictionary<Slider>):Slider;
+	public function createSlider(?parameters:Dynamic):Slider;
 	
-	public function createSwitch(?parameters:Dictionary<Switch>):Switch;
+	public function createSwitch(?parameters:Dynamic):Switch;
 	
-	public function createTab(?parameters:Dictionary<Tab>):Tab;
+	public function createTab(?parameters:Dynamic):Tab;
 	
-	public function createTabbedBar(?parameters:Dictionary<TabbedBar>):TabbedBar;
+	public function createTabbedBar(?parameters:Dynamic):TabbedBar;
 	
-	public function createTabGroup(?parameters:Dictionary<TabGroup>):TabGroup;
+	public function createTabGroup(?parameters:Dynamic):TabGroup;
 	
-	public function createTableView(?parameters:Dictionary<TableView>):TableView;
+	public function createTableView(?parameters:Dynamic):TableView;
 	
-	public function createTableViewRow(?parameters:Dictionary<TableViewRow>):TableViewRow;
+	public function createTableViewRow(?parameters:Dynamic):TableViewRow;
 	
-	public function createTableViewSection(?parameters:Dictionary<TableViewSection>):TableViewSection;
+	public function createTableViewSection(?parameters:Dynamic):TableViewSection;
 	
-	public function createTextArea(?parameters:Dictionary<TextArea>):TextArea;
+	public function createTextArea(?parameters:Dynamic):TextArea;
 	
-	public function createTextField(?parameters:Dictionary<TextField>):TextField;
+	public function createTextField(?parameters:Dynamic):TextField;
 	
-	public function createToolbar(?parameters:Dictionary<Toolbar>):Toolbar;
+	public function createToolbar(?parameters:Dynamic):Toolbar;
 	
-	public function createView(?parameters:Dictionary<View>):View;
+	public function createView(?parameters:Dynamic):View;
 	
-	public function createWebView(?parameters:Dictionary<WebView>):WebView;
+	public function createWebView(?parameters:Dynamic):WebView;
 	
-	public function createWindow(?parameters:Dictionary<Window>):Window;
+	public function createWindow(?parameters:Dynamic):Window;
 	
 	public function getBackgroundColor():String;
 	

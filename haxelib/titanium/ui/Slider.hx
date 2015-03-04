@@ -140,5 +140,5 @@ extern class Slider extends View
 	
 	public function setThumbImage(thumbImage:Dynamic):Void;
 	
-	public function setValue(value:Float, ?options:Dictionary):Void;
+	public function setValue(value:Float, ?options:Dynamic):Void;
 }

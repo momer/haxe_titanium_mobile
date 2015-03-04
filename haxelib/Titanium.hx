@@ -18,7 +18,7 @@ extern class Titanium extends Module
 	
 	public function createBuffer(params:CreateBufferArgs):Buffer;
 	
-	public function createProxy(?parameters:Dictionary<Proxy>):Proxy;
+	public function createProxy(?parameters:Dynamic):Proxy;
 	
 	public function getBuildDate():String;
 	

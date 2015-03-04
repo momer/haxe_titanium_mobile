@@ -18,7 +18,7 @@ extern class Socket extends Module
 	//
 	public var LISTENING:Float;
 	
-	public function createTCP(?params:Dictionary<TCP>):TCP;
+	public function createTCP(?params:Dynamic):TCP;
 	
-	public function createUDP(?params:Dictionary<UDP>):UDP;
+	public function createUDP(?params:Dynamic):UDP;
 }

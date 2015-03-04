@@ -22,5 +22,5 @@ extern class NotificationParams
 	//
 	public var timezone:String;
 	//
-	public var userInfo:Dictionary;
+	public var userInfo:Dynamic;
 }

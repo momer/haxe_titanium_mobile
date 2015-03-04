@@ -438,19 +438,19 @@ extern class Android extends Module
 	//
 	public var VISIBILITY_SECRET:Float;
 	
-	public function createBroadcastIntent(?parameters:Dictionary<Intent>):Intent;
+	public function createBroadcastIntent(?parameters:Dynamic):Intent;
 	
-	public function createBroadcastReceiver(?parameters:Dictionary<BroadcastReceiver>):BroadcastReceiver;
+	public function createBroadcastReceiver(?parameters:Dynamic):BroadcastReceiver;
 	
-	public function createIntent(?parameters:Dictionary<Intent>):Intent;
+	public function createIntent(?parameters:Dynamic):Intent;
 	
 	public function createIntentChooser(intent:Intent, title:String):Intent;
 	
-	public function createNotification(?parameters:Dictionary<Notification>):Notification;
+	public function createNotification(?parameters:Dynamic):Notification;
 	
-	public function createPendingIntent(?parameters:Dictionary<PendingIntent>):PendingIntent;
+	public function createPendingIntent(?parameters:Dynamic):PendingIntent;
 	
-	public function createRemoteViews(?parameters:Dictionary<RemoteViews>):RemoteViews;
+	public function createRemoteViews(?parameters:Dynamic):RemoteViews;
 	
 	public function createService(intent:Intent):Service;
 	

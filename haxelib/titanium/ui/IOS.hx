@@ -212,41 +212,41 @@ extern class IOS extends Module
 	//
 	public var WEBVIEW_NAVIGATIONTYPE_RELOAD:Float;
 	
-	public function create3DMatrix(?parameters:Dictionary<DMatrix3>):DMatrix3;
+	public function create3DMatrix(?parameters:Dynamic):DMatrix3;
 	
-	public function createAdView(?parameters:Dictionary<AdView>):AdView;
+	public function createAdView(?parameters:Dynamic):AdView;
 	
-	public function createAnchorAttachmentBehavior(?parameters:Dictionary<AnchorAttachmentBehavior>):AnchorAttachmentBehavior;
+	public function createAnchorAttachmentBehavior(?parameters:Dynamic):AnchorAttachmentBehavior;
 	
-	public function createAnimator(?parameters:Dictionary<Animator>):Animator;
+	public function createAnimator(?parameters:Dynamic):Animator;
 	
-	public function createAttribute(?parameters:Dictionary<Attribute>):Attribute;
+	public function createAttribute(?parameters:Dynamic):Attribute;
 	
-	public function createAttributedString(?parameters:Dictionary<AttributedString>):AttributedString;
+	public function createAttributedString(?parameters:Dynamic):AttributedString;
 	
-	public function createCollisionBehavior(?parameters:Dictionary<CollisionBehavior>):CollisionBehavior;
+	public function createCollisionBehavior(?parameters:Dynamic):CollisionBehavior;
 	
-	public function createCoverFlowView(?parameters:Dictionary<CoverFlowView>):CoverFlowView;
+	public function createCoverFlowView(?parameters:Dynamic):CoverFlowView;
 	
-	public function createDocumentViewer(?parameters:Dictionary<DocumentViewer>):DocumentViewer;
+	public function createDocumentViewer(?parameters:Dynamic):DocumentViewer;
 	
-	public function createDynamicItemBehavior(?parameters:Dictionary<DynamicItemBehavior>):DynamicItemBehavior;
+	public function createDynamicItemBehavior(?parameters:Dynamic):DynamicItemBehavior;
 	
-	public function createGravityBehavior(?parameters:Dictionary<GravityBehavior>):GravityBehavior;
+	public function createGravityBehavior(?parameters:Dynamic):GravityBehavior;
 	
-	public function createNavigationWindow(?parameters:Dictionary<NavigationWindow>):NavigationWindow;
+	public function createNavigationWindow(?parameters:Dynamic):NavigationWindow;
 	
-	public function createPushBehavior(?parameters:Dictionary<PushBehavior>):PushBehavior;
+	public function createPushBehavior(?parameters:Dynamic):PushBehavior;
 	
-	public function createSnapBehavior(?parameters:Dictionary<SnapBehavior>):SnapBehavior;
+	public function createSnapBehavior(?parameters:Dynamic):SnapBehavior;
 	
-	public function createSplitWindow(?parameters:Dictionary<SplitWindow>):SplitWindow;
+	public function createSplitWindow(?parameters:Dynamic):SplitWindow;
 	
-	public function createTabbedBar(?parameters:Dictionary<TabbedBar>):TabbedBar;
+	public function createTabbedBar(?parameters:Dynamic):TabbedBar;
 	
-	public function createToolbar(?parameters:Dictionary<Toolbar>):Toolbar;
+	public function createToolbar(?parameters:Dynamic):Toolbar;
 	
 	public function createTransitionAnimation(transition:TransitionAnimationParam):Void;
 	
-	public function createViewAttachmentBehavior(?parameters:Dictionary<ViewAttachmentBehavior>):ViewAttachmentBehavior;
+	public function createViewAttachmentBehavior(?parameters:Dynamic):ViewAttachmentBehavior;
 }

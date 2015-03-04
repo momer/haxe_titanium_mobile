@@ -77,15 +77,15 @@ extern class Network extends Module
 	
 	public function addSystemCookie(cookie:Cookie):Void;
 	
-	public function createBonjourBrowser(serviceType:String, domain:String, ?parameters:Dictionary<BonjourBrowser>):BonjourBrowser;
+	public function createBonjourBrowser(serviceType:String, domain:String, ?parameters:Dynamic):BonjourBrowser;
 	
-	public function createBonjourService(name:String, type:String, domain:String, ?parameters:Dictionary<BonjourService>):BonjourService;
+	public function createBonjourService(name:String, type:String, domain:String, ?parameters:Dynamic):BonjourService;
 	
-	public function createCookie(?parameters:Dictionary<Cookie>):Cookie;
+	public function createCookie(?parameters:Dynamic):Cookie;
 	
-	public function createHTTPClient(?parameters:Dictionary<HTTPClient>):HTTPClient;
+	public function createHTTPClient(?parameters:Dynamic):HTTPClient;
 	
-	public function createTCPSocket(hostName:String, port:Float, mode:Float, parameters:Dictionary<TCPSocket>):TCPSocket;
+	public function createTCPSocket(hostName:String, port:Float, mode:Float, parameters:Dynamic):TCPSocket;
 	
 	public function decodeURIComponent(value:String):String;
 	

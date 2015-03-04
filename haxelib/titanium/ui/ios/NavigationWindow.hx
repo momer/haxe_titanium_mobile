@@ -8,11 +8,11 @@ extern class NavigationWindow extends Window
 {	//
 	public var window:Window;
 	
-	public function closeWindow(window:Window, options:Dictionary):Void;
+	public function closeWindow(window:Window, options:Dynamic):Void;
 	
 	public function getWindow():Window;
 	
-	public function openWindow(window:Window, options:Dictionary):Void;
+	public function openWindow(window:Window, options:Dynamic):Void;
 	
 	public function setWindow(window:Window):Void;
 }

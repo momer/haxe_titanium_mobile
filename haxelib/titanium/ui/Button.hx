@@ -28,7 +28,7 @@ extern class Button extends View
 	//
 	public var shadowColor:String;
 	//
-	public var shadowOffset:Dictionary;
+	public var shadowOffset:Dynamic;
 	//
 	public var shadowRadius:Float;
 	//
@@ -80,7 +80,7 @@ extern class Button extends View
 	
 	public function getShadowColor():String;
 	
-	public function getShadowOffset():Dictionary;
+	public function getShadowOffset():Dynamic;
 	
 	public function getShadowRadius():Float;
 	
@@ -108,7 +108,7 @@ extern class Button extends View
 	
 	public function setShadowColor(shadowColor:String):Void;
 	
-	public function setShadowOffset(shadowOffset:Dictionary):Void;
+	public function setShadowOffset(shadowOffset:Dynamic):Void;
 	
 	public function setShadowRadius(shadowRadius:Float):Void;
 	

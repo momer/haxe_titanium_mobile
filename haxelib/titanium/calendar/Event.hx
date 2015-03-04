@@ -21,7 +21,7 @@ extern class Event extends Proxy
 	//
 	public var end:Date;
 	//
-	public var extendedProperties:Dictionary;
+	public var extendedProperties:Dynamic;
 	//
 	public var hasAlarm:Bool;
 	//
@@ -47,11 +47,11 @@ extern class Event extends Proxy
 	
 	public function addRecurrenceRule(rule:RecurrenceRule):Void;
 	
-	public function createAlert(data:Dictionary<Alert>):Alert;
+	public function createAlert(data:Dynamic):Alert;
 	
-	public function createRecurenceRule(data:Dictionary<RecurrenceRule>):RecurrenceRule;
+	public function createRecurenceRule(data:Dynamic):RecurrenceRule;
 	
-	public function createReminder(data:Dictionary<Reminder>):Reminder;
+	public function createReminder(data:Dynamic):Reminder;
 	
 	public function getAlerts():Array<Alert>;
 	
@@ -65,7 +65,7 @@ extern class Event extends Proxy
 	
 	public function getEnd():Date;
 	
-	public function getExtendedProperties():Dictionary;
+	public function getExtendedProperties():Dynamic;
 	
 	public function getExtendedProperty(name:String):String;
 	

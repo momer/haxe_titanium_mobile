@@ -12,9 +12,9 @@ extern class Proxy
 	
 	public function addEventListener(name:String, _callback:Callback<Dynamic>):Void;
 	
-	public function applyProperties(props:Dictionary):Void;
+	public function applyProperties(props:Dynamic):Void;
 	
-	public function fireEvent(name:String, event:Dictionary):Void;
+	public function fireEvent(name:String, event:Dynamic):Void;
 	
 	public function getApiName():String;
 	

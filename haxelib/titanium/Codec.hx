@@ -40,7 +40,7 @@ extern class Codec extends Module
 	
 	public function encodeNumber(options:EncodeNumberDict):Float;
 	
-	public function encodeString(options:Dictionary<EncodeStringDict>):Float;
+	public function encodeString(options:Dynamic):Float;
 	
 	public function getNativeByteOrder():Float;
 }

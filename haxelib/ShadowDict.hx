@@ -8,5 +8,5 @@ extern class ShadowDict
 	//
 	public var color:String;
 	//
-	public var offset:Dictionary;
+	public var offset:Dynamic;
 }

@@ -21,9 +21,9 @@ extern class IPad extends Module
 	//
 	public var POPOVER_ARROW_DIRECTION_UP:Float;
 	
-	public function createDocumentViewer(?parameters:Dictionary<DocumentViewer>):DocumentViewer;
+	public function createDocumentViewer(?parameters:Dynamic):DocumentViewer;
 	
-	public function createPopover(?parameters:Dictionary<Popover>):Popover;
+	public function createPopover(?parameters:Dynamic):Popover;
 	
-	public function createSplitWindow(?parameters:Dictionary<SplitWindow>):SplitWindow;
+	public function createSplitWindow(?parameters:Dynamic):SplitWindow;
 }

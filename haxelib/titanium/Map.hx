@@ -32,7 +32,7 @@ extern class Map extends Module
 	//
 	public var TERRAIN_TYPE:Float;
 	
-	public function createAnnotation(?parameters:Dictionary<Annotation>):Annotation;
+	public function createAnnotation(?parameters:Dynamic):Annotation;
 	
-	public function createView(?parameters:Dictionary<View>):View;
+	public function createView(?parameters:Dynamic):View;
 }

@@ -314,5 +314,5 @@ extern class View extends Proxy
 	
 	public function toImage(?_callback:Callback<Blob>, ?honorScaleFactor:Bool):Blob;
 	
-	public function updateLayout(params:Dictionary):Void;
+	public function updateLayout(params:Dynamic):Void;
 }

@@ -8,9 +8,9 @@ extern class ViewTemplate
 	//
 	public var childTemplates:Array<ViewTemplate>;
 	//
-	public var events:Dictionary;
+	public var events:Dynamic;
 	//
-	public var properties:Dictionary;
+	public var properties:Dynamic;
 	//
 	public var type:String;
 }

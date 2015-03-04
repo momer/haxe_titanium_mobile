@@ -206,7 +206,7 @@ extern class Window extends View
 	
 	public function getWindowSoftInputMode():Float;
 	
-	public function hideNavBar(?options:Dictionary):Void;
+	public function hideNavBar(?options:Dynamic):Void;
 	
 	public function hideTabBar():Void;
 	
@@ -224,7 +224,7 @@ extern class Window extends View
 	
 	public function setExitOnClose(exitOnClose:Bool):Void;
 	
-	public function setExtendEdges(extendEdges:Array<Number>):Void;
+	public function setExtendEdges(extendEdges:Array<Float>):Void;
 	
 	public function setFlagSecure(flagSecure:Bool):Void;
 	
@@ -244,7 +244,7 @@ extern class Window extends View
 	
 	public function setNavTintColor(navTintColor:String):Void;
 	
-	public function setOrientationModes(orientationModes:Array<Number>):Void;
+	public function setOrientationModes(orientationModes:Array<Float>):Void;
 	
 	public function setRightNavButton(rightNavButton:View):Void;
 	
@@ -274,7 +274,7 @@ extern class Window extends View
 	
 	public function setTitlepromptid(titlepromptid:String):Void;
 	
-	public function setToolbar(toolbar:Array<Object>):Void;
+	public function setToolbar(toolbar:Array<Dynamic>):Void;
 	
 	public function setTransitionAnimation(transitionAnimation:Proxy):Void;
 	
@@ -288,5 +288,5 @@ extern class Window extends View
 	
 	public function setWindowSoftInputMode(windowSoftInputMode:Float):Void;
 	
-	public function showNavBar(?options:Dictionary):Void;
+	public function showNavBar(?options:Dynamic):Void;
 }

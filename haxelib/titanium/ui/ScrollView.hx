@@ -10,7 +10,7 @@ extern class ScrollView extends View
 	//
 	public var contentHeight:Dynamic;
 	//
-	public var contentOffset:Dictionary;
+	public var contentOffset:Dynamic;
 	//
 	public var contentWidth:Dynamic;
 	//
@@ -46,7 +46,7 @@ extern class ScrollView extends View
 	
 	public function getContentHeight():Dynamic;
 	
-	public function getContentOffset():Dictionary;
+	public function getContentOffset():Dynamic;
 	
 	public function getContentWidth():Dynamic;
 	
@@ -86,7 +86,7 @@ extern class ScrollView extends View
 	
 	public function setContentHeight(contentHeight:Dynamic):Void;
 	
-	public function setContentOffset(contentOffset:Dictionary):Void;
+	public function setContentOffset(contentOffset:Dynamic):Void;
 	
 	public function setContentWidth(contentWidth:Dynamic):Void;
 	

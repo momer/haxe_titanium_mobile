@@ -10,7 +10,7 @@ extern class CloudResponse
 	//
 	public var message:String;
 	//
-	public var meta:Dictionary;
+	public var meta:Dynamic;
 	//
 	public var success:Bool;
 }
