@@ -7,6 +7,11 @@
 		<return type="T->Void" />
 	</typedef>
 
+	<type name="Callback/Array<String>" remap="Dynamic" />
+	<type name="Titanium.UI.Animation/Dictionary<Animation>" remap="Dynamic" />
+	<type name="String/Array<String>" remap="Dynamic" />
+	<type name="Titanium.Media.Item/Array<Item>" remap="Dynamic" />
+
 
 	<output path="extern_classes" />
 </buildhx>

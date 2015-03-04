@@ -7,12 +7,12 @@ Generating JSCA/JSDuck/JSON output from the titanium-mobile apidoc's is pretty s
 My biggest issue in getting this to work was the realization that newer versions of JSDuck changed formatting. I went back to using JSDuck version 3.10.1, and all was well.
 
 ## Supported Titanium Versions
-- [3.5.0](https://github.com/momer/haxe_titanium_mobile/releases/tag/3.5.0-alpha2)
+- [3.5.0](https://github.com/momer/haxe_titanium_mobile/releases/tag/3.5.0-alpha4)
 
 ## Usage
 To install into haxelib, run `haxelib git titanium_mobile_externs https://github.com/momer/haxe_titanium_mobile.git <version> haxelib`
 
-as of this update, the latest version is 3.5.0-alpha2; and is not yet complete.
+as of this update, the latest version is 3.5.0-alpha4; and is not yet complete.
 
 ## TODO
 - Create stubs for classes which are undefined in the Titanium APIDOC in the build.xml

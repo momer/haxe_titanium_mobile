@@ -1,7 +1,6 @@
 package titanium.ui;
 
 import titanium.Module;
-import titanium.ui.ios.3DMatrix;
 import titanium.ui.ios.AdView;
 import titanium.ui.ios.AnchorAttachmentBehavior;
 import titanium.ui.ios.Animator;
@@ -9,6 +8,7 @@ import titanium.ui.ios.Attribute;
 import titanium.ui.ios.AttributedString;
 import titanium.ui.ios.CollisionBehavior;
 import titanium.ui.ios.CoverFlowView;
+import titanium.ui.ios.DMatrix3;
 import titanium.ui.ios.DocumentViewer;
 import titanium.ui.ios.DynamicItemBehavior;
 import titanium.ui.ios.GravityBehavior;
@@ -212,7 +212,7 @@ extern class IOS extends Module
 	//
 	public var WEBVIEW_NAVIGATIONTYPE_RELOAD:Float;
 	
-	public function create3DMatrix(?parameters:Dictionary<3DMatrix>):3DMatrix;
+	public function create3DMatrix(?parameters:Dictionary<DMatrix3>):DMatrix3;
 	
 	public function createAdView(?parameters:Dictionary<AdView>):AdView;
 	

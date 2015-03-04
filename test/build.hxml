@@ -1,3 +1,4 @@
--main QuickTest
--js ./QuickTest.js
+-main test.TestFile
+-cp ./test
+-js ./TestFile.js
 -lib titanium_mobile_externs

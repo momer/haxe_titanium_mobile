@@ -1,8 +1,6 @@
 package titanium;
 
 import titanium.Module;
-import titanium.ui.2DMatrix;
-import titanium.ui.3DMatrix;
 import titanium.ui.ActivityIndicator;
 import titanium.ui.AlertDialog;
 import titanium.ui.Animation;
@@ -12,6 +10,8 @@ import titanium.ui.ButtonBar;
 import titanium.ui.CoverFlowView;
 import titanium.ui.DashboardItem;
 import titanium.ui.DashboardView;
+import titanium.ui.DMatrix2;
+import titanium.ui.DMatrix3;
 import titanium.ui.EmailDialog;
 import titanium.ui.ImageView;
 import titanium.ui.Label;
@@ -403,9 +403,9 @@ extern class UI extends Module
 	
 	public function convertUnits(convertFromValue:String, convertToUnits:Float):Float;
 	
-	public function create2DMatrix(?parameters:MatrixCreationDict):2DMatrix;
+	public function create2DMatrix(?parameters:MatrixCreationDict):DMatrix2;
 	
-	public function create3DMatrix(?parameters:Dictionary<3DMatrix>):3DMatrix;
+	public function create3DMatrix(?parameters:Dictionary<DMatrix3>):DMatrix3;
 	
 	public function createActivityIndicator(?parameters:Dictionary<ActivityIndicator>):ActivityIndicator;
 	

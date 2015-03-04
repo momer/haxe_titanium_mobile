@@ -6,17 +6,17 @@ import titanium.Module;
 @:native("Titanium.App.Properties")
 extern class Properties extends Module
 {	
-	public function getBool(property:String, ?default:Bool):Bool;
+	public function getBool(property:String, ?_default:Bool):Bool;
 	
-	public function getDouble(property:String, ?default:Float):Float;
+	public function getDouble(property:String, ?_default:Float):Float;
 	
-	public function getInt(property:String, ?default:Float):Float;
+	public function getInt(property:String, ?_default:Float):Float;
 	
-	public function getList(property:String, ?default:Array<Dynamic>):Array<Dynamic>;
+	public function getList(property:String, ?_default:Array<Dynamic>):Array<Dynamic>;
 	
-	public function getObject(property:String, ?default:Dynamic):Dynamic;
+	public function getObject(property:String, ?_default:Dynamic):Dynamic;
 	
-	public function getString(property:String, ?default:String):String;
+	public function getString(property:String, ?_default:String):String;
 	
 	public function hasProperty(property:String):Bool;
 	

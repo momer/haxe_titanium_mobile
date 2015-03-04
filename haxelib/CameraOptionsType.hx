@@ -1,6 +1,6 @@
 package ;
 
-import titanium.ui.2DMatrix;
+import titanium.ui.DMatrix2;
 import titanium.ui.View;
 
 
@@ -35,7 +35,7 @@ extern class CameraOptionsType
 	//
 	public var success:Callback<CameraMediaItemType>;
 	//
-	public var transform:2DMatrix;
+	public var transform:DMatrix2;
 	//
 	public var videoMaximumDuration:Float;
 	//
