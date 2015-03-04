@@ -5,9 +5,9 @@ import titanium.Proxy;
 
 @:native("Titanium.Android.BroadcastReceiver")
 extern class BroadcastReceiver extends Proxy
-{	//
+{	
 	public var onReceived:Callback<Dynamic>;
-	//
+	
 	public var url:String;
 	
 	public function getOnReceived():Callback<Dynamic>;

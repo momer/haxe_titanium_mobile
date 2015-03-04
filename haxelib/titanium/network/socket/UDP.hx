@@ -5,13 +5,13 @@ import titanium.IOStream;
 
 @:native("Titanium.Network.Socket.UDP")
 extern class UDP extends IOStream
-{	//
+{	
 	public var data:Callback<DataCallbackArgs>;
-	//
+	
 	public var error:Callback<FailureResponse>;
-	//
+	
 	public var port:Float;
-	//
+	
 	public var started:Callback<Void>;
 	
 	public function getData():Callback<DataCallbackArgs>;

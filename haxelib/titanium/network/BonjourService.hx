@@ -5,15 +5,15 @@ import titanium.Proxy;
 
 @:native("Titanium.Network.BonjourService")
 extern class BonjourService extends Proxy
-{	//
+{	
 	public var domain:String;
-	//
+	
 	public var isLocal:Bool;
-	//
+	
 	public var name:String;
-	//
+	
 	public var socket:Dynamic;
-	//
+	
 	public var type:String;
 	
 	public function getDomain():String;

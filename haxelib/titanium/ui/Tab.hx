@@ -6,39 +6,23 @@ import titanium.ui.Window;
 
 @:native("Titanium.UI.Tab")
 extern class Tab extends View
-{	//
+{	
 	public var active:Bool;
-	//
+	
 	public var activeIcon:String;
-	//
+	
 	public var activeIconIsMask:Bool;
-	//
-	public var backgroundColor:String;
-	//
-	public var backgroundDisabledColor:String;
-	//
-	public var backgroundDisabledImage:String;
-	//
-	public var backgroundFocusedColor:String;
-	//
-	public var backgroundFocusedImage:String;
-	//
-	public var backgroundImage:String;
-	//
-	public var backgroundSelectedImage:String;
-	//
+	
 	public var badge:String;
-	//
+	
 	public var icon:String;
-	//
+	
 	public var iconIsMask:Bool;
-	//
+	
 	public var title:String;
-	//
+	
 	public var titleid:String;
-	//
-	public var touchEnabled:Bool;
-	//
+	
 	public var window:Window;
 	
 	//public function getBackgroundColor():String;

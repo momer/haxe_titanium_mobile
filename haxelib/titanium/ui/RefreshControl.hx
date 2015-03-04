@@ -6,9 +6,9 @@ import titanium.ui.AttributedString;
 
 @:native("Titanium.UI.RefreshControl")
 extern class RefreshControl extends Proxy
-{	//
+{	
 	public var tintColor:String;
-	//
+	
 	public var title:AttributedString;
 	
 	public function beginRefreshing():Void;

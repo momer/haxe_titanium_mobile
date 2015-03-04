@@ -5,11 +5,11 @@ import titanium.Module;
 
 @:native("Titanium.Locale")
 extern class Locale extends Module
-{	//
+{	
 	public var currentCountry:String;
-	//
+	
 	public var currentLanguage:String;
-	//
+	
 	public var currentLocale:String;
 	
 	public function formatTelephoneNumber(number:String):String;

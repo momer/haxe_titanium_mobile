@@ -6,21 +6,21 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.iPad.Popover")
 extern class Popover extends Proxy
-{	//
+{	
 	public var arrowDirection:Float;
-	//
+	
 	public var contentView:View;
-	//
+	
 	public var height:Dynamic;
-	//
+	
 	public var leftNavButton:Dynamic;
-	//
+	
 	public var passthroughViews:Array<View>;
-	//
+	
 	public var rightNavButton:Dynamic;
-	//
+	
 	public var title:String;
-	//
+	
 	public var width:Dynamic;
 	
 	public function add():Void;

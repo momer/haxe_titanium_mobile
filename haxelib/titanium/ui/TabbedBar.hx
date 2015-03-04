@@ -5,11 +5,11 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.TabbedBar")
 extern class TabbedBar extends View
-{	//
+{	
 	public var index:Float;
-	//
+	
 	public var labels:Array<Dynamic>;
-	//
+	
 	public var style:Float;
 	
 	public function getIndex():Float;

@@ -6,15 +6,15 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.iOS.CollisionBehavior")
 extern class CollisionBehavior extends Proxy
-{	//
+{	
 	public var boundaryIdentifiers:Array<BoundaryIdentifier>;
-	//
+	
 	public var collisionMode:Float;
-	//
+	
 	public var items:Array<View>;
-	//
+	
 	public var referenceInsets:ReferenceInsets;
-	//
+	
 	public var treatReferenceAsBoundary:Bool;
 	
 	public function addBoundary(boundary:BoundaryIdentifier):Void;

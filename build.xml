@@ -23,5 +23,14 @@
 	<type name="Array<Object>" remap="Array<Dynamic>" />
 	<type name="Callback" remap="Callback<Dynamic>" />
 
+	<class name="Titanium.Database.ResultSet">
+		<property name="fieldCount" ignore="true" />
+	</class>
+
+	<class name="Titanium.Map.View">
+		<property name="animate" ignore="true" />
+	</class>
+
+
 	<output path="extern_classes" />
 </buildhx>

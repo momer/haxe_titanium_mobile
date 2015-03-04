@@ -7,61 +7,61 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.ListView")
 extern class ListView extends View
-{	//
+{	
 	public var allowsSelection:Bool;
-	//
+	
 	public var canScroll:Bool;
-	//
+	
 	public var caseInsensitiveSearch:Bool;
-	//
+	
 	public var defaultItemTemplate:Dynamic;
-	//
+	
 	public var editing:Bool;
-	//
+	
 	public var footerDividersEnabled:Bool;
-	//
+	
 	public var footerTitle:String;
-	//
+	
 	public var footerView:View;
-	//
+	
 	public var headerDividersEnabled:Bool;
-	//
+	
 	public var headerTitle:String;
-	//
+	
 	public var headerView:View;
-	//
+	
 	public var keepSectionsInSearch:Bool;
-	//
+	
 	public var pruneSectionsOnEdit:Bool;
-	//
+	
 	public var pullView:View;
-	//
+	
 	public var refreshControl:RefreshControl;
-	//
+	
 	public var scrollIndicatorStyle:Float;
-	//
+	
 	public var searchText:String;
-	//
+	
 	public var searchView:Dynamic;
-	//
+	
 	public var sectionCount:Float;
-	//
+	
 	public var sectionIndexTitles:Array<ListViewIndexEntry>;
-	//
+	
 	public var sections:Array<ListSection>;
-	//
+	
 	public var separatorColor:String;
-	//
+	
 	public var separatorInsets:Dynamic;
-	//
+	
 	public var separatorStyle:Float;
-	//
+	
 	public var showVerticalScrollIndicator:Bool;
-	//
+	
 	public var style:Float;
-	//
+	
 	public var templates:Dynamic;
-	//
+	
 	public var willScrollOnStatusTap:Bool;
 	
 	public function appendSection(section:Dynamic, ?animation:ListViewAnimationProperties):Void;

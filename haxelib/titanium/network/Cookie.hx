@@ -5,25 +5,25 @@ import titanium.Proxy;
 
 @:native("Titanium.Network.Cookie")
 extern class Cookie extends Proxy
-{	//
+{	
 	public var comment:String;
-	//
+	
 	public var domain:String;
-	//
+	
 	public var expiryDate:String;
-	//
+	
 	public var httponly:Bool;
-	//
+	
 	public var name:String;
-	//
+	
 	public var originalUrl:String;
-	//
+	
 	public var path:String;
-	//
+	
 	public var secure:Bool;
-	//
+	
 	public var value:String;
-	//
+	
 	public var version:Float;
 	
 	public function getComment():String;

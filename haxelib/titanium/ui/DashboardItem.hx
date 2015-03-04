@@ -5,13 +5,13 @@ import titanium.Proxy;
 
 @:native("Titanium.UI.DashboardItem")
 extern class DashboardItem extends Proxy
-{	//
+{	
 	public var badge:Float;
-	//
+	
 	public var canDelete:Bool;
-	//
+	
 	public var image:Dynamic;
-	//
+	
 	public var selectedImage:Dynamic;
 	
 	public function getBadge():Float;

@@ -7,97 +7,85 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.Window")
 extern class Window extends View
-{	//
+{	
 	public var activity:Activity;
-	//
+	
 	public var autoAdjustScrollViewInsets:Bool;
-	//
+	
 	public var backButtonTitle:String;
-	//
+	
 	public var backButtonTitleImage:Dynamic;
-	//
-	public var backgroundColor:String;
-	//
+	
 	public var barColor:String;
-	//
+	
 	public var barImage:String;
-	//
-	public var bottom:Dynamic;
-	//
+	
 	public var exitOnClose:Bool;
-	//
+	
 	public var extendEdges:Array<Float>;
-	//
+	
 	public var flagSecure:Bool;
-	//
+	
 	public var fullscreen:Bool;
-	//
+	
 	public var hideShadow:Bool;
-	//
+	
 	public var includeOpaqueBars:Bool;
-	//
-	public var left:Dynamic;
-	//
+	
 	public var leftNavButton:View;
-	//
+	
 	public var leftNavButtons:Array<View>;
-	//
+	
 	public var modal:Bool;
-	//
+	
 	public var navBarHidden:Bool;
-	//
+	
 	public var navTintColor:String;
-	//
-	public var opacity:Float;
-	//
+	
 	public var orientation:Float;
-	//
+	
 	public var orientationModes:Array<Float>;
-	//
-	public var right:Dynamic;
-	//
+	
 	public var rightNavButton:View;
-	//
+	
 	public var rightNavButtons:Array<View>;
-	//
+	
 	public var shadowImage:String;
-	//
+	
 	public var splitActionBar:Bool;
-	//
+	
 	public var statusBarStyle:Float;
-	//
+	
 	public var tabBarHidden:Bool;
-	//
+	
 	public var theme:String;
-	//
+	
 	public var title:String;
-	//
+	
 	public var titleAttributes:TitleAttributesParams;
-	//
+	
 	public var titleControl:View;
-	//
+	
 	public var titleid:String;
-	//
+	
 	public var titleImage:String;
-	//
+	
 	public var titlePrompt:String;
-	//
+	
 	public var titlepromptid:String;
-	//
+	
 	public var toolbar:Array<Dynamic>;
-	//
-	public var top:Dynamic;
-	//
+	
 	public var transitionAnimation:Proxy;
-	//
+	
 	public var translucent:Bool;
-	//
+	
 	public var url:String;
-	//
+	
 	public var windowFlags:Float;
-	//
+	
 	public var windowPixelFormat:Float;
-	//
+	
 	public var windowSoftInputMode:Float;
 	
 	//public function getBackgroundColor():String;

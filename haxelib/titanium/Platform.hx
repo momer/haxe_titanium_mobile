@@ -6,53 +6,53 @@ import titanium.platform.DisplayCaps;
 
 @:native("Titanium.Platform")
 extern class Platform extends Module
-{	//
+{	
 	public var address:String;
-	//
+	
 	public var architecture:String;
-	//
+	
 	public var availableMemory:Float;
-	//
+	
 	public var BATTERY_STATE_CHARGING:Float;
-	//
+	
 	public var BATTERY_STATE_FULL:Float;
-	//
+	
 	public var BATTERY_STATE_UNKNOWN:Float;
-	//
+	
 	public var BATTERY_STATE_UNPLUGGED:Float;
-	//
+	
 	public var batteryLevel:Float;
-	//
+	
 	public var batteryMonitoring:Bool;
-	//
+	
 	public var batteryState:Float;
-	//
+	
 	public var displayCaps:DisplayCaps;
-	//
+	
 	public var id:String;
-	//
+	
 	public var locale:String;
-	//
+	
 	public var macaddress:String;
-	//
+	
 	public var manufacturer:String;
-	//
+	
 	public var model:String;
-	//
+	
 	public var name:String;
-	//
+	
 	public var netmask:String;
-	//
+	
 	public var osname:String;
-	//
+	
 	public var ostype:String;
-	//
+	
 	public var processorCount:Float;
-	//
+	
 	public var runtime:String;
-	//
+	
 	public var username:String;
-	//
+	
 	public var version:String;
 	
 	public function canOpenURL(url:String):Bool;

@@ -7,23 +7,23 @@ import titanium.Module;
 
 @:native("Titanium.Contacts")
 extern class Contacts extends Module
-{	//
+{	
 	public var AUTHORIZATION_AUTHORIZED:Float;
-	//
+	
 	public var AUTHORIZATION_DENIED:Float;
-	//
+	
 	public var AUTHORIZATION_RESTRICTED:Float;
-	//
+	
 	public var AUTHORIZATION_UNKNOWN:Float;
-	//
+	
 	public var CONTACTS_KIND_ORGANIZATION:Float;
-	//
+	
 	public var CONTACTS_KIND_PERSON:Float;
-	//
+	
 	public var CONTACTS_SORT_FIRST_NAME:Float;
-	//
+	
 	public var CONTACTS_SORT_LAST_NAME:Float;
-	//
+	
 	public var contactsAuthorization:Float;
 	
 	public function createGroup(?parameters:Dynamic):Group;

@@ -6,15 +6,15 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.ListSection")
 extern class ListSection extends Proxy
-{	//
+{	
 	public var footerTitle:String;
-	//
+	
 	public var footerView:View;
-	//
+	
 	public var headerTitle:String;
-	//
+	
 	public var headerView:View;
-	//
+	
 	public var items:Array<ListDataItem>;
 	
 	public function appendItems(dataItems:Array<ListDataItem>, ?animation:ListViewAnimationProperties):Void;

@@ -5,41 +5,41 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.ScrollView")
 extern class ScrollView extends View
-{	//
+{	
 	public var canCancelEvents:Bool;
-	//
+	
 	public var contentHeight:Dynamic;
-	//
+	
 	public var contentOffset:Dynamic;
-	//
+	
 	public var contentWidth:Dynamic;
-	//
+	
 	public var decelerationRate:Float;
-	//
+	
 	public var disableBounce:Bool;
-	//
+	
 	public var horizontalBounce:Bool;
-	//
+	
 	public var maxZoomScale:Float;
-	//
+	
 	public var minZoomScale:Float;
-	//
+	
 	public var overScrollMode:Float;
-	//
+	
 	public var scrollIndicatorStyle:Float;
-	//
+	
 	public var scrollingEnabled:Bool;
-	//
+	
 	public var scrollsToTop:Bool;
-	//
+	
 	public var scrollType:String;
-	//
+	
 	public var showHorizontalScrollIndicator:Bool;
-	//
+	
 	public var showVerticalScrollIndicator:Bool;
-	//
+	
 	public var verticalBounce:Bool;
-	//
+	
 	public var zoomScale:Float;
 	
 	public function getCanCancelEvents():Bool;

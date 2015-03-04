@@ -5,49 +5,47 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.Slider")
 extern class Slider extends View
-{	//
+{	
 	public var disabledLeftTrackImage:String;
-	//
+	
 	public var disabledRightTrackImage:String;
-	//
+	
 	public var disabledThumbImage:String;
-	//
-	public var enabled:Bool;
-	//
+	
 	public var highlightedLeftTrackImage:String;
-	//
+	
 	public var highlightedRightTrackImage:String;
-	//
+	
 	public var highlightedThumbImage:String;
-	//
+	
 	public var leftTrackImage:String;
-	//
+	
 	public var leftTrackLeftCap:Float;
-	//
+	
 	public var leftTrackTopCap:Float;
-	//
+	
 	public var max:Float;
-	//
+	
 	public var maxRange:Float;
-	//
+	
 	public var min:Float;
-	//
+	
 	public var minRange:Float;
-	//
+	
 	public var rightTrackImage:String;
-	//
+	
 	public var rightTrackLeftCap:Float;
-	//
+	
 	public var rightTrackTopCap:Float;
-	//
+	
 	public var selectedLeftTrackImage:String;
-	//
+	
 	public var selectedRightTrackImage:String;
-	//
+	
 	public var selectedThumbImage:String;
-	//
+	
 	public var thumbImage:Dynamic;
-	//
+	
 	public var value:String;
 	
 	//public function add(view:View):Void;

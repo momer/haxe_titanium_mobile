@@ -6,59 +6,57 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.TextArea")
 extern class TextArea extends View
-{	//
+{	
 	public var appearance:Float;
-	//
+	
 	public var attributedString:AttributedString;
-	//
+	
 	public var autocapitalization:Float;
-	//
+	
 	public var autocorrect:Bool;
-	//
+	
 	public var autoLink:Float;
-	//
+	
 	public var clearOnEdit:Bool;
-	//
+	
 	public var color:String;
-	//
+	
 	public var editable:Bool;
-	//
+	
 	public var ellipsize:Bool;
-	//
-	public var enabled:Bool;
-	//
+	
 	public var enableReturnKey:Bool;
-	//
+	
 	public var font:Font;
-	//
+	
 	public var handleLinks:Bool;
-	//
+	
 	public var hintText:String;
-	//
+	
 	public var keyboardToolbar:Dynamic;
-	//
+	
 	public var keyboardToolbarColor:String;
-	//
+	
 	public var keyboardToolbarHeight:Float;
-	//
+	
 	public var keyboardType:Float;
-	//
+	
 	public var maxLength:Float;
-	//
+	
 	public var returnKeyType:Float;
-	//
+	
 	public var scrollable:Bool;
-	//
+	
 	public var scrollsToTop:Bool;
-	//
+	
 	public var selection:TextAreaSelectedParams;
-	//
+	
 	public var suppressReturn:Bool;
-	//
+	
 	public var textAlign:Dynamic;
-	//
+	
 	public var value:String;
-	//
+	
 	public var verticalAlign:Dynamic;
 	
 	//public function add(view:View):Void;

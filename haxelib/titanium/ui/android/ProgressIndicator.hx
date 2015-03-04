@@ -5,21 +5,21 @@ import titanium.Proxy;
 
 @:native("Titanium.UI.Android.ProgressIndicator")
 extern class ProgressIndicator extends Proxy
-{	//
+{	
 	public var cancelable:Bool;
-	//
+	
 	public var canceledOnTouchOutside:Bool;
-	//
+	
 	public var location:Float;
-	//
+	
 	public var max:Float;
-	//
+	
 	public var message:String;
-	//
+	
 	public var messageid:String;
-	//
+	
 	public var min:Float;
-	//
+	
 	public var type:Float;
 	
 	public function getCancelable():Bool;

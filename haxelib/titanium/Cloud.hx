@@ -5,19 +5,19 @@ import titanium.Module;
 
 @:native("Titanium.Cloud")
 extern class Cloud extends Module
-{	//
+{	
 	public var accessToken:String;
-	//
+	
 	public var debug:Bool;
-	//
+	
 	public var expiresIn:Float;
-	//
+	
 	public var ondatastream:Callback<CloudStreamProgress>;
-	//
+	
 	public var onsendstream:Callback<CloudStreamProgress>;
-	//
+	
 	public var sessionId:String;
-	//
+	
 	public var useSecure:Bool;
 	
 	public function getAccessToken():String;

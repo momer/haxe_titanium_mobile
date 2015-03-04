@@ -5,11 +5,11 @@ import titanium.Proxy;
 
 @:native("Titanium.Network.BonjourBrowser")
 extern class BonjourBrowser extends Proxy
-{	//
+{	
 	public var domain:String;
-	//
+	
 	public var isSearching:Bool;
-	//
+	
 	public var serviceType:String;
 	
 	public function getDomain():String;

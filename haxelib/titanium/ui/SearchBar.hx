@@ -5,27 +5,27 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.SearchBar")
 extern class SearchBar extends View
-{	//
+{	
 	public var autocapitalization:Float;
-	//
+	
 	public var autocorrect:Bool;
-	//
+	
 	public var barColor:String;
-	//
+	
 	public var hintText:String;
-	//
+	
 	public var hinttextid:String;
-	//
+	
 	public var keyboardType:Float;
-	//
+	
 	public var prompt:String;
-	//
+	
 	public var promptid:String;
-	//
+	
 	public var showBookmark:Bool;
-	//
+	
 	public var showCancel:Bool;
-	//
+	
 	public var value:String;
 	
 	public function blur():Void;

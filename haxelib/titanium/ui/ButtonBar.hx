@@ -5,11 +5,11 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.ButtonBar")
 extern class ButtonBar extends View
-{	//
+{	
 	public var index:Float;
-	//
+	
 	public var labels:Array<Dynamic>;
-	//
+	
 	public var style:Float;
 	
 	public function getIndex():Float;

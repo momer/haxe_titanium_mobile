@@ -5,17 +5,17 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.Android.SearchView")
 extern class SearchView extends View
-{	//
+{	
 	public var color:String;
-	//
+	
 	public var hintText:String;
-	//
+	
 	public var iconified:Bool;
-	//
+	
 	public var iconifiedByDefault:Bool;
-	//
+	
 	public var submitEnabled:Bool;
-	//
+	
 	public var value:String;
 	
 	public function blur():Void;

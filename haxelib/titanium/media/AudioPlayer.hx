@@ -5,49 +5,49 @@ import titanium.Proxy;
 
 @:native("Titanium.Media.AudioPlayer")
 extern class AudioPlayer extends Proxy
-{	//
+{	
 	public var allowBackground:Bool;
-	//
+	
 	public var bitRate:Float;
-	//
+	
 	public var bufferSize:Float;
-	//
+	
 	public var duration:Float;
-	//
+	
 	public var idle:Bool;
-	//
+	
 	public var paused:Bool;
-	//
+	
 	public var playing:Bool;
-	//
+	
 	public var progress:Float;
-	//
+	
 	public var state:Float;
-	//
+	
 	public var STATE_BUFFERING:Float;
-	//
+	
 	public var STATE_INITIALIZED:Float;
-	//
+	
 	public var STATE_PAUSED:Float;
-	//
+	
 	public var STATE_PLAYING:Float;
-	//
+	
 	public var STATE_STARTING:Float;
-	//
+	
 	public var STATE_STOPPED:Float;
-	//
+	
 	public var STATE_STOPPING:Float;
-	//
+	
 	public var STATE_WAITING_FOR_DATA:Float;
-	//
+	
 	public var STATE_WAITING_FOR_QUEUE:Float;
-	//
+	
 	public var time:Float;
-	//
+	
 	public var url:String;
-	//
+	
 	public var volume:Float;
-	//
+	
 	public var waiting:Bool;
 	
 	public function getAllowBackground():Bool;

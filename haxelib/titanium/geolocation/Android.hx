@@ -7,7 +7,7 @@ import titanium.Module;
 
 @:native("Titanium.Geolocation.Android")
 extern class Android extends Module
-{	//
+{	
 	public var manualMode:Bool;
 	
 	public function addLocationProvider(provider:LocationProvider):Void;

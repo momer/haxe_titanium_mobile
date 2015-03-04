@@ -5,19 +5,19 @@ import titanium.Proxy;
 
 @:native("Titanium.Platform.DisplayCaps")
 extern class DisplayCaps extends Proxy
-{	//
+{	
 	public var density:String;
-	//
+	
 	public var dpi:Float;
-	//
+	
 	public var logicalDensityFactor:Float;
-	//
+	
 	public var platformHeight:Float;
-	//
+	
 	public var platformWidth:Float;
-	//
+	
 	public var xdpi:Float;
-	//
+	
 	public var ydpi:Float;
 	
 	public function getDensity():String;

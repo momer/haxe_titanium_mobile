@@ -5,7 +5,7 @@ import titanium.ui.Window;
 
 @:native("Titanium.UI.iOS.NavigationWindow")
 extern class NavigationWindow extends Window
-{	//
+{	
 	public var window:Window;
 	
 	public function closeWindow(window:Window, options:Dynamic):Void;

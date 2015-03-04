@@ -7,11 +7,11 @@ import titanium.Module;
 
 @:native("Titanium.Stream")
 extern class Stream extends Module
-{	//
+{	
 	public var MODE_APPEND:Float;
-	//
+	
 	public var MODE_READ:Float;
-	//
+	
 	public var MODE_WRITE:Float;
 	
 	public function createStream(params:CreateStreamArgs):IOStream;

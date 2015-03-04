@@ -28,7 +28,7 @@ extern class Global
 	
 	public function require(moduleId:String):Dynamic;
 	
-	public function setInterval(function:Callback, delay:Float):Float;
+	public function setInterval(function:Callback<Dynamic>, delay:Float):Float;
 	
-	public function setTimeout(function:Callback, delay:Float):Float;
+	public function setTimeout(function:Callback<Dynamic>, delay:Float):Float;
 }

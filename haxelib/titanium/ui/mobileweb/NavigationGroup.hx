@@ -6,9 +6,9 @@ import titanium.ui.Window;
 
 @:native("Titanium.UI.MobileWeb.NavigationGroup")
 extern class NavigationGroup extends View
-{	//
+{	
 	public var navBarAtTop:Bool;
-	//
+	
 	public var window:Window;
 	
 	public function close(window:Window, options:Dynamic):Void;

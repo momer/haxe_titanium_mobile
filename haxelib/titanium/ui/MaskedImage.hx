@@ -5,13 +5,13 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.MaskedImage")
 extern class MaskedImage extends View
-{	//
+{	
 	public var image:String;
-	//
+	
 	public var mask:String;
-	//
+	
 	public var mode:Float;
-	//
+	
 	public var tint:String;
 	
 	public function getImage():String;

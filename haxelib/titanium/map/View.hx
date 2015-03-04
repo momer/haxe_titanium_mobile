@@ -6,25 +6,23 @@ import titanium.ui.View;
 
 @:native("Titanium.Map.View")
 extern class View extends titanium.ui.View
-{	//
-	public var animate:Bool;
-	//
+{	
 	public var animated:Bool;
-	//
+	
 	public var annotations:Array<Annotation>;
-	//
+	
 	public var hideAnnotationWhenTouchMap:Bool;
-	//
+	
 	public var latitudeDelta:Float;
-	//
+	
 	public var longitudeDelta:Float;
-	//
+	
 	public var mapType:Float;
-	//
+	
 	public var region:MapRegionType;
-	//
+	
 	public var regionFit:Bool;
-	//
+	
 	public var userLocation:Bool;
 	
 	public function addAnnotation(annotation:Dynamic):Void;

@@ -8,81 +8,79 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.TableView")
 extern class TableView extends View
-{	//
+{	
 	public var allowsSelection:Bool;
-	//
+	
 	public var allowsSelectionDuringEditing:Bool;
-	//
-	public var backgroundColor:String;
-	//
+	
 	public var data:Array<Dynamic>;
-	//
+	
 	public var editable:Bool;
-	//
+	
 	public var editing:Bool;
-	//
+	
 	public var filterAnchored:Bool;
-	//
+	
 	public var filterAttribute:String;
-	//
+	
 	public var filterCaseInsensitive:Bool;
-	//
+	
 	public var footerDividersEnabled:Bool;
-	//
+	
 	public var footerTitle:String;
-	//
+	
 	public var footerView:View;
-	//
+	
 	public var headerDividersEnabled:Bool;
-	//
+	
 	public var headerPullView:View;
-	//
+	
 	public var headerTitle:String;
-	//
+	
 	public var headerView:View;
-	//
+	
 	public var hideSearchOnSelection:Bool;
-	//
+	
 	public var index:Array<TableViewIndexEntry>;
-	//
+	
 	public var maxRowHeight:Float;
-	//
+	
 	public var minRowHeight:Float;
-	//
+	
 	public var moveable:Bool;
-	//
+	
 	public var moving:Bool;
-	//
+	
 	public var overScrollMode:Float;
-	//
+	
 	public var refreshControl:RefreshControl;
-	//
+	
 	public var rowHeight:Float;
-	//
+	
 	public var scrollable:Bool;
-	//
+	
 	public var scrollIndicatorStyle:Float;
-	//
+	
 	public var scrollsToTop:Bool;
-	//
+	
 	public var search:Dynamic;
-	//
+	
 	public var searchAsChild:Bool;
-	//
+	
 	public var searchHidden:Bool;
-	//
+	
 	public var sectionCount:Float;
-	//
+	
 	public var sections:Array<TableViewSection>;
-	//
+	
 	public var separatorColor:String;
-	//
+	
 	public var separatorInsets:Dynamic;
-	//
+	
 	public var separatorStyle:Float;
-	//
+	
 	public var showVerticalScrollIndicator:Bool;
-	//
+	
 	public var style:Float;
 	
 	//public function getBackgroundColor():String;

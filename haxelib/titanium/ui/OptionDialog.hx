@@ -6,25 +6,25 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.OptionDialog")
 extern class OptionDialog extends Proxy
-{	//
+{	
 	public var androidView:View;
-	//
+	
 	public var buttonNames:Array<String>;
-	//
+	
 	public var cancel:Float;
-	//
+	
 	public var destructive:Float;
-	//
+	
 	public var opaquebackground:Bool;
-	//
+	
 	public var options:Array<String>;
-	//
+	
 	public var persistent:Bool;
-	//
+	
 	public var selectedIndex:Float;
-	//
+	
 	public var title:String;
-	//
+	
 	public var titleid:String;
 	
 	public function getAndroidView():View;

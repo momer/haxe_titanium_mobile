@@ -5,23 +5,23 @@ import titanium.Proxy;
 
 @:native("Titanium.Android.ActionBar")
 extern class ActionBar extends Proxy
-{	//
+{	
 	public var backgroundImage:String;
-	//
+	
 	public var displayHomeAsUp:Bool;
-	//
+	
 	public var homeButtonEnabled:Bool;
-	//
+	
 	public var icon:String;
-	//
+	
 	public var logo:String;
-	//
+	
 	public var navigationMode:Float;
-	//
-	public var onHomeIconItemSelected:Callback;
-	//
+	
+	public var onHomeIconItemSelected:Callback<Dynamic>;
+	
 	public var subtitle:String;
-	//
+	
 	public var title:String;
 	
 	public function getNavigationMode():Float;
@@ -48,7 +48,7 @@ extern class ActionBar extends Proxy
 	
 	public function setNavigationMode(navigationMode:Float):Void;
 	
-	public function setOnHomeIconItemSelected(onHomeIconItemSelected:Callback):Void;
+	public function setOnHomeIconItemSelected(onHomeIconItemSelected:Callback<Dynamic>):Void;
 	
 	public function setSubtitle(subtitle:String):Void;
 	

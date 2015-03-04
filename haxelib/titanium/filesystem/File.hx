@@ -8,27 +8,27 @@ import titanium.Proxy;
 
 @:native("Titanium.Filesystem.File")
 extern class File extends Proxy
-{	//
+{	
 	public var executable:Bool;
-	//
+	
 	public var hidden:Bool;
-	//
+	
 	public var name:String;
-	//
+	
 	public var nativePath:String;
-	//
+	
 	public var parent:File;
-	//
+	
 	public var readonly:Bool;
-	//
+	
 	public var remoteBackup:Bool;
-	//
+	
 	public var size:Float;
-	//
+	
 	public var symbolicLink:Bool;
-	//
+	
 	public var writable:Bool;
-	//
+	
 	public var writeable:Bool;
 	
 	public function append(data:Dynamic):Bool;

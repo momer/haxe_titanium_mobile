@@ -5,91 +5,91 @@ import titanium.Module;
 
 @:native("Titanium.Geolocation")
 extern class Geolocation extends Module
-{	//
+{	
 	public var accuracy:Float;
-	//
+	
 	public var ACCURACY_BEST:Float;
-	//
+	
 	public var ACCURACY_BEST_FOR_NAVIGATION:Float;
-	//
+	
 	public var ACCURACY_HIGH:Float;
-	//
+	
 	public var ACCURACY_HUNDRED_METERS:Float;
-	//
+	
 	public var ACCURACY_KILOMETER:Float;
-	//
+	
 	public var ACCURACY_LOW:Float;
-	//
+	
 	public var ACCURACY_NEAREST_TEN_METERS:Float;
-	//
+	
 	public var ACCURACY_THREE_KILOMETERS:Float;
-	//
+	
 	public var activityType:Float;
-	//
+	
 	public var ACTIVITYTYPE_AUTOMOTIVE_NAVIGATION:String;
-	//
+	
 	public var ACTIVITYTYPE_FITNESS:String;
-	//
+	
 	public var ACTIVITYTYPE_OTHER:String;
-	//
+	
 	public var ACTIVITYTYPE_OTHER_NAVIGATION:String;
-	//
+	
 	public var AUTHORIZATION_ALWAYS:Float;
-	//
+	
 	public var AUTHORIZATION_AUTHORIZED:Float;
-	//
+	
 	public var AUTHORIZATION_DENIED:Float;
-	//
+	
 	public var AUTHORIZATION_RESTRICTED:Float;
-	//
+	
 	public var AUTHORIZATION_UNKNOWN:Float;
-	//
+	
 	public var AUTHORIZATION_WHEN_IN_USE:Float;
-	//
+	
 	public var distanceFilter:Float;
-	//
+	
 	public var ERROR_DENIED:Float;
-	//
+	
 	public var ERROR_HEADING_FAILURE:Float;
-	//
+	
 	public var ERROR_LOCATION_UNKNOWN:Float;
-	//
+	
 	public var ERROR_NETWORK:Float;
-	//
+	
 	public var ERROR_REGION_MONITORING_DELAYED:Float;
-	//
+	
 	public var ERROR_REGION_MONITORING_DENIED:Float;
-	//
+	
 	public var ERROR_REGION_MONITORING_FAILURE:Float;
-	//
+	
 	public var ERROR_TIMEOUT:Float;
-	//
+	
 	public var frequency:Float;
-	//
+	
 	public var hasCompass:Bool;
-	//
+	
 	public var headingFilter:Float;
-	//
+	
 	public var lastGeolocation:String;
-	//
+	
 	public var locationServicesAuthorization:Float;
-	//
+	
 	public var locationServicesEnabled:Bool;
-	//
+	
 	public var pauseLocationUpdateAutomatically:Bool;
-	//
+	
 	public var preferredProvider:String;
-	//
+	
 	public var PROVIDER_GPS:String;
-	//
+	
 	public var PROVIDER_NETWORK:String;
-	//
+	
 	public var PROVIDER_PASSIVE:String;
-	//
+	
 	public var purpose:String;
-	//
+	
 	public var showCalibration:Bool;
-	//
+	
 	public var trackSignificantLocationChange:Bool;
 	
 	public function forwardGeocoder(address:String, _callback:Callback<ForwardGeocodeResponse>):Void;

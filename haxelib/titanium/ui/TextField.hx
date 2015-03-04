@@ -6,79 +6,77 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.TextField")
 extern class TextField extends View
-{	//
+{	
 	public var appearance:Float;
-	//
+	
 	public var attributedHintText:AttributedString;
-	//
+	
 	public var attributedString:AttributedString;
-	//
+	
 	public var autocapitalization:Float;
-	//
+	
 	public var autocorrect:Bool;
-	//
+	
 	public var autoLink:Float;
-	//
+	
 	public var borderStyle:Float;
-	//
+	
 	public var clearButtonMode:Float;
-	//
+	
 	public var clearOnEdit:Bool;
-	//
+	
 	public var color:String;
-	//
+	
 	public var editable:Bool;
-	//
+	
 	public var ellipsize:Bool;
-	//
-	public var enabled:Bool;
-	//
+	
 	public var enableReturnKey:Bool;
-	//
+	
 	public var font:Font;
-	//
+	
 	public var hintText:String;
-	//
+	
 	public var keyboardToolbar:Dynamic;
-	//
+	
 	public var keyboardToolbarColor:String;
-	//
+	
 	public var keyboardToolbarHeight:Float;
-	//
+	
 	public var keyboardType:Float;
-	//
+	
 	public var leftButton:Dynamic;
-	//
+	
 	public var leftButtonMode:Float;
-	//
+	
 	public var leftButtonPadding:Float;
-	//
+	
 	public var maxLength:Float;
-	//
+	
 	public var minimumFontSize:Float;
-	//
+	
 	public var paddingLeft:Float;
-	//
+	
 	public var paddingRight:Float;
-	//
+	
 	public var passwordMask:Bool;
-	//
+	
 	public var returnKeyType:Float;
-	//
+	
 	public var rightButton:Dynamic;
-	//
+	
 	public var rightButtonMode:Float;
-	//
+	
 	public var rightButtonPadding:Float;
-	//
+	
 	public var selection:TextFieldSelectedParams;
-	//
+	
 	public var suppressReturn:Bool;
-	//
+	
 	public var textAlign:Dynamic;
-	//
+	
 	public var value:String;
-	//
+	
 	public var verticalAlign:Dynamic;
 	
 	//public function add(view:View):Void;

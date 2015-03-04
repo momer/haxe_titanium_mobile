@@ -5,9 +5,9 @@ import titanium.xml.Node;
 
 @:native("Titanium.XML.CharacterData")
 extern class CharacterData extends Node
-{	//
+{	
 	public var data:String;
-	//
+	
 	public var length:Float;
 	
 	public function appendData(arg:String):Void;

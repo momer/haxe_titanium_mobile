@@ -6,7 +6,7 @@ import titanium.ui.Window;
 
 @:native("Titanium.UI.iPhone.NavigationGroup")
 extern class NavigationGroup extends View
-{	//
+{	
 	public var window:Window;
 	
 	public function close(window:Window, options:Dynamic):Void;

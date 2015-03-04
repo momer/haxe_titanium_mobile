@@ -10,65 +10,65 @@ import titanium.network.TCPSocket;
 
 @:native("Titanium.Network")
 extern class Network extends Module
-{	//
+{	
 	public var allHTTPCookies:Array<Cookie>;
-	//
+	
 	public var httpURLFormatter:Callback<String>;
-	//
+	
 	public var INADDR_ANY:String;
-	//
+	
 	public var NETWORK_LAN:Float;
-	//
+	
 	public var NETWORK_MOBILE:Float;
-	//
+	
 	public var NETWORK_NONE:Float;
-	//
+	
 	public var NETWORK_UNKNOWN:Float;
-	//
+	
 	public var NETWORK_WIFI:Float;
-	//
+	
 	public var networkType:Float;
-	//
+	
 	public var networkTypeName:String;
-	//
+	
 	public var NOTIFICATION_TYPE_ALERT:Float;
-	//
+	
 	public var NOTIFICATION_TYPE_BADGE:Float;
-	//
+	
 	public var NOTIFICATION_TYPE_NEWSSTAND:Float;
-	//
+	
 	public var NOTIFICATION_TYPE_SOUND:Float;
-	//
+	
 	public var online:Bool;
-	//
+	
 	public var PROGRESS_UNKNOWN:Float;
-	//
+	
 	public var READ_MODE:Float;
-	//
+	
 	public var READ_WRITE_MODE:Float;
-	//
+	
 	public var remoteDeviceUUID:String;
-	//
+	
 	public var remoteNotificationsEnabled:Bool;
-	//
+	
 	public var remoteNotificationTypes:Array<Float>;
-	//
+	
 	public var SOCKET_CLOSED:Float;
-	//
+	
 	public var SOCKET_CONNECTED:Float;
-	//
+	
 	public var SOCKET_ERROR:Float;
-	//
+	
 	public var SOCKET_INITIALIZED:Float;
-	//
+	
 	public var SOCKET_LISTENING:Float;
-	//
+	
 	public var TLS_VERSION_1_0:Float;
-	//
+	
 	public var TLS_VERSION_1_1:Float;
-	//
+	
 	public var TLS_VERSION_1_2:Float;
-	//
+	
 	public var WRITE_MODE:Float;
 	
 	public function addConnectivityListener(_callback:Callback<Dynamic>):Void;

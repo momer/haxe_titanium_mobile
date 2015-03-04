@@ -7,81 +7,81 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.TabGroup")
 extern class TabGroup extends View
-{	//
+{	
 	public var activeTab:Tab;
-	//
+	
 	public var activeTabBackgroundColor:String;
-	//
+	
 	public var activeTabBackgroundDisabledColor:String;
-	//
+	
 	public var activeTabBackgroundDisabledImage:String;
-	//
+	
 	public var activeTabBackgroundFocusedColor:String;
-	//
+	
 	public var activeTabBackgroundFocusedImage:String;
-	//
+	
 	public var activeTabBackgroundImage:String;
-	//
+	
 	public var activeTabBackgroundSelectedColor:String;
-	//
+	
 	public var activeTabBackgroundSelectedImage:String;
-	//
+	
 	public var activeTabIconTint:String;
-	//
+	
 	public var activity:Activity;
-	//
+	
 	public var allowUserCustomization:Bool;
-	//
+	
 	public var barColor:String;
-	//
+	
 	public var editButtonTitle:String;
-	//
+	
 	public var exitOnClose:Bool;
-	//
+	
 	public var navBarHidden:Bool;
-	//
+	
 	public var navTintColor:String;
-	//
+	
 	public var shadowImage:String;
-	//
+	
 	public var smoothScrollOnTabClick:Bool;
-	//
+	
 	public var swipeable:Bool;
-	//
+	
 	public var tabDividerColor:String;
-	//
+	
 	public var tabDividerWidth:Dynamic;
-	//
+	
 	public var tabHeight:Dynamic;
-	//
+	
 	public var tabs:Array<Tab>;
-	//
+	
 	public var tabsAtBottom:Bool;
-	//
+	
 	public var tabsBackgroundColor:String;
-	//
+	
 	public var tabsBackgroundDisabledColor:String;
-	//
+	
 	public var tabsBackgroundDisabledImage:String;
-	//
+	
 	public var tabsBackgroundFocusedColor:String;
-	//
+	
 	public var tabsBackgroundFocusedImage:String;
-	//
+	
 	public var tabsBackgroundImage:String;
-	//
+	
 	public var tabsBackgroundSelectedColor:String;
-	//
+	
 	public var tabsBackgroundSelectedImage:String;
-	//
+	
 	public var tabsTintColor:String;
-	//
+	
 	public var title:String;
-	//
+	
 	public var titleAttributes:TitleAttributesParams;
-	//
+	
 	public var translucent:Bool;
-	//
+	
 	public var windowSoftInputMode:Float;
 	
 	public function addTab(tab:Tab):Void;

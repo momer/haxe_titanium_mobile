@@ -6,7 +6,7 @@ import titanium.xml.Node;
 
 @:native("Titanium.XML.NamedNodeMap")
 extern class NamedNodeMap extends Proxy
-{	//
+{	
 	public var length:Float;
 	
 	public function getLength():Float;

@@ -5,9 +5,9 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.iOS.DocumentViewer")
 extern class DocumentViewer extends View
-{	//
+{	
 	public var name:String;
-	//
+	
 	public var url:String;
 	
 	//public function hide(?options:DocumentViewerOptions):Void;

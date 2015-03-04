@@ -10,29 +10,29 @@ import titanium.Module;
 
 @:native("Titanium.App.iOS")
 extern class IOS extends Module
-{	//
+{	
 	public var applicationOpenSettingsURL:String;
-	//
+	
 	public var BACKGROUNDFETCHINTERVAL_MIN:Float;
-	//
+	
 	public var BACKGROUNDFETCHINTERVAL_NEVER:Float;
-	//
+	
 	public var currentUserNotificationSettings:UserNotificationSettings;
-	//
+	
 	public var EVENT_ACCESSIBILITY_LAYOUT_CHANGED:String;
-	//
+	
 	public var EVENT_ACCESSIBILITY_SCREEN_CHANGED:String;
-	//
+	
 	public var USER_NOTIFICATION_ACTIVATION_MODE_BACKGROUND:Float;
-	//
+	
 	public var USER_NOTIFICATION_ACTIVATION_MODE_FOREGROUND:Float;
-	//
+	
 	public var USER_NOTIFICATION_TYPE_ALERT:Float;
-	//
+	
 	public var USER_NOTIFICATION_TYPE_BADGE:Float;
-	//
+	
 	public var USER_NOTIFICATION_TYPE_NONE:Float;
-	//
+	
 	public var USER_NOTIFICATION_TYPE_SOUND:Float;
 	
 	public function cancelAllLocalNotifications():Void;

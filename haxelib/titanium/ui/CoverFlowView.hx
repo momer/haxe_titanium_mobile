@@ -5,9 +5,9 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.CoverFlowView")
 extern class CoverFlowView extends View
-{	//
+{	
 	public var images:Array<Dynamic>;
-	//
+	
 	public var selected:Float;
 	
 	public function getImages():Array<Dynamic>;

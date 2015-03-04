@@ -6,65 +6,65 @@ import titanium.Proxy;
 
 @:native("Titanium.Contacts.Person")
 extern class Person extends Proxy
-{	//
+{	
 	public var address:Dynamic;
-	//
+	
 	public var alternateBirthday:Dynamic;
-	//
+	
 	public var birthday:String;
-	//
+	
 	public var created:String;
-	//
+	
 	public var date:Dynamic;
-	//
+	
 	public var department:String;
-	//
+	
 	public var email:Dynamic;
-	//
+	
 	public var firstName:String;
-	//
+	
 	public var firstPhonetic:String;
-	//
+	
 	public var fullName:String;
-	//
+	
 	public var id:Float;
-	//
+	
 	public var image:Blob;
-	//
+	
 	public var instantMessage:Dynamic;
-	//
+	
 	public var jobTitle:String;
-	//
+	
 	public var kind:Float;
-	//
+	
 	public var lastName:String;
-	//
+	
 	public var lastPhonetic:String;
-	//
+	
 	public var middleName:String;
-	//
+	
 	public var middlePhonetic:String;
-	//
+	
 	public var modified:String;
-	//
+	
 	public var nickname:String;
-	//
+	
 	public var note:String;
-	//
+	
 	public var organization:String;
-	//
+	
 	public var phone:Dynamic;
-	//
+	
 	public var prefix:String;
-	//
+	
 	public var recordId:Float;
-	//
+	
 	public var relatedNames:Dynamic;
-	//
+	
 	public var socialProfile:Dynamic;
-	//
+	
 	public var suffix:String;
-	//
+	
 	public var url:Dynamic;
 	
 	public function getAddress():Dynamic;

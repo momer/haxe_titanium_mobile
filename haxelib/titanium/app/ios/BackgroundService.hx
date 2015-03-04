@@ -5,7 +5,7 @@ import titanium.Proxy;
 
 @:native("Titanium.App.iOS.BackgroundService")
 extern class BackgroundService extends Proxy
-{	//
+{	
 	public var url:String;
 	
 	public function getUrl():String;

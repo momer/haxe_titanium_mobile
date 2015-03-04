@@ -5,27 +5,27 @@ import titanium.Proxy;
 
 @:native("Titanium.UI.EmailDialog")
 extern class EmailDialog extends Proxy
-{	//
+{	
 	public var barColor:String;
-	//
+	
 	public var bccRecipients:Array<String>;
-	//
+	
 	public var CANCELLED:Float;
-	//
+	
 	public var ccRecipients:Array<String>;
-	//
+	
 	public var FAILED:Float;
-	//
+	
 	public var html:Bool;
-	//
+	
 	public var messageBody:String;
-	//
+	
 	public var SAVED:Float;
-	//
+	
 	public var SENT:Float;
-	//
+	
 	public var subject:String;
-	//
+	
 	public var toRecipients:Array<String>;
 	
 	public function addAttachment(attachment:Dynamic):Void;

@@ -7,12 +7,8 @@ import titanium.xml.NodeList;
 
 @:native("Titanium.XML.Element")
 extern class Element extends Node
-{	//
+{	
 	public var tagName:String;
-	//
-	public var text:String;
-	//
-	public var textContent:String;
 	
 	//public function getText():String;
 	

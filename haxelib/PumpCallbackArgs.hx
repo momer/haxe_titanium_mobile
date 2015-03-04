@@ -6,22 +6,16 @@ import titanium.IOStream;
 
 @:native("PumpCallbackArgs")
 extern class PumpCallbackArgs extends ErrorResponse
-{	//
+{	
 	public var buffer:Buffer;
-	//
+	
 	public var bytesProcessed:Float;
-	//
-	public var code:Float;
-	//
-	public var error:String;
-	//
+	
 	public var errorDescription:String;
-	//
+	
 	public var errorState:Float;
-	//
+	
 	public var source:IOStream;
-	//
-	public var success:Bool;
-	//
+	
 	public var totalBytesProcessed:Float;
 }

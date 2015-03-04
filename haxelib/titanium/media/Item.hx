@@ -6,43 +6,43 @@ import titanium.Proxy;
 
 @:native("Titanium.Media.Item")
 extern class Item extends Proxy
-{	//
+{	
 	public var albumArtist:String;
-	//
+	
 	public var albumTitle:String;
-	//
+	
 	public var albumTrackCount:Float;
-	//
+	
 	public var albumTrackNumber:Float;
-	//
+	
 	public var artist:String;
-	//
+	
 	public var artwork:Blob;
-	//
+	
 	public var composer:String;
-	//
+	
 	public var discCount:Float;
-	//
+	
 	public var discNumber:Float;
-	//
+	
 	public var genre:String;
-	//
+	
 	public var isCompilation:Bool;
-	//
+	
 	public var lyrics:String;
-	//
+	
 	public var mediaType:Float;
-	//
+	
 	public var playbackDuration:Float;
-	//
+	
 	public var playCount:Float;
-	//
+	
 	public var podcastTitle:String;
-	//
+	
 	public var rating:Float;
-	//
+	
 	public var skipCount:Float;
-	//
+	
 	public var title:String;
 	
 	public function getAlbumArtist():String;

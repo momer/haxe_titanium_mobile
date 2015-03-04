@@ -6,9 +6,9 @@ import titanium.Proxy;
 
 @:native("Titanium.Android.Service")
 extern class Service extends Proxy
-{	//
+{	
 	public var intent:Intent;
-	//
+	
 	public var serviceInstanceId:Float;
 	
 	public function getIntent():Intent;

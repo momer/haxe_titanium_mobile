@@ -5,7 +5,7 @@ import titanium.Module;
 
 @:native("Titanium.Analytics")
 extern class Analytics extends Module
-{	//
+{	
 	public var lastEvent:String;
 	
 	public function addEvent(type:String, name:String, ?data:Dynamic):Void;

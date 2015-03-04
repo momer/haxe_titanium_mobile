@@ -16,11 +16,11 @@ import titanium.xml.Text;
 
 @:native("Titanium.XML.Document")
 extern class Document extends Node
-{	//
+{	
 	public var doctype:DocumentType;
-	//
+	
 	public var documentElement:Element;
-	//
+	
 	public var implementation:DOMImplementation;
 	
 	public function createAttribute(name:String):Attr;

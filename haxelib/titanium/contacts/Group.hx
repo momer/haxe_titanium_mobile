@@ -6,9 +6,9 @@ import titanium.Proxy;
 
 @:native("Titanium.Contacts.Group")
 extern class Group extends Proxy
-{	//
+{	
 	public var name:String;
-	//
+	
 	public var recordId:Float;
 	
 	public function add(person:Person):Void;

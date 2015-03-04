@@ -7,13 +7,13 @@ import titanium.Proxy;
 
 @:native("Titanium.Buffer")
 extern class Buffer extends Proxy
-{	//
+{	
 	public var byteOrder:Float;
-	//
+	
 	public var length:Float;
-	//
+	
 	public var type:String;
-	//
+	
 	public var value:Dynamic;
 	
 	public function append(sourceBuffer:Buffer, ?sourceOffset:Float, ?sourceLength:Float):Float;

@@ -6,11 +6,11 @@ import titanium.ui.Window;
 
 @:native("Titanium.UI.iPad.SplitWindow")
 extern class SplitWindow extends Window
-{	//
+{	
 	public var detailView:View;
-	//
+	
 	public var masterView:View;
-	//
+	
 	public var showMasterInPortrait:Bool;
 	
 	public function getDetailView():View;

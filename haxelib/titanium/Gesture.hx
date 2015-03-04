@@ -5,11 +5,11 @@ import titanium.Module;
 
 @:native("Titanium.Gesture")
 extern class Gesture extends Module
-{	//
+{	
 	public var landscape:Bool;
-	//
+	
 	public var orientation:Float;
-	//
+	
 	public var portrait:Bool;
 	
 	public function getLandscape():Bool;

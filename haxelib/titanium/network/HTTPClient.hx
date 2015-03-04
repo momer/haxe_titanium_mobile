@@ -7,71 +7,71 @@ import titanium.xml.Document;
 
 @:native("Titanium.Network.HTTPClient")
 extern class HTTPClient extends Proxy
-{	//
+{	
 	public var allResponseHeaders:String;
-	//
+	
 	public var autoEncodeUrl:Bool;
-	//
+	
 	public var autoRedirect:Bool;
-	//
+	
 	public var cache:Bool;
-	//
+	
 	public var connected:Bool;
-	//
+	
 	public var connectionType:String;
-	//
+	
 	public var domain:String;
-	//
+	
 	public var DONE:Float;
-	//
+	
 	public var enableKeepAlive:Bool;
-	//
+	
 	public var file:String;
-	//
+	
 	public var HEADERS_RECEIVED:Float;
-	//
+	
 	public var LOADING:Float;
-	//
+	
 	public var location:String;
-	//
+	
 	public var ondatastream:Callback<Dynamic>;
-	//
+	
 	public var onerror:Callback<FailureResponse>;
-	//
+	
 	public var onload:Callback<SuccessResponse>;
-	//
+	
 	public var onreadystatechange:Callback<Dynamic>;
-	//
+	
 	public var onsendstream:Callback<Dynamic>;
-	//
+	
 	public var OPENED:Float;
-	//
+	
 	public var password:String;
-	//
+	
 	public var readyState:Float;
-	//
+	
 	public var responseData:Blob;
-	//
+	
 	public var responseText:String;
-	//
+	
 	public var responseXML:Document;
-	//
+	
 	public var securityManager:SecurityManagerProtocol;
-	//
+	
 	public var status:Float;
-	//
+	
 	public var statusText:String;
-	//
+	
 	public var timeout:Float;
-	//
+	
 	public var tlsVersion:Float;
-	//
+	
 	public var UNSENT:Float;
-	//
+	
 	public var username:String;
-	//
+	
 	public var validatesSecureCertificate:Bool;
-	//
+	
 	public var withCredentials:Bool;
 	
 	public function abort():Void;

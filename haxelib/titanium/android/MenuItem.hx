@@ -6,31 +6,31 @@ import titanium.ui.View;
 
 @:native("Titanium.Android.MenuItem")
 extern class MenuItem extends Proxy
-{	//
+{	
 	public var actionView:View;
-	//
+	
 	public var actionViewExpanded:Bool;
-	//
+	
 	public var checkable:Bool;
-	//
+	
 	public var checked:Bool;
-	//
+	
 	public var enabled:Bool;
-	//
+	
 	public var groupId:Float;
-	//
+	
 	public var icon:Dynamic;
-	//
+	
 	public var itemId:Float;
-	//
+	
 	public var order:Float;
-	//
+	
 	public var showAsAction:Float;
-	//
+	
 	public var title:String;
-	//
+	
 	public var titleCondensed:String;
-	//
+	
 	public var visible:Bool;
 	
 	public function collapseActionView():Void;

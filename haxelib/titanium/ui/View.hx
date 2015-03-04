@@ -7,103 +7,103 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.View")
 extern class View extends Proxy
-{	//
+{	
 	public var accessibilityHidden:Bool;
-	//
+	
 	public var accessibilityHint:String;
-	//
+	
 	public var accessibilityLabel:String;
-	//
+	
 	public var accessibilityValue:String;
-	//
+	
 	public var anchorPoint:Point;
-	//
+	
 	public var animatedCenter:Point;
-	//
+	
 	public var backgroundColor:String;
-	//
+	
 	public var backgroundDisabledColor:String;
-	//
+	
 	public var backgroundDisabledImage:String;
-	//
+	
 	public var backgroundFocusedColor:String;
-	//
+	
 	public var backgroundFocusedImage:String;
-	//
+	
 	public var backgroundGradient:Gradient;
-	//
+	
 	public var backgroundImage:String;
-	//
+	
 	public var backgroundLeftCap:Float;
-	//
+	
 	public var backgroundRepeat:Bool;
-	//
+	
 	public var backgroundSelectedColor:String;
-	//
+	
 	public var backgroundSelectedImage:String;
-	//
+	
 	public var backgroundTopCap:Float;
-	//
+	
 	public var borderColor:String;
-	//
+	
 	public var borderRadius:Float;
-	//
+	
 	public var borderWidth:Float;
-	//
+	
 	public var bottom:Dynamic;
-	//
+	
 	public var center:Point;
-	//
+	
 	public var children:Array<View>;
-	//
+	
 	public var clipMode:Float;
-	//
+	
 	public var enabled:Bool;
-	//
+	
 	public var focusable:Bool;
-	//
+	
 	public var height:Dynamic;
-	//
+	
 	public var horizontalWrap:Bool;
-	//
+	
 	public var keepScreenOn:Bool;
-	//
+	
 	public var layout:String;
-	//
+	
 	public var left:Dynamic;
-	//
+	
 	public var opacity:Float;
-	//
+	
 	public var overrideCurrentAnimation:Bool;
-	//
+	
 	public var pullBackgroundColor:String;
-	//
+	
 	public var rect:Dimension;
-	//
+	
 	public var right:Dynamic;
-	//
+	
 	public var size:Dimension;
-	//
+	
 	public var softKeyboardOnFocus:Float;
-	//
+	
 	public var tintColor:String;
-	//
+	
 	public var top:Dynamic;
-	//
+	
 	public var touchEnabled:Bool;
-	//
+	
 	public var transform:Dynamic;
-	//
+	
 	public var viewShadowColor:String;
-	//
+	
 	public var viewShadowOffset:Point;
-	//
+	
 	public var viewShadowRadius:Float;
-	//
+	
 	public var visible:Bool;
-	//
+	
 	public var width:Dynamic;
-	//
+	
 	public var zIndex:Float;
 	
 	public function add(view:View):Void;

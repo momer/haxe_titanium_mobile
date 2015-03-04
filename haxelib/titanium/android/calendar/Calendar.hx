@@ -6,13 +6,13 @@ import titanium.Proxy;
 
 @:native("Titanium.Android.Calendar.Calendar")
 extern class Calendar extends Proxy
-{	//
+{	
 	public var hidden:Bool;
-	//
+	
 	public var id:String;
-	//
+	
 	public var name:String;
-	//
+	
 	public var selected:Bool;
 	
 	public function createEvent(properties:Dynamic):Event;

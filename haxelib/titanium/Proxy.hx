@@ -3,11 +3,11 @@ package titanium;
 
 @:native("Titanium.Proxy")
 extern class Proxy
-{	//
+{	
 	public var apiName:String;
-	//
+	
 	public var bubbleParent:Bool;
-	//
+	
 	public var lifecycleContainer:Dynamic;
 	
 	public function addEventListener(name:String, _callback:Callback<Dynamic>):Void;

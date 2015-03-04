@@ -5,35 +5,35 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.ScrollableView")
 extern class ScrollableView extends View
-{	//
+{	
 	public var cacheSize:Float;
-	//
+	
 	public var clipViews:Bool;
-	//
+	
 	public var currentPage:Float;
-	//
+	
 	public var disableBounce:Bool;
-	//
+	
 	public var hitRect:Dimension;
-	//
+	
 	public var overlayEnabled:Bool;
-	//
+	
 	public var overScrollMode:Float;
-	//
+	
 	public var pagingControlAlpha:Float;
-	//
+	
 	public var pagingControlColor:String;
-	//
+	
 	public var pagingControlHeight:Float;
-	//
+	
 	public var pagingControlOnTop:Bool;
-	//
+	
 	public var pagingControlTimeout:Float;
-	//
+	
 	public var scrollingEnabled:Bool;
-	//
+	
 	public var showPagingControl:Bool;
-	//
+	
 	public var views:Array<View>;
 	
 	public function addView(view:View):Void;

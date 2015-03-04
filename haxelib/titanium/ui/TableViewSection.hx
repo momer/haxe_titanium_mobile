@@ -7,17 +7,17 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.TableViewSection")
 extern class TableViewSection extends Proxy
-{	//
+{	
 	public var footerTitle:String;
-	//
+	
 	public var footerView:View;
-	//
+	
 	public var headerTitle:String;
-	//
+	
 	public var headerView:View;
-	//
+	
 	public var rowCount:Float;
-	//
+	
 	public var rows:Array<TableViewRow>;
 	
 	public function add(row:TableViewRow):Void;

@@ -6,11 +6,11 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.iOS.SnapBehavior")
 extern class SnapBehavior extends Proxy
-{	//
+{	
 	public var damping:Float;
-	//
+	
 	public var item:View;
-	//
+	
 	public var snapPoint:Point;
 	
 	public function getDamping():Float;

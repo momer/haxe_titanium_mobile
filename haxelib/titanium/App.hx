@@ -5,47 +5,47 @@ import titanium.Module;
 
 @:native("Titanium.App")
 extern class App extends Module
-{	//
+{	
 	public var accessibilityEnabled:Bool;
-	//
+	
 	public var analytics:Bool;
-	//
+	
 	public var copyright:String;
-	//
+	
 	public var deployType:String;
-	//
+	
 	public var description:String;
-	//
+	
 	public var disableNetworkActivityIndicator:Bool;
-	//
+	
 	public var EVENT_ACCESSIBILITY_ANNOUNCEMENT:String;
-	//
+	
 	public var EVENT_ACCESSIBILITY_CHANGED:String;
-	//
+	
 	public var forceSplashAsSnapshot:Bool;
-	//
+	
 	public var guid:String;
-	//
+	
 	public var id:String;
-	//
+	
 	public var idleTimerDisabled:Bool;
-	//
+	
 	public var installId:String;
-	//
+	
 	public var keyboardVisible:Bool;
-	//
+	
 	public var name:String;
-	//
+	
 	public var proximityDetection:Bool;
-	//
+	
 	public var proximityState:Bool;
-	//
+	
 	public var publisher:String;
-	//
+	
 	public var sessionId:String;
-	//
+	
 	public var url:String;
-	//
+	
 	public var version:String;
 	
 	public function fireSystemEvent(eventName:String, ?param:Dynamic):Void;

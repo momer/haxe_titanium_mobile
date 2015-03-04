@@ -5,9 +5,9 @@ import titanium.Proxy;
 
 @:native("Titanium.XML.ProcessingInstruction")
 extern class ProcessingInstruction extends Proxy
-{	//
+{	
 	public var data:String;
-	//
+	
 	public var target:String;
 	
 	public function getData():String;

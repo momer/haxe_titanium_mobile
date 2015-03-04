@@ -6,23 +6,23 @@ import titanium.Module;
 
 @:native("Titanium.Facebook")
 extern class Facebook extends Module
-{	//
+{	
 	public var accessToken:String;
-	//
+	
 	public var appid:String;
-	//
+	
 	public var BUTTON_STYLE_NORMAL:Float;
-	//
+	
 	public var BUTTON_STYLE_WIDE:Float;
-	//
+	
 	public var expirationDate:Date;
-	//
+	
 	public var forceDialogAuth:Bool;
-	//
+	
 	public var loggedIn:Bool;
-	//
+	
 	public var permissions:Array<String>;
-	//
+	
 	public var uid:String;
 	
 	public function authorize():Void;

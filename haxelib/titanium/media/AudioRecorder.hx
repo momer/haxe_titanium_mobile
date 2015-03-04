@@ -6,15 +6,15 @@ import titanium.Proxy;
 
 @:native("Titanium.Media.AudioRecorder")
 extern class AudioRecorder extends Proxy
-{	//
+{	
 	public var compression:Float;
-	//
+	
 	public var format:Float;
-	//
+	
 	public var paused:Bool;
-	//
+	
 	public var recording:Bool;
-	//
+	
 	public var stopped:Bool;
 	
 	public function getCompression():Float;

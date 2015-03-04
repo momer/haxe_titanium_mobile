@@ -7,13 +7,13 @@ import titanium.Proxy;
 
 @:native("Titanium.Database.DB")
 extern class DB extends Proxy
-{	//
+{	
 	public var file:File;
-	//
+	
 	public var lastInsertRowId:Float;
-	//
+	
 	public var name:String;
-	//
+	
 	public var rowsAffected:Float;
 	
 	public function close():Void;

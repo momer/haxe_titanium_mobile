@@ -5,15 +5,15 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.Toolbar")
 extern class Toolbar extends View
-{	//
+{	
 	public var barColor:String;
-	//
+	
 	public var borderBottom:Bool;
-	//
+	
 	public var borderTop:Bool;
-	//
+	
 	public var items:Array<View>;
-	//
+	
 	public var translucent:Bool;
 	
 	public function getBarColor():String;

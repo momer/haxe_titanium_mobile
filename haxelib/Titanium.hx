@@ -7,13 +7,13 @@ import titanium.Proxy;
 
 @:native("Titanium")
 extern class Titanium extends Module
-{	//
+{	
 	public var buildDate:String;
-	//
+	
 	public var buildHash:String;
-	//
+	
 	public var userAgent:String;
-	//
+	
 	public var version:String;
 	
 	public function createBuffer(params:CreateBufferArgs):Buffer;

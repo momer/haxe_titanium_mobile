@@ -5,11 +5,11 @@ import titanium.Proxy;
 
 @:native("Titanium.UI.iOS.Attribute")
 extern class Attribute extends Proxy
-{	//
+{	
 	public var range:Array<Float>;
-	//
+	
 	public var type:Float;
-	//
+	
 	public var value:Float;
 	
 	public function getRange():Array<Float>;

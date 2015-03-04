@@ -5,9 +5,9 @@ import titanium.Proxy;
 
 @:native("Titanium.UI.AttributedString")
 extern class AttributedString extends Proxy
-{	//
+{	
 	public var attributes:Array<Attribute>;
-	//
+	
 	public var text:String;
 	
 	public function addAttribute(attribute:Attribute):Void;

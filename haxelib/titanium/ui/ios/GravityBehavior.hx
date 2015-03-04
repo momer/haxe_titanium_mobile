@@ -6,13 +6,13 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.iOS.GravityBehavior")
 extern class GravityBehavior extends Proxy
-{	//
+{	
 	public var angle:Float;
-	//
+	
 	public var gravityDirection:Point;
-	//
+	
 	public var items:Array<View>;
-	//
+	
 	public var magnitude:Float;
 	
 	public function addItem(item:View):Void;

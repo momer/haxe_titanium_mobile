@@ -7,13 +7,13 @@ import titanium.Module;
 
 @:native("Titanium.App.Android")
 extern class Android extends Module
-{	//
+{	
 	public var appVersionCode:Float;
-	//
+	
 	public var appVersionName:String;
-	//
+	
 	public var launchIntent:Intent;
-	//
+	
 	public var R:R;
 	
 	public function getAppVersionCode():Float;

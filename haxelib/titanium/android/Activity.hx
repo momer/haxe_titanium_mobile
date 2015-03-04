@@ -7,29 +7,29 @@ import titanium.Proxy;
 
 @:native("Titanium.Android.Activity")
 extern class Activity extends Proxy
-{	//
+{	
 	public var actionBar:ActionBar;
-	//
+	
 	public var intent:Intent;
-	//
+	
 	public var onCreate:Callback<Dynamic>;
-	//
+	
 	public var onCreateOptionsMenu:Callback<Dynamic>;
-	//
+	
 	public var onDestroy:Callback<Dynamic>;
-	//
+	
 	public var onPause:Callback<Dynamic>;
-	//
+	
 	public var onPrepareOptionsMenu:Callback<Dynamic>;
-	//
+	
 	public var onRestart:Callback<Dynamic>;
-	//
+	
 	public var onResume:Callback<Dynamic>;
-	//
+	
 	public var onStart:Callback<Dynamic>;
-	//
+	
 	public var onStop:Callback<Dynamic>;
-	//
+	
 	public var requestedOrientation:Float;
 	
 	public function finish():Void;

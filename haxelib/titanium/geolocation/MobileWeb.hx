@@ -5,15 +5,15 @@ import titanium.Module;
 
 @:native("Titanium.Geolocation.MobileWeb")
 extern class MobileWeb extends Module
-{	//
+{	
 	public var forwardGeocoderTimeout:Float;
-	//
+	
 	public var locationTimeout:Float;
-	//
+	
 	public var maximumHeadingAge:Float;
-	//
+	
 	public var maximumLocationAge:Float;
-	//
+	
 	public var reverseGeocoderTimeout:Float;
 	
 	public function getForwardGeocoderTimeout():Float;

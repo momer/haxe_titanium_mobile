@@ -6,27 +6,27 @@ import titanium.ui.View;
 
 @:native("Titanium.UI.AlertDialog")
 extern class AlertDialog extends Proxy
-{	//
+{	
 	public var androidView:View;
-	//
+	
 	public var buttonNames:Array<String>;
-	//
+	
 	public var cancel:Float;
-	//
+	
 	public var message:String;
-	//
+	
 	public var messageid:String;
-	//
+	
 	public var ok:String;
-	//
+	
 	public var okid:String;
-	//
+	
 	public var persistent:Bool;
-	//
+	
 	public var style:Float;
-	//
+	
 	public var title:String;
-	//
+	
 	public var titleid:String;
 	
 	public function getButtonNames():Array<String>;

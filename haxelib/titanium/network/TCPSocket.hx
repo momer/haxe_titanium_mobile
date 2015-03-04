@@ -5,15 +5,15 @@ import titanium.Proxy;
 
 @:native("Titanium.Network.TCPSocket")
 extern class TCPSocket extends Proxy
-{	//
+{	
 	public var hostName:String;
-	//
+	
 	public var isValid:Bool;
-	//
+	
 	public var mode:Float;
-	//
+	
 	public var port:Float;
-	//
+	
 	public var stripTerminator:Bool;
 	
 	public function close():Void;
