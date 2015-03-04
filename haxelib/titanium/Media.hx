@@ -370,11 +370,11 @@ extern class Media extends Module
 	
 	public function setAudioSessionMode(audioSessionMode:Float):Void;
 	
-	public function setAvailableCameraMediaTypes(availableCameraMediaTypes:Array<Dynamic>):Void;
+	public function setAvailableCameraMediaTypes(availableCameraMediaTypes:Array<Object>):Void;
 	
-	public function setAvailablePhotoGalleryMediaTypes(availablePhotoGalleryMediaTypes:Array<Dynamic>):Void;
+	public function setAvailablePhotoGalleryMediaTypes(availablePhotoGalleryMediaTypes:Array<Object>):Void;
 	
-	public function setAvailablePhotoMediaTypes(availablePhotoMediaTypes:Array<Dynamic>):Void;
+	public function setAvailablePhotoMediaTypes(availablePhotoMediaTypes:Array<Object>):Void;
 	
 	public function setAverageMicrophonePower(averageMicrophonePower:Float):Void;
 	
@@ -398,5 +398,5 @@ extern class Media extends Module
 	
 	public function takeScreenshot(_callback:Callback<ScreenshotResult>):Void;
 	
-	public function vibrate(?pattern:Array<Float>):Void;
+	public function vibrate(?pattern:Array<Number>):Void;
 }

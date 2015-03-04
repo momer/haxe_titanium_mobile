@@ -89,9 +89,9 @@ extern class TableView extends View
 	
 	//public function setBackgroundColor(backgroundColor:String):Void;
 	
-	public function appendRow(row:Titanium.UI.TableViewRow/Dictionary<TableViewRow>, ?animation:TableViewAnimationProperties):Void;
+	public function appendRow(row:Dynamic, ?animation:TableViewAnimationProperties):Void;
 	
-	public function appendSection(section:Titanium.UI.TableViewSection/Dictionary<TableViewSection>, ?animation:TableViewAnimationProperties):Void;
+	public function appendSection(section:Dynamic, ?animation:TableViewAnimationProperties):Void;
 	
 	public function deleteRow(row:Dynamic, ?animation:TableViewAnimationProperties):Void;
 	
@@ -173,13 +173,13 @@ extern class TableView extends View
 	
 	public function getStyle():Float;
 	
-	public function insertRowAfter(index:Float, row:Titanium.UI.TableViewRow/Dictionary<TableViewRow>, ?animation:TableViewAnimationProperties):Void;
+	public function insertRowAfter(index:Float, row:Dynamic, ?animation:TableViewAnimationProperties):Void;
 	
-	public function insertRowBefore(index:Float, row:Titanium.UI.TableViewRow/Dictionary<TableViewRow>, ?animation:TableViewAnimationProperties):Void;
+	public function insertRowBefore(index:Float, row:Dynamic, ?animation:TableViewAnimationProperties):Void;
 	
-	public function insertSectionAfter(index:Float, section:Titanium.UI.TableViewSection/Dictionary<TableViewSection>, ?animation:TableViewAnimationProperties):Void;
+	public function insertSectionAfter(index:Float, section:Dynamic, ?animation:TableViewAnimationProperties):Void;
 	
-	public function insertSectionBefore(index:Float, section:Titanium.UI.TableViewSection/Dictionary<TableViewSection>, ?animation:TableViewAnimationProperties):Void;
+	public function insertSectionBefore(index:Float, section:Dynamic, ?animation:TableViewAnimationProperties):Void;
 	
 	public function scrollToIndex(index:Float, ?animation:TableViewAnimationProperties):Void;
 	
@@ -193,7 +193,7 @@ extern class TableView extends View
 	
 	public function setContentInsets(edgeInsets:TableViewEdgeInsets, ?animated:TableViewContentInsetOption):Void;
 	
-	public function setData(data:Dictionary/Array<TableViewRow>):Void;
+	public function setData(data:Dynamic):Void;
 	
 	public function setEditable(editable:Bool):Void;
 	

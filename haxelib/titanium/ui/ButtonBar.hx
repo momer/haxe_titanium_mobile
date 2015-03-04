@@ -20,7 +20,7 @@ extern class ButtonBar extends View
 	
 	public function setIndex(index:Float):Void;
 	
-	public function setLabels(labels:Array<String>):Void;
+	public function setLabels(labels:Dynamic):Void;
 	
 	public function setStyle(style:Float):Void;
 }

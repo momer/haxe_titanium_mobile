@@ -197,7 +197,7 @@ extern class TextField extends View
 	
 	public function setHintText(hintText:String):Void;
 	
-	public function setKeyboardToolbar(keyboardToolbar:Array<View>):Void;
+	public function setKeyboardToolbar(keyboardToolbar:Dynamic):Void;
 	
 	public function setKeyboardToolbarColor(keyboardToolbarColor:String):Void;
 	

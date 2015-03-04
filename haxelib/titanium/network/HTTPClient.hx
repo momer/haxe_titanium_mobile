@@ -34,15 +34,15 @@ extern class HTTPClient extends Proxy
 	//
 	public var location:String;
 	//
-	public var ondatastream:Callback<Dynamic>;
+	public var ondatastream:Callback<Object>;
 	//
 	public var onerror:Callback<FailureResponse>;
 	//
 	public var onload:Callback<SuccessResponse>;
 	//
-	public var onreadystatechange:Callback<Dynamic>;
+	public var onreadystatechange:Callback<Object>;
 	//
-	public var onsendstream:Callback<Dynamic>;
+	public var onsendstream:Callback<Object>;
 	//
 	public var OPENED:Float;
 	//
@@ -104,15 +104,15 @@ extern class HTTPClient extends Proxy
 	
 	public function getLocation():String;
 	
-	public function getOndatastream():Callback<Dynamic>;
+	public function getOndatastream():Callback<Object>;
 	
 	public function getOnerror():Callback<FailureResponse>;
 	
 	public function getOnload():Callback<SuccessResponse>;
 	
-	public function getOnreadystatechange():Callback<Dynamic>;
+	public function getOnreadystatechange():Callback<Object>;
 	
-	public function getOnsendstream():Callback<Dynamic>;
+	public function getOnsendstream():Callback<Object>;
 	
 	public function getPassword():String;
 	
@@ -158,15 +158,15 @@ extern class HTTPClient extends Proxy
 	
 	public function setFile(file:String):Void;
 	
-	public function setOndatastream(ondatastream:Callback<Dynamic>):Void;
+	public function setOndatastream(ondatastream:Callback<Object>):Void;
 	
 	public function setOnerror(onerror:Callback<FailureResponse>):Void;
 	
 	public function setOnload(onload:Callback<SuccessResponse>):Void;
 	
-	public function setOnreadystatechange(onreadystatechange:Callback<Dynamic>):Void;
+	public function setOnreadystatechange(onreadystatechange:Callback<Object>):Void;
 	
-	public function setOnsendstream(onsendstream:Callback<Dynamic>):Void;
+	public function setOnsendstream(onsendstream:Callback<Object>):Void;
 	
 	public function setPassword(password:String):Void;
 	

@@ -2,7 +2,6 @@ package titanium.ui;
 
 import titanium.Blob;
 import titanium.Proxy;
-import titanium.ui.Animation;
 import titanium.ui.View;
 
 
@@ -109,7 +108,7 @@ extern class View extends Proxy
 	
 	public function add(view:View):Void;
 	
-	public function animate(animation:Titanium.UI.Animation/Dictionary<Animation>, _callback:Callback<Dynamic>):Void;
+	public function animate(animation:Dynamic, _callback:Callback<Object>):Void;
 	
 	public function convertPointToView(point:Point, destinationView:View):Point;
 	

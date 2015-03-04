@@ -16,7 +16,7 @@ extern class CoverFlowView extends View
 	
 	public function setImage(index:Float, image:Dynamic):Void;
 	
-	public function setImages(images:Array<String>):Void;
+	public function setImages(images:Dynamic):Void;
 	
 	public function setSelected(selected:Float):Void;
 }

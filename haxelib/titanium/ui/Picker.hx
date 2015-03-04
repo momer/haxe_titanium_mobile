@@ -1,7 +1,6 @@
 package titanium.ui;
 
 import titanium.ui.PickerColumn;
-import titanium.ui.PickerRow;
 import titanium.ui.View;
 
 
@@ -38,7 +37,7 @@ extern class Picker extends View
 	//
 	public var visibleItems:Float;
 	
-	//public function add(data:Array<PickerRow>):Void;
+	//public function add(data:Dynamic):Void;
 	
 	//public function getBackgroundColor():String;
 	

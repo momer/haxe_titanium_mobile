@@ -10,5 +10,5 @@ extern class PreviewImageOptions
 	//
 	public var image:Blob;
 	//
-	public var success:Callback<Dynamic>;
+	public var success:Callback<Object>;
 }

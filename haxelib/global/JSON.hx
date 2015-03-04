@@ -6,5 +6,5 @@ extern class JSON
 {	
 	public function parse(text:String, reviver:Callback):Dynamic;
 	
-	public function stringify(value:Dynamic, ?replacer:Callback/Array<String>, ?space:Dynamic):String;
+	public function stringify(value:Dynamic, ?replacer:Dynamic, ?space:Dynamic):String;
 }

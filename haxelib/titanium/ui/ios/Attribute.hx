@@ -18,7 +18,7 @@ extern class Attribute extends Proxy
 	
 	public function getValue():Float;
 	
-	public function setRange(range:Array<Float>):Void;
+	public function setRange(range:Array<Number>):Void;
 	
 	public function setType(type:Float):Void;
 	
