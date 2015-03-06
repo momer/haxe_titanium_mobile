@@ -6,7 +6,7 @@ import titanium.app.ios.UserNotificationCategory;
 @:native("UserNotificationSettings")
 extern class UserNotificationSettings
 {	
-	public var categories:Array<UserNotificationCategory>;
+	public static var categories:Array<UserNotificationCategory>;
 	
-	public var types:Array<Float>;
+	public static var types:Array<Float>;
 }

@@ -7,55 +7,55 @@ import titanium.Proxy;
 @:native("Titanium.Media.MusicPlayer")
 extern class MusicPlayer extends Proxy
 {	
-	public var currentPlaybackTime:Float;
+	public static var currentPlaybackTime:Float;
 	
-	public var nowPlaying:Item;
+	public static var nowPlaying:Item;
 	
-	public var playbackState:Float;
+	public static var playbackState:Float;
 	
-	public var repeatMode:Float;
+	public static var repeatMode:Float;
 	
-	public var shuffleMode:Float;
+	public static var shuffleMode:Float;
 	
-	public var volume:Float;
+	public static var volume:Float;
 	
-	public function getCurrentPlaybackTime():Float;
+	public static function getCurrentPlaybackTime():Float;
 	
-	public function getNowPlaying():Item;
+	public static function getNowPlaying():Item;
 	
-	public function getPlaybackState():Float;
+	public static function getPlaybackState():Float;
 	
-	public function getRepeatMode():Float;
+	public static function getRepeatMode():Float;
 	
-	public function getShuffleMode():Float;
+	public static function getShuffleMode():Float;
 	
-	public function getVolume():Float;
+	public static function getVolume():Float;
 	
-	public function pause():Void;
+	public static function pause():Void;
 	
-	public function play():Void;
+	public static function play():Void;
 	
-	public function seekBackward():Void;
+	public static function seekBackward():Void;
 	
-	public function seekForward():Void;
+	public static function seekForward():Void;
 	
-	public function setCurrentPlaybackTime(currentPlaybackTime:Float):Void;
+	public static function setCurrentPlaybackTime(currentPlaybackTime:Float):Void;
 	
-	public function setQueue(queue:Dynamic):Void;
+	public static function setQueue(queue:Dynamic):Void;
 	
-	public function setRepeatMode(repeatMode:Float):Void;
+	public static function setRepeatMode(repeatMode:Float):Void;
 	
-	public function setShuffleMode(shuffleMode:Float):Void;
+	public static function setShuffleMode(shuffleMode:Float):Void;
 	
-	public function setVolume(volume:Float):Void;
+	public static function setVolume(volume:Float):Void;
 	
-	public function skipToBeginning():Void;
+	public static function skipToBeginning():Void;
 	
-	public function skipToNext():Void;
+	public static function skipToNext():Void;
 	
-	public function skipToPrevious():Void;
+	public static function skipToPrevious():Void;
 	
-	public function stop():Void;
+	public static function stop():Void;
 	
-	public function stopSeeking():Void;
+	public static function stopSeeking():Void;
 }

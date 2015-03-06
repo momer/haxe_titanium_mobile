@@ -6,23 +6,23 @@ import titanium.xml.Node;
 @:native("Titanium.XML.CharacterData")
 extern class CharacterData extends Node
 {	
-	public var data:String;
+	public static var data:String;
 	
-	public var length:Float;
+	public static var length:Float;
 	
-	public function appendData(arg:String):Void;
+	public static function appendData(arg:String):Void;
 	
-	public function deleteData(offset:Float, count:Float):Void;
+	public static function deleteData(offset:Float, count:Float):Void;
 	
-	public function getData():String;
+	public static function getData():String;
 	
-	public function getLength():Float;
+	public static function getLength():Float;
 	
-	public function insertData(offset:Float, arg:String):Void;
+	public static function insertData(offset:Float, arg:String):Void;
 	
-	public function replaceData(offset:Float, count:Float, arg:String):Void;
+	public static function replaceData(offset:Float, count:Float, arg:String):Void;
 	
-	public function setData(data:String):Void;
+	public static function setData(data:String):Void;
 	
-	public function substringData(offset:Float, count:Float):String;
+	public static function substringData(offset:Float, count:Float):String;
 }

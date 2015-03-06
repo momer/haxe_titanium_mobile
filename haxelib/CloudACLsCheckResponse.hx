@@ -4,5 +4,5 @@ package ;
 @:native("CloudACLsCheckResponse")
 extern class CloudACLsCheckResponse extends CloudResponse
 {	
-	public var permission:Dynamic;
+	public static var permission:Dynamic;
 }

@@ -8,17 +8,17 @@ import titanium.network.socket.UDP;
 @:native("Titanium.Network.Socket")
 extern class Socket extends Module
 {	
-	public var CLOSED:Float;
+	public static var CLOSED:Float;
 	
-	public var CONNECTED:Float;
+	public static var CONNECTED:Float;
 	
-	public var ERROR:Float;
+	public static var ERROR:Float;
 	
-	public var INITIALIZED:Float;
+	public static var INITIALIZED:Float;
 	
-	public var LISTENING:Float;
+	public static var LISTENING:Float;
 	
-	public function createTCP(?params:Dynamic):TCP;
+	public static function createTCP(?params:Dynamic):TCP;
 	
-	public function createUDP(?params:Dynamic):UDP;
+	public static function createUDP(?params:Dynamic):UDP;
 }

@@ -7,5 +7,5 @@ import titanium.ui.mobileweb.NavigationGroup;
 @:native("Titanium.UI.MobileWeb")
 extern class MobileWeb extends Module
 {	
-	public function createNavigationGroup(?parameters:Dynamic):NavigationGroup;
+	public static function createNavigationGroup(?parameters:Dynamic):NavigationGroup;
 }

@@ -6,9 +6,9 @@ import titanium.Blob;
 @:native("PreviewImageOptions")
 extern class PreviewImageOptions
 {	
-	public var error:Callback<PreviewImageError>;
+	public static var error:Callback<PreviewImageError>;
 	
-	public var image:Blob;
+	public static var image:Blob;
 	
-	public var success:Callback<Dynamic>;
+	public static var success:Callback<Dynamic>;
 }

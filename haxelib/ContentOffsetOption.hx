@@ -4,5 +4,5 @@ package ;
 @:native("contentOffsetOption")
 extern class ContentOffsetOption
 {	
-	public var animated:Bool;
+	public static var animated:Bool;
 }

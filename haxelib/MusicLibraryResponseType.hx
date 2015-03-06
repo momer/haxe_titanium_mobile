@@ -6,9 +6,9 @@ import titanium.media.Item;
 @:native("MusicLibraryResponseType")
 extern class MusicLibraryResponseType
 {	
-	public var items:Array<Item>;
+	public static var items:Array<Item>;
 	
-	public var representative:Item;
+	public static var representative:Item;
 	
-	public var types:Float;
+	public static var types:Float;
 }

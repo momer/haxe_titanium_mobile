@@ -6,11 +6,11 @@ import titanium.Buffer;
 @:native("DecodeStringDict")
 extern class DecodeStringDict
 {	
-	public var charset:String;
+	public static var charset:String;
 	
-	public var length:Float;
+	public static var length:Float;
 	
-	public var position:Float;
+	public static var position:Float;
 	
-	public var source:Buffer;
+	public static var source:Buffer;
 }

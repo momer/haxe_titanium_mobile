@@ -4,5 +4,5 @@ package ;
 @:native("CloudStatusesResponse")
 extern class CloudStatusesResponse extends CloudResponse
 {	
-	public var statuses:Array<Dynamic>;
+	public static var statuses:Array<Dynamic>;
 }

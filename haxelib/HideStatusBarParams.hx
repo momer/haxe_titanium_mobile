@@ -4,7 +4,7 @@ package ;
 @:native("hideStatusBarParams")
 extern class HideStatusBarParams
 {	
-	public var animated:Bool;
+	public static var animated:Bool;
 	
-	public var animationStyle:Float;
+	public static var animationStyle:Float;
 }

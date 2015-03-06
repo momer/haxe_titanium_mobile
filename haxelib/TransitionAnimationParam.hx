@@ -6,9 +6,9 @@ import titanium.ui.Animation;
 @:native("transitionAnimationParam")
 extern class TransitionAnimationParam
 {	
-	public var duration:Float;
+	public static var duration:Float;
 	
-	public var tranistionTo:Animation;
+	public static var tranistionTo:Animation;
 	
-	public var transitionFrom:Animation;
+	public static var transitionFrom:Animation;
 }

@@ -8,27 +8,27 @@ import titanium.Proxy;
 @:native("Titanium")
 extern class Titanium extends Module
 {	
-	public var buildDate:String;
+	public static var buildDate:String;
 	
-	public var buildHash:String;
+	public static var buildHash:String;
 	
-	public var userAgent:String;
+	public static var userAgent:String;
 	
-	public var version:String;
+	public static var version:String;
 	
-	public function createBuffer(params:CreateBufferArgs):Buffer;
+	public static function createBuffer(params:CreateBufferArgs):Buffer;
 	
-	public function createProxy(?parameters:Dynamic):Proxy;
+	public static function createProxy(?parameters:Dynamic):Proxy;
 	
-	public function getBuildDate():String;
+	public static function getBuildDate():String;
 	
-	public function getBuildHash():String;
+	public static function getBuildHash():String;
 	
-	public function getUserAgent():String;
+	public static function getUserAgent():String;
 	
-	public function getVersion():String;
+	public static function getVersion():String;
 	
-	public function include(name:String):Void;
+	public static function include(name:String):Void;
 	
-	public function setUserAgent(userAgent:String):Void;
+	public static function setUserAgent(userAgent:String):Void;
 }

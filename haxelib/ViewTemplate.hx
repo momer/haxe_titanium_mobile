@@ -4,13 +4,13 @@ package ;
 @:native("ViewTemplate")
 extern class ViewTemplate
 {	
-	public var bindId:String;
+	public static var bindId:String;
 	
-	public var childTemplates:Array<ViewTemplate>;
+	public static var childTemplates:Array<ViewTemplate>;
 	
-	public var events:Dynamic;
+	public static var events:Dynamic;
 	
-	public var properties:Dynamic;
+	public static var properties:Dynamic;
 	
-	public var type:String;
+	public static var type:String;
 }

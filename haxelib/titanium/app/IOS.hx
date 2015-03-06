@@ -11,51 +11,51 @@ import titanium.Module;
 @:native("Titanium.App.iOS")
 extern class IOS extends Module
 {	
-	public var applicationOpenSettingsURL:String;
+	public static var applicationOpenSettingsURL:String;
 	
-	public var BACKGROUNDFETCHINTERVAL_MIN:Float;
+	public static var BACKGROUNDFETCHINTERVAL_MIN:Float;
 	
-	public var BACKGROUNDFETCHINTERVAL_NEVER:Float;
+	public static var BACKGROUNDFETCHINTERVAL_NEVER:Float;
 	
-	public var currentUserNotificationSettings:UserNotificationSettings;
+	public static var currentUserNotificationSettings:UserNotificationSettings;
 	
-	public var EVENT_ACCESSIBILITY_LAYOUT_CHANGED:String;
+	public static var EVENT_ACCESSIBILITY_LAYOUT_CHANGED:String;
 	
-	public var EVENT_ACCESSIBILITY_SCREEN_CHANGED:String;
+	public static var EVENT_ACCESSIBILITY_SCREEN_CHANGED:String;
 	
-	public var USER_NOTIFICATION_ACTIVATION_MODE_BACKGROUND:Float;
+	public static var USER_NOTIFICATION_ACTIVATION_MODE_BACKGROUND:Float;
 	
-	public var USER_NOTIFICATION_ACTIVATION_MODE_FOREGROUND:Float;
+	public static var USER_NOTIFICATION_ACTIVATION_MODE_FOREGROUND:Float;
 	
-	public var USER_NOTIFICATION_TYPE_ALERT:Float;
+	public static var USER_NOTIFICATION_TYPE_ALERT:Float;
 	
-	public var USER_NOTIFICATION_TYPE_BADGE:Float;
+	public static var USER_NOTIFICATION_TYPE_BADGE:Float;
 	
-	public var USER_NOTIFICATION_TYPE_NONE:Float;
+	public static var USER_NOTIFICATION_TYPE_NONE:Float;
 	
-	public var USER_NOTIFICATION_TYPE_SOUND:Float;
+	public static var USER_NOTIFICATION_TYPE_SOUND:Float;
 	
-	public function cancelAllLocalNotifications():Void;
+	public static function cancelAllLocalNotifications():Void;
 	
-	public function cancelLocalNotification(id:Dynamic):Void;
+	public static function cancelLocalNotification(id:Dynamic):Void;
 	
-	public function createUserDefaults(parameters:Dynamic):UserDefaults;
+	public static function createUserDefaults(parameters:Dynamic):UserDefaults;
 	
-	public function createUserNotificationAction(?parameters:Dynamic):UserNotificationAction;
+	public static function createUserNotificationAction(?parameters:Dynamic):UserNotificationAction;
 	
-	public function createUserNotificationCategory(?parameters:Dynamic):UserNotificationCategory;
+	public static function createUserNotificationCategory(?parameters:Dynamic):UserNotificationCategory;
 	
-	public function endBackgroundHandler(handlerID:String):Void;
+	public static function endBackgroundHandler(handlerID:String):Void;
 	
-	public function getApplicationOpenSettingsURL():String;
+	public static function getApplicationOpenSettingsURL():String;
 	
-	public function getCurrentUserNotificationSettings():UserNotificationSettings;
+	public static function getCurrentUserNotificationSettings():UserNotificationSettings;
 	
-	public function registerBackgroundService(params:Dynamic):BackgroundService;
+	public static function registerBackgroundService(params:Dynamic):BackgroundService;
 	
-	public function registerUserNotificationSettings(params:UserNotificationSettings):Void;
+	public static function registerUserNotificationSettings(params:UserNotificationSettings):Void;
 	
-	public function scheduleLocalNotification(params:NotificationParams):LocalNotification;
+	public static function scheduleLocalNotification(params:NotificationParams):LocalNotification;
 	
-	public function setMinimumBackgroundFetchInterval(fetchInterval:Float):Void;
+	public static function setMinimumBackgroundFetchInterval(fetchInterval:Float):Void;
 }

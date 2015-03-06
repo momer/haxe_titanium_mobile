@@ -4,5 +4,5 @@ package ;
 @:native("CloudKeyValuesResponse")
 extern class CloudKeyValuesResponse extends CloudResponse
 {	
-	public var keyvalues:Array<Dynamic>;
+	public static var keyvalues:Array<Dynamic>;
 }

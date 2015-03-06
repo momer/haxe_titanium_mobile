@@ -7,9 +7,9 @@ import titanium.xml.Node;
 @:native("Titanium.XML.NodeList")
 extern class NodeList extends Proxy
 {	
-	public var length:Float;
+	public static var length:Float;
 	
-	public function getLength():Float;
+	public static function getLength():Float;
 	
-	public function item(index:Float):Node;
+	public static function item(index:Float):Node;
 }

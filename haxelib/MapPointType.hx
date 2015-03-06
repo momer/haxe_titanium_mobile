@@ -4,7 +4,7 @@ package ;
 @:native("MapPointType")
 extern class MapPointType
 {	
-	public var latitude:Float;
+	public static var latitude:Float;
 	
-	public var longitude:Float;
+	public static var longitude:Float;
 }

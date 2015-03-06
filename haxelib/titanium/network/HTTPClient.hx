@@ -8,6 +8,16 @@ import titanium.xml.Document;
 @:native("Titanium.Network.HTTPClient")
 extern class HTTPClient extends Proxy
 {	
+	public static var DONE:Float;
+	
+	public static var HEADERS_RECEIVED:Float;
+	
+	public static var LOADING:Float;
+	
+	public static var OPENED:Float;
+	
+	public static var UNSENT:Float;
+	
 	public var allResponseHeaders:String;
 	
 	public var autoEncodeUrl:Bool;
@@ -22,15 +32,9 @@ extern class HTTPClient extends Proxy
 	
 	public var domain:String;
 	
-	public var DONE:Float;
-	
 	public var enableKeepAlive:Bool;
 	
 	public var file:String;
-	
-	public var HEADERS_RECEIVED:Float;
-	
-	public var LOADING:Float;
 	
 	public var location:String;
 	
@@ -43,8 +47,6 @@ extern class HTTPClient extends Proxy
 	public var onreadystatechange:Callback<Dynamic>;
 	
 	public var onsendstream:Callback<Dynamic>;
-	
-	public var OPENED:Float;
 	
 	public var password:String;
 	
@@ -65,8 +67,6 @@ extern class HTTPClient extends Proxy
 	public var timeout:Float;
 	
 	public var tlsVersion:Float;
-	
-	public var UNSENT:Float;
 	
 	public var username:String;
 	

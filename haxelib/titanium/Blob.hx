@@ -8,51 +8,51 @@ import titanium.Proxy;
 @:native("Titanium.Blob")
 extern class Blob extends Proxy
 {	
-	public var file:File;
+	public static var file:File;
 	
-	public var height:Float;
+	public static var height:Float;
 	
-	public var length:Float;
+	public static var length:Float;
 	
-	public var mimeType:String;
+	public static var mimeType:String;
 	
-	public var nativePath:String;
+	public static var nativePath:String;
 	
-	public var size:Float;
+	public static var size:Float;
 	
-	public var text:String;
+	public static var text:String;
 	
-	public var width:Float;
+	public static var width:Float;
 	
-	public function append(blob:Blob):Void;
+	public static function append(blob:Blob):Void;
 	
-	public function getFile():File;
+	public static function getFile():File;
 	
-	public function getHeight():Float;
+	public static function getHeight():Float;
 	
-	public function getLength():Float;
+	public static function getLength():Float;
 	
-	public function getMimeType():String;
+	public static function getMimeType():String;
 	
-	public function getNativePath():String;
+	public static function getNativePath():String;
 	
-	public function getSize():Float;
+	public static function getSize():Float;
 	
-	public function getText():String;
+	public static function getText():String;
 	
-	public function getWidth():Float;
+	public static function getWidth():Float;
 	
-	public function imageAsCropped(options:Dynamic):Blob;
+	public static function imageAsCropped(options:Dynamic):Blob;
 	
-	public function imageAsResized(width:Float, height:Float):Blob;
+	public static function imageAsResized(width:Float, height:Float):Blob;
 	
-	public function imageAsThumbnail(size:Float, ?borderSize:Float, ?cornerRadius:Float):Blob;
+	public static function imageAsThumbnail(size:Float, ?borderSize:Float, ?cornerRadius:Float):Blob;
 	
-	public function imageWithAlpha():Blob;
+	public static function imageWithAlpha():Blob;
 	
-	public function imageWithRoundedCorner(cornerSize:Float, ?borderSize:Float):Blob;
+	public static function imageWithRoundedCorner(cornerSize:Float, ?borderSize:Float):Blob;
 	
-	public function imageWithTransparentBorder(size:Float):Blob;
+	public static function imageWithTransparentBorder(size:Float):Blob;
 	
-	public function toString():String;
+	public static function toString():String;
 }

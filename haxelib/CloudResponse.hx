@@ -4,13 +4,13 @@ package ;
 @:native("CloudResponse")
 extern class CloudResponse
 {	
-	public var code:Float;
+	public static var code:Float;
 	
-	public var error:Bool;
+	public static var error:Bool;
 	
-	public var message:String;
+	public static var message:String;
 	
-	public var meta:Dynamic;
+	public static var meta:Dynamic;
 	
-	public var success:Bool;
+	public static var success:Bool;
 }

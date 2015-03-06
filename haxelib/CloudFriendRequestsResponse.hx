@@ -4,5 +4,5 @@ package ;
 @:native("CloudFriendRequestsResponse")
 extern class CloudFriendRequestsResponse extends CloudResponse
 {	
-	public var friend_requests:Array<Dynamic>;
+	public static var friend_requests:Array<Dynamic>;
 }

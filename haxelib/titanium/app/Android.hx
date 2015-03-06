@@ -8,17 +8,17 @@ import titanium.Module;
 @:native("Titanium.App.Android")
 extern class Android extends Module
 {	
-	public var appVersionCode:Float;
+	public static var appVersionCode:Float;
 	
-	public var appVersionName:String;
+	public static var appVersionName:String;
 	
-	public var launchIntent:Intent;
+	public static var launchIntent:Intent;
 	
-	public var R:R;
+	public static var R:R;
 	
-	public function getAppVersionCode():Float;
+	public static function getAppVersionCode():Float;
 	
-	public function getAppVersionName():String;
+	public static function getAppVersionName():String;
 	
-	public function getLaunchIntent():Intent;
+	public static function getLaunchIntent():Intent;
 }

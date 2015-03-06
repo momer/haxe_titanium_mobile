@@ -4,5 +4,5 @@ package ;
 @:native("CloudPhotosResponse")
 extern class CloudPhotosResponse extends CloudResponse
 {	
-	public var photos:Array<Dynamic>;
+	public static var photos:Array<Dynamic>;
 }

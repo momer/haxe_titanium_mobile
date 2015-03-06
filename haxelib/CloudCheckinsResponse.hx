@@ -4,5 +4,5 @@ package ;
 @:native("CloudCheckinsResponse")
 extern class CloudCheckinsResponse extends CloudResponse
 {	
-	public var checkins:Array<Dynamic>;
+	public static var checkins:Array<Dynamic>;
 }

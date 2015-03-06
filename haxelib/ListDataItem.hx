@@ -4,7 +4,7 @@ package ;
 @:native("ListDataItem")
 extern class ListDataItem
 {	
-	public var properties:Dynamic;
+	public static var properties:Dynamic;
 	
-	public var template:Dynamic;
+	public static var template:Dynamic;
 }

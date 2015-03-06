@@ -6,15 +6,15 @@ import titanium.xml.Node;
 @:native("Titanium.XML.Entity")
 extern class Entity extends Node
 {	
-	public var notationName:String;
+	public static var notationName:String;
 	
-	public var publicId:String;
+	public static var publicId:String;
 	
-	public var systemId:String;
+	public static var systemId:String;
 	
-	public function getNotationName():String;
+	public static function getNotationName():String;
 	
-	public function getPublicId():String;
+	public static function getPublicId():String;
 	
-	public function getSystemId():String;
+	public static function getSystemId():String;
 }

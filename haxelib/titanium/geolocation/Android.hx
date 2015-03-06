@@ -8,21 +8,21 @@ import titanium.Module;
 @:native("Titanium.Geolocation.Android")
 extern class Android extends Module
 {	
-	public var manualMode:Bool;
+	public static var manualMode:Bool;
 	
-	public function addLocationProvider(provider:LocationProvider):Void;
+	public static function addLocationProvider(provider:LocationProvider):Void;
 	
-	public function addLocationRule(rule:LocationRule):Void;
+	public static function addLocationRule(rule:LocationRule):Void;
 	
-	public function createLocationProvider(?parameters:Dynamic):LocationProvider;
+	public static function createLocationProvider(?parameters:Dynamic):LocationProvider;
 	
-	public function createLocationRule(?parameters:Dynamic):LocationRule;
+	public static function createLocationRule(?parameters:Dynamic):LocationRule;
 	
-	public function getManualMode():Bool;
+	public static function getManualMode():Bool;
 	
-	public function removeLocationProvider(provider:LocationProvider):Void;
+	public static function removeLocationProvider(provider:LocationProvider):Void;
 	
-	public function removeLocationRule(rule:LocationRule):Void;
+	public static function removeLocationRule(rule:LocationRule):Void;
 	
-	public function setManualMode(manualMode:Bool):Void;
+	public static function setManualMode(manualMode:Bool):Void;
 }

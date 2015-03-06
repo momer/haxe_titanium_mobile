@@ -4,5 +4,5 @@ package ;
 @:native("CloudPushNotificationSuccessArg")
 extern class CloudPushNotificationSuccessArg
 {	
-	public var deviceToken:String;
+	public static var deviceToken:String;
 }

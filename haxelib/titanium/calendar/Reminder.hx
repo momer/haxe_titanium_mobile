@@ -6,15 +6,15 @@ import titanium.Proxy;
 @:native("Titanium.Calendar.Reminder")
 extern class Reminder extends Proxy
 {	
-	public var id:String;
+	public static var id:String;
 	
-	public var method:Float;
+	public static var method:Float;
 	
-	public var minutes:Float;
+	public static var minutes:Float;
 	
-	public function getId():String;
+	public static function getId():String;
 	
-	public function getMethod():Float;
+	public static function getMethod():Float;
 	
-	public function getMinutes():Float;
+	public static function getMinutes():Float;
 }

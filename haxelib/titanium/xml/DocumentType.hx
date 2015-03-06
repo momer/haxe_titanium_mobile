@@ -7,27 +7,27 @@ import titanium.xml.Node;
 @:native("Titanium.XML.DocumentType")
 extern class DocumentType extends Node
 {	
-	public var entities:NamedNodeMap;
+	public static var entities:NamedNodeMap;
 	
-	public var internalSubset:String;
+	public static var internalSubset:String;
 	
-	public var name:String;
+	public static var name:String;
 	
-	public var notations:NamedNodeMap;
+	public static var notations:NamedNodeMap;
 	
-	public var publicId:String;
+	public static var publicId:String;
 	
-	public var systemId:String;
+	public static var systemId:String;
 	
-	public function getEntities():NamedNodeMap;
+	public static function getEntities():NamedNodeMap;
 	
-	public function getInternalSubset():String;
+	public static function getInternalSubset():String;
 	
-	public function getName():String;
+	public static function getName():String;
 	
-	public function getNotations():NamedNodeMap;
+	public static function getNotations():NamedNodeMap;
 	
-	public function getPublicId():String;
+	public static function getPublicId():String;
 	
-	public function getSystemId():String;
+	public static function getSystemId():String;
 }
