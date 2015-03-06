@@ -6,43 +6,43 @@ import titanium.Proxy;
 @:native("Titanium.Calendar.Alert")
 extern class Alert extends Proxy
 {	
-	public var absoluteDate:Date;
+	public static var absoluteDate:Date;
 	
-	public var alarmTime:Date;
+	public static var alarmTime:Date;
 	
-	public var begin:Date;
+	public static var begin:Date;
 	
-	public var end:Date;
+	public static var end:Date;
 	
-	public var eventId:Float;
+	public static var eventId:Float;
 	
-	public var id:String;
+	public static var id:String;
 	
-	public var minutes:Float;
+	public static var minutes:Float;
 	
-	public var relativeOffset:Float;
+	public static var relativeOffset:Float;
 	
-	public var state:Float;
+	public static var state:Float;
 	
-	public function getAbsoluteDate():Date;
+	public static function getAbsoluteDate():Date;
 	
-	public function getAlarmTime():Date;
+	public static function getAlarmTime():Date;
 	
-	public function getBegin():Date;
+	public static function getBegin():Date;
 	
-	public function getEnd():Date;
+	public static function getEnd():Date;
 	
-	public function getEventId():Float;
+	public static function getEventId():Float;
 	
-	public function getId():String;
+	public static function getId():String;
 	
-	public function getMinutes():Float;
+	public static function getMinutes():Float;
 	
-	public function getRelativeOffset():Float;
+	public static function getRelativeOffset():Float;
 	
-	public function getState():Float;
+	public static function getState():Float;
 	
-	public function setAbsoluteDate(absoluteDate:Date):Void;
+	public static function setAbsoluteDate(absoluteDate:Date):Void;
 	
-	public function setRelativeOffset(relativeOffset:Float):Void;
+	public static function setRelativeOffset(relativeOffset:Float):Void;
 }

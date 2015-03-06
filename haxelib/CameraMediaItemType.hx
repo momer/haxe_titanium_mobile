@@ -6,9 +6,15 @@ import titanium.Blob;
 @:native("CameraMediaItemType")
 extern class CameraMediaItemType extends SuccessResponse
 {	
-	public var cropRect:CropRectType;
+	public static var code:Float;
 	
-	public var media:Blob;
+	public static var cropRect:CropRectType;
 	
-	public var mediaType:String;
+	public static var error:String;
+	
+	public static var media:Blob;
+	
+	public static var mediaType:String;
+	
+	public static var success:Bool;
 }

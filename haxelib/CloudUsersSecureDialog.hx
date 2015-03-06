@@ -4,5 +4,5 @@ package ;
 @:native("CloudUsersSecureDialog")
 extern class CloudUsersSecureDialog
 {	
-	public var title:String;
+	public static var title:String;
 }

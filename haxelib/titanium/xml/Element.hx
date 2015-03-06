@@ -8,41 +8,45 @@ import titanium.xml.NodeList;
 @:native("Titanium.XML.Element")
 extern class Element extends Node
 {	
-	public var tagName:String;
+	public static var tagName:String;
 	
-	//public function getText():String;
+	public static var text:String;
 	
-	//public function getTextContent():String;
+	public static var textContent:String;
 	
-	public function getAttribute(name:String):String;
+	public static function getAttribute(name:String):String;
 	
-	public function getAttributeNode(name:String):Attr;
+	public static function getAttributeNode(name:String):Attr;
 	
-	public function getAttributeNodeNS(namespaceURI:String, localName:String):Attr;
+	public static function getAttributeNodeNS(namespaceURI:String, localName:String):Attr;
 	
-	public function getAttributeNS(namespaceURI:String, localName:String):String;
+	public static function getAttributeNS(namespaceURI:String, localName:String):String;
 	
-	public function getElementsByTagName(name:String):NodeList;
+	public static function getElementsByTagName(name:String):NodeList;
 	
-	public function getElementsByTagNameNS(namespaceURI:String, localName:String):NodeList;
+	public static function getElementsByTagNameNS(namespaceURI:String, localName:String):NodeList;
 	
-	public function getTagName():String;
+	public static function getTagName():String;
 	
-	public function hasAttribute(name:String):Bool;
+	public static function getText():String;
 	
-	public function hasAttributeNS(namespaceURI:String, localName:String):Bool;
+	public static function getTextContent():String;
 	
-	public function removeAttribute(name:String):Void;
+	public static function hasAttribute(name:String):Bool;
 	
-	public function removeAttributeNode(oldAttr:Attr):Void;
+	public static function hasAttributeNS(namespaceURI:String, localName:String):Bool;
 	
-	public function removeAttributeNS(namespaceURI:String, localName:String):Void;
+	public static function removeAttribute(name:String):Void;
 	
-	public function setAttribute(name:String, value:String):Void;
+	public static function removeAttributeNode(oldAttr:Attr):Void;
 	
-	public function setAttributeNode(newAttr:Attr):Attr;
+	public static function removeAttributeNS(namespaceURI:String, localName:String):Void;
 	
-	public function setAttributeNodeNS(newAttr:Attr):Attr;
+	public static function setAttribute(name:String, value:String):Void;
 	
-	public function setAttributeNS(namespaceURI:String, qualifiedName:String, value:String):Void;
+	public static function setAttributeNode(newAttr:Attr):Attr;
+	
+	public static function setAttributeNodeNS(newAttr:Attr):Attr;
+	
+	public static function setAttributeNS(namespaceURI:String, qualifiedName:String, value:String):Void;
 }

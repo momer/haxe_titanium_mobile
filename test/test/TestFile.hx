@@ -34,7 +34,6 @@ import titanium.app.ios.UserDefaults;
 import titanium.app.ios.UserNotificationAction;
 import titanium.app.ios.UserNotificationCategory;
 import titanium.app.Properties;
-import titanium.app.PropertiesConfig;
 import titanium.Blob;
 import titanium.BlobStream;
 import titanium.Buffer;
@@ -90,7 +89,6 @@ import titanium.geolocation.android.LocationRule;
 import titanium.geolocation.MobileWeb;
 import titanium.Gesture;
 import titanium.IOStream;
-import titanium.IOStreamConfig;
 import titanium.Locale;
 import titanium.Map;
 import titanium.map.Annotation;
@@ -104,7 +102,6 @@ import titanium.media.MusicPlayer;
 import titanium.media.Sound;
 import titanium.media.VideoPlayer;
 import titanium.Module;
-import titanium.ModuleConfig;
 import titanium.Network;
 import titanium.network.BonjourBrowser;
 import titanium.network.BonjourService;
@@ -118,7 +115,6 @@ import titanium.Platform;
 import titanium.platform.Android;
 import titanium.platform.DisplayCaps;
 import titanium.Proxy;
-import titanium.ProxyConfig;
 import titanium.Stream;
 import titanium.UI;
 import titanium.ui.ActivityIndicator;
@@ -212,16 +208,13 @@ import titanium.ui.TextArea;
 import titanium.ui.TextField;
 import titanium.ui.Toolbar;
 import titanium.ui.View;
-import titanium.ui.ViewConfig;
 import titanium.ui.WebView;
 import titanium.ui.Window;
-import titanium.ui.WindowConfig;
 import titanium.Utils;
 import titanium.XML;
 import titanium.xml.Attr;
 import titanium.xml.CDATASection;
 import titanium.xml.CharacterData;
-import titanium.xml.CharacterDataConfig;
 import titanium.xml.Comment;
 import titanium.xml.Document;
 import titanium.xml.DocumentFragment;
@@ -232,16 +225,21 @@ import titanium.xml.Entity;
 import titanium.xml.EntityReference;
 import titanium.xml.NamedNodeMap;
 import titanium.xml.Node;
-import titanium.xml.NodeConfig;
 import titanium.xml.NodeList;
 import titanium.xml.Notation;
 import titanium.xml.ProcessingInstruction;
 import titanium.xml.Text;
-import titanium.xml.TextConfig;
 import titanium.Yahoo;
 
 class TestFile {
 	static public function main():Void {
+		var myList = titanium.UI.createLabel({
+			color:'#999',
+			text:'I am Window 2',
+			font:{fontSize:20,fontFamily:'Helvetica Neue'},
+			textAlign:'center',
+			width:'auto'
+		});
 		trace('Hello World; test passed.');
 	}
 }

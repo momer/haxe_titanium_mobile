@@ -4,7 +4,13 @@ package ;
 @:native("PushNotificationSuccessArg")
 extern class PushNotificationSuccessArg extends SuccessResponse
 {	
-	public var deviceToken:String;
+	public static var code:Float;
 	
-	public var type:String;
+	public static var deviceToken:String;
+	
+	public static var error:String;
+	
+	public static var success:Bool;
+	
+	public static var type:String;
 }

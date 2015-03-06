@@ -8,31 +8,31 @@ import titanium.Proxy;
 @:native("Titanium.Database.DB")
 extern class DB extends Proxy
 {	
-	public var file:File;
+	public static var file:File;
 	
-	public var lastInsertRowId:Float;
+	public static var lastInsertRowId:Float;
 	
-	public var name:String;
+	public static var name:String;
 	
-	public var rowsAffected:Float;
+	public static var rowsAffected:Float;
 	
-	public function close():Void;
+	public static function close():Void;
 	
-	public function execute(sql:String, ?vararg:Dynamic):ResultSet;
+	public static function execute(sql:String, ?vararg:Dynamic):ResultSet;
 	
-	public function getFile():File;
+	public static function getFile():File;
 	
-	public function getLastInsertRowId():Float;
+	public static function getLastInsertRowId():Float;
 	
-	public function getName():String;
+	public static function getName():String;
 	
-	public function getRowsAffected():Float;
+	public static function getRowsAffected():Float;
 	
-	public function remove():Void;
+	public static function remove():Void;
 	
-	public function setLastInsertRowId(lastInsertRowId:Float):Void;
+	public static function setLastInsertRowId(lastInsertRowId:Float):Void;
 	
-	public function setName(name:String):Void;
+	public static function setName(name:String):Void;
 	
-	public function setRowsAffected(rowsAffected:Float):Void;
+	public static function setRowsAffected(rowsAffected:Float):Void;
 }

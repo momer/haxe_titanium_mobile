@@ -4,7 +4,11 @@ package ;
 @:native("YQLResponse")
 extern class YQLResponse extends ErrorResponse
 {	
-	public var data:Dynamic;
+	public static var code:Float;
 	
-	public var message:String;
+	public static var data:Dynamic;
+	
+	public static var error:String;
+	
+	public static var message:String;
 }

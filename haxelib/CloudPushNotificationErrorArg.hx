@@ -4,5 +4,5 @@ package ;
 @:native("CloudPushNotificationErrorArg")
 extern class CloudPushNotificationErrorArg
 {	
-	public var error:String;
+	public static var error:String;
 }

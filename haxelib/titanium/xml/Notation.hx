@@ -6,11 +6,11 @@ import titanium.Proxy;
 @:native("Titanium.XML.Notation")
 extern class Notation extends Proxy
 {	
-	public var publicId:String;
+	public static var publicId:String;
 	
-	public var systemId:String;
+	public static var systemId:String;
 	
-	public function getPublicId():String;
+	public static function getPublicId():String;
 	
-	public function getSystemId():String;
+	public static function getSystemId():String;
 }

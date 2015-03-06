@@ -4,7 +4,7 @@ package ;
 @:native("Point")
 extern class Point
 {	
-	public var x:Float;
+	public static var x:Float;
 	
-	public var y:Float;
+	public static var y:Float;
 }

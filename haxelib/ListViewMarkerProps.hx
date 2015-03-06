@@ -4,7 +4,7 @@ package ;
 @:native("ListViewMarkerProps")
 extern class ListViewMarkerProps
 {	
-	public var itemIndex:Float;
+	public static var itemIndex:Float;
 	
-	public var sectionIndex:Float;
+	public static var sectionIndex:Float;
 }

@@ -4,7 +4,7 @@ package ;
 @:native("MediaQueryInfoType")
 extern class MediaQueryInfoType
 {	
-	public var exact:Bool;
+	public static var exact:Bool;
 	
-	public var value:Dynamic;
+	public static var value:Dynamic;
 }

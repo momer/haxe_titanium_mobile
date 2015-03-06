@@ -6,57 +6,57 @@ import titanium.IOStream;
 @:native("Titanium.Network.Socket.TCP")
 extern class TCP extends IOStream
 {	
-	public var accepted:Callback<AcceptedCallbackArgs>;
+	public static var accepted:Callback<AcceptedCallbackArgs>;
 	
-	public var connected:Callback<ConnectedCallbackArgs>;
+	public static var connected:Callback<ConnectedCallbackArgs>;
 	
-	public var error:Callback<ErrorCallbackArgs>;
+	public static var error:Callback<ErrorCallbackArgs>;
 	
-	public var host:String;
+	public static var host:String;
 	
-	public var listenQueueSize:Float;
+	public static var listenQueueSize:Float;
 	
-	public var port:Float;
+	public static var port:Float;
 	
-	public var state:Float;
+	public static var state:Float;
 	
-	public var timeout:Float;
+	public static var timeout:Float;
 	
-	//public function close():Void;
+	public static function accept(options:AcceptDict):Void;
 	
-	public function accept(options:AcceptDict):Void;
+	public static function close():Void;
 	
-	public function connect():Void;
+	public static function connect():Void;
 	
-	public function getAccepted():Callback<AcceptedCallbackArgs>;
+	public static function getAccepted():Callback<AcceptedCallbackArgs>;
 	
-	public function getConnected():Callback<ConnectedCallbackArgs>;
+	public static function getConnected():Callback<ConnectedCallbackArgs>;
 	
-	public function getError():Callback<ErrorCallbackArgs>;
+	public static function getError():Callback<ErrorCallbackArgs>;
 	
-	public function getHost():String;
+	public static function getHost():String;
 	
-	public function getListenQueueSize():Float;
+	public static function getListenQueueSize():Float;
 	
-	public function getPort():Float;
+	public static function getPort():Float;
 	
-	public function getState():Float;
+	public static function getState():Float;
 	
-	public function getTimeout():Float;
+	public static function getTimeout():Float;
 	
-	public function listen():Void;
+	public static function listen():Void;
 	
-	public function setAccepted(accepted:Callback<AcceptedCallbackArgs>):Void;
+	public static function setAccepted(accepted:Callback<AcceptedCallbackArgs>):Void;
 	
-	public function setConnected(connected:Callback<ConnectedCallbackArgs>):Void;
+	public static function setConnected(connected:Callback<ConnectedCallbackArgs>):Void;
 	
-	public function setError(error:Callback<ErrorCallbackArgs>):Void;
+	public static function setError(error:Callback<ErrorCallbackArgs>):Void;
 	
-	public function setHost(host:String):Void;
+	public static function setHost(host:String):Void;
 	
-	public function setListenQueueSize(listenQueueSize:Float):Void;
+	public static function setListenQueueSize(listenQueueSize:Float):Void;
 	
-	public function setPort(port:Float):Void;
+	public static function setPort(port:Float):Void;
 	
-	public function setTimeout(timeout:Float):Void;
+	public static function setTimeout(timeout:Float):Void;
 }

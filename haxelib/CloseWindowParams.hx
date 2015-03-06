@@ -4,9 +4,9 @@ package ;
 @:native("closeWindowParams")
 extern class CloseWindowParams
 {	
-	public var activityEnterAnimation:Float;
+	public static var activityEnterAnimation:Float;
 	
-	public var activityExitAnimation:Float;
+	public static var activityExitAnimation:Float;
 	
-	public var animated:Bool;
+	public static var animated:Bool;
 }

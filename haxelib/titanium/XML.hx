@@ -8,7 +8,7 @@ import titanium.xml.Node;
 @:native("Titanium.XML")
 extern class XML extends Module
 {	
-	public function parseString(xml:String):Document;
+	public static function parseString(xml:String):Document;
 	
-	public function serializeToString(node:Node):String;
+	public static function serializeToString(node:Node):String;
 }

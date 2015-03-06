@@ -7,23 +7,23 @@ import titanium.Proxy;
 @:native("Titanium.Contacts.Group")
 extern class Group extends Proxy
 {	
-	public var name:String;
+	public static var name:String;
 	
-	public var recordId:Float;
+	public static var recordId:Float;
 	
-	public function add(person:Person):Void;
+	public static function add(person:Person):Void;
 	
-	public function getName():String;
+	public static function getName():String;
 	
-	public function getRecordId():Float;
+	public static function getRecordId():Float;
 	
-	public function members():Array<Person>;
+	public static function members():Array<Person>;
 	
-	public function remove(person:Person):Void;
+	public static function remove(person:Person):Void;
 	
-	public function setName(name:String):Void;
+	public static function setName(name:String):Void;
 	
-	public function setRecordId(recordId:Float):Void;
+	public static function setRecordId(recordId:Float):Void;
 	
-	public function sortedMembers(sortBy:Float):Array<Person>;
+	public static function sortedMembers(sortBy:Float):Array<Person>;
 }

@@ -4,5 +4,5 @@ package ;
 @:native("CloudPushNotificationsQueryChannelResponse")
 extern class CloudPushNotificationsQueryChannelResponse extends CloudResponse
 {	
-	public var push_channels:Array<String>;
+	public static var push_channels:Array<String>;
 }

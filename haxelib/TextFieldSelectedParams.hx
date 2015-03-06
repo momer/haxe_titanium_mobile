@@ -4,7 +4,7 @@ package ;
 @:native("textFieldSelectedParams")
 extern class TextFieldSelectedParams
 {	
-	public var length:Float;
+	public static var length:Float;
 	
-	public var location:Float;
+	public static var location:Float;
 }

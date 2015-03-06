@@ -4,7 +4,7 @@ package ;
 @:native("recurrenceEndDictionary")
 extern class RecurrenceEndDictionary
 {	
-	public var endDate:Date;
+	public static var endDate:Date;
 	
-	public var occurrenceCount:Float;
+	public static var occurrenceCount:Float;
 }

@@ -6,25 +6,25 @@ import titanium.Module;
 @:native("Titanium.Locale")
 extern class Locale extends Module
 {	
-	public var currentCountry:String;
+	public static var currentCountry:String;
 	
-	public var currentLanguage:String;
+	public static var currentLanguage:String;
 	
-	public var currentLocale:String;
+	public static var currentLocale:String;
 	
-	public function formatTelephoneNumber(number:String):String;
+	public static function formatTelephoneNumber(number:String):String;
 	
-	public function getCurrencyCode(locale:String):String;
+	public static function getCurrencyCode(locale:String):String;
 	
-	public function getCurrencySymbol(currencyCode:String):String;
+	public static function getCurrencySymbol(currencyCode:String):String;
 	
-	public function getCurrentCountry():String;
+	public static function getCurrentCountry():String;
 	
-	public function getCurrentLanguage():String;
+	public static function getCurrentLanguage():String;
 	
-	public function getCurrentLocale():String;
+	public static function getCurrentLocale():String;
 	
-	public function getLocaleCurrencySymbol(locale:String):String;
+	public static function getLocaleCurrencySymbol(locale:String):String;
 	
-	public function getString(key:String, ?hint:String):String;
+	public static function getString(key:String, ?hint:String):String;
 }

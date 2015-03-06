@@ -4,5 +4,5 @@ package ;
 @:native("animationOption")
 extern class AnimationOption
 {	
-	public var animated:Bool;
+	public static var animated:Bool;
 }

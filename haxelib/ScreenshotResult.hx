@@ -6,5 +6,5 @@ import titanium.Blob;
 @:native("ScreenshotResult")
 extern class ScreenshotResult
 {	
-	public var media:Blob;
+	public static var media:Blob;
 }

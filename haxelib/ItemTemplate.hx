@@ -4,9 +4,9 @@ package ;
 @:native("ItemTemplate")
 extern class ItemTemplate
 {	
-	public var childTemplates:Array<ViewTemplate>;
+	public static var childTemplates:Array<ViewTemplate>;
 	
-	public var events:Dynamic;
+	public static var events:Dynamic;
 	
-	public var properties:Dynamic;
+	public static var properties:Dynamic;
 }

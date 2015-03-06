@@ -4,7 +4,7 @@ package ;
 @:native("TableViewIndexEntry")
 extern class TableViewIndexEntry
 {	
-	public var index:Float;
+	public static var index:Float;
 	
-	public var title:String;
+	public static var title:String;
 }

@@ -7,171 +7,171 @@ import titanium.Proxy;
 @:native("Titanium.Contacts.Person")
 extern class Person extends Proxy
 {	
-	public var address:Dynamic;
+	public static var address:Dynamic;
 	
-	public var alternateBirthday:Dynamic;
+	public static var alternateBirthday:Dynamic;
 	
-	public var birthday:String;
+	public static var birthday:String;
 	
-	public var created:String;
+	public static var created:String;
 	
-	public var date:Dynamic;
+	public static var date:Dynamic;
 	
-	public var department:String;
+	public static var department:String;
 	
-	public var email:Dynamic;
+	public static var email:Dynamic;
 	
-	public var firstName:String;
+	public static var firstName:String;
 	
-	public var firstPhonetic:String;
+	public static var firstPhonetic:String;
 	
-	public var fullName:String;
+	public static var fullName:String;
 	
-	public var id:Float;
+	public static var id:Float;
 	
-	public var image:Blob;
+	public static var image:Blob;
 	
-	public var instantMessage:Dynamic;
+	public static var instantMessage:Dynamic;
 	
-	public var jobTitle:String;
+	public static var jobTitle:String;
 	
-	public var kind:Float;
+	public static var kind:Float;
 	
-	public var lastName:String;
+	public static var lastName:String;
 	
-	public var lastPhonetic:String;
+	public static var lastPhonetic:String;
 	
-	public var middleName:String;
+	public static var middleName:String;
 	
-	public var middlePhonetic:String;
+	public static var middlePhonetic:String;
 	
-	public var modified:String;
+	public static var modified:String;
 	
-	public var nickname:String;
+	public static var nickname:String;
 	
-	public var note:String;
+	public static var note:String;
 	
-	public var organization:String;
+	public static var organization:String;
 	
-	public var phone:Dynamic;
+	public static var phone:Dynamic;
 	
-	public var prefix:String;
+	public static var prefix:String;
 	
-	public var recordId:Float;
+	public static var recordId:Float;
 	
-	public var relatedNames:Dynamic;
+	public static var relatedNames:Dynamic;
 	
-	public var socialProfile:Dynamic;
+	public static var socialProfile:Dynamic;
 	
-	public var suffix:String;
+	public static var suffix:String;
 	
-	public var url:Dynamic;
+	public static var url:Dynamic;
 	
-	public function getAddress():Dynamic;
+	public static function getAddress():Dynamic;
 	
-	public function getAlternateBirthday():Dynamic;
+	public static function getAlternateBirthday():Dynamic;
 	
-	public function getBirthday():String;
+	public static function getBirthday():String;
 	
-	public function getCreated():String;
+	public static function getCreated():String;
 	
-	public function getDate():Dynamic;
+	public static function getDate():Dynamic;
 	
-	public function getDepartment():String;
+	public static function getDepartment():String;
 	
-	public function getEmail():Dynamic;
+	public static function getEmail():Dynamic;
 	
-	public function getFirstName():String;
+	public static function getFirstName():String;
 	
-	public function getFirstPhonetic():String;
+	public static function getFirstPhonetic():String;
 	
-	public function getFullName():String;
+	public static function getFullName():String;
 	
-	public function getId():Float;
+	public static function getId():Float;
 	
-	public function getImage():Blob;
+	public static function getImage():Blob;
 	
-	public function getInstantMessage():Dynamic;
+	public static function getInstantMessage():Dynamic;
 	
-	public function getJobTitle():String;
+	public static function getJobTitle():String;
 	
-	public function getKind():Float;
+	public static function getKind():Float;
 	
-	public function getLastName():String;
+	public static function getLastName():String;
 	
-	public function getLastPhonetic():String;
+	public static function getLastPhonetic():String;
 	
-	public function getMiddleName():String;
+	public static function getMiddleName():String;
 	
-	public function getMiddlePhonetic():String;
+	public static function getMiddlePhonetic():String;
 	
-	public function getModified():String;
+	public static function getModified():String;
 	
-	public function getNickname():String;
+	public static function getNickname():String;
 	
-	public function getNote():String;
+	public static function getNote():String;
 	
-	public function getOrganization():String;
+	public static function getOrganization():String;
 	
-	public function getPhone():Dynamic;
+	public static function getPhone():Dynamic;
 	
-	public function getPrefix():String;
+	public static function getPrefix():String;
 	
-	public function getRecordId():Float;
+	public static function getRecordId():Float;
 	
-	public function getRelatedNames():Dynamic;
+	public static function getRelatedNames():Dynamic;
 	
-	public function getSocialProfile():Dynamic;
+	public static function getSocialProfile():Dynamic;
 	
-	public function getSuffix():String;
+	public static function getSuffix():String;
 	
-	public function getUrl():Dynamic;
+	public static function getUrl():Dynamic;
 	
-	public function setAddress(address:Dynamic):Void;
+	public static function setAddress(address:Dynamic):Void;
 	
-	public function setAlternateBirthday(alternateBirthday:Dynamic):Void;
+	public static function setAlternateBirthday(alternateBirthday:Dynamic):Void;
 	
-	public function setBirthday(birthday:String):Void;
+	public static function setBirthday(birthday:String):Void;
 	
-	public function setDate(date:Dynamic):Void;
+	public static function setDate(date:Dynamic):Void;
 	
-	public function setDepartment(department:String):Void;
+	public static function setDepartment(department:String):Void;
 	
-	public function setEmail(email:Dynamic):Void;
+	public static function setEmail(email:Dynamic):Void;
 	
-	public function setFirstName(firstName:String):Void;
+	public static function setFirstName(firstName:String):Void;
 	
-	public function setFirstPhonetic(firstPhonetic:String):Void;
+	public static function setFirstPhonetic(firstPhonetic:String):Void;
 	
-	public function setImage(image:Blob):Void;
+	public static function setImage(image:Blob):Void;
 	
-	public function setInstantMessage(instantMessage:Dynamic):Void;
+	public static function setInstantMessage(instantMessage:Dynamic):Void;
 	
-	public function setJobTitle(jobTitle:String):Void;
+	public static function setJobTitle(jobTitle:String):Void;
 	
-	public function setKind(kind:Float):Void;
+	public static function setKind(kind:Float):Void;
 	
-	public function setLastName(lastName:String):Void;
+	public static function setLastName(lastName:String):Void;
 	
-	public function setLastPhonetic(lastPhonetic:String):Void;
+	public static function setLastPhonetic(lastPhonetic:String):Void;
 	
-	public function setMiddleName(middleName:String):Void;
+	public static function setMiddleName(middleName:String):Void;
 	
-	public function setMiddlePhonetic(middlePhonetic:String):Void;
+	public static function setMiddlePhonetic(middlePhonetic:String):Void;
 	
-	public function setNickname(nickname:String):Void;
+	public static function setNickname(nickname:String):Void;
 	
-	public function setNote(note:String):Void;
+	public static function setNote(note:String):Void;
 	
-	public function setOrganization(organization:String):Void;
+	public static function setOrganization(organization:String):Void;
 	
-	public function setPhone(phone:Dynamic):Void;
+	public static function setPhone(phone:Dynamic):Void;
 	
-	public function setRecordId(recordId:Float):Void;
+	public static function setRecordId(recordId:Float):Void;
 	
-	public function setRelatedNames(relatedNames:Dynamic):Void;
+	public static function setRelatedNames(relatedNames:Dynamic):Void;
 	
-	public function setSocialProfile(socialProfile:Dynamic):Void;
+	public static function setSocialProfile(socialProfile:Dynamic):Void;
 	
-	public function setUrl(url:Dynamic):Void;
+	public static function setUrl(url:Dynamic):Void;
 }

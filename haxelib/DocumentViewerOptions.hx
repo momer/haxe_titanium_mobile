@@ -6,7 +6,7 @@ import titanium.ui.View;
 @:native("DocumentViewerOptions")
 extern class DocumentViewerOptions
 {	
-	public var animated:Bool;
+	public static var animated:Bool;
 	
-	public var view:View;
+	public static var view:View;
 }

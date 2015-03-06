@@ -4,7 +4,7 @@ package ;
 @:native("GradientColorRef")
 extern class GradientColorRef
 {	
-	public var color:String;
+	public static var color:String;
 	
-	public var offset:Float;
+	public static var offset:Float;
 }

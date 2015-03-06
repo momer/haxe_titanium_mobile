@@ -6,9 +6,9 @@ import titanium.ui.View;
 @:native("showParams")
 extern class ShowParams
 {	
-	public var animated:Bool;
+	public static var animated:Bool;
 	
-	public var rect:Dimension;
+	public static var rect:Dimension;
 	
-	public var view:View;
+	public static var view:View;
 }

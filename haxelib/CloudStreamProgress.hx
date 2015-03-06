@@ -4,7 +4,7 @@ package ;
 @:native("CloudStreamProgress")
 extern class CloudStreamProgress
 {	
-	public var progress:Float;
+	public static var progress:Float;
 	
-	public var url:String;
+	public static var url:String;
 }

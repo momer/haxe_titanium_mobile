@@ -4,7 +4,7 @@ package ;
 @:native("ListViewIndexEntry")
 extern class ListViewIndexEntry
 {	
-	public var index:Float;
+	public static var index:Float;
 	
-	public var title:String;
+	public static var title:String;
 }

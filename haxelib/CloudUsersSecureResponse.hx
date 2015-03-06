@@ -4,7 +4,7 @@ package ;
 @:native("CloudUsersSecureResponse")
 extern class CloudUsersSecureResponse extends CloudResponse
 {	
-	public var accessToken:String;
+	public static var accessToken:String;
 	
-	public var expiresIn:Float;
+	public static var expiresIn:Float;
 }
