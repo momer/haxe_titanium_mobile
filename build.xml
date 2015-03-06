@@ -2,14 +2,10 @@
 <buildhx>
 	<source path="src" language="javascript" parser="jsduck" />
 
-	<!-- Need to figure out a way to add this in with this type of definition: http://try.haxe.org/#03fa7 -->
+	<!-- expected usage: http://try.haxe.org/#03fa7 -->
 	<typedef name="Callback" typeParams="<T>" generic="true">
 		<return type="T->Void" />
 	</typedef>
-
-	<!-- <typedef name="Dictionary" typeParams="<T>" generic="true" remap="Dictionary<Dynamic>">
-		<return type="Map<String, T>" />
-	</typedef> -->
 
 	<type name="Dictionary" generic="true" remap="Dynamic" />
 
